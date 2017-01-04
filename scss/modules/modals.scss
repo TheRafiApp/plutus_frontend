@@ -221,7 +221,11 @@
     a {
       font-size: 0.9em;
     }
-  }
+  } 
+} 
+
+.sentry-error-embed-wrapper {
+  z-index: 999999999 !important;
 }
 
 

@@ -707,17 +707,11 @@ function(
       var formData = this.constructData();
 
       var validate = app.utils.validate(this, formData);
-      console.log(validate)
-      if (!validate) {
-        console.log('didnt validate')
-        return false;
-      }
 
-      console.log('made it past')
+      if (!validate) return false;
       // HACK: make sure only changed data gets sent
 
       if (!this.model.isNew()) {
-
         // this.model = this.model.clone();
 
         var tenants = this.model.get('tenants');

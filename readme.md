@@ -37,6 +37,7 @@
 ## Deploy
 
 1. Merge into a deployment branch (staging, production)
-1. `git push`
-1. SSH into that server
+1. `git push `
+1. `ssh rafi-staging` or `ssh rafi-production`
+1. `/var/www/app/frontend`
 1. `git pull`

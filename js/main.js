@@ -305,6 +305,7 @@ function(
         } else {
           app.alerts.error(message || 'Something went wrong...');
           if (app.config.console) console.error(error);
+          if (app.config.bug_reporting) Raven.captureException(error);
         }
       },
 
@@ -488,8 +489,12 @@ function(
   // Raven.js (Sentry) for error logging
   if (app.config.sentry) {
     Raven.config(app.config.sentry_dsn, {
-      ignoreErrors: [
-        'datespan_overlap'
+      // ignoreErrors: [
+      //   'datespan_overlap'
+      // ]
+      ignoreUrls: [
+        /10.1.10.38:81/,
+        /payment.rafiproperties.com/
       ]
     }).install();
   }
