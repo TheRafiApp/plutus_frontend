@@ -1,5 +1,4 @@
 # directories
-bower_components/
 node_modules/
 
 # files
@@ -9,7 +8,7 @@ config.codekit
  
 # nested files
 # css/build/*
-scss/build/*
+# scss/build/*
 # js/build/*
 
 logs/*
