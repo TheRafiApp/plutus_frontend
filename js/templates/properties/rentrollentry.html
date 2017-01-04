@@ -1,0 +1,23 @@
+<form class="form-model">
+
+  <div class="field-group">
+    <legend>Status</legend>
+    {{{ model.status }}}
+    <!--<input name="status" class="full" type="text" value="" disabled />-->
+   <!--  <span class="help-text"></span> -->
+  </div>
+
+  <div class="field-group">
+    <legend>Data/Time</legend>
+    {{{ moment(model.created).format('MM/DD/YYYY h:mm:ssa') }}}
+    <!--<input name="status" class="full" type="text" value="" disabled />-->
+   <!--  <span class="help-text"></span> -->
+  </div>
+
+  <legend>Source</legend>
+  <div class="source grid"></div>
+
+  <legend>Destination</legend>
+  <div class="destination grid"></div>
+  
+</form>

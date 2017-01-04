@@ -1,0 +1,59 @@
+// Color definitions
+
+$color-highlight: #0071bc;
+$color-background: #3d586f;
+$color-text-light: #fff;
+$color-text-dark: #333;
+
+$color-status-neutral: $color-highlight;
+$color-status-success: #45c97a; 
+$color-status-warning: #f7d114;
+// $color-status-error: #ff4081;
+$color-status-error: #e91e63;
+$color-dwolla: #f18601;
+
+$color-grey-10: desaturate(lighten($color-highlight, 58%), 100%);
+$color-grey-20: desaturate(lighten($color-highlight, 45%), 100%);
+$color-grey-40: desaturate(lighten($color-highlight, 35%), 100%);
+$color-grey-60: #808080;
+$color-grey-80: #333;
+
+$color-btn: $color-highlight;
+$color-btn-primary: $color-status-error;
+$color-btn-disabled: $color-grey-20;
+
+// Color classes
+
+.color-success {
+  color: $color-status-success;
+}
+
+.color-bg-success {
+  background-color: $color-status-success;
+}
+
+.color-neutral {
+  color: $color-status-neutral;
+}
+
+.color-bg-neutral {
+  color: $color-text-light;
+  background-color: $color-status-neutral;
+}
+
+.color-warning {
+  color: $color-status-warning;
+}
+
+.color-bg-warning {
+  background-color: $color-status-warning;
+}
+
+.color-error {
+  color: $color-status-error;
+}
+
+.color-bg-error {
+  color: $color-text-light;
+  background-color: $color-status-error;
+}

@@ -1,0 +1,66 @@
+// Tips
+@import 'layers';
+
+$sticky-width: 200px;
+
+.collection-view {
+  @include position(absolute, 0 $sticky-width 0 0);
+  transition: all 0.6s;
+}
+
+// Tips
+
+.tips-view {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: $sticky-width;
+  transition: all 0.6s; 
+
+  .scroll-y {
+    top: $header-height - 32;
+    padding: 0 20px;
+    box-shadow: inset 8px 0 6px -6px rgba(0, 0, 0, 0.3);
+  }
+
+  ul.tips {
+    list-style-type: square;
+    margin-left: 16px;
+
+    li {
+      margin-bottom: 20px;
+      font-size: 0.9em;
+
+      h3 {
+        font-size: 0.9em;
+        font-weight: bold;
+        text-transform: uppercase;
+        color: $color-grey-80;
+      }
+
+      p {
+        margin-bottom: 10px;
+      }
+
+      a {
+        font-size: 0.9em;
+      }
+    }
+  }
+}
+
+.hide-tips {
+  .collection-view {
+    right: 0;
+    transition: all 0.6s;
+  }
+  .tips-view {
+    right: -$sticky-width;
+    transition: all 0.6s;
+  }      
+  .header {
+    padding: 20px;
+    transition: all 0.6s;
+  }
+}

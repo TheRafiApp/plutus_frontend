@@ -1,0 +1,154 @@
+{{# _.each(properties, function(property) { }}
+
+<dl class="property-summary">
+  <dt>Property</dt>
+  <dd class="property">
+    <table>
+      <thead>
+        <tr>
+          <td colspan="2">
+            {{{ property.address }}}, {{{ property.city }}} {{{ property.state }}}, {{{ property.zip }}}
+          </td>
+        </tr>
+      </thead>
+      <tbody>
+        {{# if (property.name) { }}
+        <tr>
+          <td>Name</td>
+          <td>{{{ property.name }}}</td>
+        </div>
+        {{# } }}
+        <tr>
+          <td>Address</td>
+          <td>{{{ property.address }}}</td>
+        </div>
+        <tr>
+          <td>City</td>
+          <td>{{{ property.city }}}</td>
+        </div>
+        <tr>
+          <td>State</td>
+          <td>{{{ property.state }}}</td>
+        </div>
+        <tr>
+          <td>Zip</td>
+          <td>{{{ property.zip }}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </dd>
+
+  {{#
+  if (property.units) { 
+  var consecutive = 0; }}
+    
+    {{# _.each(property.units, function(unit) { }}
+
+      {{# if (consecutive === 0) { }}
+      <dt>Unit</dt>
+      <dd class="unit">
+
+      {{# } }}
+
+      <table>
+        <thead>
+          <tr>
+            <td colspan="2">
+              #{{{ unit.number }}}
+            </td>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Beds</td>
+            <td>{{{ unit.beds }}}</td>
+          </tr>
+          <tr>
+            <td>Baths</td>
+            <td>{{{ unit.baths }}}</td>
+          </tr>
+          <tr>
+            <td>Rent</td>
+            <td>${{{ unit.rent }}}</td>
+          </tr>
+          <tr>
+            <td>Sq Footage</td>
+            <td>{{{ unit.sq_ft }}}</td>
+          </tr>
+        </tbody>
+      </table>
+      
+      {{# consecutive++ }}
+
+      {{# _.each(unit.leases, function(lease) { }}
+
+        </dd>
+
+        {{# consecutive = 0 }}
+
+        <dt>Lease</dt>
+        <dd class="lease">
+          <table>
+            <thead>
+              <tr>
+                <td colspan="2">
+                  {{{ moment(lease.start_date).format('MM/DD/YYYY') }}} – {{{ moment(lease.end_date).format('MM/DD/YYYY') }}}
+                </td>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Start Date</td>
+                <td>{{{ moment(lease.start_date).format('MM/DD/YYYY') }}}</td>
+              </tr>
+              <tr>
+                <td>End Date</td>
+                <td>{{{ moment(lease.end_date).format('MM/DD/YYYY') }}}</td>
+              </tr>
+              <tr>
+                <td>Rent</td>
+                <td>${{{ lease.rent }}}</td>
+              </tr>
+            </tbody>
+          </table>
+        </dd>
+
+        {{# if (lease.tenants) { }}
+
+        <dt>Tenants</dt>
+
+          <dd class="tenant">
+          {{# _.each(lease.tenants, function(tenant) { }}
+          
+            <table>
+              <thead>
+                <tr>
+                  <td colspan="2">
+                    {{{ tenant.first_name }}} {{{ tenant.last_name }}}
+                  </td>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Email</td>
+                  <td>{{{ tenant.email }}}</td>
+                </tr>
+                <tr>
+                  <td>Phone</td>
+                  <td>{{{ tenant.phone }}}</td>
+                </tr>
+              </tbody>
+            </table>
+          
+          {{# }) }}
+
+          </dd>
+
+        {{# } }}
+      {{# }) }}
+    {{# }) }}
+  {{# } }}
+
+</dl>
+
+{{# }) }}

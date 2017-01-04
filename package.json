@@ -1,0 +1,49 @@
+{
+  "name": "plutus",
+  "version": "0.1.1",
+  "description": "just to get rid of that stupid npm warning",
+  "main": "index.js",
+  "scripts": {
+    "test": "node ./node_modules/mocha/bin/mocha ./test/tests.js",
+    "test2": "node ./node_modules/mocha/bin/mocha ./test/tests2.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TheRafiApp/plutus.git"
+  },
+  "author": "The Rafi App LLC",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/TheRafiApp/plutus/issues"
+  },
+  "homepage": "https://github.com/TheRafiApp/plutus#readme",
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "del": "^2.2.0",
+    "gulp": "^3.9.0",
+    "gulp-clip-empty-files": "^0.1.2",
+    "gulp-concat": "^2.6.1",
+    "gulp-cssnano": "^2.1.0",
+    "gulp-debug": "^3.0.0",
+    "gulp-find": "0.0.10",
+    "gulp-livereload": "^3.8.1",
+    "gulp-rename": "^1.2.2",
+    "gulp-replace": "^0.5.4",
+    "gulp-requirejs": "^0.4.0",
+    "gulp-sass": "^3.0.0",
+    "gulp-search": "^1.0.0",
+    "gulp-shell": "^0.5.2",
+    "gulp-sourcemaps": "^1.9.1",
+    "gulp-uglify": "^2.0.0",
+    "gulp-util": "^3.0.8",
+    "gulp-wait": "0.0.2",
+    "http-request": "^0.7.0",
+    "merge-stream": "^1.0.1",
+    "mocha": "^3.2.0",
+    "nightmare": "^2.9.0",
+    "node-bourbon": "^4.2.8",
+    "request": "^2.79.0",
+    "stream-to-array": "^2.3.0"
+  },
+  "dependencies": {}
+}

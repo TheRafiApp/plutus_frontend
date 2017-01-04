@@ -1,0 +1,34 @@
+{{#
+  var notify_str = '';
+  if (notify) {
+    notify_str += ' checked';
+  }
+  var contact_str;
+  if (action !== 'add') {
+    if (method === 'phone') {
+      contact_str = 'Text';
+    } else if (method === 'email') {
+      contact_str = 'Email';
+    }
+    contact_str += ' me at ';
+  }
+}}
+
+<div class="field-group">
+  <legend>{{{ method }}}</legend>
+  <input class="contact {{{ method }}}" type="text" value="{{{ contact }}}" required />
+  <div class="help-text"></div>
+</div>
+
+<div class="field-group verification-code">
+  <legend>Verification Code</legend>
+  <input class="code" type="text" />
+</div>
+
+{{# if (action == 'edit') { }}
+<div class="field-group">
+  <legend>Notifications</legend>
+  <input name="notifications.{{{ method }}}" type="checkbox" id="notifications" {{{ notify_str }}}>
+  <label for="notifications">{{{ contact_str }}}<strong class="contact-display mask-{{{ method }}}">{{{ contact }}}</strong></label>
+</div>
+{{# } }}

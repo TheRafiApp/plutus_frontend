@@ -1,0 +1,18 @@
+// Focus
+
+// NOTE: don't style normal <a> tags because they lose the ability to differentiate
+// between text links and block elements
+
+// a:focus {
+//   outline: none;
+//   box-shadow: 0 0 5px 2px #5897fb !important;
+// }
+
+a.btn:focus, input[type="submit"]:focus {
+  outline: none;
+  box-shadow: 0 0 5px 2px #5897fb !important;
+}
+
+input[type="checkbox"]:focus + label:after {
+  box-shadow: 0 0 5px 2px #5897fb !important;
+}

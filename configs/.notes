@@ -1,0 +1,83 @@
+
+Daemons
+################################################################################
+
+rabbitmq-server
+celery -A api worker --logfile=./logs/celery_worker.log --loglevel=INFO
+celery -A api beat --schedule=./data/celerybeat-schedule --logfile=./logs/celery_beat.log --loglevel=INFO --pidfile=
+
+Deployment
+################################################################################
+* ubuntu 14.04 Stable
+* zsh
+  https://gist.github.com/tsabat/1498393
+* apache
+  https://www.linode.com/docs/websites/apache/apache-web-server-on-ubuntu-14-04
+* apache mod_wsgi
+  http://flask.pocoo.org/docs/0.11/deploying/mod_wsgi/#installing-mod-wsgi
+* mongodb
+  https://www.digitalocean.com/community/tutorials/how-to-install-mongodb-on-ubuntu-14-04
+* pip
+  http://www.saltycrane.com/blog/2010/02/how-install-pip-ubuntu/
+* rabbitmq
+  https://www.rabbitmq.com/install-debian.html
+
+* connect server to github via ssh
+  https://help.github.com/articles/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent/
+* apache virtual host
+* config data in instance folder
+* configure iptables firewall for mongodb
+  https://docs.mongodb.com/manual/tutorial/configure-linux-iptables-firewall/
+
+/etc/init.d/celeryd
+/etc/init.d/celerybeat
+directory permissions for celery workers
+
+MongoDB Authentication
+################################################################################
+
+use admin
+db.createUser....
+db.auth(..)
+db.createUser...
+client.authorize(..., ...)
+
+MongoDB Indexes
+################################################################################
+
+db.companies.createIndex({
+  name: 1
+},{
+  name: "name",
+  unique: true,
+  partialFilterExpression: {
+    removed: false
+  }
+})
+
+db.users.createIndex({
+  email: 1
+},{
+  name: "email",
+  unique: true,
+  sparse: true,
+})
+
+db.users.createIndex({
+  phone: 1
+},{
+  name: "phone",
+  unique: true,
+  sparse: true
+})
+
+db.units.createIndex({
+  number: 1,
+  property: 1
+},{
+  name: "number_property",
+  unique: true,
+  partialFilterExpression: {
+    removed: false
+  }
+})

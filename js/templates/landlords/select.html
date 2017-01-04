@@ -1,0 +1,14 @@
+{{# console.log(selected, landlords) }}
+<div class="field-group">
+  <legend>Landlord</legend>
+  <select name="landlord">
+    <option value="">None</option>
+    {{# _.each(landlords, function(landlord) { }}
+    	{{#
+			var selected_string = '';
+    	if (landlord._id === selected) selected_string = ' selected'; 
+    	}}
+      <option value="{{{ landlord._id }}}"{{{ selected_string }}}>{{{ landlord.full_name }}}</option>
+    {{# }) }}
+  </select>
+</div>

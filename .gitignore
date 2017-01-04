@@ -1,0 +1,18 @@
+# directories
+bower_components/
+node_modules/
+
+# files
+.DS_Store
+.notes.txt
+config.codekit
+ 
+# nested files
+# css/build/*
+scss/build/*
+# js/build/*
+
+logs/*
+
+# environment config
+js/env-config.js

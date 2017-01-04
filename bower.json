@@ -1,0 +1,37 @@
+{
+  "name": "plutus",
+  "description": "just to get rid of that stupid npm warning",
+  "main": "index.js",
+  "authors": [
+    "The Rafi App LLC"
+  ],
+  "license": "ISC",
+  "homepage": "https://github.com/TheRafiApp/plutus",
+  "moduleType": [],
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components"
+  ],
+  "dependencies": {
+    "backbone": "^1.2.3",
+    "backbone.validation": "backbone-validation#^0.11.5",
+    "js-xlsx": "^0.8.0",
+    "requirejs": "~2.1.22",
+    "jquery": "^2.2.0",
+    "backbone-computed-properties": "^0.3.0",
+    "jquery-mask-plugin": "^1.13.8",
+    "requirejs-plugins": "^1.0.3",
+    "kalendae": "^0.4.1",
+    "chosen": "^1.5.1",
+    "nouislider": "^8.5.1",
+    "jquery-serialize-object": "^2.5.0"
+  },
+  "resolutions": {
+    "backbone": "^1.2.3"
+  },
+  "devDependencies": {
+    "jasmine-core": "jasmine#^2.4.1"
+  }
+}

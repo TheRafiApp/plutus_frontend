@@ -1,0 +1,35 @@
+// Tabs
+
+.tabs {
+  margin-top: 10px;
+  // margin-left: 13px;
+
+  li {
+    display: inline-block;
+    margin-left: -4px;
+
+    a {
+      padding: 12px 14px;
+      font-size: 1.2em;
+      font-weight: 500;
+      color: $color-grey-40;
+      border-bottom: 3px solid transparent;
+      text-transform: uppercase;
+      transition: all 0.4s;
+
+      &:hover { 
+        border-bottom: 3px solid $color-grey-20;
+        transition: all 0.4s;
+      }
+
+      &.active {
+        color: $color-grey-60;
+        // border-bottom: 3px solid $color-highlight;
+        border-bottom: 3px solid rgba(247, 170, 20, 0.77);
+        color: rgba(247, 170, 20, 0.77);
+        border-bottom: 3px solid ;
+        transition: all 0.4s;
+      }
+    }
+  }
+}

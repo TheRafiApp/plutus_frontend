@@ -1,0 +1,445 @@
+<div class="logo-container">{{ /* ok */ logo }}</div>
+
+<div class="icon-container"><svg viewBox="0 0 183.99 183.99" style="fill:#f2f2f2"><path d="M95,187a92,92,0,1,1,92-92A92.1,92.1,0,0,1,95,187ZM95,13a82,82,0,1,0,82,82A82.09,82.09,0,0,0,95,13Z" transform="translate(-3 -3)"/><path d="M95.18,47.45L139.66,92.1h-9.6V128H106.9V109.72H83.47V128H60.31V92.1h-8L95.18,47.45M95.06,34.58l-6.37,6.64L45.85,85.86,31.23,101.1H51.31V137H92.47V118.72H97.9V137h41.16V101.1h22.27L146,85.74,101.56,41.1l-6.5-6.52h0Z" transform="translate(-3 -3)"/></svg></div>
+
+<form class="form-model">
+
+  {{# if (type === 'personal') { }}
+
+  <h1>Personal Information</h1>
+  
+  <div class="grid">
+    <div class="field-group grid__col grid__col--1-of-2 grid__col--m-1-of-2 grid__col--s-1-of-1">
+      <legend>Legal first name</legend>
+      <input type="text" name="firstName" class="full" value="{{{ user.first_name }}}" autocomplete="off">
+      <span class="help-text"></span>
+    </div>
+
+    <div class="field-group grid__col grid__col--1-of-2 grid__col--m-1-of-2 grid__col--s-1-of-1">
+      <legend>Legal last name</legend>
+      <input type="text" name="lastName" class="full" value="{{{ user.last_name }}}" autocomplete="off">
+      <span class="help-text"></span>
+    </div>
+  </div>
+  
+  <div class="grid">
+    <div class="field-group grid__col grid__col--1-of-2 grid__col--m-1-of-2 grid__col--s-1-of-1">
+      <legend>Date of birth</legend>
+      <div class="dropdown">
+        <select name="dob_month">
+          <option value="January">January</option>
+          <option value="Febuary">Febuary</option>
+          <option value="March">March</option>
+          <option value="April">April</option>
+          <option value="May">May</option>
+          <option value="June">June</option>
+          <option value="July">July</option>
+          <option value="August">August</option>
+          <option value="September">September</option>
+          <option value="October">October</option>
+          <option value="November">November</option>
+          <option value="December">December</option>
+        </select>
+      </div>
+      <span class="help-text"></span>
+    </div>
+
+    <div class="field-group grid__col grid__col--2-of-12 grid__col--m-1-of-2 grid__col--s-1-of-1">
+      <legend>Day</legend>
+      <div class="dropdown">
+        <select name="dob_day">
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+          <option value="6">6</option>
+          <option value="7">7</option>
+          <option value="8">8</option>
+          <option value="9">9</option>
+          <option value="10">10</option>
+          <option value="11">11</option>
+          <option value="12">12</option>
+          <option value="13">13</option>
+          <option value="14">14</option>
+          <option value="15">15</option>
+          <option value="16">16</option>
+          <option value="17">17</option>
+          <option value="18">18</option>
+          <option value="19">19</option>
+          <option value="20">20</option>
+          <option value="21">21</option>
+          <option value="22">22</option>
+          <option value="23">23</option>
+          <option value="24">24</option>
+          <option value="25">25</option>
+          <option value="26">26</option>
+          <option value="27">27</option>
+          <option value="28">28</option>
+          <option value="29">29</option>
+          <option value="30">30</option>
+          <option value="31">31</option>
+        </select>
+      </div>
+      <span class="help-text"></span>
+    </div>
+
+    <div class="field-group grid__col grid__col--4-of-12 grid__col--m-4-of-12 grid__col--s-1-of-1">
+      <legend>Year</legend>
+      <input type="text" name="dob_year" class="full mobile-number" placeholder="1901" maxlength="4" autocomplete="off">
+      <span class="help-text"></span>
+    </div>
+  </div>
+    
+  <div class="grid">
+    <div class="field-group grid__col grid__col--1-of-2 grid__col--m-1-of-2 grid__col--s-1-of-1">
+      <legend>Phone</legend>
+      <input type="tel" name="phone" placeholder="(555) 555-5555" class="full phone" autocomplete="off">
+      <span class="help-text"></span>
+    </div>
+
+    <div class="field-group grid__col grid__col--1-of-2 grid__col--m-1-of-2 grid__col--s-1-of-1">
+      <legend>Last 4 digits of your SSN</legend>
+      <input type="text" name="ssn" class="full mobile-number" placeholder="1234" maxlength="4" autocomplete="off">
+      <span class="help-text"></span>
+    </div>
+  </div>
+
+  <h1>Address</h1>
+
+  <div class="grid">
+    <div class="field-group grid__col grid__col--1-of-2 grid__col--m-1-of-2 grid__col--s-1-of-1">
+      <legend>Address (sorry, no PO Boxes)</legend>
+      <input type="text" name="address1" class="full" autocomplete="off">
+      <span class="help-text"></span>
+    </div>
+
+    <div class="field-group grid__col grid__col--1-of-2 grid__col--m-1-of-2 grid__col--s-1-of-1">
+      <legend>Address Line 2 (optional)</legend>
+      <input type="text" name="address2" class="full" autocomplete="off">
+      <span class="help-text"></span>
+    </div>
+  </div>
+    
+  <div class="grid">
+    <div class="field-group grid__col grid__col--2-of-12 grid__col--m-1-of-2 grid__col--s-1-of-1">
+      <legend>Zip</legend>
+      <input type="text" name="postalCode" class="full zip mobile-number" maxlength="5" autocomplete="off">
+      <span class="help-text"></span>
+    </div>
+
+    <div class="field-group grid__col grid__col--5-of-12 grid__col--m-1-of-2 grid__col--s-1-of-1">
+      <legend>City</legend>
+      <input type="text" name="city" class="full city" autocomplete="off" disabled>
+      <span class="help-text"></span>
+    </div>
+
+    <div class="field-group grid__col grid__col--5-of-12 grid__col--m-1-of-2 grid__col--s-1-of-1">
+      <legend>State</legend>
+      <div class="dropdown">
+        <select name="state" class="state" disabled>
+          <option value="AL">Alabama</option>
+          <option value="AK">Alaska</option>
+          <option value="AZ">Arizona</option>
+          <option value="AR">Arkansas</option>
+          <option value="CA">California</option>
+          <option value="CO">Colorado</option>
+          <option value="CT">Connecticut</option>
+          <option value="DE">Delaware</option>
+          <option value="DC">District Of Columbia</option>
+          <option value="FL">Florida</option>
+          <option value="GA">Georgia</option>
+          <option value="HI">Hawaii</option>
+          <option value="ID">Idaho</option>
+          <option value="IL">Illinois</option>
+          <option value="IN">Indiana</option>
+          <option value="IA">Iowa</option>
+          <option value="KS">Kansas</option>
+          <option value="KY">Kentucky</option>
+          <option value="LA">Louisiana</option>
+          <option value="ME">Maine</option>
+          <option value="MD">Maryland</option>
+          <option value="MA">Massachusetts</option>
+          <option value="MI">Michigan</option>
+          <option value="MN">Minnesota</option>
+          <option value="MS">Mississippi</option>
+          <option value="MO">Missouri</option>
+          <option value="MT">Montana</option>
+          <option value="NE">Nebraska</option>
+          <option value="NV">Nevada</option>
+          <option value="NH">New Hampshire</option>
+          <option value="NJ">New Jersey</option>
+          <option value="NM">New Mexico</option>
+          <option value="NY">New York</option>
+          <option value="NC">North Carolina</option>
+          <option value="ND">North Dakota</option>
+          <option value="OH">Ohio</option>
+          <option value="OK">Oklahoma</option>
+          <option value="OR">Oregon</option>
+          <option value="PA">Pennsylvania</option>
+          <option value="RI">Rhode Island</option>
+          <option value="SC">South Carolina</option>
+          <option value="SD">South Dakota</option>
+          <option value="TN">Tennessee</option>
+          <option value="TX">Texas</option>
+          <option value="UT">Utah</option>
+          <option value="VT">Vermont</option>
+          <option value="VA">Virginia</option>
+          <option value="WA">Washington</option>
+          <option value="WV">West Virginia</option>
+          <option value="WI">Wisconsin</option>
+          <option value="WY">Wyoming</option>
+        </select>
+      </div>
+      <span class="help-text"></span>
+    </div>
+  </div>
+
+  {{# } else if (type === 'business') { }}
+
+  <h1>Business Information</h1>
+  
+  <div class="grid">
+    <div class="field-group grid__col grid__col--1-of-2 grid__col--m-1-of-2 grid__col--s-1-of-1">
+      <legend>Business Name</legend>
+      <input type="text" name="businessName" class="full" autocomplete="off" value="{{{ user.company.name }}}">
+      <span class="help-text"></span>
+    </div>
+
+    <div class="field-group grid__col grid__col--1-of-2 grid__col--m-1-of-2 grid__col--s-1-of-1">
+      <legend>Business Type</legend>
+      
+      <div class="dropdown">
+        <select name="businessType">
+          <option value="llc">LLC</option>
+          <option value="soleproprietorship">Sole Proprietorship</option>
+          <option value="partnership">Partnership</option>
+          <option value="corporation">Corporation</option>
+        </select>
+      </div>
+
+      <span class="help-text"></span>
+    </div>
+
+  </div>
+  
+  <div class="grid">
+
+    <div class="field-group grid__col grid__col--1-of-2 grid__col--m-1-of-2 grid__col--s-1-of-1">
+      <legend>EIN</legend>
+      <input type="tel" name="ein" class="full" placeholder="12-3456789" autocomplete="off">
+      <span class="help-text"></span>
+    </div>
+
+    <div class="field-group grid__col grid__col--1-of-2 grid__col--m-1-of-2 grid__col--s-1-of-1">
+      <!-- <legend>Business Name</legend>
+      <input type="text" name="businessName" class="full">
+      <span class="help-text"></span> -->
+    </div>
+  </div>
+
+  <h1>Business Address</h1>
+
+  <div class="grid">
+    <div class="field-group grid__col grid__col--1-of-2 grid__col--m-1-of-2 grid__col--s-1-of-1">
+      <legend>Address (sorry, no PO Boxes)</legend>
+      <input type="text" name="address1" class="full" autocomplete="off">
+      <span class="help-text"></span>
+    </div>
+
+    <div class="field-group grid__col grid__col--1-of-2 grid__col--m-1-of-2 grid__col--s-1-of-1">
+      <legend>Address Line 2 (optional)</legend>
+      <input type="text" name="address2" class="full" autocomplete="off">
+      <span class="help-text"></span>
+    </div>
+  </div>
+    
+  <div class="grid">
+    <div class="field-group grid__col grid__col--2-of-12 grid__col--m-1-of-2 grid__col--s-1-of-1">
+      <legend>Zip</legend>
+      <input type="text" name="postalCode" class="full zip mobile-number" maxlength="5" autocomplete="off">
+      <span class="help-text"></span>
+    </div>
+
+    <div class="field-group grid__col grid__col--5-of-12 grid__col--m-1-of-2 grid__col--s-1-of-1">
+      <legend>City</legend>
+      <input type="text" name="city" class="full city" autocomplete="off" disabled>
+      <span class="help-text"></span>
+    </div>
+
+    <div class="field-group grid__col grid__col--5-of-12 grid__col--m-1-of-2 grid__col--s-1-of-1">
+      <legend>State</legend>
+      <div class="dropdown">
+        <select name="state" class="state" disabled>
+          <option value="AL">Alabama</option>
+          <option value="AK">Alaska</option>
+          <option value="AZ">Arizona</option>
+          <option value="AR">Arkansas</option>
+          <option value="CA">California</option>
+          <option value="CO">Colorado</option>
+          <option value="CT">Connecticut</option>
+          <option value="DE">Delaware</option>
+          <option value="DC">District Of Columbia</option>
+          <option value="FL">Florida</option>
+          <option value="GA">Georgia</option>
+          <option value="HI">Hawaii</option>
+          <option value="ID">Idaho</option>
+          <option value="IL">Illinois</option>
+          <option value="IN">Indiana</option>
+          <option value="IA">Iowa</option>
+          <option value="KS">Kansas</option>
+          <option value="KY">Kentucky</option>
+          <option value="LA">Louisiana</option>
+          <option value="ME">Maine</option>
+          <option value="MD">Maryland</option>
+          <option value="MA">Massachusetts</option>
+          <option value="MI">Michigan</option>
+          <option value="MN">Minnesota</option>
+          <option value="MS">Mississippi</option>
+          <option value="MO">Missouri</option>
+          <option value="MT">Montana</option>
+          <option value="NE">Nebraska</option>
+          <option value="NV">Nevada</option>
+          <option value="NH">New Hampshire</option>
+          <option value="NJ">New Jersey</option>
+          <option value="NM">New Mexico</option>
+          <option value="NY">New York</option>
+          <option value="NC">North Carolina</option>
+          <option value="ND">North Dakota</option>
+          <option value="OH">Ohio</option>
+          <option value="OK">Oklahoma</option>
+          <option value="OR">Oregon</option>
+          <option value="PA">Pennsylvania</option>
+          <option value="RI">Rhode Island</option>
+          <option value="SC">South Carolina</option>
+          <option value="SD">South Dakota</option>
+          <option value="TN">Tennessee</option>
+          <option value="TX">Texas</option>
+          <option value="UT">Utah</option>
+          <option value="VT">Vermont</option>
+          <option value="VA">Virginia</option>
+          <option value="WA">Washington</option>
+          <option value="WV">West Virginia</option>
+          <option value="WI">Wisconsin</option>
+          <option value="WY">Wyoming</option>
+        </select>
+      </div>
+      <span class="help-text"></span>
+    </div>
+  </div>
+
+  <h1>Company Representative</h1>
+  
+  <div class="grid">
+    <div class="field-group grid__col grid__col--1-of-2 grid__col--m-1-of-2 grid__col--s-1-of-1">
+      <legend>Legal first name</legend>
+      <input type="text" name="firstName" class="full" value="{{{ user.first_name }}}" autocomplete="off">
+      <span class="help-text"></span>
+    </div>
+
+    <div class="field-group grid__col grid__col--1-of-2 grid__col--m-1-of-2 grid__col--s-1-of-1">
+      <legend>Legal last name</legend>
+      <input type="text" name="lastName" class="full" value="{{{ user.last_name }}}" autocomplete="off">
+      <span class="help-text"></span>
+    </div>
+  </div>
+  
+  <div class="grid">
+    <div class="field-group grid__col grid__col--1-of-2 grid__col--m-1-of-2 grid__col--s-1-of-1">
+      <legend>Date of birth</legend>
+      <div class="dropdown">
+        <select name="dob_month">
+          <option value="January">January</option>
+          <option value="Febuary">Febuary</option>
+          <option value="March">March</option>
+          <option value="April">April</option>
+          <option value="May">May</option>
+          <option value="June">June</option>
+          <option value="July">July</option>
+          <option value="August">August</option>
+          <option value="September">September</option>
+          <option value="October">October</option>
+          <option value="November">November</option>
+          <option value="December">December</option>
+        </select>
+      </div>
+      <span class="help-text"></span>
+    </div>
+
+    <div class="field-group grid__col grid__col--2-of-12 grid__col--m-1-of-2 grid__col--s-1-of-1">
+      <legend>Day</legend>
+      <div class="dropdown">
+        <select name="dob_day">
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+          <option value="6">6</option>
+          <option value="7">7</option>
+          <option value="8">8</option>
+          <option value="9">9</option>
+          <option value="10">10</option>
+          <option value="11">11</option>
+          <option value="12">12</option>
+          <option value="13">13</option>
+          <option value="14">14</option>
+          <option value="15">15</option>
+          <option value="16">16</option>
+          <option value="17">17</option>
+          <option value="18">18</option>
+          <option value="19">19</option>
+          <option value="20">20</option>
+          <option value="21">21</option>
+          <option value="22">22</option>
+          <option value="23">23</option>
+          <option value="24">24</option>
+          <option value="25">25</option>
+          <option value="26">26</option>
+          <option value="27">27</option>
+          <option value="28">28</option>
+          <option value="29">29</option>
+          <option value="30">30</option>
+          <option value="31">31</option>
+        </select>
+      </div>
+      <span class="help-text"></span>
+    </div>
+
+    <div class="field-group grid__col grid__col--4-of-12 grid__col--m-4-of-12 grid__col--s-1-of-1">
+      <legend>Year</legend>
+      <input type="text" name="dob_year" class="full mobile-number" placeholder="1901" maxlength="4" autocomplete="off">
+      <span class="help-text"></span>
+    </div>
+  </div>
+    
+  <div class="grid">
+    <div class="field-group grid__col grid__col--1-of-2 grid__col--m-1-of-2 grid__col--s-1-of-1">
+      <legend>Phone</legend>
+      <input type="tel" name="phone" placeholder="(555) 555-5555" class="full phone mobile-number" autocomplete="off">
+      <span class="help-text"></span>
+    </div>
+
+    <div class="field-group grid__col grid__col--1-of-2 grid__col--m-1-of-2 grid__col--s-1-of-1">
+      <legend>Last 4 digits of your SSN</legend>
+      <input type="text" name="ssn" class="full mobile-number" placeholder="1234" maxlength="4" autocomplete="off">
+      <span class="help-text"></span>
+    </div>
+  </div>
+
+  {{# } }}
+
+  <div class="field-group">
+    <div class="terms-statement">
+      By signing up you agree to the Rafi Payment <a href="http://staging.payment.rafiproperties.com/terms" target="_blank">terms of use</a> and <a href="http://staging.payment.rafiproperties.com/privacy" target="_blank">privacy policy</a>, as well as the Dwolla <a href="https://www.dwolla.com/legal/tos/" target="_blank">terms of use</a> and <a href="https://www.dwolla.com/legal/privacy/" target="_blank">privacy policy</a>
+      
+      <div class="text-center">
+        <input type="checkbox" id="agree"><label for="agree" style="margin-right: 20px">I agree</label>
+        <a href="#" class="btn btn-large action-next">Start</a>
+      </div>
+    </div>
+    
+    <div class="help-text block"></div>
+  </div>
+
+</form>

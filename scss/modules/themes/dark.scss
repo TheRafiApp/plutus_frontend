@@ -1,0 +1,67 @@
+// Dark theme
+@import '../colors';
+
+.dark {
+  color: $color-text-light;
+
+  .logo {
+    svg {
+      fill: $color-text-light;
+    }
+  }
+
+  a {
+    color: #aaa;
+  }
+
+  input {
+    &[type="text"],
+    &[type="email"],
+    &[type="password"],
+    &[type="search"],
+    &[type="number"],
+    &[type="date"],
+    &[type="tel"] {
+      color: $color-text-light;
+      border-color: $color-text-light;
+
+      &:focus {
+        border-color: $color-text-light;
+        box-shadow: 0 2px 0 -1px white;
+      }
+
+      &:disabled {
+        border-bottom: 2px dotted #b7b7b7;
+      }
+    }
+
+    &[type="checkbox"], &[type="radio"] {
+
+      & + label {
+        &:before {
+          border-color: #526171;
+        }
+        &:after {
+          border-color: #0fc;
+          background-color: #0fc;
+        }
+      }
+    }
+  }
+
+  legend {
+    color: $color-text-light;
+  }
+
+  label {
+    color: $color-text-light;
+  }
+
+  .pw-container {
+    input {
+      & + .pw-toggle {
+        background: url('/images/eye_light.svg') no-repeat;
+      }
+    }
+  }
+}

@@ -1,0 +1,71 @@
+// States
+@import 'layers';
+
+body {
+  &.tertiary-hidden {
+    .layer {
+      &.secondary {
+        .shadow {
+          opacity: 0;
+          transform: translateX(80px);
+          pointer-events: none;
+          transition:
+            transform 0.3s 0.0s,
+            opacity 0.5s 0.2s;
+        }
+      }
+      &.tertiary {
+        opacity: 0;
+        transform: translateX(80px);
+        pointer-events: none;
+        transition:
+          transform 0.3s 0.0s,
+          opacity 0.5s 0.2s;
+
+        .actions {
+          div {
+            pointer-events: none !important;
+          }
+        }
+      }
+    }
+
+    .table .tbody.selectable .row.selected .cell:first-child:after {
+      opacity: 0;
+      transform: translateX(180px) rotate(45deg);
+      pointer-events: none;
+      transition: 
+        transform 0.2s 0.0s,
+        opacity 0.0s 0.2s;
+    }
+  }
+
+  &.quarternary-hidden {
+    .layer {
+      &.tertiary {
+        left: $offset-tertiary;
+        background-color: $color-text-light;
+
+        .shadow {
+          opacity: 0;
+          transform: translateX(80px);
+          pointer-events: none;
+        }
+      }
+      &.quarternary {
+        opacity: 0;
+        transform: translateX(80px);
+        pointer-events: none;
+        transition:
+          transform 0.3s 0.0s,
+          opacity 0.5s 0.2s;
+
+        .actions {
+          div {
+            pointer-events: none !important;
+          }
+        }
+      }
+    }
+  }
+}

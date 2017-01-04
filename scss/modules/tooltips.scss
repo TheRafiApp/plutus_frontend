@@ -1,0 +1,61 @@
+// Tooltips
+@import 'colors';
+
+.tooltip {
+  position: absolute;
+  background-color: $color-text-light;
+  box-shadow: 0 1px 4px rgba(0,0,0, 0.3);
+  opacity: 0;
+  pointer-events: none;
+  white-space: nowrap;
+  transition: all 0.4s;
+
+  &.open {
+    opacity: 1;
+    pointer-events: all;
+    transition: all 0.4s;
+  }
+
+    li {
+      display: block;
+
+      a {
+        display: block;
+        padding: 12px;
+
+        &:hover {
+          background-color: $color-grey-20;
+        }
+      }
+    }
+
+  .caret {
+    @include position(absolute, null null -30px 50%);
+    @include size(30px);
+    overflow: hidden;
+    transform: translateX(-50%);
+
+    &:after {
+      content: '';
+      display: block;
+      position: relative;
+      top: -21px;
+      @include size(30px);
+      background: white;
+      box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.25);
+      transform: rotate(45deg);
+    }
+  }
+
+  &.relative {
+    position: relative;
+    max-height: 0;
+    overflow: hidden;
+    background-color: $color-grey-10;
+    box-shadow: inset 0px -8px 6px -6px rgba(0, 0, 0, 0.3);
+
+    &.open {
+      max-height: 250px;
+    }
+  }
+}

@@ -1,0 +1,33 @@
+// Staging environment
+
+define([
+  'app'
+],
+function(app) {
+  var environment_config = {
+    // Client URL
+    base_url: 'https://app.staging.payment.rafiproperties.com',
+    base_path: '/',
+
+    // API URL
+    API: 'https://api.staging.payment.rafiproperties.com/',
+
+    // Dwolla
+    dwolla_env: 'sandbox',
+    
+  	// Bugherd
+    bugherd: true,
+    bugherd_key: 'iu4t9xs1xpvpinhndnrpaa',
+
+  	// Sentry
+  	sentry: true,
+    sentry_dsn: 'https://f99ae8cc4704427cb75dcdadb1951dc4@sentry.io/91967',
+
+    // Debug
+    debug: false,
+    console: true, 
+    bug_reporting: true
+  };
+
+  return environment_config;
+});

@@ -1,0 +1,74 @@
+@import 'bourbon';
+@import 'colors';
+
+/* Implement Dwolla's styles */
+.dwolla-iav-text-box,
+.dwolla-iav-button,
+.dwolla-iav-header,
+.dwolla-iav-text,
+.dwolla-iav-link,
+.dwolla-iav-error,
+.dwolla-iav-label {
+    font-family: 'Roboto', Helvetica, Arial, sans-serif;
+    font-weight: 300;
+}
+
+.dwolla-iav-header {
+    font-weight: 300;
+    margin-bottom: 2.5rem;
+}
+
+input[type="text"].dwolla-iav-text-box {
+    position: relative;
+    border: 0;
+    padding: 8px 12px 8px 0;
+    border-bottom: 1px solid white;
+    border-radius: 0;
+    background-color: transparent;
+    transition: all 0.2s;
+    font-family: 'Roboto', sans-serif;
+    font-size: 1.1em;
+    max-width: 100%;
+    text-overflow: ellipsis;
+    @include appearance(none);
+}
+
+.dwolla-iav-text-box:focus {
+    border-color: $color-highlight;
+}
+
+.dwolla-iav-link {
+    color: #2370d6;
+    cursor: pointer;
+}
+
+.dwolla-iav-link:hover {
+    color: #1565c0;
+}
+
+.dwolla-iav-button {
+    background: $color-highlight;
+    color: $color-text-light;
+    border-radius: 3px;
+}
+
+.dwolla-iav-button:hover {
+    background: $color-highlight;
+    cursor: pointer;
+}
+
+.dwolla-iav-button:active {
+    background: $color-highlight;
+}
+
+.dwolla-iav-check-image {
+    background: $color-highlight;
+}
+
+.dwolla-iav-radio-hover {
+    background-color: $color-text-light;
+}
+
+.dwolla-iav-radio-selected {
+    background-color: $color-highlight;
+}

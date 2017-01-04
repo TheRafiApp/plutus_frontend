@@ -1,0 +1,71 @@
+<div class="small-panel dark">
+	<div class="header">
+		{{ /* ok */ logo }}
+	</div>
+	<div class="container">
+		<form class="content login visible">
+
+			<div class="field-group">
+			  <legend>Email or Phone</legend>
+			  <input class="username" type="text" value="{{{ user }}}" required />
+			</div>
+
+			<div class="field-group">
+			  <legend>Password</legend>
+			  <input class="password" type="password" value="{{{ pw }}}" required />
+			</div>
+
+			{{# var checked = (localStorage.getItem('remember-me') !== 'false') ? ' checked' : ''; }}
+			
+			<div class="field-group">
+				<input type="checkbox" id="remember-me" {{{ checked }}}>
+				<label for="remember-me">Remember me</label>
+			</div>
+
+			<input type="submit" class="btn btn-primary action-login" value="Submit">
+
+			<div class="links">
+				<a href="/forgot">Forgot password?</a>
+			</div>
+			
+		</form>
+
+		<form class="content forgot forgot-begin">
+			<div class="field-group">
+			  <legend>Email or Phone</legend>
+			  <input class="username" type="text" value="{{{ user }}}" required />
+			</div>
+
+			<div class="field-group reset-code">
+			  <legend>Reset Code</legend>
+			  <input class="code" type="text" />
+			</div>
+
+			<input type="submit" class="btn btn-primary action-forgot-submit" value="Submit">
+
+			<div class="links">
+				<a href="/">Nevermind</a>
+			</div>
+		</form>
+
+
+		<form class="content reset reset-code">
+			<div class="field-group">
+			  <legend>New Password</legend>
+			  <input class="password-field password" type="password" required />
+			</div>
+
+			<div class="field-group">
+			  <legend>Confirm Password</legend>
+			  <input class="password-field password-confirm" type="password" required />
+			</div>
+
+			<input type="submit" class="btn btn-primary action-reset-submit" value="Submit">
+
+			<div class="links">
+				<a href="/">Nevermind</a>
+			</div>
+		</form>
+	</div>
+
+</div>

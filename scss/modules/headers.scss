@@ -1,0 +1,80 @@
+// Headers
+@import 'colors';
+@import 'layers';
+
+.header {
+  padding: 20px;
+  font-weight: 300;
+
+  h2 {
+    line-height: 0.5em;
+    margin: 13px 0 10px;
+    text-transform: capitalize;
+  }
+
+  .meta {
+    display: inline-block;
+  }
+
+  &.fixed {
+    @include position(absolute, 0 0 null 0);
+    height: $header-height;
+    z-index: 3;
+  }
+  
+  .sub-header {
+    @include position(absolute, null 0 null 0);
+    height: 33px;
+    overflow: hidden;
+    border-bottom: 1px solid $color-grey-40;
+    box-shadow: 0 1px 2px rgba(0,0,0, 0.1);
+    z-index: 6;
+
+    .table {
+      .thead {
+        background-color: darken($color-grey-20, 5%);
+      }
+      
+      // prevent user from tabbing to the table body links
+      .tbody {
+        visibility: hidden;
+      }
+
+      &.editing {
+        .thead {
+          background-color: $color-highlight;
+
+          .cell a {
+            color: $color-text-light;
+          }
+
+          .action-show-tips {
+            display: none;
+          }
+        }
+      }
+    }
+  }
+  .sub-header-target {
+    @include position(absolute, 0 null null 0);
+    @include size(320px 85px);
+    z-index: 1;
+  }
+  .sub-header-main {
+    height: 65px;
+    white-space: nowrap;
+    overflow: visible;
+
+    .history {
+      display: none;
+
+      a {
+        svg {
+          @include size(30px 40px);
+          padding: 2px;
+          margin: 8px 14px 0 0;
+        }
+      }
+    }
+  }
+}

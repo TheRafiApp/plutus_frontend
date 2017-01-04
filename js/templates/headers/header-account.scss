@@ -1,0 +1,79 @@
+// Account stuff
+@import 'bourbon';
+@import '../../../scss/modules/colors';
+
+.account-view {
+  h2 {
+    margin-top: 0;
+  }
+  card.flex {
+    max-width: 700px;
+    box-shadow: none;
+  }
+  .form-model.loading {
+    &:after {
+      border-color: $color-highlight;
+    }
+  }
+}
+
+.account-data {
+  .verification {
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.5s;
+  }
+
+  &.processed {
+    .verification {
+      pointer-events: all;
+      opacity: 1;
+    }
+  }
+
+  dl {
+    overflow: hidden;
+    border-left: 3px solid rgba($color-highlight, 0.4);
+    padding-left: 16px;
+
+    dt {
+      float: left;
+      width: 20%;
+      font-size: 1.2em;
+      font-style: italic;
+      opacity: 0.6;
+    }
+
+    dd {
+      float: left;
+      width: 80%;
+
+      &.unit {
+        width: calc(80% - 20px);
+        margin-left: 20px;
+      }
+
+      &.lease {
+        width: calc(80% - 40px);
+        margin-left: 40px;
+      }
+
+      &.tenant {
+        width: calc(80% - 60px);
+        margin-left: 60px;
+      }
+
+      table {
+        margin-top: 0;
+
+        td {
+          &:first-child {
+            width: 16%;
+            font-weight: bold;
+            border-right: 2px solid $color-grey-20;
+          }
+        }
+      }
+    }
+  }
+}

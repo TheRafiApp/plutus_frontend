@@ -1,0 +1,121 @@
+// Actions
+@import 'colors';
+
+.actions {
+  position: relative;
+  top: 4px;
+  opacity: 1;
+  transition: all 0.6s;
+
+  .actions-default {
+    position: relative;
+    visibility: visible;
+    opacity: 1;
+    transition: opacity 0.5s linear, visibility 0.6s;
+
+    .search {
+      display: inline-block;
+    }
+
+    > .search-field {
+      text-align: left;
+      margin-right: 14px;
+      max-width: 300px;
+      width: 250px;
+
+      &:focus::-webkit-search-cancel-button {
+        opacity: 1 !important;
+        pointer-events: auto !important;
+      }
+    }
+
+    .chosen-container-multi {
+      top: 0;
+      width: 250px;
+      height: 29px;
+      z-index: 999999;
+      overflow: visible;
+
+      .chosen-drop {
+        display: none;
+      }
+
+      .chosen-choices {
+        max-height: 29px;
+        overflow: hidden;
+      }
+
+      &.chosen-container-active {
+        .chosen-choices {
+          max-height: 400px;
+        }
+
+      }
+    }
+
+    .btn.action-search {
+      @include position(relative, 9px null null -4px);
+      width: 27px;
+      padding: 0;
+      border-top-left-radius: 0;
+      border-bottom-left-radius: 0;
+      z-index: 999999;
+
+      svg {
+        width: 100%;
+        padding: 5px;
+        fill: $color-text-light;
+      }
+    }
+  }
+
+  .actions-editing {
+    position: relative;
+    top: -31px;
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 0s, opacity 0.6s linear;
+  }
+
+  &.editing {
+    .actions-default {
+      visibility: hidden;
+      opacity: 0;
+      pointer-events: none;
+      transition: visibility 0s, opacity 0.6s linear;
+    }
+    .actions-editing {
+      visibility: visible;
+      opacity: 1;
+      pointer-events: all;
+      transition: opacity 0.5s linear, visibility 0.6s;
+    }
+  }
+
+  &.right {
+    text-align: right;
+    z-index: 2;
+    
+    .actions-default {
+      left: initial;
+      right: 0;
+    }
+
+    .actions-editing {
+      left: initial;
+      right: 0;
+    }
+  }
+}
+
+.header.fixed .action-close {
+  position: relative;
+  top: 4px;
+  width: 30px;
+  margin-left: 20px;
+
+  svg {
+    fill: $color-grey-60;
+    filter: drop-shadow(0 1px 2px rgba(0,0,0,0.4));
+  }
+}

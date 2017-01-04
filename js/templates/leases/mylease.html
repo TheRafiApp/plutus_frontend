@@ -1,0 +1,52 @@
+<div class="header fixed">
+  <div class="sub-header-main text-center">
+
+    <div class="meta">
+      <a href="/myleases" class="btn action-back"><svg viewBox="-140 146 30 40"><polyline points="-116.6,185.6 -136.2,166 -116.6,146.4 "/></svg></a>
+      <h2>My Lease</h2>
+    </div>
+    <div class="clear"></div>
+  </div>
+</div>
+<div class="scroll-y">
+  <card class="lease profile large">
+    <div class="scroll-y">
+      <div class="content">
+        <header>
+          <h2>{{{ lease.address_short }}}</h2>
+          <div>{{{ lease.term }}}</div>
+        </header>
+      </div>
+      <div class="pad">
+        {{# _.each(lease.charges.recurring, function(charge) { }}
+        <div class="flex">
+          <div class="description" style="flex: 1 1 8%">{{{ charge.type.replace(/\_/g,' ') }}}</div>
+          <div class="value text-right" style="flex: 1 1 8%">{{{ prettyMoney(charge.amount) }}}</div>
+        </div>
+        {{# }) }}
+        {{# _.each(lease.charges.scheduled, function(charge) { }}
+        <div class="flex">
+          <div class="description" style="flex: 1 1 8%">{{{ charge.type.replace(/\_/g,' ') }}}</div>
+          <div class="value text-right" style="flex: 1 1 8%">{{{ prettyMoney(charge.amount) }}}</div>
+        </div>
+        {{# }) }}
+      </div>
+
+      <div class="divider"></div>
+      
+      <div class="text-center">
+        <h3>RENT SPLIT</h3>
+      </div>
+
+      <div class="pad cards split-cards"></div>
+      
+    </div>
+    
+    <div class="divider"></div>
+    
+    <div class="pad text-center">
+      <div class="btn btn-secondary action-edit-split">Edit Split & Autopay</div>
+    </div>
+
+  </card>
+</div>

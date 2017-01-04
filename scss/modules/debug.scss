@@ -1,0 +1,160 @@
+// Debug Menu
+@import 'colors';
+
+// $offset-right: 70px; // when using with bugherd
+$offset-right: 5px;
+
+.debug-menu {
+  @include position(fixed, null $offset-right 0 null);
+  font-family: 'Source Code Pro', courier, monospace;
+  font-size: 0.9em;
+  z-index: 999999999;
+  pointer-events: none; 
+
+  & > .action-debug-toggle {
+    display: block;
+    @include position(relative, null 0 5px null);
+    @include size(60px 50px);
+    background: rgba(0,0,0, 0.4);
+    border-radius: 2px;
+    pointer-events: all;
+
+    .svg-wrapper {
+      filter: drop-shadow( 0 1px 0 rgba(0,0,0,0.4) );
+    }
+
+    svg {
+      @include position(absolute, null null 14px 17px);
+      height: 22px;
+      opacity: 0.35;
+      fill: $color-text-light;
+    }
+  }
+
+  .icon {
+    border-radius: 3px;
+    @include size(16px);
+    position: absolute;
+    margin-left: 3px;
+    margin-top: -2px;
+
+    &.success {
+      background-color: $color-status-success;
+    }
+    &.error {
+      background-color: $color-status-error;
+    }
+  }
+  
+  // Mimic bugherd's bootstrap tooltips
+  
+  .tooltip {
+    position: fixed;
+    bottom: 11px;
+    right: $offset-right + 70px;
+    padding: 8px 10px 10px;
+    opacity: 0;
+    background-color: rgba(0,0,0, 0.8);
+    color: #fff;
+    border-radius: 2px;
+    font-family: $lucida-grande;
+    font-size: 12px;
+    font-weight: 600;
+    line-height: 1.4;
+    text-transform: lowercase;
+    box-shadow: 0 0 2px rgba(0,0,0,0.7);
+    transition: none;
+
+    &:after {
+      content: '';
+      display: block;
+      @include position(absolute, 50% 0 null null);
+      @include size(0);
+      margin: -4px -10px 0 0;
+      border: 5px solid transparent;
+      border-left: 5px solid #111;
+      border-left-color: rgba(0,0,0,0.75);
+    }
+  }
+
+  .panel {
+    display: inline-block;
+    @include position(fixed, null -700px 0 null);
+    max-height: 100%;
+    overflow: auto;
+    padding: 30px 60px 30px 30px;
+    background: rgba(255,255,255, 0.75);
+    pointer-events: all;
+    box-shadow: 0 0 4px rgba(0,0,0, 0.3);
+    transition: all 0.4s ease;
+
+    & > .action-debug-toggle {
+      display: none;
+      @include position(fixed, null $offset-right 5px null);
+      @include size(60px 50px);
+      background: rgba(0,0,0, 0.4);
+      border-radius: 2px;
+
+      .svg-wrapper {
+        filter: drop-shadow( 0 1px 0 rgba(0,0,0,0.4) );
+      }
+
+      svg {
+        @include position(absolute, null null 16px 21px)
+        height: 18px;
+        opacity: 0.4;
+        fill: $color-text-light;
+      }
+    }
+
+    h3 {
+      margin-top: 4px;
+    }
+
+    legend {
+      color: $color-text-dark;
+      font-family: 'Roboto', sans-serif;
+      margin-bottom: 4px;
+    }
+
+    .key {
+      color: $color-text-dark;
+      font-weight: bold;
+    }
+
+    ul {
+      li {
+        margin-bottom: 18px;
+
+        div {
+          margin-bottom: 5px;
+        }
+      }
+    }
+  }
+
+  &.active {
+    & > .action-debug-toggle {
+      display: none;
+    }
+    .panel {
+      right: 0;
+      transition: all 0.4s ease;
+
+      .action-debug-toggle {
+        display: block;
+      }
+    }
+  }
+
+  .action-debug-toggle:hover {
+    svg {
+      opacity: 1;
+    }
+
+    & ~ .tooltip {
+      opacity: 1;
+      transition: none;
+    }
+  }
+}

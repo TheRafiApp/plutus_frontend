@@ -1,0 +1,45 @@
+<div class="modal model confirm">
+  <header>
+    <h2 class="color-bg-error"><span class="icon error"></span> {{{ dialogue.message }}}</h2>
+  </header>
+  <div class="content">
+    <div class="form-model">
+  
+      {{# if (warning) { }}
+      <div class="field-group">
+        <h3>{{{ warning }}}</h3>
+      </div>
+      {{# } }}
+
+      {{# if (data_summary) { }}
+      <div class="field-group data-summary">
+        {{{ data_summary }}}
+      </div>
+      {{# } }}
+
+      <div class="field-group">
+        <h3>Please enter your password to continue. This action cannot be undone.</h3>
+      </div>
+
+      <div class="field-group">
+        <legend>Password</legend>
+        <input name="password" type="password" class="password" required />
+        <span class="help-text"></span>
+      </div>
+
+      <div class="field-group">
+        <input type="checkbox" id="confirm"><label for="confirm">I understand</label>
+        <span class="help-text"></span>
+      </div>
+
+    </div>
+  </div>
+  <footer>
+    <div class="actions right">
+      <a href="#" class="btn action-cancel">Cancel</a>
+      <a href="#" class="btn btn-primary action-confirm">Confirm</a>
+    </div>
+  </footer>
+</div>
+
+<div class="overlay"></div>

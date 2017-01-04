@@ -1,0 +1,96 @@
+// Nav
+@import 'colors';
+
+nav.primary {
+  background: $color-text-light;
+  
+  .scroll-y {
+    padding-bottom: 60px;
+  }
+
+  .logo {
+    display: inline-block;
+    width: 70%;
+    margin: 26px 30px 26px 24px;
+
+    svg {
+      border: 2px solid $color-grey-60;
+    }
+  }
+
+  .icon {
+    display: inline-block;
+    @include size(24px);
+    margin-left: 16px;
+  }
+
+  ul {
+    margin: 0;
+    text-align: left;
+
+    li {
+      display: block;
+      width: 100%;
+
+      a {
+        display: block;
+        padding: 12px;
+        // color: $color-text-dark;
+        color: $color-grey-60;
+
+        svg {
+          fill: $color-grey-60;
+        }
+        
+        &:hover {
+          background-color: $color-grey-20;
+        }
+
+        &.active {
+          color: $color-text-light;
+          background-color: $color-highlight;
+
+          .icon {
+            svg {
+              g {
+                fill: $color-text-light;
+              }
+            }
+          }
+        }
+
+        span {
+          display: inline;
+          margin-left: 10px;
+          font-size: 1.1em;
+          vertical-align: middle;
+        }
+      }
+    }
+  }
+
+  .footer-actions {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    padding: 20px;
+    text-align: center;
+    box-sizing: border-box;
+    z-index: 10;
+
+    .btn {
+      margin: 0;
+      padding: 14px 18px;
+    }
+
+    .tooltip {
+      left: 50%;
+      bottom: 84px;
+      transform: translateX(-50%);
+    }
+  }
+}
+
+.action-toggle-nav {
+  display: none;
+}

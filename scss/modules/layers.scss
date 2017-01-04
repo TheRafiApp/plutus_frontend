@@ -1,0 +1,155 @@
+// Layers
+
+@import 'colors';
+
+$header-height: 118px;
+$width-primary: 190px;
+$width-secondary: 320px;
+$offset-tertiary: $width-primary + $width-secondary;
+
+.layer {
+  @include position(fixed, 0 0 0 null);
+  opacity: 1;
+  transition:
+    all 0.6s 0.0s,
+    opacity 0.3s 0.0s,
+    transform 0.4s 0.2s;
+
+  &.loading {
+    &:after {
+      border-color: $color-highlight;
+    }
+  }
+
+  .table-container.scroll-y {
+    @include position(absolute, $header-height 0 0 0);
+
+    &.model {
+      top: 84px;
+
+      .form-model:first-child {
+        padding-top: 0;
+      }
+    }
+  }
+
+  &.primary {
+    left: 0;
+    width: $width-primary;
+    z-index: 0;
+  }
+
+  &.secondary {
+    left: $width-primary;
+    background-color: $color-grey-10;
+    box-shadow: -2px 0 7px rgba(0,0,0, 0.3);
+    z-index: 1;
+
+    .header {
+      .sub-header {
+        .table {
+          .thead {
+            background-color: darken($color-grey-20, 15%);
+            color: darken($color-grey-60, 10%);
+          }
+        }
+      }
+    }
+
+    .header.fixed {
+      padding-right: 0;
+      transition: all 0.6s;
+    }
+  }
+
+  &.tertiary {
+    left: $width-primary;
+    background-color: $color-grey-10;
+    z-index: 2;
+
+    .header {
+      padding: 20px 20px 0px 20px;
+      height: 85px;
+      transition: all 0.6s;
+
+      &.fixed {
+        padding-right: 0;
+        transition: all 0.6s;
+      }
+    }
+  }
+
+  &.quarternary {
+    left: $offset-tertiary;
+    background-color: $color-text-light;
+    z-index: 3;
+    transition:
+    opacity 0.3s 0.0s,
+    transform 0.4s 0.2s;
+
+    .header {
+      padding: 20px 20px 0px 20px;
+      height: 85px;
+      transition: all 0.6s;
+    }
+  }
+
+  .col-left {
+    width: $width-secondary;
+    transition: 0.6s all;
+  }
+
+  .col-right {
+    width: 10px;
+    text-align: right;
+
+    .action-show-tips {
+      display: none;
+    }
+  }
+
+  &.hide-tips {
+    .header.fixed {
+      padding-right: 20px;
+    }
+
+    .action-show-tips {
+      display: inline-block;
+    }
+  }
+
+  .no-tips {
+
+    &.collection-view {
+      right: 0;
+    }
+
+    .header.fixed {
+      padding-right: 20px;
+    }
+
+    .action-show-tips {
+      display: none;
+    }
+  }
+
+  .model-view {
+    .header.fixed {
+      padding-right: 20px;
+    }
+  }
+}
+
+// Shadow Hack
+
+.shadow {
+  @include position(absolute, 0 null 0 0);
+  width: $width-secondary;
+  box-shadow: inset -8px 0 6px -6px rgba(0, 0, 0, 0.25);
+  pointer-events: none;
+  z-index: 4;
+  transition:
+    opacity 0.3s 0.0s,
+    transform 0.4s 0.2s,
+    width 0.6s 0.0s;
+}

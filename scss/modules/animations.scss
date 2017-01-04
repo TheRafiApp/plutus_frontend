@@ -1,0 +1,54 @@
+// Animations
+@import 'loader';
+
+// Loader
+  
+@keyframes loader {
+  0% {
+    @include size(0);
+  }
+
+  30% {
+    @include size($loader-size);
+    border-width: $loader-size / 1.9;
+    opacity: 1;
+  }
+
+  100% {
+    @include size($loader-size);
+    border-width: 0;
+    opacity: 0;
+  }
+}
+
+@keyframes checkmark {
+  0% {
+    @include size(0);
+  }
+
+  30% {
+    @include size(0 20px);
+  }
+
+  70% {
+    @include size(40px 20px);
+  }
+}
+
+@keyframes shake {
+  10%, 90% {
+    transform: translateX(-50%) translateY(-50%) translate3d(-1px, 0, 0);
+  }
+  
+  20%, 80% {
+    transform: translateX(-50%) translateY(-50%) translate3d(2px, 0, 0);
+  }
+
+  30%, 50%, 70% {
+    transform: translateX(-50%) translateY(-50%) translate3d(-4px, 0, 0);
+  }
+
+  40%, 60% {
+    transform: translateX(-50%) translateY(-50%) translate3d(4px, 0, 0);
+  }
+}

@@ -1,0 +1,63 @@
+@import 'colors';
+
+// Statuses
+
+.status {
+  display: inline-block;
+  padding: 4px 7px;
+  margin-right: 15px;
+  border-radius: 4px;
+  font-size: 0.9em;
+
+  &.status-none {
+    color: $color-text-light;
+    background-color: $color-grey-20;
+  }
+  
+  &.status-neutral, &.status-unverified, &.status-due, &.status-created {
+    color: $color-text-light;
+    background-color: $color-status-neutral;
+  }
+  
+  &.status-success, &.status-verified, &.status-paid {
+    color: $color-text-light;
+    background-color: $color-status-success;
+  }
+  
+  &.status-warning {
+    color: $color-text-dark;
+    background-color: $color-status-warning;
+  }
+  
+  &.status-error, &.status-overdue {
+    color: $color-text-light;
+    background-color: $color-status-error;
+  }
+}
+
+// User Status List
+
+.status-list {
+  max-width: 400px;
+  
+  span {
+    padding: 3px 4px;
+    border-radius: 3px;
+    
+    &.submitted {
+      color: $color-text-light;
+      background: $color-status-neutral;
+    }
+    &.true, &.processed {
+      color: $color-text-light;
+      background: $color-status-success;
+    }
+    &.false, &.failed, &.cancelled {
+      color: $color-text-light;
+      background: $color-status-error;
+    }
+    &.pending {
+      background: $color-status-warning;
+    }
+  }
+}

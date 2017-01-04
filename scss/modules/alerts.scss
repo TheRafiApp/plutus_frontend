@@ -1,0 +1,105 @@
+// Alerts
+@import 'colors';
+
+.alerts {
+  @include position(fixed, 0 0 null 0);
+  z-index: 9999999999;
+
+  .alert {
+    @include position(absolute, -100px 0 null 0);
+    padding: 30px;
+    color: $color-text-light;
+    font-size: 1.3em;
+    text-align: center;
+    transition: top 0.4s;
+
+    .progress {
+      @include position(absolute, null 0% 0 0);
+      height: 5px;
+      background-color: rgba(255,255,255, 0.6);
+      transition: all 6s linear;
+    }
+
+    &.current {
+      top: 0;
+      transition: top 0.4s;
+
+      .progress {
+        right: 100%;
+      }
+    }
+
+    &.restart {
+      .progress {
+        right: 0% !important;
+        transition: none;
+      }
+    }
+
+    &.type-success {
+      background: $color-status-success;
+      .progress {
+        background-color: rgba(0,0,0, 0.15);
+      }
+    }
+
+    &.type-error {
+      background: $color-status-error;
+    }
+
+    &.type-warn {
+      background: $color-status-warning;
+      color: black;
+
+      .progress {
+        background-color: rgba(0,0,0, 0.15);
+      }
+    }
+
+    .icon {
+      position: absolute;
+      display: inline-block;
+      top: 20px;
+      height: 30px;
+      width: 30px;
+      color: inherit;
+    }
+
+    .type {
+      left: 30px;
+    }
+
+    .action-close {
+      right: 30px;
+      
+      svg {
+        stroke: currentColor;
+      }
+    }
+  }
+}
+
+// 480px - small - phone landscape
+@media (max-width: $breakpoint-small) {
+  .alerts {
+    .alert {
+      padding: 20px;
+    
+      span {
+        line-height: 1.1em;
+      }
+
+      .icon {
+        top: 14px;
+      }
+
+      .type {
+        left: 14px;
+      }
+
+      .action-close {
+        right: 14px;
+      }
+    }
+  }
+}

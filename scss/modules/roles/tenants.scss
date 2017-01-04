@@ -1,0 +1,354 @@
+// Nav - Tenants
+@import 'bourbon';
+@import '../colors';
+
+@media (min-width: $breakpoint-medium) {
+  .role-tenant {
+
+    .panel {
+
+      .header, .scroll-y {
+        max-width: 700px;
+      }
+
+      .header, .sub-header-main {
+        &:after {
+          display: none;
+        }
+      }
+
+      .scroll-y {
+        top: 60px;
+        padding: 20px;
+      }
+
+      .panel {
+        .header {
+          display: none;
+        }
+      }
+    }
+    .layer.tertiary {
+      background-color: $color-grey-10;
+    }
+
+    .account-view.scroll-y {
+      padding: 0;
+    }
+
+    .bill-view, .lease-view {
+      .scroll-y {
+        top: 0;
+      }
+
+      & > .scroll-y {
+        top: 60px;
+      }
+    }
+
+    .layer.tertiary .header.fixed {
+      padding-right: 20px;
+    }
+  }
+
+  body.quarternary-hidden {
+    .role-tenant {
+      .layer.tertiary {
+        background-color: $color-grey-10;
+        left: 170px;
+      }
+    }
+  }
+}
+
+@media (min-width: $breakpoint-xxlarge) {
+  body.quarternary-hidden {
+    .role-tenant {
+      .layer.tertiary {
+        left: 190px;
+      }
+    }
+  }
+}
+
+@media (max-width: $breakpoint-medium) {
+
+  .role-tenant {
+
+    card {
+      // background: #c1c5cc;
+
+      input.small {
+        color: #333;
+        width: 66px !important;
+      }
+    }
+
+    .layer {
+      &.loading {
+        &:after {
+          border-color: $color-text-light;
+        }
+      }
+    }
+
+    a {
+      color: #aaa;
+
+      &:visited {
+        color: #aaa;
+      }
+    }
+
+    .btn.btn {
+      color: $color-background;
+
+      &.btn-primary, &.btn-secondary {
+        color: $color-text-light;
+      }
+    }
+
+    input {
+      &[type="text"],
+      &[type="email"],
+      &[type="password"],
+      &[type="search"],
+      &[type="number"],
+      &[type="date"] {
+        color: $color-text-light;
+      }
+    }
+
+    > .logo {
+      position: fixed;
+      top: 14px;
+      left: 14px;
+      width: 70px;
+      z-index: 7;
+
+      svg {
+        fill: $color-text-light;
+      }
+    }
+
+    .panel {
+      max-width: 100%;
+
+      .panel {
+        .header {
+          display: block;
+        }
+      }
+      .header.fixed {
+        top: 0;
+        right: 0;
+        bottom: initial;
+        left: 0;
+        height: 55px;
+        padding: 0 !important;
+
+        .sub-header-main {
+          background-color: transparent;
+          box-shadow: none;
+
+          h2 {
+            margin: 32px 0 10px;
+            text-transform: uppercase;
+            font-size: 1.2em;
+          }
+        }
+      }
+      & > .scroll-y {
+        top: 70px;
+        bottom: 0;
+        padding: 0 14px;
+      }
+
+      &.tabs-view {
+        & > .header.fixed {
+          @include position(fixed, initial 0 0 0);
+        }
+
+        & > .scroll-y {
+          top: 0;
+          bottom: 55px;
+        }
+
+        .scroll-y {
+          bottom: 28px;
+
+          &.account-view {
+            top: 70px;
+            bottom: 38px;
+          }
+        }
+
+        .form-model {
+          padding: 0;
+
+          h2 {
+            margin-bottom: 10px;
+          }
+        }
+      }
+    }
+
+    .layer {
+      &.primary {
+        display: none;
+        @include position(fixed, 0 0 0 0);
+        height: 100%;
+        background: darken($color-background, 15%);
+        color: $color-text-light;
+
+        .scroll-y {
+          @include position(fixed, 50% null null 50%);
+          height: 440px;
+          max-width: 90%;
+          max-height: 100%;
+          transform: translateX(-50%) translateY(-50%);
+          padding: 0 !important;
+        }
+
+        &.active {
+          display: block;
+        }
+
+        .logo {
+          display: inline-block;
+          width: 200px;
+          max-width: 100%;
+          margin: 0 0 20px 0;
+
+          svg {
+            width: 100%;
+            border-color: currentColor;
+            fill: currentColor;
+          }
+        }
+
+        ul {
+          display: inline-block;
+
+          li {
+            a {
+              padding: 1.7em 1.1em;
+              font-size: 1.4em;
+              text-transform: uppercase;
+              color: $color-text-light;
+
+              &:hover {
+                background: rgba(255,255,255, 0.07);
+              }
+
+              &.active {
+                background: rgba(255,255,255, 0.15);
+
+                &:hover {
+                  background: rgba(255,255,255, 0.20);
+                }
+              }
+            }
+          }
+        }
+      }
+
+      &.secondary {
+        background: #8d949a !important;
+
+        .header.fixed {
+          background: #8d949a;
+          box-shadow: 0 -10px 9px -5px #8d949a;
+        }
+      } 
+
+      &.tertiary {
+        background: #8d949a !important;
+        // background: $color-background !important;
+      }
+
+      &.quarternary {
+        background: #8d949a !important;
+        // background: $color-background !important;
+      }
+    }
+
+    .panel .header.fixed:after {
+      display: none;
+    }
+  }
+
+  .layer.layer {
+    color: $color-text-light;
+    background-color: $color-background;
+  }
+
+  .action-toggle-nav {
+    display: block;
+    position: fixed;
+    top: 20px;
+    right: 14px;
+    @include size(36px);
+    color: white;
+    z-index: 10;
+
+    .bar {
+      position: relative;
+      top: 0;
+      height: 3px;
+      background-color: $color-text-light;
+      margin: 7px 0;
+      border-radius: 3px;
+      transition: 0.3s all;
+    }
+
+    &.active {
+      .bar {
+        transition: 0.3s all;
+      }
+
+      .bar:nth-of-type(1) {
+        top: 10px;
+        transform: rotate(45deg);
+      }
+
+      .bar:nth-of-type(2) {
+        opacity: 0;
+      }
+
+      .bar:nth-of-type(3) {
+        top: -10px;
+        transform: rotate(-45deg);
+      }
+    }
+  }
+
+  .money {
+    width: 100%;
+
+    input {
+      font-size: 1.8em;
+    }
+  }
+
+  // dashboard stuff
+  
+  .no-bills {
+    position: absolute;
+    top: 42%;
+    left: 50%;
+    transform: translateY(-50%) translateX(-50%);
+    text-align: center;
+  
+    .icon-container {
+      width: 100px;
+      margin: 0 auto;
+
+      .icon {
+        width: 100%;
+        height: 0;
+        padding-bottom: 100%;
+      }    
+    }
+  }
+}

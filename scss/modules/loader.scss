@@ -1,0 +1,50 @@
+// Preloader
+@import 'colors';
+
+$loader-size: em(38);
+$loader-animation-duration: 1.15s;
+
+.loading {
+  &:before {
+    content: '';
+    @include position(absolute, 0 0 0 0);
+    background: inherit;
+    z-index: 99999998;
+    transition: all 0.6s;
+  }
+  
+  &:after {
+    content: '';
+    display: block;
+    @include position(absolute, 50% null null 50%);
+    @include transform(translate(-50%, -50%));
+    @include size(0);
+    box-sizing: border-box;
+    border: 2px solid $color-text-light;
+    border-radius: 100%;
+    z-index: 99999999;
+    @include animation(loader $loader-animation-duration infinite $ease-out-cubic);
+  }
+
+  &.full-page {
+    background: rgba(255, 255, 255, 0.7);
+
+    &:before {
+      z-index: 999999998;
+    }
+    &:after {
+      z-index: 999999999;
+      border-color: $color-highlight;
+    }
+  }
+
+  &:hover {
+    cursor: wait;
+  }
+
+  &.success {
+    &:before {
+      background: $color-status-success;
+    }
+  }
+}

@@ -1,0 +1,73 @@
+// Data Visualization & Graphs
+@import 'colors';
+
+$color-split-bg: rgb(0, 169, 157);
+
+.c3-chart-arc path {
+  stroke: $color-split-bg;
+}
+
+.c3-chart-arc text {
+  // fill: $color-grey-60;
+  fill: #555;
+  font-weight: bold;
+}
+
+.c3-tooltip td > span {
+  display: none;
+}
+
+.chart {
+  color: $color-grey-60;
+  
+  .total {
+    display: inline-block;
+    @include position(absolute, 50% null null 50%);
+    transform: translateX(-50%) translateY(-50%);
+
+    .amount {
+      display: inline-block;
+      @include position(absolute, 50% null null 50%);
+      color: $color-text-light;
+      font-size: 1.4em;
+      transform: translateX(-50%) translateY(-50%);
+      z-index: 99;
+    }
+
+    &:after {
+      content: '';
+      display: block;
+      @include position(absolute, 50% null null 50%);
+      @include size(60px);
+      background: $color-split-bg;
+      color: $color-text-light;
+      font-size: 2em;
+      padding: 20px;
+      border-radius: 300px;
+      transform: translateX(-50%) translateY(-50%);
+      z-index: 0;
+    }
+  }
+}
+
+.modal {
+  .c3-chart-arc path {
+    stroke: $color-text-light;
+  }
+
+  .c3-chart-arc text {
+    fill: #333;
+  }
+
+  .chart {
+    .total {
+      .amount {
+        color: $color-grey-60;
+      }
+
+      &:after {
+        background: $color-text-light;
+      }
+    }
+  }
+}

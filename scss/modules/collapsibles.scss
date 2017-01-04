@@ -1,0 +1,146 @@
+// Collapsible list
+
+ul.collapsible {
+  padding: 0 30px 30px;
+  font-family: courier, monospace;
+  
+  li {
+    margin-bottom: 10px;
+
+    div {
+
+      .toggle {
+        margin: 20px 0 30px;
+      }
+
+      &:before {
+        display: inline-block;
+        margin-right: 10px;
+        padding: 2px;
+        border-radius: 3px;
+        font-family: courier, monospace;
+      }
+    }
+  
+    // webhook events
+    .funding_source_added {
+      &:before {
+        content: '$+';
+        background: $color-status-neutral;
+        color: $color-text-light;
+      }
+    }
+
+    .funding_source_removed {
+      &:before {
+        content: '$-';
+        background: $color-status-error;
+        color: $color-text-light;
+      }
+    }
+
+    .bank_transfer_cancelled, .transfer_cancelled {
+      &:before {
+        content: '$x';
+        background: $color-status-error;
+        color: $color-text-light;
+      }
+    }
+
+    .transfer_failed {
+      &:before {
+        content: '$!';
+        background: $color-status-error;
+        color: $color-text-light;
+      }
+    }
+
+    .funding_source_verified {
+      &:before {
+        content: '$✓';
+        background: $color-status-success;
+        color: $color-text-dark;
+      }
+    }
+
+    .microdeposits_added {
+      &:before {
+        content: 'M+';
+        background: $color-status-warning;
+        color: $color-text-dark;
+      }
+    }
+
+    .bank_transfer_created, .transfer_created {
+      &:before {
+        content: '$>';
+        background: lighten($color-status-success, 20%);
+        color: $color-text-dark;
+      }
+    }
+    
+    .bank_transfer_completed, .transfer_completed {
+      &:before {
+        content: '$✓';
+        background: $color-status-success;
+        color: $color-text-dark;
+      }
+    }
+    
+    // transfers
+    .transfer {
+      &.pending {
+        &:before {
+          content: '$>';
+          background: $color-status-warning;
+          color: $color-text-dark;
+        }
+        .transfer-status {
+          background: $color-status-warning;
+          color: $color-text-dark;
+          padding: 3px;
+          border-radius: 3px;
+        }
+      }
+      &.failed {
+        &:before {
+          content: '!!';
+          background: $color-status-error;
+          color: $color-text-dark;
+        }
+        .transfer-status {
+          background: $color-status-error;
+          color: $color-text-dark;
+          padding: 3px;
+          border-radius: 3px;
+        }transition: none;
+      }
+      &.cancelled {
+        &:before {
+          content: '$x';
+          background: $color-status-error;
+          color: $color-text-dark;
+        }
+        .transfer-status {
+          background: $color-status-error;
+          color: $color-text-dark;
+          padding: 3px;
+          border-radius: 3px;
+        }
+      }
+      &.processed {
+        &:before {
+          content: '$✓';
+          background: $color-status-success;
+          color: $color-text-dark;
+        }
+        .transfer-status {
+          background: $color-status-success;
+          color: $color-text-dark;
+          padding: 3px;
+          border-radius: 3px;
+        }
+      }
+    }
+  }
+}

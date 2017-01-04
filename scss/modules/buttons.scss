@@ -1,0 +1,136 @@
+// Buttons
+@import 'colors';
+
+.btn {
+  display: inline-block;
+  position: relative;
+  padding: 9px 12px;
+  background-color: $color-text-light;
+  color: $color-text-dark;
+  border: 0;
+  border-radius: 4px;
+  text-transform: uppercase;
+  font-size: 0.9rem;
+  font-weight: 500;
+  box-shadow: 0 1px 4px rgba(0,0,0, 0.2);
+  transition: all 0.2s;
+  user-select: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased; 
+  @include appearance(none);
+
+  &.sm {
+    font-size: 0.7rem;
+    padding: 5px 8px;
+  }
+  
+  &:hover {
+    color: $color-text-dark;
+    box-shadow: 0 3px 4px rgba(0,0,0, 0.3);
+    cursor: pointer;
+    transition: all 0.9s;
+  }
+  
+  &:active {
+    background-color: darken($color-text-light, 9%);
+    box-shadow: 0 3px 4px rgba(0,0,0, 0.3);
+    transition: all 0.2s;
+  }
+  
+  &.btn-secondary {
+    color: $color-text-light;
+    background-color: $color-highlight;
+    
+    &:hover {
+      color: $color-text-light;
+    }
+    
+    &:active {
+      background-color: lighten($color-highlight, 9%);
+    }
+  }
+
+  &.btn-primary {
+    background-color: $color-btn-primary;
+    color: $color-text-light;
+    
+    &:hover {
+      color: $color-text-light;
+    }
+    
+    &:active {
+      background-color: lighten($color-btn-primary, 10%);
+    }
+  }
+
+  &.disabled {
+    opacity: 0.3;
+    
+    &:hover {
+      cursor: not-allowed;
+    }
+  }
+  
+  // &.btn-disabled {
+  //   color: $color-text-light;
+  //   pointer-events: none;
+  //   background: $color-btn-disabled;
+  //   box-shadow: none;
+  // }
+  
+  &.btn-circle {
+    @include size(20px);
+    padding: 9px;
+    border-radius: 300px;
+    background-color: $color-text-light;
+    color: $color-grey-60;
+    box-shadow: 0 0 5px rgba(0,0,0, 0.4);
+
+    &.minus {
+      top: 6px;
+      box-shadow: 0 0 4px rgba(0,0,0, 0.4);
+      transition: all 0.1s;
+      
+      &:hover {
+        box-shadow: 0 2px 6px rgba(0,0,0, 0.5);
+        transition: all 0.1s;
+      }
+      
+      &:active {
+        top: 7px;
+        box-shadow: 0 0 1px rgba(0,0,0, 0.2);
+        transition: none;
+      }
+      
+      &:after {
+        content: '';
+        display: inline-block;
+        @include position(absolute, 9px null null 5px);
+        @include size(10px 3px);
+        background: $color-grey-60;
+      }
+    }
+  }
+
+  &.icon {
+    @include size(30px);
+    top: 11px;
+    background-size: auto;
+    background-repeat: no-repeat;
+    background-position: center 5px;
+  }
+
+  &.btn-icon {
+    top: 10px;
+    width: 28px;
+    margin-right: 5px;
+    padding: 0;
+    background: none;
+    box-shadow: none;
+    opacity: 0.35;
+
+    svg {
+      width: 100%;
+    }
+  }
+}

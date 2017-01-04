@@ -1,0 +1,19 @@
+// Avatars
+
+avatar {
+  display: block;
+  width: 40%;
+
+  svg {
+    display: block;
+    width: 100%;
+    background-blend-mode: overlay;
+    
+    text { 
+      fill: $color-text-light;
+      font-family: 'Roboto', sans-serif;
+      font-weight: 100;
+      font-size: 105.0759px;
+    }
+  }
+}

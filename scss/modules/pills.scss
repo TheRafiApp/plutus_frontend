@@ -1,0 +1,44 @@
+// Pills
+@import 'colors';
+
+.pills {
+  padding: 5px;
+  font-size: 0px;
+}
+
+.pill {
+  display: inline-block;
+  margin: 5px;
+  font-size: 12px;
+  
+  &.break {
+    display: block;
+  }
+
+  div {
+    display: inline-block;
+    padding: 6px;
+    border: 1px solid $color-grey-40;
+    text-transform: capitalize;
+  }
+
+  .pill-left {
+    border-radius: 4px 0px 0px 4px;
+  }
+  .pill-right {
+    border-radius: 0px 4px 4px 0px;
+    margin-left: -5px;
+    background-color: $color-grey-20;
+  }
+}
+
+.collapsed {
+  max-height: 0;
+  overflow: hidden;
+  transition: 0.6s all;
+
+  &.expanded {
+    max-height: 300px;
+    transition: 0.6s all;
+  }
+}

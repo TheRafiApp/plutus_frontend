@@ -1,0 +1,41 @@
+// Data Import
+@import 'bourbon';
+@import '../../../scss/modules/colors';
+
+.file-drop {
+  position: relative;
+  height: 120px;
+  border: 3px dashed $color-grey-40;
+
+  &:after {
+    content: 'Drag and drop file here';
+    display: inline-block;
+    @include position(absolute, 50% null null 50%);
+    color: $color-grey-40;
+    font-size: 1.2em;
+    transform: translateX(-50%) translateY(-50%);
+  }
+
+  &.hover {
+    border-color: red;
+  }
+
+  &.loading {
+    &:after {
+      content: '';
+    }
+  }
+}
+
+.messages {
+  line-height: 1.1em;
+  
+  .error {
+    color: $color-status-error;
+    margin-bottom: 6px;
+  }
+  .success {
+    color: $color-status-neutral;
+    margin-bottom: 6px;
+  }
+}
