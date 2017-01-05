@@ -58,7 +58,7 @@
   .sub-header-target {
     @include position(absolute, 0 null null 0);
     @include size(320px 85px);
-    z-index: 1;
+    z-index: 8;
   }
   .sub-header-main {
     position: relative;
