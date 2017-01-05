@@ -61,6 +61,8 @@
     z-index: 1;
   }
   .sub-header-main {
+    position: relative;
+    z-index: 7;
     height: 65px;
     white-space: nowrap;
     overflow: visible;

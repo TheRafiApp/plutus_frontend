@@ -3566,6 +3566,8 @@ ul.collapsible li .transfer.processed .transfer-status{
 }
 
 .header .sub-header-main{
+  position:relative;
+  z-index:7;
   height:65px;
   white-space:nowrap;
   overflow:visible;
