@@ -144,7 +144,7 @@ var directories = [
 // check for unescaped output in templates
 gulp.task('js-xss-check', function() {
   var stream = gulp.src('./js/templates/**/*.html')
-    .pipe(find(/(?!{).{{ (?!\/\* ok)/g)) // to use unescaped output, i have to sign it with /* ok */
+    .pipe(find(/(?!{).{{ (?!\/\* ok)/g)) // to use unescaped output, sign it with /* ok */
     .pipe(clip())
 
   var array = toArray(stream, function(err, arr) {
@@ -177,6 +177,7 @@ gulp.task('js-clean', ['js-xss-check'], function() {
   ]);
 });
 
+/// if args were passed, backup configs
 gulp.task('js-backup-config', function() {
   if (argv.staging || argv.production) {
     gulp.src('./js/env-config.js')
@@ -187,7 +188,7 @@ gulp.task('js-backup-config', function() {
   }
 })
 
-// 
+// check if any args were passed, run npm script
 gulp.task('js-check-args', ['js-backup-config'], function() {
   var config;
 
@@ -290,6 +291,7 @@ gulp.task('js-uglify', ['js-rjs'], function() {
     .pipe(gulp.dest('./js/temp'));
 });
 
+// move built assets into build version directory
 gulp.task('js-build-version', ['js-uglify'], function() {
 
   var version = fs.readFileSync('./buildversion', 'utf8');
@@ -305,12 +307,14 @@ gulp.task('js-build-version', ['js-uglify'], function() {
     ]));
 });
 
+// restore original config
 gulp.task('js-config-restore', ['js-build-version'], function() {
   return gulp.src('./js/env-config.js.temp')
     .pipe(rename('env-config.js'))
     .pipe(gulp.dest('./js/'))
 })
 
+// remove temporary config file
 gulp.task('js-config-cleanup', ['js-config-restore'], function() {
   return del(['./js/env-config.js.temp'])
 })

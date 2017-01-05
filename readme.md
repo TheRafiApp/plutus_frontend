@@ -39,11 +39,13 @@
 <a name="build"></a>
 ## Build
 
-1. Intiate gulp js-build task with environment flag, `--staging` or `--production`
+1. Intiate `gulp js-build` task with environment flag, `--staging` or `--production`
 
     ```
   gulp js-build --staging
     ```
+
+1. Or just run gulp js-build without args to use current config
 
 
 <a name="deploy"></a>
