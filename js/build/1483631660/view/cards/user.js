@@ -1,0 +1,2 @@
+define(["app","model/users/UserModel","text!templates/cards/user.html"],function(e,t,s){return Backbone.View.extend({className:"user grid__col grid__col--1-of-2",events:{},template:_.template(s),initialize:function(e){_.extend(this,e),this.model=new t(this.data),this.render()},render:function(){var e=this.model.toJSON();return this.transfers&&console.log(this.transfers),this.$el.html(this.template({user:e})),this}})});
+//# sourceMappingURL=user.js.map

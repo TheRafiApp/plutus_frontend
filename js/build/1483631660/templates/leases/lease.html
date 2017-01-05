@@ -1,0 +1,54 @@
+{{#
+var end_date = lease.end_moment;
+if (end_date) {
+  end_date = end_date.format('MM/DD/YYYY');
+} else {
+  end_date = 'N/A';
+}
+console.log(lease)
+}}
+<form class="form-model">
+
+  <div class="field-group">
+    <legend>Address</legend>
+    <h4>{{{ lease.address }}}</h4>
+  </div>
+ 
+  <div class="field-group">
+    <legend>Start Date</legend>
+    <h4>{{{ lease.start_moment.format('MM/DD/YYYY') }}}</h4>
+  </div>
+
+  <div class="field-group">
+    <legend>End Date</legend>
+    <h4>{{{ end_date }}}</h4>
+  </div>
+
+  <div class="field-group">
+    <legend>Rent</legend>
+    <h4>${{{ lease.rent }}}</h4>
+  </div>
+
+  <div class="charges">
+    <div class="recurring field-group">
+      <legend>Recurring Charges</legend>
+    </div>
+  </div>
+    
+  <div class="charges">
+    <div class="scheduled field-group">
+      <legend>Scheduled Charges</legend>
+    </div>
+  </div>
+
+  <legend>Tenants</legend>
+  <div class="grid tenants"></div>
+
+  {{# if (lease.active) { }}
+    <a href="#" class="btn btn-secondary action-add-bill">Add Bill</a>
+  {{# } else { }}
+    [Lease Not Active]
+  {{# } }}  
+  
+
+</form>

@@ -8,7 +8,7 @@ require.config({
   waitSeconds : 60,
 
   // base url for modules
-  baseUrl: location.origin + '/js/build/1483460320/',
+  baseUrl: location.origin + '/js/build/1483631660/',
 
   paths: {
     'jquery':               'vendor/jquery.min',
@@ -26,7 +26,6 @@ require.config({
     'c3':                   'vendor/c3',
     'xlsx':                 'vendor/xlsx',
     'jszip':                'vendor/jszip',
-    // 'zxcvbn':               'vendor/zxcvbn',
 
     // tests
     'jasmine':              'vendor/tests/jasmine',

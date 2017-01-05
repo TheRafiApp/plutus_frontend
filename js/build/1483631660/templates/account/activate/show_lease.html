@@ -1,0 +1,29 @@
+<div class="logo-container">{{ /* ok */ logo }}</div>
+
+<div class="icon-container"><svg viewBox="0 0 183.99 183.99" style="fill:#f2f2f2"><path d="M95,187a92,92,0,1,1,92-92A92.1,92.1,0,0,1,95,187ZM95,13a82,82,0,1,0,82,82A82.09,82.09,0,0,0,95,13Z" transform="translate(-3 -3)"/><path d="M95.18,47.45L139.66,92.1h-9.6V128H106.9V109.72H83.47V128H60.31V92.1h-8L95.18,47.45M95.06,34.58l-6.37,6.64L45.85,85.86,31.23,101.1H51.31V137H92.47V118.72H97.9V137h41.16V101.1h22.27L146,85.74,101.56,41.1l-6.5-6.52h0Z" transform="translate(-3 -3)"/></svg></div>
+
+<div class="form-model">
+	<h1>Your Lease</h1>
+
+	<div class="field-group">
+	  <h2>{{{ lease.property.address }}}</h2>
+	  <h2>{{{ moment(lease.start_date).format('MM/DD/YYYY') }}} – {{{ moment(lease.end_date).format('MM/DD/YYYY') }}}</h2>
+	</div>
+
+	<div class="field-group">
+	  <h4>Total Rent</h4>
+	  <h2>{{{ prettyMoney(lease.rent) }}}</h2>
+	</div>
+
+	<div class="field-group">
+	  <h4>Fees Collected</h4>
+	  <h2><span>{{ /* ok */ fees.join(',</span> <span>') }}</span></h2>
+	</div>
+
+	<div class="field-group">
+	  <h4>Your Roommates</h4>
+	  <h2><span>{{ /* ok */ roommates === false ? 'None' : roommates.join(',</span> <span>') }}</span></h2>
+	</div>
+
+	<a href="#" class="btn action-next">CONFIRM</a>
+</div>

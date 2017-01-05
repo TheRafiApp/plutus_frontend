@@ -1,0 +1,31 @@
+<div class="field-group">
+  <legend>Amount</legend>
+  <span class="money">
+    <input name="amount" type="text" placeholder="0.00" class="amount medium focus" autocomplete="off">
+  </span>
+  <span class="help-text"></span>
+</div>
+
+<div class="field-group">
+  <legend>Type</legend>
+  <input type="radio" name="type" id="income" value="positive" checked><label for="income">Income</label>
+  <input type="radio" name="type" id="expense" value="negative"><label for="expense">Expense</label>
+</div>
+
+<div class="field-group">
+  <legend>Property</legend>
+  <select name="property" class="chosen">
+    {{# _.each(properties, function(property) { }}
+      <option value="{{{ property._id }}}">{{{ property.address }}}</option>
+    {{# }) }}
+  </select>
+  <span class="help-text"></span>
+</div>
+
+<div class="date-picker"></div>
+
+<div class="field-group">
+  <legend>Description</legend>
+  <textarea name="description"></textarea>
+  <div class="help-text"></div>
+</div>

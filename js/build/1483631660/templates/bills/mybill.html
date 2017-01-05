@@ -1,0 +1,82 @@
+{{# 
+
+var bill_label = bill.type === 'monthly' ? 'Rent' : 'One-Time Bill';
+
+}}
+
+<div class="header fixed">
+  <div class="sub-header-main text-center">
+    
+    <div class="meta">
+      <a href="/{{{ back_path }}}" class="btn action-back"><svg viewBox="-140 146 30 40"><polyline points="-116.6,185.6 -136.2,166 -116.6,146.4 "/></svg></a>
+      <h2>Bill Details</h2>
+    </div>
+    <div class="clear"></div>
+  </div>
+</div>
+
+<div class="scroll-y">
+  
+  <card class="bill profile large {{{ bill.type }}} {{{ bill.status }}} {{{ bill.active ? 'active' : 'inactive' }}}">
+    <div class="scroll-y">
+      <div class="content">
+        <header class="flex">
+          <div class="label" style="flex: 1 1 8%">
+            {{{ moment(bill.due_date).format('MM/DD/YYYY') }}}
+          </div>
+          <div class="text-right" style="flex: 1 1 8%">Bill #{{{ bill.identifier }}}</div>
+        </header>
+      </div>
+      <div class="pad flex">
+        <div class="description">CHARGES</div>
+      </div>
+      <div class="pad">
+        {{# _.each(bill.charges.recurring, function(charge) { }}
+        <div class="flex">
+          <div class="description" style="flex: 1 1 8%">{{{ charge.type.replace(/\_/g,' ') }}}</div>
+          <div class="value text-right" style="flex: 1 1 8%">{{{ prettyMoney(charge.amount) }}}</div>
+        </div>
+        {{# }) }}
+        {{# _.each(bill.charges.scheduled, function(charge) { }}
+        <div class="flex">
+          <div class="description" style="flex: 1 1 8%">{{{ charge.description || charge.type.replace(/\_/g,' ') }}}</div>
+          <div class="value text-right" style="flex: 1 1 8%">{{{ prettyMoney(charge.amount) }}}</div>
+        </div>
+        {{# }) }}
+      </div>
+
+      <div class="divider"></div>
+
+      <div class="pad flex">
+        <div class="description" style="flex: 1 1 8%">Total</div>
+        <div class="value text-right" style="flex: 1 1 8%">{{{ prettyMoney(bill.total) }}}</div>
+      </div>
+
+      <div class="divider"></div>
+
+      <div class="pad flex">
+        <div class="description">PAYMENTS</div>
+      </div>
+
+      <div class="pad cards transfer-cards"></div>
+        
+      <div class="divider"></div>
+      
+      <div class="pad flex">
+        <div class="description" style="flex: 1 1 8%">Balance</div>
+        <div class="value text-right" style="flex: 1 1 8%">{{{ prettyMoney(bill.display_balance) }}}</div>
+      </div>
+
+      <!-- <div class="pad flex">
+        <div class="description">Due: {{{ moment(bill.due_date).format('MM/DD/YYYY') }}}</div>
+      </div> -->
+    </div>
+
+    {{# if (bill.status !== 'paid') { }}
+
+      <footer class="btn-full action-pay">Pay Now</footer>
+
+    {{# } }}
+
+  </card>
+</div>

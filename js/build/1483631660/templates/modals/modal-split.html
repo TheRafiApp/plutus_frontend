@@ -1,0 +1,43 @@
+
+<card class="flex">
+  <div class="meta" style="margin-left:0;justify-content:flex-start">Total Rent</div>
+  <ul class="transfer-data text-right">
+    <li>{{{ total }}}</li>
+  </ul>
+</card>
+
+<div class="divider"></div>
+
+<div class="chart"></div>
+
+<div class="divider"></div>
+
+<card class="flex">
+  <div class="meta" style="margin-left:0;justify-content:flex-start">Rent Remaining</div>
+  <ul class="transfer-data text-right">
+    <li class="remaining">{{{ total }}}</li>
+  </ul>
+</card>
+
+<div class="divider"></div>
+
+<div class="field-group">
+  <h4>Your Rent Split</h4>
+  <p>How much rent are you responsible for?</p>
+</div>
+
+<div class="field-group">
+  <div class="money">
+    <input class="medium amount mobile-number" type="text" placeholder="0.00" autocomplete="off">
+  </div>
+  <span class="help-text"></span>
+</div>
+
+{{#
+var checked = autopay ? ' checked' : '';
+}}
+
+<div class="field-group">
+  <input type="checkbox" id="autopay"{{{ checked }}}>
+  <label for="autopay">Autopay</label>
+</div>

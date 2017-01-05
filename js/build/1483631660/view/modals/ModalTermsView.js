@@ -1,0 +1,2 @@
+define(["app","view/modals/ModalView","text!templates/modals/modal-terms.html"],function(e,t,i){return t.extend({title:function(){return"Terms of Use"},template:_.template(i),initialize:function(e){e&&_.extend(this,e),this.renderModalView()},render:function(){return this.ready(),this},cancel:function(){this.closeModal(),this.context.trigger("declineTerms")}})});
+//# sourceMappingURL=ModalTermsView.js.map

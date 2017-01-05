@@ -4,12 +4,10 @@
   "description": "just to get rid of that stupid npm warning",
   "main": "index.js",
   "scripts": {
-    
-    "dev":        "cat ./js/config/development.js > ./js/env-config.js" ,
-    "staging":    "cat ./js/config/staging.js > ./js/env-config.js" ,
+    "dev": "cat ./js/config/development.js > ./js/env-config.js",
+    "staging": "cat ./js/config/staging.js > ./js/env-config.js",
     "production": "cat ./js/config/production.js > ./js/env-config.js",
-
-    "test":  "node ./node_modules/mocha/bin/mocha ./test/tests.js",
+    "test": "node ./node_modules/mocha/bin/mocha ./test/tests.js",
     "test2": "node ./node_modules/mocha/bin/mocha ./test/tests2.js"
   },
   "repository": {
@@ -48,7 +46,8 @@
     "nightmare": "^2.9.0",
     "node-bourbon": "^4.2.8",
     "request": "^2.79.0",
-    "stream-to-array": "^2.3.0"
+    "stream-to-array": "^2.3.0",
+    "yargs": "^6.6.0"
   },
   "dependencies": {
     "backbone": "^1.3.3",

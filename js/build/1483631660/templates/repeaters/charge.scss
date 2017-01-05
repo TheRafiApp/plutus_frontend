@@ -1,0 +1,59 @@
+// charges repeaters
+@import 'bourbon';
+@import '../../../scss/modules/colors';
+
+.charges {
+  & > .field-group > legend {
+    margin-bottom: 14px;
+  }
+}
+
+.data-group {
+  padding: 20px;
+  background-color: $color-grey-20;
+  border-radius: 3px;
+  margin-bottom: 20px;
+
+  input {
+    width: 160px;
+    font-size: 1.4em;
+  }
+
+  textarea {
+    width: 340px;
+  }
+
+  .btn.btn-circle.minus {
+    @include position(absolute, 50% 18px null null);
+    margin-top: -10px;
+  }
+
+  dl {
+    clear: both;
+
+    dt {
+      float: left;
+      clear: left;
+      font-size: 1.1em;
+      font-weight: bold;
+      text-transform: capitalize;
+      margin-bottom: 6px;
+      margin-right: 8px;
+    }
+
+    dd {
+      font-size: 1.1em;
+      float: left;
+
+      &.rent {
+        font-size: 1.4em;
+      }
+    }
+
+    &:after {
+      content: '';
+      display: block;
+      clear: both;
+    }
+  }
+}

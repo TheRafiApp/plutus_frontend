@@ -1,0 +1,143 @@
+<div class="field-group">
+  <legend>Address</legend>
+  <input class="full" type="text" value="{{{ property.address }}} #{{{ unit.number }}}, {{{ property.city }}}, {{{ property.state }}} {{{ property.zip }}}" disabled>
+</div>
+
+{{# if (action !== 'Edit') { }}
+<div class="field-group">
+  <legend>Type</legend>
+  <select class="chosen type">
+    <option value="12" selected>12 Months</option>
+    <option value="6">6 Months</option>
+    <option value="month-to-month">Month to Month</option>
+    <option value="custom">Custom</option>
+  </select>
+  <span class="help-text"></span>
+</div>
+{{# } }}
+
+{{# var disable = (action == 'Edit' || action == 'Renew') ? ' disabled' : '' }}
+
+<div class="field-group">
+  <legend>Start Date</legend>
+  <input name="start_date" id="start_date" type="text"{{{ disable }}}>
+  <span class="help-text"></span>
+</div>
+
+<div class="field-group">
+  <legend>End Date</legend>
+  <input name="end_date" id="end_date" type="text" />
+  <span class="help-text"></span>
+</div>
+
+{{# if (action !== 'Edit') { }}
+<div class="field-group">
+  <label>Collect rent on the <input name="bill_due_day" type="text" class="bill_due_day text-right"><span id="ordinal">st</span> of the month</label>
+  <span class="help-text"></span>
+</div>
+{{# } }}
+
+<div class="divider"></div>
+
+<div class="field-group">
+  <legend>Tenants</legend>
+  <select name="tenants[]" class="chosen-multiple tenants" multiple>
+    {{# _.each(tenants, function(tenant) { }}
+      {{# console.log(tenant)}}
+      {{# var selected = (selected_tenants && selected_tenants.indexOf(tenant._id) > -1) ? ' selected' : '' }}
+      <option value="{{{ tenant._id }}}"{{{ selected }}}>{{{ tenant.full_name }}}</option>
+    {{# }) }}
+  </select>
+  <span class="help-text"></span>
+</div>
+
+{{# var disable = (action == 'Edit') ? ' disabled' : '' }}
+
+<div class="field-group">
+  <legend>Rent</legend>
+  <span class="money">
+    <input name="rent" class="rent" type="text" placeholder="0.00" class="medium mobile-number" value="{{{ unit.rent }}}"{{{ disable }}}>
+  </span> 
+  <span class="help-text"></span>
+</div>
+
+<div class="divider"></div>
+
+<h3>Fees Collected</h3>
+
+{{# if (action == 'Add') { }}
+
+<div class="field-group fee first-month">
+  <input class="toggle" type="checkbox" id="first">
+  <label for="first">First Month</label>
+  <span class="money">
+    <input class="first_month" type="text" placeholder="0.00" class="medium mobile-number"{{{ disable }}}>
+  </span> 
+  <span class="help-text"></span>
+</div>
+
+{{# } }}
+
+{{# if (action == 'Add' || last_month_passed) { }}
+
+{{{ last_month_passed ? 'The last month\'s rent has already been applied to a bill, do you wish to collect a new last month\'s rent?' : '' }}}
+
+<div class="field-group fee last-month">
+  <input class="toggle" type="checkbox" id="last">
+  <label for="last">Last Month</label>
+  <span class="money">
+    <input class="last_month" type="text" placeholder="0.00" class="medium mobile-number"{{{ disable }}}>
+  </span> 
+  <span class="help-text"></span>
+</div>
+
+{{# } }}
+
+{{# if (action == 'Edit') { 
+
+var first_checked = '';
+if (first_month) first_checked = ' checked';
+}}
+
+<div class="field-group">
+  <input type="checkbox" id="first_edit" disabled{{{ first_checked }}}>
+  <label for="first_edit">First Month</label>
+  <span class="money">
+    <input class="first_month_edit" type="text" placeholder="0.00" class="medium mobile-number" value="{{{ first_month.amount }}}" disabled>
+  </span> 
+  <span class="help-text"></span>
+</div>
+
+{{#
+var last_checked = '';
+if (last_month) last_checked = ' checked';
+}}
+
+<div class="field-group">
+  <input type="checkbox" id="last_edit" disabled{{{ last_checked }}}>
+  <label for="last_edit">Last Month</label>
+  <span class="money">
+    <input class="last_month_edit" type="text" placeholder="0.00" class="medium mobile-number" value="{{{ last_month.amount }}}" disabled>
+  </span> 
+  <span class="help-text"></span>
+</div>
+
+{{# } }}
+
+<div class="divider"></div>
+
+<h3>Other Fees/Charges</h3>
+
+<div class="charges">
+  <div class="field-group">
+    <legend>Recurring</legend>
+    <ul class="recurring"></ul>
+    <a href="#" class="btn action-add-recurring">Add</a>
+  </div>
+
+  <div class="field-group">
+    <legend>Scheduled</legend>
+    <ul class="scheduled"></ul>
+    <a href="#" class="btn action-add-scheduled">Add</a>
+  </div>
+</div>

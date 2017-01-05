@@ -1,0 +1,87 @@
+
+<div>
+  {{# if (funding_source.type == 'balance')  { }} THIS IS YOUR BALANCE! {{# } }}
+  <card class="funding-source {{{ funding_source.status }}}">
+    <ul class="left">
+      <li class="heading"><h2>{{{ funding_source.name }}}</h2>{{# if (funding_source.primary) { }} <span class="status status-success">primary <div class="icon success white"></div>{{# } }}</span></li>
+      <li>ID: {{{ funding_source.id }}}</li>
+      <li>Created: {{{ moment(funding_source.created).format('MM/DD/YYYY') }}}</li>
+      <li><span class="status status-{{{ funding_source.status }}}">{{{ funding_source.status }}}</span></li>
+
+  {{# console.log(funding_source); }}
+
+      {{# if (funding_source.status == 'unverified') { }}
+
+        {{# if (funding_source.microdeposits == 'completed') { }}
+
+        <li>
+          <form class="micro-deposits added">
+            <legend>Micro Deposits</legend>
+            <div class="left">
+              
+              <div class="money micro">
+                <input name="amount1" type="text" placeholder="00" class="small focus-chain numbers-only" maxlength="2">
+              </div>
+              <span class="help-text"></span>
+            </div>
+
+            <div class="left">
+              <div class="money micro">
+                <input name="amount2" type="text" placeholder="00" class="small focus-chain numbers-only" maxlength="2">
+              </div>
+              <span class="help-text"></span>
+            </div>
+
+            <div class="left">
+              <a href="#" class="btn btn-primary action-send-md focus-chain">VERIFY</a>
+            </div>
+
+            <div class="clear"></div>
+          </form>
+        </li>
+
+        {{# } else if (funding_source.microdeposits == 'failed') { }}
+
+        <li>
+          <form class="micro-deposits failed">
+            <legend>Micro Deposits</legend>
+            <span class="status status-error">The attempted microdeposits have failed to deposit into your bank account. 
+            Please contact your bank to determine the cause of the problem, or retry.</span>
+            <div>
+              <a href="#" class="btn btn-primary action-request-md">RETRY</a>
+            </div>
+          </form>
+        </li>
+
+        {{# } else if (funding_source.microdeposits == 'pending') { }}
+
+        <li>
+          <form class="micro-deposits added">
+            <legend>Micro Deposits</legend>
+            <span class="status status-neutral">Micro deposits are pending</span>
+          </form>
+        </li>
+
+        {{# } }}
+
+      {{# } }}
+    </ul>
+    {{# if (funding_source.type !== 'balance') { }}
+    <div class="actions right">
+      {{# if (funding_source.status == 'verified' && !funding_source.primary) { }}
+      <a href="#" class="btn action-make-primary">Make Primary</a>
+      {{# } }}
+
+      {{# if (funding_source.primary) { }}
+      <a href="#" class="btn btn-primary btn-disabled">Delete</a>
+      {{# } else { }}
+      <a href="#" class="btn btn-primary action-delete">Delete</a>
+      {{# } }}
+
+    </div>
+
+    {{# } }}
+      
+    <div class="clear"></div>
+  </card>
+</div>

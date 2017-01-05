@@ -1,0 +1,2 @@
+define(["app","view/modals/ModalView","text!templates/modals/modal-admin.html"],function(e,t,i){return t.extend({title:function(){return this.action+" "+this.role},template:_.template(i),initialize:function(t){t&&_.extend(this,t);var i=this;this.role=e.utils.capitalize(this.context.modelName),e.utils.loadModel.get("users/"+this.role+"Model").then(function(e){i.model=new e,i.renderModalView()})},render:function(){return this.ready(),e.controls.renderPasswordFields(this),this}})});
+//# sourceMappingURL=ModalAdminView.js.map

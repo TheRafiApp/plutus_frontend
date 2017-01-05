@@ -1,0 +1,33 @@
+<div class="header fixed">
+  <div class="sub-header-main">
+
+    
+    <ul class="tabs">
+      <li><a class="active" href="#" data-tab="profile">Profile</a></li>
+      {{# if (user.role !== 'superadmin') { }}
+      <li><a href="#" data-tab="contact">Contact</a></li>
+      {{# } }}
+      
+      {{# if (['superadmin', 'admin', 'tenant'].contains(user.role)) { }}
+
+      {{# if (user.role == 'tenant') { }}
+      <li><a data-tab="payment" href="#">Payment</a></li>
+      <!-- <li><a data-tab="transfers" href="#">Transfers</a></li> -->
+      {{# } }}
+
+      {{# if (user.role == 'admin') { }}
+      <li><a data-tab="payment" href="#">Company</a></li>
+      {{# } }}
+
+      {{# if (user.role == 'superadmin') { }}
+      <li><a data-tab="data" href="#">Data Management</a></li>
+      {{# } }}
+      
+      {{# } }}
+    </ul>
+
+    <div class="clear"></div>
+
+  </div>
+</div>
+<div class="account-view scroll-y"></div>

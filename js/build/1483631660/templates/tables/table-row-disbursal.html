@@ -1,0 +1,24 @@
+<div class="cell col-left">
+  <span>{{{ property.address }}}</span>
+</div>
+<div class="cell"> 
+ 	<span>{{{ property.name }}}</span>
+</div>
+<!-- <div class="cell">
+  <span>{{{ property }}}</span>
+</div> -->
+<div class="cell">
+  <span>{{{ property.landlord && property.landlord.first_name + ' ' + property.landlord.last_name }}}</span>
+</div>
+<div class="cell hide-1">
+  <span>monthly</span>
+</div>
+<div class="cell hide-1">
+  <span>{{{ property.total }}}</span>
+</div>
+<div class="cell">
+  <span>{{{ property.balance }}}</span>
+</div>
+<div class="cell">
+	<a href="#" class="btn btn-secondary action-add">Record Disbursal</a>
+</div> 

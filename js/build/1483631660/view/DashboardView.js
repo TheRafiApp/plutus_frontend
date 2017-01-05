@@ -1,0 +1,2 @@
+define(["app"],function(e){return Backbone.View.extend({viewName:function(){var n=e.session.get("user_role");return this.viewMap[n]},viewMap:{superadmin:"superadmin",admin:"admin",manager:"default",landlord:"default",tenant:"tenant"},initialize:function(e){e&&_.extend(this,e),this.render()},render:function(){this.renderDashboard();return this},renderDashboard:function(){var n=this,i=this.viewName();e.utils.loadView.get("dashboard/"+i).then(function(e){n.childView=new e({subPage:n.subPage}),n.$el.html(n.childView.$el)})}})});
+//# sourceMappingURL=DashboardView.js.map

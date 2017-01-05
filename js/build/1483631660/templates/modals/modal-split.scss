@@ -1,0 +1,28 @@
+// Modal Split View
+
+@import 'bourbon';
+@import '../../../scss/modules/colors';
+
+.split .modal {
+
+  .chart {
+    margin-top: 14px;
+    margin-bottom: 14px;
+  }
+
+  card {
+    .meta {
+      color: $color-text-dark;
+
+      h2 {
+        padding: 2px;
+      }
+    }
+
+    &.flex {
+      ul li {
+        color: $color-text-dark;
+      }
+    } 
+  }
+}

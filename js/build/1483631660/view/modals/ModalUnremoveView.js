@@ -1,0 +1,2 @@
+define(["app","view/modals/ModalView","text!templates/modals/modal-unremove.html"],function(e,t,n){return t.extend({title:function(){return"Unremove "+this.target.name},template:_.template(n),messages:{success:"Unremoved target successfully",error:"The target could not be unremoved"},initialize:function(e){e&&_.extend(this,e),console.log(this),this.renderModalView()},render:function(){return this.ready({target:this.target}),this}})});
+//# sourceMappingURL=ModalUnremoveView.js.map

@@ -1,0 +1,27 @@
+<card class="lease small">
+  <ul>
+  {{# console.log(lease) }}
+    <li><h2>{{{ lease.address }}}</h2></li>
+    <li><h3>{{{ moment(lease.start_date).format('MM/DD/YYYY') }}} – {{{ lease.end_date ? moment(lease.end_date).format('MM/DD/YYYY') : '∞' }}}</h3></li>
+    <li class="{{{ lease.type }}}"></li>
+    <li>${{{ lease.rent }}}/month</li>
+    <li class="tenants">
+    {{# _.each(tenants, function(user) { }}
+			<card class="flex">
+			  <avatar>
+			    <svg viewBox="0 0 220 180" style="background: {{{ user.avatar_color }}} linear-gradient(to bottom, rgba(255, 255, 255, 0.5) 0%, rgba(255, 255, 255, 0) 100%);">
+			      <text transform="matrix(1 0 0 1 110 127)" text-anchor="middle">{{{ user.initials }}}</text>
+			    </svg>
+			  </avatar>
+			  <div class="meta">
+			    <ul>
+			      <li><h2>{{{ user.full_name }}}</h2></li>
+			      <li>{{{ user.email }}}</li>
+			      <li>{{{ user.phone }}}</li>
+			    </ul>
+			  </div>
+			</card>
+    {{# }) }}
+    </li>
+  </ul>
+</card>

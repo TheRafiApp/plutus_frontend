@@ -20,6 +20,7 @@ var gulp       = require('gulp'),
     find       = require('gulp-find'),
     clip       = require('gulp-clip-empty-files'),
     toArray    = require('stream-to-array')
+    argv       = require('yargs').argv
 
 // css /////////////////////////////////////////////////////////////////////////
 
@@ -176,8 +177,36 @@ gulp.task('js-clean', ['js-xss-check'], function() {
   ]);
 });
 
+gulp.task('js-backup-config', function() {
+  if (argv.staging || argv.production) {
+    gulp.src('./js/env-config.js')
+      .pipe(rename('env-config.js.temp'))
+      .pipe(gulp.dest('./js/'));
+  } else {
+    return gulp.src('').pipe(gulp.dest(''));
+  }
+})
+
+// 
+gulp.task('js-check-args', ['js-backup-config'], function() {
+  var config;
+
+  if (!(argv.staging || argv.production)) return gulp.src('').pipe(gulp.dest(''));
+
+  if (argv.staging) {
+    config = 'staging';
+  } else if (argv.production) {
+    config = 'production';
+  }
+
+  return gulp.src('')
+    .pipe(shell([
+      'npm run ' + config
+    ]));
+});
+
 // increment rev
-gulp.task('js-version', ['js-clean'], shell.task([
+gulp.task('js-version', ['js-clean', 'js-check-args'], shell.task([
   'printf $(date +%s) > ./buildversion'
 ]));
 
@@ -276,13 +305,23 @@ gulp.task('js-build-version', ['js-uglify'], function() {
     ]));
 });
 
+gulp.task('js-config-restore', ['js-build-version'], function() {
+  return gulp.src('./js/env-config.js.temp')
+    .pipe(rename('env-config.js'))
+    .pipe(gulp.dest('./js/'))
+})
+
+gulp.task('js-config-cleanup', ['js-config-restore'], function() {
+  return del(['./js/env-config.js.temp'])
+})
+
 // watch
 gulp.task('js-watch', function() {
   return gulp.watch('./js/**/*.js', ['js-dev']);
 });
 
 // tasks
-gulp.task('js-build', ['js-build-version']);
+gulp.task('js-build', ['js-config-cleanup']);
 gulp.task('js-dev', ['js-concat']);
 gulp.task('js', ['js-uglify']);
 

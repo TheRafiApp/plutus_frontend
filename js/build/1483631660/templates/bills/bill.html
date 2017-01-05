@@ -1,0 +1,59 @@
+<div class="form-model charges">
+
+  {{# if (bill.charges_pretty.recurring) { }}
+  <div class="charge-group">
+    <legend>Recurring</legend>
+    <dl>
+      {{# _.each(bill.charges_pretty.recurring, function(charge) { }}
+        <dt>
+          {{{ charge.type.replace(/\_/g,' ') }}}
+        </dt>
+        <dd class="{{{ charge.type }}}">
+          {{{ prettyMoney(charge.amount) }}}
+        </dd>
+        {{# if (charge.description) { }}
+        <dt class="description">{{{ charge.description }}}</dt>
+        {{# } }}
+      {{# }) }}
+    </dl>
+  </div>
+  {{# } }}
+
+  {{# if (bill.charges_pretty.scheduled) { }}
+  <div class="charge-group">
+    <legend>Scheduled</legend>
+    <dl>
+      {{# _.each(bill.charges_pretty.scheduled, function(charge) { }}
+        <dt>
+          {{{ charge.type.replace(/\_/g,' ') }}} - {{{ moment(charge.date).format('MM/DD/YYYY') }}}
+        </dt>
+        <dd class="{{{ charge.type }}}">
+          {{{ prettyMoney(charge.amount) }}}
+        </dd>
+        {{# if (charge.description) { }}
+        <dt class="description">{{{ charge.description }}}</dt>
+        {{# } }}
+      {{# }) }}
+    </dl>
+  </div>
+  {{# } }}
+
+</div>
+
+<div class="form-model transfers">
+
+  <legend>Payments</legend>
+  <div class="transfer-cards"></div>
+</div>
+
+<div class="divider"></div>
+
+<div class="form-model">
+  <div class="charge-group">
+    <legend>Total Due</legend>
+    <dl><dd>{{{ prettyMoney(bill.display_balance) }}}</dd></dl>
+  </div>
+
+  <a href="#" class="btn action-add-transfer">Add Non-Electronic Payment</a>
+
+</div>

@@ -1,0 +1,20 @@
+<div class="cell col-left">
+  {{{ moment(lease.start_date).format('MM/DD/YYYY') }}}
+</div>
+<div class="cell"> 
+  {{{ lease.end_date ? moment(lease.end_date).format('MM/DD/YYYY') : 'N/A' }}}
+</div>
+<div class="cell">
+  <div style="max-width: 200px;overflow: hidden;text-overflow: ellipsis;">{{{ lease.address }}}</div>
+</div>
+<div class="cell hide-1"> 
+  {{{ lease.rent }}}
+</div>
+<div class="cell"> 
+  {{{ lease.length.months !== undefined ? lease.length.auto : lease.length }}}
+</div>
+<div class="cell hide-1">
+  {{{ lease.tenants.length }}}
+</div>
+
+<div class="cell"><a href="#" class="btn btn-circle minus action-remove"></a></div>

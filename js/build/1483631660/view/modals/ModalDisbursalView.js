@@ -1,0 +1,2 @@
+define(["app","view/modals/ModalView","model/properties/DisbursalModel","view/repeaters/date-calendar","text!templates/modals/modal-disbursal.html"],function(e,t,i,l,d){return t.extend({template:_.template(d),initialize:function(e){e&&_.extend(this,e);this.model=new i,this.renderModalView()},render:function(){var t=!1,i=e.views.currentView.tableView.collection.toJSON();return this.selected&&(t=this.selected),this.ready({properties:i,selected:t}),this.$el.find(".date-picker").html(new l({name:"date",context:this}).$el),this}})});
+//# sourceMappingURL=ModalDisbursalView.js.map

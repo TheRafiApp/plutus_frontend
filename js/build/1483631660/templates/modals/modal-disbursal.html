@@ -1,0 +1,42 @@
+<div class="modal model">
+  <header>
+    <h2>Record Disbursal</h2>
+  </header>
+  <div class="content">
+    <form class="form-model">
+
+      <div class="field-group">
+        <legend>Property</legend>
+
+        {{# console.log(selected) }}
+        <select name="property">
+          {{# _.each(properties, function(property) { }}
+            {{# console.log(property._id) }}
+            {{# var selected_string = selected === property._id ? ' selected' : '' }}
+            <option value="{{{ property._id }}}"{{{ selected_string }}}>{{{ property.address }}}</option>
+          {{# }) }}
+        </select>
+        <span class="help-text"></span>
+      </div>
+
+      <div class="field-group">
+        <legend>Amount</legend>
+        <span class="money">
+          <input name="amount" type="text" placeholder="0.00" class="medium amount mobile-number">
+        </span>
+        <span class="help-text"></span>
+      </div>
+
+      <div class="date-picker"></div>
+
+    </form>
+  </div>
+  <footer>
+    <div class="actions right">
+      <a href="#" class="btn action-cancel">Cancel</a>
+      <a href="#" class="btn btn-primary action-confirm">Confirm</a>
+    </div>
+  </footer>
+</div>
+
+<div class="overlay"></div>

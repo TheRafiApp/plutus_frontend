@@ -1,0 +1,15 @@
+<div class="modal">
+  <header>
+    <h2>{{{ title }}}</h2>
+  </header>
+  <div class="content scroll-container">
+    <form class="form-model"></form>
+  </div>
+  <footer>
+    <div class="actions right">
+      {{# if (actions.cancel) { }}  <a href="#" class="btn action-cancel">Cancel</a> {{# } }}
+      {{# if (actions.confirm) { }} <a href="#" class="btn btn-primary action-confirm">Confirm</a> {{# } }}
+    </div>
+  </footer>
+</div>
+<div class="overlay"></div>

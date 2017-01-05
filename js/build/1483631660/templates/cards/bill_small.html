@@ -1,0 +1,20 @@
+{{# 
+
+var bill_label = bill.type === 'monthly' ? 'Rent' : 'Bill';
+
+var bill_total = bill.total ? prettyMoney(bill.total) : 'Pre-Paid';
+
+}}
+
+<card class="bill profile small {{{ bill.type }}} {{{ bill.status }}}">
+  <div class="content">
+    <header class="flex stretch">
+      <div class="label" style="flex: 60px 0">{{{ moment(bill.due_date).format('MM/DD/YYYY') }}}</div>
+      <div style="flex: 1 1 8%" class="text-center">{{{ bill.target }}}</div>
+      <div class="total text-center" style="flex: 100px 0">
+        {{{ bill_total }}}
+      </div>
+    </header>
+<!--     <h1>{{{ prettyMoney(bill.display_balance) }}}</h1> -->
+  </div>
+</card>
