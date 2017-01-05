@@ -6390,104 +6390,6 @@ ul.collapsible li .transfer.processed .transfer-status{
   background-color:#e91e63;
 }
 
-.user .modal.start .verification-code{
-  display:none;
-}
-
-.user .modal.sent .verification-code{
-  display:block;
-}
-
-input.bill_due_day{
-  width:20px !important;
-  padding-right:2px;
-}
-
-.color-success{
-  color:#45c97a;
-}
-
-.color-bg-success{
-  background-color:#45c97a;
-}
-
-.color-neutral{
-  color:#0071bc;
-}
-
-.color-bg-neutral{
-  color:#fff;
-  background-color:#0071bc;
-}
-
-.color-warning{
-  color:#f7d114;
-}
-
-.color-bg-warning{
-  background-color:#f7d114;
-}
-
-.color-error{
-  color:#e91e63;
-}
-
-.color-bg-error{
-  color:#fff;
-  background-color:#e91e63;
-}
-
-.split .modal .chart{
-  margin-top:14px;
-  margin-bottom:14px;
-}
-
-.split .modal card .meta{
-  color:#333;
-}
-
-.split .modal card .meta h2{
-  padding:2px;
-}
-
-.split .modal card.flex ul li{
-  color:#333;
-}
-
-.color-success{
-  color:#45c97a;
-}
-
-.color-bg-success{
-  background-color:#45c97a;
-}
-
-.color-neutral{
-  color:#0071bc;
-}
-
-.color-bg-neutral{
-  color:#fff;
-  background-color:#0071bc;
-}
-
-.color-warning{
-  color:#f7d114;
-}
-
-.color-bg-warning{
-  background-color:#f7d114;
-}
-
-.color-error{
-  color:#e91e63;
-}
-
-.color-bg-error{
-  color:#fff;
-  background-color:#e91e63;
-}
-
 .charges>.field-group>legend{
   margin-bottom:14px;
 }
@@ -6568,6 +6470,104 @@ input.bill_due_day{
 
 .transfers .transfer-cards ul.transfer-data li{
   display:block;
+}
+
+.color-success{
+  color:#45c97a;
+}
+
+.color-bg-success{
+  background-color:#45c97a;
+}
+
+.color-neutral{
+  color:#0071bc;
+}
+
+.color-bg-neutral{
+  color:#fff;
+  background-color:#0071bc;
+}
+
+.color-warning{
+  color:#f7d114;
+}
+
+.color-bg-warning{
+  background-color:#f7d114;
+}
+
+.color-error{
+  color:#e91e63;
+}
+
+.color-bg-error{
+  color:#fff;
+  background-color:#e91e63;
+}
+
+.user .modal.start .verification-code{
+  display:none;
+}
+
+.user .modal.sent .verification-code{
+  display:block;
+}
+
+input.bill_due_day{
+  width:20px !important;
+  padding-right:2px;
+}
+
+.color-success{
+  color:#45c97a;
+}
+
+.color-bg-success{
+  background-color:#45c97a;
+}
+
+.color-neutral{
+  color:#0071bc;
+}
+
+.color-bg-neutral{
+  color:#fff;
+  background-color:#0071bc;
+}
+
+.color-warning{
+  color:#f7d114;
+}
+
+.color-bg-warning{
+  background-color:#f7d114;
+}
+
+.color-error{
+  color:#e91e63;
+}
+
+.color-bg-error{
+  color:#fff;
+  background-color:#e91e63;
+}
+
+.split .modal .chart{
+  margin-top:14px;
+  margin-bottom:14px;
+}
+
+.split .modal card .meta{
+  color:#333;
+}
+
+.split .modal card .meta h2{
+  padding:2px;
+}
+
+.split .modal card.flex ul li{
+  color:#333;
 }
 
 .color-success{
