@@ -5,7 +5,7 @@
 define([
   'app',
   'collection/leases/LeasesCollection',
-  'view/modals/ModalLeaseView',
+  'view/modals/ModalLeaseView2',
   'view/tables/TableView',
   'view/tables/TableLeaseView',
   'text!templates/tables/table-leases.html'
@@ -54,7 +54,11 @@ function(
         options: {
           search: true,
           edit: false,
-          add: false
+          add: ModalAddView,
+          addModalOptions: {
+            action: 'add',
+            eventName: 'modelAdded',
+          }
         }
       });
       

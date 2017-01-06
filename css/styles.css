@@ -2834,6 +2834,15 @@ table tbody tr:nth-child(2n){
   transition:all .7s;
 }
 
+.modal-container .modal .count{
+  padding:30px 20px;
+  font-size:1.3em;
+}
+
+.modal-container .modal .active .form-model{
+  background:blue;
+}
+
 .modal-container.visible .overlay{
   position:fixed;
   top:0;
