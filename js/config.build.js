@@ -8,7 +8,7 @@ require.config({
   waitSeconds : 60,
 
   // base url for modules
-  baseUrl: location.origin + '/js/build/1483717767/',
+  baseUrl: location.origin + '/js/build/1483736088/',
 
   paths: {
     'jquery':               'vendor/jquery.min',
