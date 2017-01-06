@@ -10,7 +10,7 @@ function(app) {
     base_path: '/',
 
     // API URL
-    API: 'http://10.1.10.38:81/',
+    API: 'http://10.1.10.38:8888/',
     // API: 'https://api.staging.payment.rafiproperties.com/',
 
     // Dwolla

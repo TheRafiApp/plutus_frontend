@@ -267,6 +267,8 @@ function(
         _.each(toFetchRole, function(collection, index) {
           collection.fetch().then(function(response) {
             promises[index].resolve();
+          }).fail(function(error) {
+            app.controls.handleError(error);
           });
         });
 
@@ -279,13 +281,17 @@ function(
 
       // Decide what to do with an error response from server
       handleError: function(error, message, context, method) {
-
+        
         // Server returned a 404, display notfound message
         if (error.status == 404) {
           app.alerts.error(message || 'Something went wrong...');
         
+        // Dwolla API error
+        } else if (['dwolla_api_error', 'dwolla_api_communication_error'].contains(error.responseJSON.error)) {
+          app.alerts.error('It looks like our payment processor is experiencing problems');
+
         // Duplicate key error  
-        } else if (error.responseJSON.error == 'pymongo_duplicate_key_error') {
+        // } else if (error.responseJSON.error == 'pymongo_duplicate_key_error') {
           // do stuff
 
         // Server returned a 401, show password confirm modal
