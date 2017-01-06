@@ -65,8 +65,12 @@
           <td><span class="{{{ model.status.phone }}}">{{{ model.status.phone ? 'active' : 'inactive' }}}</span></td>
         </tr>
         <tr>
-          <td>Dwolla</td>
-          <td><span class="{{{ model.status.dwolla }}}">{{{ model.status.dwolla ? 'active' : 'inactive' }}}</span></td>
+          <td>Dwolla Account</td>
+          <td><span class="{{{ !!(model.dwolla_account && model.dwolla_account.customer_id) }}}">{{{ !!(model.dwolla_account && model.dwolla_account.customer_id) ? 'active' : 'inactive' }}}</span></td>
+        </tr>
+        <tr>
+          <td>Bank Account</td>
+          <td><span class="{{{ !!(model.dwolla_account && model.dwolla_account.primary_funding_source) }}}">{{{ (model.dwolla_account && model.dwolla_account.primary_funding_source) ? 'active' : 'inactive' }}}</span></td>
         </tr>
       </tbody>
     </table>
