@@ -12,6 +12,9 @@ function(app) {
     // API URL
     API: 'http://10.1.10.38:8888/',
     // API: 'https://api.staging.payment.rafiproperties.com/',
+    
+    // Google Places
+    google_places_key: 'AIzaSyDMZ-Plbcs3BMc0QkmX-7kHFeqQypaKEMA',
 
     // Dwolla
     dwolla_env: 'sandbox',

@@ -73,12 +73,14 @@ function(app, ModalView, ModalTemplate) {
 
     updateButtons: function() {
 
-      this.$el.find('.action-previous').removeClass('disabled');
-
+      // First step
       if (this.currentStep === 1) {
         this.$el.find('.action-previous').addClass('disabled');
-      } 
+      } else {
+        this.$el.find('.action-previous').removeClass('disabled');
+      }
 
+      // Last step
       if (this.currentStep === this.steps.length) {
         this.$el.find('.action-next').addClass('confirm').text('Finish');
       } else {

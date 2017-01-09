@@ -214,12 +214,13 @@
       font-size: 1.3em;
     }
 
-  
-    .active {
-      .form-model {
-        background: blue;
+    .step {
+      display: none;
+      &.active {
+        display: block;
       }
     }
+
   }
   
   &.visible {

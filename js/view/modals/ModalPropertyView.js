@@ -4,7 +4,7 @@
 
 define([
   'app',
-  'async!https://maps.googleapis.com/maps/api/js?key=AIzaSyAK_nfRIH9in6hPb1UxtyDL6FMCHANm6n4&libraries=places&callback=initMap',
+  // 'async!https://maps.googleapis.com/maps/api/js?key=AIzaSyAK_nfRIH9in6hPb1UxtyDL6FMCHANm6n4&libraries=places&callback=initMap',
   'view/modals/ModalView',
   'model/properties/PropertyModel',
   'collection/account/FundingSourcesCollection',
@@ -14,7 +14,7 @@ define([
 ],
 function(
   app, 
-  GoogleMapsPlaces, 
+  // GoogleMapsPlaces, 
   ModalView,
   PropertyModel, 
   FundingSourcesCollection,

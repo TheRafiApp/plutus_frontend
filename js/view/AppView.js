@@ -346,6 +346,16 @@ function(app, AppTemplate) {
       this.$el.find('.nofocus').removeClass('nofocus').removeAttr('tabindex');
 
       if (app.views.modalView) delete app.views.modalView;
+    },
+
+    addAutocomplete: function(view) {
+      if (this.autocomplete) {
+        this.autocomplete.close();
+        delete this.autocomplete;
+      }
+
+      this.autocomplete = view;
+      $('body').append(view.$el);
     }
 
   });

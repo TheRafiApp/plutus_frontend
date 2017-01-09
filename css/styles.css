@@ -2839,8 +2839,12 @@ table tbody tr:nth-child(2n){
   font-size:1.3em;
 }
 
-.modal-container .modal .active .form-model{
-  background:blue;
+.modal-container .modal .step{
+  display:none;
+}
+
+.modal-container .modal .step.active{
+  display:block;
 }
 
 .modal-container.visible .overlay{
@@ -6225,6 +6229,11 @@ ul.collapsible li .transfer.processed .transfer-status{
   overflow:hidden;
   -webkit-transition:all .7s;
   transition:all .7s;
+}
+
+.autocomplete.fixed{
+  position:fixed;
+  z-index:99999999999;
 }
 
 .color-success{

@@ -12,6 +12,9 @@ function(app) {
     // API URL
     API: 'https://api.payment.rafiproperties.com/',
 
+    // Google Places
+    google_places_key: 'AIzaSyAqKawujiTudve82jU5uFRzDEkqLtxhml4',
+
     // Dwolla
     dwolla_env: 'prod',
 

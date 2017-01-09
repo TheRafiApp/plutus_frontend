@@ -901,7 +901,9 @@ function(
           if (!user.status.active) {
             steps.push({
               name: 'dwolla_iav',
+    
               value: !(!dwolla_account || dwolla_account && !dwolla_account.primary_funding_source),
+
               dwolla_account: dwolla_account,
               options: {
                 background: 'rgb(25, 158, 134)'

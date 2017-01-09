@@ -21,10 +21,11 @@ function(app, StepTemplate) {
     },
 
     render: function() {
-
-      console.log(this.template())
       
-      this.$el.html(this.template());
+      this.$el.html(this.template({
+        unit: this.context.data.unit
+      }));
+
       return this;
     }
 

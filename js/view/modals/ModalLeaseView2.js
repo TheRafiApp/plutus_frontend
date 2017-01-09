@@ -36,8 +36,8 @@ function(
     steps: [
       property,
       unit,
-      dates,
       tenants,
+      dates,
       rent,
       fees_past,
       fees_future

@@ -4,13 +4,18 @@
 
 define([
   'app',
+  'view/components/autocomplete',
   'text!templates/modals/leases/property.html'
 ],
-function(app, StepTemplate) {
+function(app, AutoCompleteView, StepTemplate) {
 
   return Backbone.View.extend({
 
     className: 'step',
+
+    events: {
+      'keyup .address-selector': 'handleChange'
+    },
 
     template: _.template(StepTemplate),
 
@@ -21,11 +26,46 @@ function(app, StepTemplate) {
     },
 
     render: function() {
+      this.$el.html(this.template({
+        property: this.context.property
+      }));
 
-      console.log(this.template())
-      
-      this.$el.html(this.template());
+      this.autocomplete = new AutoCompleteView({
+        overflowEscape: true
+      });
+
       return this;
+    },
+
+    handleChange: function(e) {
+      var query = $(e.currentTarget).val();
+      this.search(query);
+
+      this.autocomplete.keyControl(e);
+    },
+
+    search: function(query) {
+      var options = {
+        types: ['address'],
+        componentRestrictions: {
+          country: 'usa'
+        }
+      };
+
+      var test = this.displaySuggestions.bind(this);
+
+      var service = new google.maps.places.AutocompleteService();
+      service.getPlacePredictions({ 
+        input: query, 
+        componentRestrictions: {
+          country: 'us'
+        }
+      }, test);
+    },
+
+    displaySuggestions: function(data) {
+      var input = this.$el.find('.address-selector');
+      this.autocomplete.update(data, input);
     }
 
   });

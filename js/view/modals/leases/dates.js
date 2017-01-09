@@ -4,12 +4,15 @@
 
 define([
   'app',
+  'text!templates/modals/leases/dates.html'
 ],
-function(app) {
+function(app, StepTemplate) {
 
   return Backbone.View.extend({
 
-    template: _.template(''),
+    className: 'step',
+
+    template: _.template(StepTemplate),
 
     initialize: function(_options) {
       if (_options) _.extend(this, _options);
@@ -18,6 +21,9 @@ function(app) {
     },
 
     render: function() {
+      
+      this.$el.html(this.template());
+
       return this;
     }
 

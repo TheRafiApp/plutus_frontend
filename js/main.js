@@ -602,6 +602,19 @@ function(
       $(this).closest('.jasmine_html-reporter').removeClass('visible');
     });
 
+
+  // Load Google APIs
+  var googleUrl = [
+    'async!',
+    'https://maps.googleapis.com/maps/api/js?key=',
+    app.config.google_places_key,
+    '&libraries=places',
+    '&callback=initService'
+  ].join('');
+
+  app.utils.load.get(googleUrl);
+
+
   // Override Backbone.ajax to check for expired tokens
   Backbone.ajax = function() {
     var xhr = arguments;
