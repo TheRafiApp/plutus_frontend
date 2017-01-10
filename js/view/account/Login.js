@@ -251,6 +251,9 @@ function(app, LoginTemplate) {
       forgotData[key] = value;
 
       app.session.putPassword(forgotData).then(function() {
+
+        // check if user is onboarded!
+
         app.alerts.success('Please enter a new password');
 
         //self.email = email;
@@ -314,6 +317,25 @@ function(app, LoginTemplate) {
       resetData[key] = value;
 
       this.verifyLogin(resetData);
+    },
+
+    sendToken: function() {
+      var self = this;
+
+      var tokenData = {
+        token: app.url.query_string()
+      };
+
+      // send token and trigger events
+      app.session.putPassword(tokenData).then(function(response) {
+        // check if user is onboarded
+        self.user = response;
+        self.trigger('showReset');
+        self.trigger('saveToken');
+      }).fail(function() {
+        app.alerts.error('Your reset link has expired');
+        app.router.navigate('/', { trigger: true, replace: true });
+      });
     },
 
     // Save that reset token to this view
