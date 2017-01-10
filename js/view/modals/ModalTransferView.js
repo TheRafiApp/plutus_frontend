@@ -6,7 +6,7 @@ define([
   'app',
   'view/modals/ModalView',
   'collection/account/FundingSourcesCollection',
-  'collection/users/ManagersCollection',
+  // 'collection/users/ManagersCollection',
   'model/transfers/TransferModel',
   'view/repeaters/date-calendar',
   'text!templates/modals/modal-transfer.html'
@@ -15,7 +15,7 @@ function(
   app,
   ModalView, 
   FundingSourcesCollection,
-  ManagersCollection, 
+  // ManagersCollection, 
   TransferModel, 
   DateView, 
   ModalTransferTemplate
@@ -39,23 +39,26 @@ function(
 
       var self = this;
 
-      var promises = app.utils.promises(2);
+      // var promises = app.utils.promises(2);
 
       if (!this.model) this.model = new TransferModel(null, {
         action: 'add'
       });
 
-      this.managers = new ManagersCollection();
-      this.managers.fetch().then(function() {
-        promises[0].resolve();
-      });
+      // this.managers = new ManagersCollection();
+      // this.managers.fetch().then(function() {
+      //   promises[0].resolve();
+      // });
 
       this.funding_sources = new FundingSourcesCollection();
-      this.funding_sources.fetch().then(function() {
-        promises[1].resolve();
-      });
+      // this.funding_sources.fetch().then(function() {
+      //   promises[1].resolve();
+      // });
 
-      $.when.apply($, promises).then(function() {
+      // $.when.apply($, promises).then(function() {
+      //   self.renderModalView();
+      // });
+      this.funding_sources.fetch().then(function() {
         self.renderModalView();
       });
     },
@@ -82,8 +85,6 @@ function(
         return funding_source.id === primary_id;
       });
 
-      console.log(primary_fs);
-
       var options = {
         type: this.type,
         amount: this.amount,
@@ -91,7 +92,6 @@ function(
         primary_fs: primary_fs
       };
 
-      // NOTE: why is this destination on here
       if (this.type === 'electronic') {
         options.destination = this.managers.toJSON();
       } else if (this.type === 'non-electronic') {
@@ -117,6 +117,15 @@ function(
       if (this.type === 'non-electronic') formData.bill = this.context.model.get('_id');
 
       if (!app.utils.validate(this, formData)) return false;
+
+      var microdeposits = app.session.user.get('dwolla_account.microdeposits');
+
+      if (microdeposits) {
+        app.alerts.error('Your bank account is unverified, please use microdeposits to verify before proceeding');
+        return;
+      }
+
+      return;
 
       this.$el.find('.modal').addClass('loading');
 

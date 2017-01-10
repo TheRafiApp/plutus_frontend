@@ -3357,11 +3357,13 @@ avatar svg text{
   stroke:currentColor;
 }
 
-@media (max-width:480px){
+@media (max-width:768px){
   .alerts .alert{
     padding:20px;
   }
   .alerts .alert span{
+    display:inline-block;
+    max-width:80%;
     line-height:1.1em;
   }
   .alerts .alert .icon{
@@ -3372,6 +3374,15 @@ avatar svg text{
   }
   .alerts .alert .action-close{
     right:14px;
+  }
+}
+
+@media (max-width:480px){
+  .alerts .alert{
+    padding:20px;
+  }
+  .alerts .alert span{
+    max-width:50%;
   }
 }
 
@@ -5630,10 +5641,6 @@ ul.collapsible li .transfer.processed .transfer-status{
 @media (max-width:480px){
   .table-view .header.fixed .sub-header-main .actions .action-edit,.table-view .header.fixed .sub-header-main .actions .search-field{
     display:none;
-  }
-  .alerts .alert span{
-    display:inline-block;
-    max-width:50%;
   }
   .layer.secondary .header.fixed,.layer.tertiary .header.fixed{
     padding-right:20px;

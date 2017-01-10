@@ -59,7 +59,7 @@ function(app, OnboardingTemplate) {
       
       // check if the user has already done this step
       if (this.step.dwolla_account && this.step.dwolla_account.primary_funding_source) {
-        return this.renderAllSet();
+        // return this.renderAllSet();
       }
 
       // init dwolla.js
@@ -72,35 +72,13 @@ function(app, OnboardingTemplate) {
           'https://fonts.googleapis.com/css?family=Roboto',
           app.url.base_url + 'css/dwolla_style.css'
         ],
-        microDeposits: false,
+        microDeposits: true,
         fallbackToMicroDeposits: true
       }, function(error, response) {
 
         // IAV successful
         if (response) {
-          var data = {
-            id: response._links['funding-source'].href.split('funding-sources/')[1], // id
-            status: response._links['verify-micro-deposits'] ? 'unverified' : 'verified'
-          };
-
-          var path;
-          if (app.session.get('logged_in')) {
-            // if already active, just 
-            path = 'account/funding_sources';
-          } else {
-            // if activating, set primary
-            path = self.user.get('role') + 's/activate/funding_sources';
-          }
-
-          app.utils.request({
-            path: path,
-            method: 'POST',
-            data: data
-          }).then(function(data) {
-            // user has new primary funding source :D
-            self.parentView.user.set(data);
-            self.parentView.next();
-          });
+          self.processDwollaResponse(response);
 
         //  IAV failed
         } else if (error) {
@@ -120,12 +98,37 @@ function(app, OnboardingTemplate) {
       this.$el.find('.overlay.loading').remove();
     },
 
-    // iframeError: function() {
-    //   var error_message = '<div class="form-model"><h1>Bank Account</h1>';
-    //   error_message += '<div class="error">Look\'s like something went wrong!</div>';
-      
-    //   this.$el.find('#iav-container').html(all_set_message);
-    // },
+    processDwollaResponse: function(response) {
+      var self = this;
+      var data = {
+        id: response._links['funding-source'].href.split('funding-sources/')[1], // id
+        status: response._links['verify-micro-deposits'] ? 'unverified' : 'verified'
+      };
+
+      var path;
+      if (app.session.get('logged_in')) {
+        // if already active, just 
+        path = 'account/funding_sources';
+      } else {
+        // if activating, set primary
+        path = self.user.get('role') + 's/activate/funding_sources';
+      }
+
+      app.utils.request({
+        path: path,
+        method: 'POST',
+        data: data
+      }).then(function(data) {
+        
+        if (data.status === 'unverified') {
+          // tell the user they will have to do microdeposits!!
+        }
+
+        self.parentView.user.set(data);
+        self.parentView.next();
+        
+      });
+    },
 
     renderAllSet: function() {
       var all_set_message = '<div class="form-model"><h1>Bank Account</h1>';

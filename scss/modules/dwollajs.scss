@@ -38,12 +38,12 @@ input[type="text"].dwolla-iav-text-box {
 }
 
 .dwolla-iav-link {
-    color: #2370d6;
+    color: #54ffab;
     cursor: pointer;
 }
 
 .dwolla-iav-link:hover {
-    color: #1565c0;
+    color: #54ffab;
 }
 
 .dwolla-iav-button {
@@ -71,4 +71,16 @@ input[type="text"].dwolla-iav-text-box {
 
 .dwolla-iav-radio-selected {
     background-color: $color-highlight;
+}
+
+
+
+.modal {
+  .dwolla-iav-link {
+    color: $color-highlight;
+  }
+
+  input[type="text"].dwolla-iav-text-box {
+    border-bottom: 1px solid $color-highlight;
+  }
 }

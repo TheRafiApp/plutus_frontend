@@ -79,19 +79,21 @@
   }
 }
 
-// 480px - small - phone landscape
-@media (max-width: $breakpoint-small) {
+// 786px - tablets
+@media (max-width: $breakpoint-medium) {
   .alerts {
     .alert {
       padding: 20px;
     
       span {
+        display: inline-block;
+        max-width: 80%;
         line-height: 1.1em;
       }
 
-      .icon {
+      .icon { 
         top: 14px;
-      }
+      } 
 
       .type {
         left: 14px;
@@ -99,6 +101,19 @@
 
       .action-close {
         right: 14px;
+      }
+    }
+  }
+}
+
+// 480px - small - phone landscape
+@media (max-width: $breakpoint-small) {
+  .alerts {
+    .alert {
+      padding: 20px;
+    
+      span {
+        max-width: 50%;
       }
     }
   }
