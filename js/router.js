@@ -589,26 +589,12 @@ function(app, LoginView, ActivateView) {
 
     // resetting password
     showReset: function(query_string) {
-      var self = this;
       if (!app.views.loginView) {
         app.views.loginView = new LoginView();
         $('main').html(app.views.loginView.render());
       }
 
-      var tokenData = {
-        token: query_string
-      };
-
-      // send token and trigger events
-      app.session.putPassword(tokenData).then(function(response) {
-        app.views.loginView.user = response;
-        app.views.loginView.trigger('showReset');
-        app.views.loginView.trigger('saveToken');
-      }).fail(function() {
-        app.alerts.error('Your reset link has expired');
-        self.navigate('/', { trigger: true, replace: true });
-      });
-      
+      app.views.loginView.trigger('sendToken');
     },
 
     permissionDenied: function() {

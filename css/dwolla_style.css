@@ -112,7 +112,7 @@
 }
 
 .btn.btn-circle.minus:after{
-  content:'';
+  content:"";
   display:inline-block;
   position:absolute;
   top:9px;
@@ -236,7 +236,7 @@ input[type=checkbox]+label:hover,input[type=radio]+label:hover{
 }
 
 input[type=checkbox]+label:before,input[type=radio]+label:before{
-  content:'';
+  content:"";
   display:inline-block;
   position:absolute;
   top:4px;
@@ -250,7 +250,7 @@ input[type=checkbox]+label:before,input[type=radio]+label:before{
 }
 
 input[type=checkbox]+label:after,input[type=radio]+label:after{
-  content:'';
+  content:"";
   display:inline-block;
   position:absolute;
   top:-2px;
@@ -368,7 +368,7 @@ textarea:focus{
 
 .dropdown:after{
   display:inline-block;
-  content:'';
+  content:"";
   position:absolute;
   right:10px;
   bottom:10px;
@@ -454,7 +454,7 @@ legend{
 }
 
 .money:before{
-  content:'$';
+  content:"$";
 }
 
 .money.micro input{
@@ -468,7 +468,7 @@ legend{
 }
 
 .money.micro:before{
-  content:'$ 0.';
+  content:"$ 0.";
 }
 
 .help-text{
@@ -623,7 +623,7 @@ legend{
 }
 
 .form-model .charge-group dl:after{
-  content:'';
+  content:"";
   display:block;
   clear:both;
 }
@@ -647,6 +647,13 @@ legend{
 
 .grid select{
   width:100%;
+}
+
+@media (max-width:768px){
+  .pw-container input+.pw-toggle{
+    width:24px;
+    height:24px;
+  }
 }
 
 .color-success{
@@ -717,12 +724,12 @@ input[type=text].dwolla-iav-text-box{
 }
 
 .dwolla-iav-link{
-  color:#2370d6;
+  color:#54ffab;
   cursor:pointer;
 }
 
 .dwolla-iav-link:hover{
-  color:#1565c0;
+  color:#54ffab;
 }
 
 .dwolla-iav-button{
@@ -746,6 +753,14 @@ input[type=text].dwolla-iav-text-box{
 
 .dwolla-iav-radio-selected{
   background-color:#0071bc;
+}
+
+.modal .dwolla-iav-link{
+  color:#0071bc;
+}
+
+.modal input[type=text].dwolla-iav-text-box{
+  border-bottom:1px solid #0071bc;
 }
 
 /*# sourceMappingURL=dwolla_style.css.map */

@@ -3379,11 +3379,13 @@ avatar svg text{
   stroke:currentColor;
 }
 
-@media (max-width:480px){
+@media (max-width:768px){
   .alerts .alert{
     padding:20px;
   }
   .alerts .alert span{
+    display:inline-block;
+    max-width:80%;
     line-height:1.1em;
   }
   .alerts .alert .icon{
@@ -3394,6 +3396,15 @@ avatar svg text{
   }
   .alerts .alert .action-close{
     right:14px;
+  }
+}
+
+@media (max-width:480px){
+  .alerts .alert{
+    padding:20px;
+  }
+  .alerts .alert span{
+    max-width:50%;
   }
 }
 
@@ -5653,10 +5664,6 @@ ul.collapsible li .transfer.processed .transfer-status{
   .table-view .header.fixed .sub-header-main .actions .action-edit,.table-view .header.fixed .sub-header-main .actions .search-field{
     display:none;
   }
-  .alerts .alert span{
-    display:inline-block;
-    max-width:50%;
-  }
   .layer.secondary .header.fixed,.layer.tertiary .header.fixed{
     padding-right:20px;
   }
@@ -6240,6 +6247,19 @@ ul.collapsible li .transfer.processed .transfer-status{
   transition:all .7s;
 }
 
+.autocomplete{
+  display:none;
+}
+
+.autocomplete.visible{
+  display:block;
+}
+
+.autocomplete.fixed{
+  position:fixed;
+  z-index:99999999999;
+}
+
 .color-success{
   color:#45c97a;
 }
@@ -6564,19 +6584,6 @@ input.bill_due_day{
   content:"";
   display:block;
   clear:both;
-}
-
-.autocomplete{
-  display:none;
-}
-
-.autocomplete.visible{
-  display:block;
-}
-
-.autocomplete.fixed{
-  position:fixed;
-  z-index:99999999999;
 }
 
 .transfers .transfer-cards{
