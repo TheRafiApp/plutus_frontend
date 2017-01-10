@@ -2847,6 +2847,15 @@ table tbody tr:nth-child(2n){
   display:block;
 }
 
+.modal-container .modal .loading:before{
+  background:hsla(0,0%,100%,.4);
+}
+
+.modal-container .modal .loading:after{
+  background:#0071bc;
+  border-color:#0071bc;
+}
+
 .modal-container.visible .overlay{
   position:fixed;
   top:0;
@@ -6231,11 +6240,6 @@ ul.collapsible li .transfer.processed .transfer-status{
   transition:all .7s;
 }
 
-.autocomplete.fixed{
-  position:fixed;
-  z-index:99999999999;
-}
-
 .color-success{
   color:#45c97a;
 }
@@ -6560,6 +6564,19 @@ input.bill_due_day{
   content:"";
   display:block;
   clear:both;
+}
+
+.autocomplete{
+  display:none;
+}
+
+.autocomplete.visible{
+  display:block;
+}
+
+.autocomplete.fixed{
+  position:fixed;
+  z-index:99999999999;
 }
 
 .transfers .transfer-cards{

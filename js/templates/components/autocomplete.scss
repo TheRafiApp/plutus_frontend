@@ -1,4 +1,10 @@
 .autocomplete {
+	display: none;
+	
+	&.visible {
+		display: block;
+	}
+ 
 	&.fixed {
 		position: fixed;
 		z-index: 99999999999;

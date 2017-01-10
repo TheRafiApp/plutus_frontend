@@ -35,12 +35,16 @@ function(app, ModalTemplate) {
 
     // default keyboard usage
     keyControl: function(e) {
+      var $focused = app.utils.getFocused();
+
       // esc
       if (e.which === 27) {
+        if ($focused.className.contains('no-escape')) return;
+
         this.closeModal();
       // enter
       } else if (e.which === 13) {
-        var $focused = app.utils.getFocused();
+        
         if ($focused.parentNode.className.contains('actions')) return;
         if ($focused.className.contains('no-submit')) return;
 

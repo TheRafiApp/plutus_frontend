@@ -300,9 +300,6 @@ function(app, AppTemplate) {
 
     renderSecondary: function(renderedContent) {
       $('body').addClass('tertiary-hidden quarternary-hidden');
-      console.log('removing loading class')
-
-      
       this.$el.find('.secondary').html(renderedContent).removeClass('loading');
       return true;
     },

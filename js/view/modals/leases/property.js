@@ -4,10 +4,14 @@
 
 define([
   'app',
-  'view/components/autocomplete',
-  'text!templates/modals/leases/property.html'
+  'view/modals/leases/property/new',
+  'view/modals/leases/property/existing',
 ],
-function(app, AutoCompleteView, StepTemplate) {
+function(
+  app, 
+  PropertyNewView, 
+  PropertyExistingView 
+) {
 
   return Backbone.View.extend({
 
@@ -17,8 +21,6 @@ function(app, AutoCompleteView, StepTemplate) {
       'keyup .address-selector': 'handleChange'
     },
 
-    template: _.template(StepTemplate),
-
     initialize: function(_options) {
       if (_options) _.extend(this, _options);
 
@@ -26,46 +28,25 @@ function(app, AutoCompleteView, StepTemplate) {
     },
 
     render: function() {
-      this.$el.html(this.template({
-        property: this.context.property
-      }));
+      var PropertyView;
+      if (this.modelIsNew === undefined) {
+        this.modelIsNew = false;
+      }
 
-      this.autocomplete = new AutoCompleteView({
-        overflowEscape: true
+      PropertyView = this.modelIsNew ? PropertyNewView : PropertyExistingView;
+
+      this.currentView = new PropertyView({
+        context: this.context,
+        parentView: this
       });
+      this.$el.html(this.currentView.$el);
 
       return this;
     },
 
-    handleChange: function(e) {
-      var query = $(e.currentTarget).val();
-      this.search(query);
-
-      this.autocomplete.keyControl(e);
-    },
-
-    search: function(query) {
-      var options = {
-        types: ['address'],
-        componentRestrictions: {
-          country: 'usa'
-        }
-      };
-
-      var test = this.displaySuggestions.bind(this);
-
-      var service = new google.maps.places.AutocompleteService();
-      service.getPlacePredictions({ 
-        input: query, 
-        componentRestrictions: {
-          country: 'us'
-        }
-      }, test);
-    },
-
-    displaySuggestions: function(data) {
-      var input = this.$el.find('.address-selector');
-      this.autocomplete.update(data, input);
+    toggleModelType: function() {
+      this.modelIsNew = !this.modelIsNew;
+      this.render();
     }
 
   });

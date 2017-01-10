@@ -221,6 +221,16 @@
       }
     }
 
+    .loading {
+      &:before {
+        background: rgba(255,255,255, 0.4);
+      }
+      &:after {
+        background: $color-highlight;
+        border-color: $color-highlight;
+      }
+    }
+
   }
   
   &.visible {

@@ -13,7 +13,7 @@ function(app, ResultsTemplate) {
     className: 'autocomplete',
 
     events: {
-      // 'keyup': 'keyControl',
+      'click a': 'selectItem'
     },
 
     template: _.template(ResultsTemplate),
@@ -26,23 +26,70 @@ function(app, ResultsTemplate) {
     },
 
     render: function(data) {
-
       var self = this;
 
       this.$el.html(this.template({
         suggestions: data || []
       }));
 
+      this.$el.find('.choices a').removeClass('active');
       this.$el.find('.choices li:first-child a').addClass('active');
       app.views.appView.addAutocomplete(this);
 
-      this.delegateEvents();
+      this.initEventListeners();
 
       return this;
     },
 
-    update: function(data, input) {
+    initEventListeners: function() {
+      var self = this;
 
+      $(window).on('scroll', function() {
+        self.hide();
+      })
+      .on('resize', function() {
+        self.hide();
+      });
+
+      $('.scroll-container').on('scroll', function() {
+        self.hide();
+      });
+
+      this.input.on('blur', function() {
+        setTimeout(function() {
+          self.hide();
+        }, 120);
+      });
+
+      this.delegateEvents();
+    },
+
+    search: function(query) {
+      if (query === this.currentQuery) return;
+      if (query === '') return this.resetQuery();
+
+      this.currentQuery = query;
+
+      var boundMethod = this.displaySuggestions.bind(this);
+
+      var service = new google.maps.places.AutocompleteService();
+      service.getPlacePredictions({ 
+        types: ['address'],
+        input: query, 
+        componentRestrictions: {
+          country: 'us'
+        }
+      }, boundMethod);
+    },
+
+    displaySuggestions: function(data) {
+      var input = this.input;
+
+      this.suggestions = data;
+      this.update(data, input);
+    },
+
+    update: function(data, input) {
       this.updatePosition(input);
 
       this.render(data);
@@ -50,7 +97,6 @@ function(app, ResultsTemplate) {
     },
 
     updatePosition: function(input) {
-
       var clientRect = input[0].getBoundingClientRect();
       var width = clientRect.right - clientRect.left;
       var top = clientRect.top + input.outerHeight() - 10;
@@ -65,41 +111,71 @@ function(app, ResultsTemplate) {
     keyControl: function(e) {
       var val = e.which;
 
-      if ([38].contains(val)) {         // up, right
+      if ([38].contains(val)) {         // up
         this.selectPrev();
-      } else if ([40].contains(val)) {  // left, down
+      } else if ([40].contains(val)) {  // down
         this.selectNext();
       } else if ([27].contains(val)) {  // escape
         this.hide();
       } else if ([13].contains(val)) {  // return
-        this.selectItem();
+        this.selectActiveItem();
       }
     },
 
     selectPrev: function() {
       var $list = this.$el.find('li');
-      var $current = this.$el.find('active');
-      var index = $current.index();
+      var $current = this.$el.find('.active');
+      var index = $current.parent().index();
 
       if (index > 0) {
         $current.removeClass('active');
-        $($list[index - 1]).addClass('active');
+        this.$el.find('li:nth-child(' + index + ') a').addClass('active');
       }
     },
 
     selectNext: function() {
       var $list = this.$el.find('li');
-      var $current = this.$el.find('active');
-      var index = $current.index();
+      var $current = this.$el.find('.active');
+      var index = $current.parent().index();
 
-      if (index < $list.length) {
+      if (index < ($list.length -1)) {
         $current.removeClass('active');
-        $($list[index + 1]).addClass('active');
+
+        var newIndex = index + 2;
+        this.$el.find('li:nth-child(' + newIndex + ') a').addClass('active');
       }
     },
 
-    emitChange: function(e) {
-      this.context.trigger('autocomplete-selection');
+    selectActiveItem: function() {
+      var index = this.$el.find('.active').parent().index();
+
+      this.choice = this.suggestions[index];
+
+      this.$el.removeClass('visible');
+      this.input.val(this.choice.description);
+      
+      this.emitChange();
+    },
+
+    selectItem: function(e) {
+      this.$el.find('.active').removeClass('active');
+      $(e.currentTarget).parent().addClass('active');
+
+      this.selectActiveItem();
+      this.input.focus();
+    },
+
+    resetQuery: function() {
+      this.hide();
+      delete this.choice;
+    },
+
+    emitChange: function() {
+      this.context.trigger('autocomplete--selection');
+    },
+
+    hide: function() {
+      this.$el.removeClass('visible');
     }
     
   });
