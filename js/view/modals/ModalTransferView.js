@@ -125,8 +125,6 @@ function(
         return;
       }
 
-      return;
-
       this.$el.find('.modal').addClass('loading');
 
       this.model.save(formData).then(function() {
