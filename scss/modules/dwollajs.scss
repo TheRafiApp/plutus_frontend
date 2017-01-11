@@ -2,6 +2,11 @@
 @import 'colors';
 
 /* Implement Dwolla's styles */
+
+p {
+  color: #eee;
+}
+
 .dwolla-iav-text-box,
 .dwolla-iav-button,
 .dwolla-iav-header,
@@ -9,71 +14,106 @@
 .dwolla-iav-link,
 .dwolla-iav-error,
 .dwolla-iav-label {
-    font-family: 'Roboto', Helvetica, Arial, sans-serif;
-    font-weight: 300;
+  font-family: 'Roboto', Helvetica, Arial, sans-serif;
+  font-weight: 300;
 }
 
 .dwolla-iav-header {
-    font-weight: 300;
-    margin-bottom: 2.5rem;
+  font-weight: 300;
+  // margin-bottom: 2.5rem;
+  margin-bottom: 0;
+  font-size: 1em;
+  text-align: left;
+  color: #dadada;
 }
 
 input[type="text"].dwolla-iav-text-box {
-    position: relative;
-    border: 0;
-    padding: 8px 12px 8px 0;
-    border-bottom: 1px solid white;
-    border-radius: 0;
-    background-color: transparent;
-    transition: all 0.2s;
-    font-family: 'Roboto', sans-serif;
-    font-size: 1.1em;
-    max-width: 100%;
-    text-overflow: ellipsis;
-    @include appearance(none);
+  position: relative;
+  border: 0;
+  padding: 8px 12px 8px 0;
+  border-bottom: 1px solid white;
+  border-radius: 0;
+  background-color: transparent;
+  color: #fff;
+  transition: all 0.2s;
+  font-family: 'Roboto', sans-serif;
+  font-size: 1.1em;
+  max-width: 100%;
+  text-overflow: ellipsis;
+  @include appearance(none);
 }
 
 .dwolla-iav-text-box:focus {
-    border-color: $color-highlight;
+  border-color: $color-highlight;
 }
 
 .dwolla-iav-link {
-    color: #54ffab;
-    cursor: pointer;
+  color: #f7ff00;
+  cursor: pointer;
 }
 
 .dwolla-iav-link:hover {
-    color: #54ffab;
+  color: #f7ff00;
 }
 
 .dwolla-iav-button {
-    background: $color-highlight;
-    color: $color-text-light;
-    border-radius: 3px;
+  background: $color-highlight;
+  color: $color-text-light;
+  border-radius: 3px;
 }
 
 .dwolla-iav-button:hover {
-    background: $color-highlight;
-    cursor: pointer;
+  background: $color-highlight;
+  color: $color-text-light;
+  cursor: pointer;
 }
 
 .dwolla-iav-button:active {
-    background: $color-highlight;
+  background: $color-highlight;
 }
 
 .dwolla-iav-check-image {
-    background: $color-highlight;
+  background: $color-highlight;
 }
 
 .dwolla-iav-radio-hover {
-    background-color: $color-text-light;
+  background-color: $color-text-light;
 }
 
 .dwolla-iav-radio-selected {
-    background-color: $color-highlight;
+  background-color: $color-highlight;
 }
 
+.popular-list__item {
+  border-bottom: 0;
+}
 
+.popular-list__item>.dwolla-iav-link, .popular-list__item input {
+  padding: 15px 15px 5px 13px;
+  text-decoration: underline;
+}
+
+.dwolla-iav-label {
+  color: #eee;
+}
+
+.radio-btns label {
+  color: #eee;
+}
+
+.island__section {
+  padding: 16px;
+
+  .island__section {
+    padding: 0;
+  }
+}
+
+.js-list-search__results {
+  margin-top: 10px;
+}
+
+// this isnt possible this way...
 
 .modal {
   .dwolla-iav-link {
