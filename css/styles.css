@@ -6333,8 +6333,8 @@ ul.collapsible li .transfer.processed .transfer-status{
 
 .header .action-back{
   position:absolute;
-  left:20px;
-  top:26px;
+  left:2px;
+  top:2px;
 }
 
 .header .action-back svg{

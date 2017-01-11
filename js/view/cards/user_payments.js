@@ -32,7 +32,7 @@ function(app, UserModel, CardTemplate) {
         amount = app.utils.prettyMoney(this.amount);
         if (this.negative) amount = '-' + amount;
       } else {
-        amount = 'Not Set';
+        amount = 'N/A';
       }
       
       this.$el.html(this.template({ 
