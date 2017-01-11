@@ -6091,7 +6091,7 @@ ul.collapsible li .transfer.processed .transfer-status{
     display:block;
     top:20px;
     left:20px;
-    width:96px;
+    width:66px;
   }
   .activation .logo-container .logo{
     display:none;
@@ -6115,9 +6115,21 @@ ul.collapsible li .transfer.processed .transfer-status{
   }
 }
 
+@media (max-width:768px){
+  .activation .logo{
+    width:66px !important;
+  }
+  .activation .step{
+    padding-top:0;
+  }
+}
+
 @media (max-width:480px){
   .activation .container{
     max-width:100%;
+  }
+  .activation .step{
+    padding-top:0;
   }
   .terms-statement{
     font-size:.8em;
@@ -6406,6 +6418,94 @@ ul.collapsible li .transfer.processed .transfer-status{
   background-color:#e91e63;
 }
 
+.charges>.field-group>legend{
+  margin-bottom:14px;
+}
+
+.data-group{
+  padding:20px;
+  background-color:#d1d1d1;
+  border-radius:3px;
+  margin-bottom:20px;
+}
+
+.data-group input{
+  width:160px;
+  font-size:1.4em;
+}
+
+.data-group textarea{
+  width:340px;
+}
+
+.data-group .btn.btn-circle.minus{
+  position:absolute;
+  top:50%;
+  right:18px;
+  margin-top:-10px;
+}
+
+.data-group dl{
+  clear:both;
+}
+
+.data-group dl dt{
+  clear:left;
+  font-weight:700;
+  text-transform:capitalize;
+  margin-bottom:6px;
+  margin-right:8px;
+}
+
+.data-group dl dd,.data-group dl dt{
+  float:left;
+  font-size:1.1em;
+}
+
+.data-group dl dd.rent{
+  font-size:1.4em;
+}
+
+.data-group dl:after{
+  content:"";
+  display:block;
+  clear:both;
+}
+
+.color-success{
+  color:#45c97a;
+}
+
+.color-bg-success{
+  background-color:#45c97a;
+}
+
+.color-neutral{
+  color:#0071bc;
+}
+
+.color-bg-neutral{
+  color:#fff;
+  background-color:#0071bc;
+}
+
+.color-warning{
+  color:#f7d114;
+}
+
+.color-bg-warning{
+  background-color:#f7d114;
+}
+
+.color-error{
+  color:#e91e63;
+}
+
+.color-bg-error{
+  color:#fff;
+  background-color:#e91e63;
+}
+
 .user .modal.start .verification-code{
   display:none;
 }
@@ -6468,94 +6568,6 @@ input.bill_due_day{
 
 .split .modal card.flex ul li{
   color:#333;
-}
-
-.color-success{
-  color:#45c97a;
-}
-
-.color-bg-success{
-  background-color:#45c97a;
-}
-
-.color-neutral{
-  color:#0071bc;
-}
-
-.color-bg-neutral{
-  color:#fff;
-  background-color:#0071bc;
-}
-
-.color-warning{
-  color:#f7d114;
-}
-
-.color-bg-warning{
-  background-color:#f7d114;
-}
-
-.color-error{
-  color:#e91e63;
-}
-
-.color-bg-error{
-  color:#fff;
-  background-color:#e91e63;
-}
-
-.charges>.field-group>legend{
-  margin-bottom:14px;
-}
-
-.data-group{
-  padding:20px;
-  background-color:#d1d1d1;
-  border-radius:3px;
-  margin-bottom:20px;
-}
-
-.data-group input{
-  width:160px;
-  font-size:1.4em;
-}
-
-.data-group textarea{
-  width:340px;
-}
-
-.data-group .btn.btn-circle.minus{
-  position:absolute;
-  top:50%;
-  right:18px;
-  margin-top:-10px;
-}
-
-.data-group dl{
-  clear:both;
-}
-
-.data-group dl dt{
-  clear:left;
-  font-weight:700;
-  text-transform:capitalize;
-  margin-bottom:6px;
-  margin-right:8px;
-}
-
-.data-group dl dd,.data-group dl dt{
-  float:left;
-  font-size:1.1em;
-}
-
-.data-group dl dd.rent{
-  font-size:1.4em;
-}
-
-.data-group dl:after{
-  content:"";
-  display:block;
-  clear:both;
 }
 
 .transfers .transfer-cards{
