@@ -82,9 +82,18 @@
         color: #333;
         width: 66px !important;
       }
+
+      .micro-deposits {
+        margin-bottom: 50px;
+
+        input.small {
+          width: 40px !important;
+          font-size: 1.2em;
+        }
+      }
     }
 
-    .layer {
+    .layer { 
       &.loading {
         &:after {
           border-color: $color-text-light;
