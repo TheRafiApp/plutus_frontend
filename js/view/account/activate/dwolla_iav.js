@@ -70,7 +70,7 @@ function(app, OnboardingTemplate) {
         container: 'iav-container',
         stylesheets: [
           'https://fonts.googleapis.com/css?family=Roboto',
-          app.url.base_url + 'css/dwolla_style.css'
+          app.url.base_url + '/css/dwolla_style.css'
         ],
         microDeposits: true,
         fallbackToMicroDeposits: true
