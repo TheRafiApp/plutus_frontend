@@ -706,7 +706,7 @@ p{
   color:#dadada;
 }
 
-input[type=text].dwolla-iav-text-box{
+input[type=password].dwolla-iav-text-box,input[type=text].dwolla-iav-text-box{
   position:relative;
   border:0;
   padding:8px 12px 8px 0;

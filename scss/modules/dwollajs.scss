@@ -27,20 +27,22 @@ p {
   color: #dadada;
 }
 
-input[type="text"].dwolla-iav-text-box {
-  position: relative;
-  border: 0;
-  padding: 8px 12px 8px 0;
-  border-bottom: 1px solid white;
-  border-radius: 0;
-  background-color: transparent;
-  color: #fff;
-  transition: all 0.2s;
-  font-family: 'Roboto', sans-serif;
-  font-size: 1.1em;
-  max-width: 100%;
-  text-overflow: ellipsis;
-  @include appearance(none);
+input[type="text"], input[type="password"] {
+  &.dwolla-iav-text-box {
+    position: relative;
+    border: 0;
+    padding: 8px 12px 8px 0;
+    border-bottom: 1px solid white;
+    border-radius: 0;
+    background-color: transparent;
+    color: #fff;
+    transition: all 0.2s;
+    font-family: 'Roboto', sans-serif;
+    font-size: 1.1em;
+    max-width: 100%;
+    text-overflow: ellipsis;
+    @include appearance(none);
+  }
 }
 
 .dwolla-iav-text-box:focus {
