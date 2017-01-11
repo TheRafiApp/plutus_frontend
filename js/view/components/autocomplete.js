@@ -151,6 +151,8 @@ function(app, ResultsTemplate) {
 
       this.choice = this.suggestions[index];
 
+      this.getDetails(this.choice.place_id);
+
       this.$el.removeClass('visible');
       this.input.val(this.choice.description);
       
@@ -163,6 +165,24 @@ function(app, ResultsTemplate) {
 
       this.selectActiveItem();
       this.input.focus();
+    },
+
+    getDetails: function(placeId) {
+      var boundMethod = this.updateDetails.bind(this);
+
+      var $place = this.$el.find('.place-details')[0];
+
+      var service = new google.maps.places.PlacesService($place);
+      service.getDetails({ 
+        placeId: placeId
+      }, boundMethod);
+    },
+
+    updateDetails: function(data) {
+      var fullAddress = data.formatted_address;
+      var place_id = data.place_id;
+
+      this.input.val(fullAddress)
     },
 
     resetQuery: function() {

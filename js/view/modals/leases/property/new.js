@@ -74,12 +74,6 @@ function(app, AutoCompleteView, PropertyModel, FundingSourcesCollection, StepTem
 
       var action = value === 'true' ? 'show' : 'hide';
       $dropdown[action]();
-
-      // if (value === 'true') {
-      //   $dropdown.show();
-      // } else {
-      //   $dropdown.hide();
-      // }
     },
 
     toggleModelType: function() {
@@ -88,7 +82,6 @@ function(app, AutoCompleteView, PropertyModel, FundingSourcesCollection, StepTem
 
     validate: function() {
       var data = this.$el.find('form').serializeObject();
-      console.log(data);
       return data;
     },
 

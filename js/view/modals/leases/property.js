@@ -52,7 +52,7 @@ function(
     },
 
     setData: function(data) {
-      this.context = data;
+      this.context.data.property = data;
     },
 
     next: function() {
