@@ -18,8 +18,8 @@ function(app, ModalView, ModalTemplate) {
     },
 
     events: {
-      'click .action-previous': 'previousStep',
-      'click .action-next': 'nextStep'
+      'click .action-previous': 'handlePrevious',
+      'click .action-next': 'handleNext'
     },
 
     currentIndex: 0,
@@ -49,6 +49,15 @@ function(app, ModalView, ModalTemplate) {
 
       this.setStep(this.currentIndex);
       
+    },
+
+    handlePrevious: function() {
+      // is this necessary?
+      this.child_views[this.currentIndex].trigger('previous');
+    },
+
+    handleNext: function() {
+      this.child_views[this.currentIndex].trigger('next');
     },
 
     previousStep: function() {

@@ -3,7 +3,7 @@
     <legend>Choose a Property</legend>
 
     <div class="dropdown">
-      <select name="property" class="property">
+      <select name="_id" class="property">
       {{# _.each(properties, function(property) { }}
         <option value="{{{ property._id }}}">{{{ property.address }}}</option>
       {{# }) }}

@@ -24,6 +24,8 @@ function(
     initialize: function(_options) {
       if (_options) _.extend(this, _options);
 
+      this.on('next', this.next, this);
+
       this.render();
     },
 
@@ -47,6 +49,14 @@ function(
     toggleModelType: function() {
       this.modelIsNew = !this.modelIsNew;
       this.render();
+    },
+
+    setData: function(data) {
+      this.context = data;
+    },
+
+    next: function() {
+      this.currentView.next();
     }
 
   });

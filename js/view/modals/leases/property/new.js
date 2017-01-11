@@ -42,6 +42,9 @@ function(app, AutoCompleteView, PropertyModel, FundingSourcesCollection, StepTem
     },
 
     render: function() {
+
+      // this.on('next', this.next, this);
+
       this.$el.html(this.template({
         property: this.context.property,
         funding_sources: this.collection.toJSON()
@@ -81,6 +84,19 @@ function(app, AutoCompleteView, PropertyModel, FundingSourcesCollection, StepTem
 
     toggleModelType: function() {
       this.parentView.toggleModelType();
+    },
+
+    validate: function() {
+      var data = this.$el.find('form').serializeObject();
+      console.log(data);
+      return data;
+    },
+
+    next: function() {
+      var data = this.validate();
+      if (!data) return;
+
+      this.parentView.setData(data);
     }
     
     
