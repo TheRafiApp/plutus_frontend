@@ -118,12 +118,11 @@ function(
 
       if (!app.utils.validate(this, formData)) return false;
 
-      var microdeposits = app.session.user.get('dwolla_account.microdeposits');
-
-      if (microdeposits && this.type !== 'offline') {
-        app.alerts.error('Your bank account is unverified, please use microdeposits to verify before proceeding');
-        return;
-      }
+      // var microdeposits = app.session.user.get('dwolla_account.microdeposits');
+      // if (microdeposits && this.type !== 'offline') {
+      //   app.alerts.error('Your bank account is unverified, please use microdeposits to verify before proceeding');
+      //   return;
+      // }
 
       this.$el.find('.modal').addClass('loading');
 
