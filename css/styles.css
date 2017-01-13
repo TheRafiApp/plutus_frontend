@@ -1722,17 +1722,17 @@ body.quarternary-hidden .layer.quarternary .actions div{
   background:#0071bc;
 }
 
-.status-list span.processed,.status-list span.true{
+.status-list span.processed,.status-list span.success,.status-list span.true{
   color:#fff;
   background:#45c97a;
 }
 
-.status-list span.cancelled,.status-list span.failed,.status-list span.false{
+.status-list span.cancelled,.status-list span.error,.status-list span.failed,.status-list span.false{
   color:#fff;
   background:#e91e63;
 }
 
-.status-list span.pending{
+.status-list span.pending,.status-list span.warning{
   background:#f7d114;
 }
 
@@ -6482,34 +6482,6 @@ input.bill_due_day{
   color:#333;
 }
 
-.transfers .transfer-cards{
-  margin-top:10px;
-}
-
-.transfers .transfer-cards .user-payments:last-child card{
-  margin-bottom:0;
-}
-
-.transfers .transfer-cards card{
-  max-width:400px;
-  box-shadow:none;
-}
-
-.transfers .transfer-cards card h2{
-  margin:0;
-  font-size:1.1em;
-}
-
-.transfers .transfer-cards ul.transfer-data{
-  text-align:right;
-  font-size:1.1em;
-  font-weight:700;
-}
-
-.transfers .transfer-cards ul.transfer-data li{
-  display:block;
-}
-
 .color-success{
   color:#45c97a;
 }
@@ -6596,6 +6568,34 @@ input.bill_due_day{
   content:"";
   display:block;
   clear:both;
+}
+
+.transfers .transfer-cards{
+  margin-top:10px;
+}
+
+.transfers .transfer-cards .user-payments:last-child card{
+  margin-bottom:0;
+}
+
+.transfers .transfer-cards card{
+  max-width:400px;
+  box-shadow:none;
+}
+
+.transfers .transfer-cards card h2{
+  margin:0;
+  font-size:1.1em;
+}
+
+.transfers .transfer-cards ul.transfer-data{
+  text-align:right;
+  font-size:1.1em;
+  font-weight:700;
+}
+
+.transfers .transfer-cards ul.transfer-data li{
+  display:block;
 }
 
 .color-success{

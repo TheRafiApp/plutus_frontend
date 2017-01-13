@@ -570,7 +570,7 @@ function(
         try {
           if (typeof input == 'undefined') throw new TypeError();
           if (isNaN(input)) throw new TypeError();
-          console.log(canBeZero)
+          // console.log(canBeZero)
           if (!canBeZero && !+input) throw new TypeError();
 
           var zeroFloat;
@@ -684,7 +684,7 @@ function(
         if (parsed < 0) leader = '-';
         parsed = Math.abs(parsed);
         var number_string = app.utils.parseMoney(parsed);
-        console.log(number_string)
+        // console.log(number_string)
         return leader + '$' + number_string.replace(/(\d)(?=(\d{3})+\.)/g, '$1,');
       },
 

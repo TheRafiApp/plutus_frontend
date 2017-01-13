@@ -48,15 +48,15 @@
       color: $color-text-light;
       background: $color-status-neutral;
     }
-    &.true, &.processed {
+    &.true, &.processed, &.success {
       color: $color-text-light;
       background: $color-status-success;
     }
-    &.false, &.failed, &.cancelled {
+    &.false, &.failed, &.cancelled, &.error {
       color: $color-text-light;
-      background: $color-status-error;
+      background: $color-status-error; 
     }
-    &.pending {
+    &.pending, &.warning {
       background: $color-status-warning;
     }
   }
