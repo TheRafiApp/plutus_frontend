@@ -19,7 +19,7 @@
           <td>Destination</td>
           <td>{{{ model.destination.name }}}</td>
         </tr>
-        {{# if (model.lease) { }}}
+        {{# if (model.lease) { }}
         <tr>
           <td>Address</td>
           <td>{{{ model.property.address }}}, Unit {{{ model.unit.number }}}</td>
@@ -27,9 +27,6 @@
         {{# } }}
       </tbody>
     </table>
-  </div>
-
-  <div class="strong"  style="margin-bottom: 16px">
   </div>
 
   <a href="#" class="btn btn-primary action-cancel-transfer">Cancel Transfer</a>

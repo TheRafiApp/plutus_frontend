@@ -25,6 +25,7 @@ function(app, LoginTemplate) {
       this.on('showLogin', this.showLogin, this);
       this.on('showForgot', this.showForgot, this);
       this.on('showReset', this.showReset, this);
+      this.on('sendToken', this.sendToken, this);
       this.on('saveToken', this.saveToken, this);
 
       return this.render();
@@ -133,7 +134,6 @@ function(app, LoginTemplate) {
 
     // Remember me checkbox
     toggleRemember: function(event) {
-      // if (event.target.checked) {
       if (this.$el.find('#remember-me').is(':checked')) {
         app.utils.stash.setItem('remember-me', true);
       } else {
@@ -156,8 +156,6 @@ function(app, LoginTemplate) {
 
     // Show the login form
     showLogin: function() {
-      console.log('showLogin')
-      console.log(this.$el.find('.login'))
       this.$el.find('.login').addClass('visible');
       this.$el.find('.forgot, .reset').removeClass('forgot-sent visible');
     },
@@ -250,13 +248,9 @@ function(app, LoginTemplate) {
 
       forgotData[key] = value;
 
-      app.session.putPassword(forgotData).then(function() {
-
-        // check if user is onboarded!
-
+      app.session.putPassword(forgotData).then(function(response) {
         app.alerts.success('Please enter a new password');
 
-        //self.email = email;
         self.code = code;
 
         self.showReset();
@@ -274,13 +268,9 @@ function(app, LoginTemplate) {
       var key = this.email ? 'email' : 'phone';
       var code = this.code;
 
-      var password = this.$el.find('.reset .password').val();
-      var password_confirm = this.$el.find('.reset .password-confirm').val();
+      if (!this.validatePassword()) return;
 
-      if (password !== password_confirm) {
-        app.alerts.error('Passwords must match');
-        return false;
-      }
+      var password = this.$el.find('.reset .password').val();
 
       var resetData = {
         'password': password,
@@ -301,13 +291,9 @@ function(app, LoginTemplate) {
       var key = this.email ? 'email' : 'phone';
       var token = this.token;
 
-      var password = this.$el.find('.reset .password').val();
-      var password_confirm = this.$el.find('.reset .password-confirm').val();
+      if (!this.validatePassword()) return;
 
-      if (password !== password_confirm) {
-        app.alerts.error('Passwords must match');
-        return false;
-      }
+      var password = this.$el.find('.reset .password').val();
 
       var resetData = {
         'password': password,
@@ -319,6 +305,53 @@ function(app, LoginTemplate) {
       this.verifyLogin(resetData);
     },
 
+    validatePassword: function(e) {
+      var pw = this.$el.find('.reset .password');
+      var pc = this.$el.find('.reset .password-confirm');
+
+      var errors = false;
+
+      if (!pw.val()) {
+        app.controls.fieldError({
+          element: pw,
+          error: 'Password is required'
+        });
+        errors = true;
+      }
+
+      if (errors) return false;
+
+      if (!Backbone.Validation.patterns.password.test(pw.val())) {
+        app.controls.fieldError({
+          element: pw,
+          error: Backbone.Validation.messages.password
+        });
+        errors = true;
+      }
+      
+      if (pc.val() !== pw.val()) {
+        app.controls.fieldError({
+          element: pc,
+          error: 'Passwords must match'
+        });
+        errors = true;
+      }
+
+      if (!pc.val()) {
+        app.controls.fieldError({
+          element: pc,
+          error: 'Please confirm your password'
+        });
+        errors = true;
+      }
+
+      if (errors) {
+        return false;
+      } else {
+        this.confirm(e);
+      }
+    },
+
     sendToken: function() {
       var self = this;
 
@@ -328,7 +361,6 @@ function(app, LoginTemplate) {
 
       // send token and trigger events
       app.session.putPassword(tokenData).then(function(response) {
-        // check if user is onboarded
         self.user = response;
         self.trigger('showReset');
         self.trigger('saveToken');
@@ -345,9 +377,6 @@ function(app, LoginTemplate) {
     },
 
     verifyLogin: function(resetData) {
-
-      console.log(resetData)
-
       var self = this;
       app.session.putPassword(resetData).then(function(response) {
         app.alerts.success('Password succesfully reset!');

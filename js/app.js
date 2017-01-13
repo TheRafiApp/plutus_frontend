@@ -938,7 +938,7 @@ function(
         }
 
         // step 5 - Password - All users
-        if (!user.status.active) {
+        if (!user.status.password) {
           steps.push({
             name: 'password',
             value: user.status.active,

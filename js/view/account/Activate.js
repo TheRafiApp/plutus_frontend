@@ -27,9 +27,9 @@ function(app, ActivationTemplate) {
 
       // make sure we have a real AccountModel instance
       this.user = this.user ? new AccountModel(this.user) : app.session.user;
-      
+    
       // if user is not active yet, clear session tokens
-      if (this.user.get('status.active') === false) {
+      if (this.user.get('status.password') === false) {
         app.utils.stash.removeItem('authorization');
         app.utils.stash.removeItem('refresh');
       } else {

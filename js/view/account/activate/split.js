@@ -67,7 +67,7 @@ function(app, UserCardView, TenantModel, LeaseModel, OnboardingTemplate) {
       }).then(function(response) {
         self.primary = response.find(function(funding_source) {
           return funding_source.id === primary;
-        });
+        });)
       }).fail(function(err) {
         console.warn(err);
       });

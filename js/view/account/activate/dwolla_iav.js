@@ -27,7 +27,11 @@ function(app, OnboardingTemplate) {
 
       var path;
       if (app.session.get('logged_in')) {
-        path = 'account/iav';
+        if (!this.user.get('status.active')) {
+          path = this.user.get('role') + 's/dwolla';
+        } else {
+          path = 'account/iav';
+        }
       } else {
         path = this.user.get('role') + 's/activate/dwolla';
       }
@@ -105,10 +109,13 @@ function(app, OnboardingTemplate) {
         status: response._links['verify-micro-deposits'] ? 'unverified' : 'verified'
       };
 
+
       var path;
+      var method = 'POST';
       if (app.session.get('logged_in')) {
         // if already active, just 
         path = 'account/funding_sources';
+        method = 'PUT';
       } else {
         // if activating, set primary
         path = self.user.get('role') + 's/activate/funding_sources';
@@ -116,12 +123,12 @@ function(app, OnboardingTemplate) {
 
       app.utils.request({
         path: path,
-        method: 'POST',
+        method: method,
         data: data
       }).then(function(data) {
         
         if (data.status === 'unverified') {
-          // tell the user they will have to do microdeposits!!
+          // TODO: tell the user they will have to do microdeposits!!
         }
 
         self.parentView.user.set(data);
