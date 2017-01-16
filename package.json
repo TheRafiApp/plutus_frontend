@@ -7,11 +7,9 @@
     "dev": "cat ./js/config/development.js > ./js/env-config.js",
     "staging": "cat ./js/config/staging.js > ./js/env-config.js",
     "production": "cat ./js/config/production.js > ./js/env-config.js",
-
     "b": "gulp js-build",
     "bs": "gulp js-build --staging",
     "bp": "gulp js-build --production",
-
     "test": "node ./node_modules/mocha/bin/mocha ./test/tests.js",
     "test2": "node ./node_modules/mocha/bin/mocha ./test/tests2.js"
   },
