@@ -1,5 +1,6 @@
 # directories
 node_modules/
+js/build/
 
 # files
 .DS_Store
@@ -9,7 +10,7 @@ config.codekit
 # nested files
 # css/build/*
 # scss/build/*
-# js/build/*
+js/build/*
 
 logs/*
 
