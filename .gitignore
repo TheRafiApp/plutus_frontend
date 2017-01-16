@@ -10,7 +10,7 @@ config.codekit
 # nested files
 # css/build/*
 # scss/build/*
-# js/build/*
+js/build/*
 
 logs/*
 
