@@ -1,2 +1,0 @@
-define(["app","model/users/UserModel","text!templates/cards/user_payments.html"],function(e,t,s){return Backbone.View.extend({className:"user-payments",events:{},template:_.template(s),initialize:function(e){_.extend(this,e),this.model=new t(this.data),this.render()},render:function(){var t,s=this.model.toJSON();return this.amount?(t=e.utils.prettyMoney(this.amount),this.negative&&(t="-"+t)):t="N/A",this.$el.html(this.template({user:s,amount:t})),this}})});
-//# sourceMappingURL=user_payments.js.map

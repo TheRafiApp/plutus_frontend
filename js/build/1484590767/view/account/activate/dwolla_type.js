@@ -1,2 +1,0 @@
-define(["app","text!templates/account/activate/dwolla_type.html"],function(t,e){return Backbone.View.extend({className:"dwolla",template:_.template(e),events:{"click .action-type":"setType"},initialize:function(t){t&&_.extend(this,t),this.render()},render:function(){return this.$el.html(this.template({logo:t.templates.logo()})),this},setType:function(t){var e={type:$(t.currentTarget).attr("data-type")};this.parentView.setDwollaData(e),this.nextStep()},nextStep:function(){this.parentView.next()}})});
-//# sourceMappingURL=dwolla_type.js.map

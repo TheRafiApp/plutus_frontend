@@ -1,1 +1,0 @@
-{"version":3,"sources":["model/leases/ChargeModel.js"],"names":["define","app","Model","extend"],"mappings":"AAIAA,QACE,OAEF,SAASC,GAEP,MAAOA,GAAIC,MAAMC","file":"ChargeModel.js","sourcesContent":["/**\n * ChargeModel.js\n */\n\ndefine([\n  'app'\n],\nfunction(app) {\n\n  return app.Model.extend({\n    // lol\n  });\n\n});"]}
