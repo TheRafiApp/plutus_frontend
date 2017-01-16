@@ -1,0 +1,34 @@
+<form class="form-model">
+
+  <div class="status-list">
+    <table>
+      <tbody>
+        <tr>
+          <td>Amount</td>
+          <td class="strong">{{{ model.amount_pretty }}}</td>
+        </tr>
+        <tr>
+          <td>Status</td>
+          <td><span class="{{{ model.status.state }}}">{{{ model.status.state }}}</span></td>
+        </tr>
+        <tr>
+          <td>Source</td>
+          <td>{{{ model.source_name }}}</td>
+        </tr>
+        <tr>
+          <td>Destination</td>
+          <td>{{{ model.destination.name }}}</td>
+        </tr>
+        {{# if (model.lease) { }}
+        <tr>
+          <td>Address</td>
+          <td>{{{ model.property.address }}}, Unit {{{ model.unit.number }}}</td>
+        </tr>
+        {{# } }}
+      </tbody>
+    </table>
+  </div>
+
+  <a href="#" class="btn btn-primary action-cancel-transfer">Cancel Transfer</a>
+
+</form>

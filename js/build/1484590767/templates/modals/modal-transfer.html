@@ -1,0 +1,45 @@
+<div class="field-group">
+  <legend>Amount</legend>
+  <span class="money">
+    <input name="amount" type="text" placeholder="0.00" class="medium amount mobile-number" autocomplete="off" value="{{{ amount }}}">
+  </span>
+  <span class="help-text"></span>
+</div>
+
+<div class="date-picker"></div>
+
+{{# if (type === 'electronic') { }}
+<!-- 
+<div class="field-group">
+  <legend>Recipient</legend>
+  <select name="destination">
+    {{# _.each(destination, function(manager) { }}
+      <option value="{{{ manager._id }}}">{{{ manager.full_name }}}</option>
+    {{# }) }}
+  </select>
+  <span class="help-text"></span>
+</div>
+ -->
+{{# } else if (type === 'offline') { }}
+
+<div class="field-group">
+  <legend>Source</legend>
+  <div class="dropdown">
+    <select name="source">
+    {{# _.each(source, function(tenant) { }}
+      {{# console.log(tenant); }}
+      <option value="{{{ tenant._id }}}">{{{ tenant.first_name + ' ' + tenant.last_name }}}</option>
+    {{# }) }}
+    </select>
+  </div>
+  <span class="help-text"></span>
+</div>
+
+{{# } }}
+
+
+{{# if (primary_fs) { }}
+
+<p>Funds will be transferred from "{{{ primary_fs.name }}}" to {{{ company.name }}}</p>
+  
+{{# } }}
