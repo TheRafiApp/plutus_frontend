@@ -18,7 +18,7 @@ config.codekit
 # scss/build/*
 js/build/*
 
-# logs/*
+logs/*
 
 # environment config
 js/env-config.js

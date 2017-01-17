@@ -39,8 +39,8 @@ function(app, ModelView, UserCardView, TransferModel, TransferTemplate) {
         context: this,
 
         options: {
-          edit: true,
-          delete: true
+          edit: false,
+          delete: false
         }
       });
 

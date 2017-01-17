@@ -15,7 +15,8 @@ function(app, ModalTemplate) {
       'keyup': 'keyControl',
       'click .action-confirm': 'confirm',
       'click .action-cancel': 'closeModal',
-      'click .overlay': 'closeModal'
+      'click .overlay': 'closeModal',
+      'submit form': 'handleSubmit'
     },
 
     // outer modal template
@@ -121,6 +122,10 @@ function(app, ModalTemplate) {
       this.close();
       this.context.trigger('modalClosed');
       if (app.views.appView) app.views.appView.trigger('modalClosed');
+    },
+
+    handleSubmit: function(e) {
+      e.preventDefault();
     },
 
     // default method to get form data

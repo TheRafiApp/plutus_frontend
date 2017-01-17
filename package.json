@@ -11,8 +11,7 @@
     "bs": "gulp js-build --staging",
     "bp": "gulp js-build --production",
     "lint": "esvalidate js/*.js; gulp js-xss-check",
-    "test": "node ./node_modules/mocha/bin/mocha ./test/tests.js",
-    "test2": "node ./node_modules/mocha/bin/mocha ./test/tests2.js"
+    "test": "node ./node_modules/mocha/bin/mocha ./test/tests.js"
   },
   "pre-commit": [ 
     "lint"
