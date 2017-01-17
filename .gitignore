@@ -6,7 +6,13 @@ js/build/
 .DS_Store
 .notes.txt
 config.codekit
- 
+
+# build files
+js/app.build.js
+js/app.build.js.map
+js/config.build.js
+
+
 # nested files
 # css/build/*
 # scss/build/*
