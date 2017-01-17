@@ -15,7 +15,7 @@
     "test2": "node ./node_modules/mocha/bin/mocha ./test/tests2.js"
   },
   "pre-commit": [
-    "lint"
+    "lint" 
   ],
   "repository": {
     "type": "git",
