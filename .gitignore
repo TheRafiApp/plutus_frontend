@@ -11,7 +11,7 @@ config.codekit
 js/app.build.js
 js/app.build.js.map
 js/config.build.js
-
+buildversion
 
 # nested files
 # css/build/*
