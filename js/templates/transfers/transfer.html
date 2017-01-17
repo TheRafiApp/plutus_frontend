@@ -29,7 +29,7 @@
     </table>
   </div>
 
-  {{# if (cancel_expiration && (moment.utc() < moment.utc(model.cancel_expiration))) { }}
+  {{# if (model.cancel_expiration && (moment.utc() < moment.utc(model.cancel_expiration))) { }}
     <a href="#" class="btn btn-primary action-cancel-transfer">Cancel Transfer</a>
   {{# } }}
 
