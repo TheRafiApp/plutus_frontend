@@ -10,9 +10,11 @@
     "b": "gulp js-build",
     "bs": "gulp js-build --staging",
     "bp": "gulp js-build --production",
+    "jshint": "jshint -c .jshintrc --exclude-path .gitignore ."
     "test": "node ./node_modules/mocha/bin/mocha ./test/tests.js",
     "test2": "node ./node_modules/mocha/bin/mocha ./test/tests2.js"
   },
+  "pre-commit": [ "jshint" ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/TheRafiApp/plutus.git"
@@ -44,10 +46,12 @@
     "gulp-util": "^3.0.8",
     "gulp-wait": "0.0.2",
     "http-request": "^0.7.0",
+    "jshint": "^2.9.4",
     "merge-stream": "^1.0.1",
     "mocha": "^3.2.0",
     "nightmare": "^2.9.0",
     "node-bourbon": "^4.2.8",
+    "pre-commit": "^1.2.2",
     "request": "^2.79.0",
     "stream-to-array": "^2.3.0",
     "yargs": "^6.6.0"
