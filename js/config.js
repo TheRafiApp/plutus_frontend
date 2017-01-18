@@ -64,5 +64,6 @@ require([
   'jquery.serialize',
   'jquery.auto-complete',
   'chosen',
+  'ua-parser',
   'main',
 ]);
