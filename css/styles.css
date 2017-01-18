@@ -6408,7 +6408,7 @@ ul.collapsible li .transfer.processed .transfer-status{
 .choices.auth-events li .no-padding span{
   display:inline-block;
   padding:10px;
-  font-size:.9em;
+  font-size:.85em;
 }
 
 .choices.auth-events li .no-padding span:not(:last-of-type){
@@ -6418,7 +6418,7 @@ ul.collapsible li .transfer.processed .transfer-status{
 .choices.auth-events li .no-padding span.type{
   background-color:#dde3e4;
   color:#487db7;
-  font-size:1.1em;
+  font-size:1em;
 }
 
 .choices.auth-events li .no-padding.active{

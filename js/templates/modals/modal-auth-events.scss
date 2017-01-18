@@ -14,7 +14,7 @@
 			span {
 				display: inline-block;
 				padding: 10px;
-		    font-size: 0.9em;
+		    font-size: 0.85em; 
 
 				&:not(:last-of-type) {
 					border-right: 1px solid #d1d1d1;
@@ -23,7 +23,7 @@
 				&.type {
 					background-color: #dde3e4;
 					color: #487db7;
-			    font-size: 1.1em;
+			    font-size: 1em;
 				}
 			}
 
