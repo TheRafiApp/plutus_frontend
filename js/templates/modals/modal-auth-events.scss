@@ -1,0 +1,45 @@
+.choices.auth-events {
+	li {
+		a {
+			font-family: courier, monospace;
+			color: #444;
+			
+			&.active {
+				color: white;
+			}
+		}
+		.no-padding {
+			padding: 0 !important; 
+
+			span {
+				display: inline-block;
+				padding: 10px;
+
+				&:not(:last-of-type) {
+					border-right: 1px solid #d1d1d1;
+				}
+
+				&.type {
+					background-color: #dde3e4;
+					color: #487db7;
+				}
+			}
+
+			&.active {
+				color: white;
+
+				span {
+					background: transparent;
+					color: white;
+				}
+			}
+		}
+
+		.icon {
+			top: 8px;
+			right: 10px;
+			width: 16px;
+			height: 16px;
+		}
+	}
+}

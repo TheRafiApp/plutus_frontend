@@ -3,38 +3,74 @@
  */
 
 define([
-  'app'
+  'app',
+  'ua-parser'
 ],
-function(app) {
+function(app, UAParser) {
 
   var AuthEventModel = app.Model.extend({
 
     name: 'authentication event',
     displayName: 'type',
 
+    initialize: function(attributes, options) {
+      if (!options) options = {};
+      if (!this.options) this.options = {};
+
+      this.options = _.extend(this.options, options);
+
+      this.parser = new UAParser();
+
+      window.parser = this.parser;
+    },
+
     // urlRoot: function() {
     //   return app.API() + 'users/' + this.options.parentModelId + '/authentication';
     // },
 
-    // schema: {
-    //   rent: {
-    //     type: 'money'
-    //   }
-    // },
+    ua_data: Backbone.computed('user_agent', function() {
+      var ua_string = this.get('user_agent');
+      if (!ua_string) return;
 
-    // filters: [
-    //   'full_address',
-    //   'sq_ft_int',
-    //   'rent_pretty',
-    //   'number_pretty'
-    // ],
+      this.parser.setUA(ua_string);
 
-    // number_pretty: Backbone.computed('number', function() {
-    //   var number = this.get('number');
-    //   if (!number) return;
-    //   if (/^[\d]/.test(number)) number = '#' + number;
-    //   return number;
-    // })
+      return this.parser.getResult();
+    }),
+
+    browser: Backbone.computed('ua_data', function() {
+      var ua_data = this.get('ua_data');
+      if (!ua_data) return;
+
+      return ua_data.browser;
+    }),
+
+    os: Backbone.computed('ua_data', function() {
+      var ua_data = this.get('ua_data');
+      if (!ua_data) return;
+
+      return ua_data.os;
+    }),
+
+    device: Backbone.computed('ua_data', function() {
+      var ua_data = this.get('ua_data');
+      if (!ua_data) return;
+
+      return ua_data.device;
+    }),
+
+    engine: Backbone.computed('ua_data', function() {
+      var ua_data = this.get('ua_data');
+      if (!ua_data) return;
+
+      return ua_data.engine;
+    }),
+
+    cpu: Backbone.computed('ua_data', function() {
+      var ua_data = this.get('ua_data');
+      if (!ua_data) return;
+
+      return ua_data.cpu;
+    }),
 
   });
 

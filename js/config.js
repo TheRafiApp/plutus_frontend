@@ -26,6 +26,7 @@ require.config({
     'c3':                   'vendor/c3',
     'xlsx':                 'vendor/xlsx',
     'jszip':                'vendor/jszip',
+    'ua-parser':            'vendor/ua-parser.min',
 
     // tests
     'jasmine':              'vendor/tests/jasmine',

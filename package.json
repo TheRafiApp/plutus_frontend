@@ -13,7 +13,7 @@
     "lint": "esvalidate js/*.js; gulp js-xss-check",
     "test": "node ./node_modules/mocha/bin/mocha ./test/tests.js"
   },
-  "pre-commit": [ 
+  "pre-commit": [
     "lint"
   ],
   "repository": {

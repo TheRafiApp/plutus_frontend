@@ -51,6 +51,8 @@ function(
           model: eventModel
         });
 
+        console.log(eventModel)
+
         self.child_views.push(eventView);
         self.$el.find('.choices').append(eventView.$el);
       });
