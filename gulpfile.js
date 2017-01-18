@@ -265,6 +265,7 @@ gulp.task('js-rjs', ['js-config'], function() {
       'moment':                'vendor/moment.min',
       'kalendae':              'vendor/kalendae',
       'chosen':                'vendor/chosen.jquery',
+      'ua-parser':             'vendor/ua-parser.min',
 
       'view/DebugView':        'empty:', // do not include debug in build
       'jasmine':               'empty:', // do not include tests in build
