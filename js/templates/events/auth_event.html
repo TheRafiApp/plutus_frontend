@@ -1,6 +1,6 @@
 <li class="auth-event">
 	<a href="#" class="expand no-padding">
-		<span>{{{ moment(model.created).format('MM/DD/YYYY hh:mm:ssa') }}}</span><!--
+		<span>{{{ moment(model.created).format('MM/DD/YY hh:mma') }}}</span><!--
  --><span class="type">{{{ model.type }}}</span><!--
 		{{# if (model.device) { }}
  --><span class="no-padding right"><div class="icon {{{ model.device.type || 'desktop' }}}"></div></span><!--
