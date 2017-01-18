@@ -32,10 +32,17 @@ function(
       }
     },
 
+    defaults: {
+      cancel: true,
+      confirm: true,
+    },
+
     template: _.template(ModalDialogTemplate),
     
     initialize: function(_options) {
       if (_options) _.extend(this, _options);
+
+      this.options = _.extend(this.defaults, this.options);
 
       // this modal is now used in activation, before AppView is rendered
       this.app.views.appView && this.app.views.appView.trigger('modalOpened');
@@ -47,7 +54,10 @@ function(
 
       if (!this.eventName) this.eventName = 'confirm';
 
-      this.$el.html(this.template({ dialog: this.model }));
+      this.$el.html(this.template({
+        options: this.options || {},
+        dialog: this.model
+      }));
       $('.modal-container').html(this.$el).addClass('visible');
       this.$el.find('.action-confirm').focus();
 

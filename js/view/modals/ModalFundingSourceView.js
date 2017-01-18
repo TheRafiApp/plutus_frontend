@@ -66,13 +66,12 @@ function(
           'https://fonts.googleapis.com/css?family=Roboto',
           app.url.base_url + 'css/dwolla_style.css'
         ],
-        microDeposits: true,
+        microDeposits: false,
         fallbackToMicroDeposits: true
       }, function(error, response) {
 
         // IAV successful
         if (response) {
-          console.log(response)
           
           var data = {
             id: response._links['funding-source'].href.split('funding-sources/')[1], // id

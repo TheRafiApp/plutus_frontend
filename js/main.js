@@ -184,6 +184,34 @@ function(
           });
         });
       },
+
+      // check if the user has any microdeposits pending
+      checkMicrodeposits: function(_user) {
+        var user = _user || app.session.user;
+        var funding_sources = user.get('dwolla_account.funding_sources');
+        var funding_sources_with_md = [];
+
+        for (var id in funding_sources) {
+          if (funding_sources[id].microdeposits) 
+            funding_sources_with_md.push(id);
+        }
+
+        if (funding_sources_with_md.length) 
+          this.showMicrodepositsReminder(funding_sources_with_md);
+      },
+
+      // show popup to remind about microdeposits
+      showMicrodepositsReminder: function(fs_array) {
+        console.log(fs_array)
+
+        // var ModalView = this.loader.loadView.get('ModalDialogView');
+
+        // new ModalView({
+        //   options: {
+        //     cancel: false
+        //   }
+        // });
+      },
       
       // render error messages on a field
       fieldError: function(fields) {
