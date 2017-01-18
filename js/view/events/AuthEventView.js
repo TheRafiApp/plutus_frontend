@@ -1,14 +1,14 @@
  /**
- *  EventView.js
+ *  AuthEventView.js
  */
 
 define([
   'app',
-  'text!templates/events/event.html'
+  'text!templates/events/auth_event.html'
 ],
 function(app, EventTemplate) {
 
-  return Backbone.View.extend(_.extend({}, Backbone.Events, {
+  return Backbone.View.extend({
 
     tagName: 'li', 
     className: 'event',
@@ -48,5 +48,5 @@ function(app, EventTemplate) {
       }
     }
     
-  }));
+  });
 });

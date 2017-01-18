@@ -53,7 +53,7 @@ function(
       // this.collection = new LandlordsCollection();
       this.collection = new FundingSourcesCollection();
 
-      app.controls.smartRender(self, {
+      app.controls.fetchAll(self, {
         admin: [ this.collection ]
       }).then(function() {
         self.renderModalView();

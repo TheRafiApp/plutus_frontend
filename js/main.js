@@ -244,7 +244,7 @@ function(
       },
 
       // Detect if companies collection needs to be fetched and render
-      smartRender: function(view, _toFetch) {
+      fetchAll: function(view, _toFetch) {
         view.companies = false;
 
         var promise = $.Deferred();
@@ -257,9 +257,11 @@ function(
         toFetch.superadmin = toFetchSuperadmin;
 
         var role = app.session.get('user_role');
-        var toFetchRole = toFetch[role];
+        var toFetchRole = toFetch[role] || [];
+
+        if (toFetch['*']) toFetchRole = toFetchRole.concat(toFetch['*']);
         
-        if (!toFetchRole) return promise.resolve();
+        if (!toFetchRole) return promise.resolve(); 
 
         var quantity = toFetchRole.length;
         var promises = app.utils.promises(quantity);

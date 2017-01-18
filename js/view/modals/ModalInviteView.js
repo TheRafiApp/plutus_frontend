@@ -37,7 +37,7 @@ function(app, ModalView, ModalInviteTemplate) {
       app.utils.loadModel.get('users/' + this.role + 'Model').then(function(UserModel) {
         self.model = new UserModel(null, { action: action });
 
-        app.controls.smartRender(self).then(function() {
+        app.controls.fetchAll(self).then(function() {
           self.renderModalView();
         });
       });
