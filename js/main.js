@@ -4,22 +4,20 @@
 
 require([
   'app',
-  // 'env-config',
   'router',
+  'sockets/ws-client-amd',
   'model/session/SessionModel',
   'view/AlertView',
-  // 'view/DebugView',
   'view/modals/ModalDialogView',
   'view/modals/ModalConfirmView',
   'https://cdn.ravenjs.com/3.9.1/raven.min.js'
 ],
 function(
   app,
-  // config,
   Router, 
+  SocketClient,
   SessionModel, 
   AlertView, 
-  // DebugView, 
   ModalDialogView,
   ModalConfirmView,
   Raven
@@ -29,6 +27,22 @@ function(
 
   // Init router
   app.router = new Router();
+
+  // Init websockets
+  app.socket = new SocketClient('wss://staging.payment.rafiproperties.com:4200');
+
+  app.socket.on('open', function() {
+    app.socket.on('message', function(data) {
+      console.log('message: ', data);
+      app.controls.handleMessage(data);
+    });
+
+    app.socket.on('close', function() {
+      console.log('close');
+    });
+
+    app.socket.send({ 'test': true });
+  });
 
   // Init router/session dependent App methods
   _.extend(app, {
@@ -307,6 +321,20 @@ function(
         });
 
         return promise;
+      },
+
+      requireRefresh: function() {
+        console.log('You need to refresh!');
+      },
+
+      // Decide what to do with websockets message data
+      
+      handleMessage: function(_data) {
+        var data = JSON.parse(_data);
+        if (data.event === 'deployment')
+          if (data.refresh === true)
+            this.requireRefresh();
+
       },
 
       // Decide what to do with an error response from server

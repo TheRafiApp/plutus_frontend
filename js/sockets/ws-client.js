@@ -16,15 +16,23 @@ module.exports = class SocketClient {
 
 		  Socket.on('close', function(){
 		    console.log('Socket closed: ' + url);
+		    setTimeout(function() {
+		    	process.exit();
+		    }, 500);
 		  });
 		});
   }
 
   send(data, options, callback) {
+  	console.log('Sending data: ', data);
     return Socket.send(JSON.stringify(data), options, callback);
   }
   
-  sendAndClose(data, options) {
-    return Socket.send(JSON.stringify(data), options, function() { Socket.close(); });
+  // use above to remove code dupe
+  sendAndClose(data, options, callback) {
+  	return this.send(data, options, function() {
+  		if (callback) callback();
+  		Socket.close();
+  	});
   }
 };
