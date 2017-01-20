@@ -78,7 +78,7 @@ function(app, UserCardView, ModalTransferView, BillModel, BillTemplate, HeaderTe
         var amount = 0;
 
         transfers.forEach(function(transfer) {
-          if (transfer.source == tenant_id && !['failed', 500].contains(transfer.status.state)) { 
+          if (transfer.source == tenant_id && !['failed', 'error', 'cancelled'].contains(transfer.status.state)) { 
             amount += transfer.amount;
           }
         });
