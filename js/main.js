@@ -682,7 +682,7 @@ function(
     request.always(function(_data, _message, _response) {
       if (app.session.tokens.pass) delete app.session.tokens.pass;
 
-      // TODO: refactor 
+      // TODO: refactor
       if (_response && _response.responseJSON) {
         if (_response.responseJSON.error == 'token_expired') {
           app.session.refreshTokens().then(function() {
