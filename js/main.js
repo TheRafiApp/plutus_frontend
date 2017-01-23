@@ -31,7 +31,7 @@ function(
   app.router = new Router();
 
   // Init websockets
-  app.socket = new SocketClient('wss://staging.payment.rafiproperties.com:4200');
+  app.socket = new SocketClient(app.url.sockets_server);
 
   app.socket.on('open', function() {
     app.socket.on('message', function(data) {
