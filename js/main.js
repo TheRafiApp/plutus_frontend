@@ -8,6 +8,7 @@ require([
   'sockets/ws-client-amd',
   'model/session/SessionModel',
   'view/AlertView',
+  'view/tips/RefreshView',
   'view/modals/ModalDialogView',
   'view/modals/ModalConfirmView',
   'https://cdn.ravenjs.com/3.9.1/raven.min.js'
@@ -18,6 +19,7 @@ function(
   SocketClient,
   SessionModel, 
   AlertView, 
+  RefreshView,
   ModalDialogView,
   ModalConfirmView,
   Raven
@@ -252,39 +254,6 @@ function(
         return this;
       },
 
-      // toggle loading screen
-      loadLock: function(boolean) {
-        if (boolean === true) {
-          this.appendLoader();
-        } else if (boolean === false) {
-          this.removeLoader();
-        } else if (boolean === undefined) {
-          var $loader;
-          $loader = document.querySelector('.full-page.loading');
-          if ($loader) {
-            this.removeLoader();
-          } else {
-            this.appendLoader();
-          }
-        }
-        return this;
-      },
-
-      // append loading screen
-      appendLoader: function() {
-        var $loader;
-        $loader = document.createElement('div');
-        $loader.className = 'full-page loading';
-        document.body.appendChild($loader);
-      },
-
-      // remove loading screen
-      removeLoader: function() {
-        var $loader;
-        $loader = document.querySelector('.full-page.loading');
-        $loader.remove();
-      },
-
       // Detect if companies collection needs to be fetched and render
       fetchAll: function(view, _toFetch) {
         view.companies = false;
@@ -323,18 +292,49 @@ function(
         return promise;
       },
 
+      // toggle loading screen
+      loadLock: function(boolean) {
+        if (boolean === true) {
+          this.appendLoader();
+        } else if (boolean === false) {
+          this.removeLoader();
+        } else if (boolean === undefined) {
+          var $loader;
+          $loader = document.querySelector('.full-page.loading');
+          if ($loader) {
+            this.removeLoader();
+          } else {
+            this.appendLoader();
+          }
+        }
+        return this;
+      },
+
+      // append loading screen
+      appendLoader: function() {
+        var $loader = document.createElement('div');
+        $loader.className = 'full-page loading';
+        document.body.appendChild($loader);
+      },
+
+      // remove loading screen
+      removeLoader: function() {
+        var $loader = document.querySelector('.full-page.loading');
+        $loader.remove();
+      },
+
+      // lock screen and tell user to refresh
       requireRefresh: function() {
-        console.log('You need to refresh!');
+        var refreshView = new RefreshView();
+        $('body').append(refreshView.$el);
       },
 
       // Decide what to do with websockets message data
-      
       handleMessage: function(_data) {
         var data = JSON.parse(_data);
         if (data.event === 'deployment')
           if (data.refresh === true)
             this.requireRefresh();
-
       },
 
       // Decide what to do with an error response from server

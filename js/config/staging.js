@@ -12,6 +12,9 @@ function(app) {
     // API URL
     API: 'https://api.staging.payment.rafiproperties.com/',
 
+    // Sockets Server URL
+    sockets_url: 'wss://staging.payment.rafiproperties.com:4200',
+
     // Dwolla
     dwolla_env: 'sandbox',
     

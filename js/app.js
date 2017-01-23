@@ -32,7 +32,7 @@ function(
 
   // App core object
   _.extend(app, {
-    version: '0.1.0',
+    version: '0.1.1',
 
     // Important URLs for App
     url: {
@@ -42,6 +42,8 @@ function(
 
       base_url: app.config.base_url,
       base_path: app.config.base_path,
+
+      sockets_url: app.config.sockets_url,
 
       query_string: function() {
         return window.location.search.slice(1).split('&')[0]; // no params
