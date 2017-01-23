@@ -31,20 +31,36 @@ function(
   app.router = new Router();
 
   // Init websockets
-  app.socket = new SocketClient(app.url.sockets_server);
+  _.extend(app, {
+    ws: {
+      open_socket: function() {
+        var self = this;
 
-  app.socket.on('open', function() {
-    app.socket.on('message', function(data) {
-      console.log('message: ', data);
-      app.controls.handleMessage(data);
-    });
+        this.socket = new SocketClient(app.url.sockets_url);
 
-    app.socket.on('close', function() {
-      console.log('close');
-    });
+        this.socket.on('message', function(data) {
+          if (self.reconnecting) {
+            clearInterval(self.reconnecting);
+            self.reconnecting = 0;
+          }
+            
+          app.controls.handleMessage(data);
+        });
 
-    app.socket.send({ 'test': true });
+        this.socket.on('close', function() {
+          if (!self.reconnecting) {
+            self.reconnecting = setInterval(function() {
+              self.open_socket();
+            }, 5000);
+          }
+        });
+
+        this.socket.send({ 'connected': new Date() });
+      },
+    }
   });
+
+  app.ws.open_socket();
 
   // Init router/session dependent App methods
   _.extend(app, {
@@ -157,7 +173,6 @@ function(
     /**
      * [modal for confirming with a password]
      *
-     * TODO: message
      * @param  {string} _message          [Message to display (current unused)]
      * @param  {Backbone.View} _context   [view that created the modal]
      * @param  {string} _method           [method to run upon confirming]
@@ -641,8 +656,6 @@ function(
       }
 
       if (!key.match(regex)) return;
-
-      console.log($(this).attr('maxlength'))
 
       if ($(this).attr('maxlength') && $(this).val().length < $(this).attr('maxlength')) return;
 
