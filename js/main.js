@@ -4,22 +4,22 @@
 
 require([
   'app',
-  // 'env-config',
   'router',
+  'sockets/ws-client-amd',
   'model/session/SessionModel',
   'view/AlertView',
-  // 'view/DebugView',
+  'view/tips/RefreshView',
   'view/modals/ModalDialogView',
   'view/modals/ModalConfirmView',
   'https://cdn.ravenjs.com/3.9.1/raven.min.js'
 ],
 function(
   app,
-  // config,
   Router, 
+  SocketClient,
   SessionModel, 
   AlertView, 
-  // DebugView, 
+  RefreshView,
   ModalDialogView,
   ModalConfirmView,
   Raven
@@ -29,6 +29,38 @@ function(
 
   // Init router
   app.router = new Router();
+
+  // Init websockets
+  _.extend(app, {
+    ws: {
+      open_socket: function() {
+        var self = this;
+
+        this.socket = new SocketClient(app.url.sockets_url);
+
+        this.socket.on('message', function(data) {
+          if (self.reconnecting) {
+            clearInterval(self.reconnecting);
+            self.reconnecting = 0;
+          }
+            
+          app.controls.handleMessage(data);
+        });
+
+        this.socket.on('close', function() {
+          if (!self.reconnecting) {
+            self.reconnecting = setInterval(function() {
+              self.open_socket();
+            }, 5000);
+          }
+        });
+
+        this.socket.send({ 'connected': new Date() });
+      },
+    }
+  });
+
+  app.ws.open_socket();
 
   // Init router/session dependent App methods
   _.extend(app, {
@@ -141,7 +173,6 @@ function(
     /**
      * [modal for confirming with a password]
      *
-     * TODO: message
      * @param  {string} _message          [Message to display (current unused)]
      * @param  {Backbone.View} _context   [view that created the modal]
      * @param  {string} _method           [method to run upon confirming]
@@ -184,6 +215,34 @@ function(
           });
         });
       },
+
+      // check if the user has any microdeposits pending
+      checkMicrodeposits: function(_user) {
+        var user = _user || app.session.user;
+        var funding_sources = user.get('dwolla_account.funding_sources');
+        var funding_sources_with_md = [];
+
+        for (var id in funding_sources) {
+          if (funding_sources[id].microdeposits) 
+            funding_sources_with_md.push(id);
+        }
+
+        if (funding_sources_with_md.length) 
+          this.showMicrodepositsReminder(funding_sources_with_md);
+      },
+
+      // show popup to remind about microdeposits
+      showMicrodepositsReminder: function(fs_array) {
+        console.log(fs_array)
+
+        // var ModalView = this.loader.loadView.get('ModalDialogView');
+
+        // new ModalView({
+        //   options: {
+        //     cancel: false
+        //   }
+        // });
+      },
       
       // render error messages on a field
       fieldError: function(fields) {
@@ -210,6 +269,44 @@ function(
         return this;
       },
 
+      // Detect if companies collection needs to be fetched and render
+      fetchAll: function(view, _toFetch) {
+        view.companies = false;
+
+        var promise = $.Deferred();
+        var toFetchSuperadmin = [app.collections.companies];
+
+        // add companies collection to superadmin 
+        if (_toFetch && _toFetch.superadmin) _.extend(toFetchSuperadmin, _toFetch.superadmin);
+
+        var toFetch = _toFetch || {};
+        toFetch.superadmin = toFetchSuperadmin;
+
+        var role = app.session.get('user_role');
+        var toFetchRole = toFetch[role] || [];
+
+        if (toFetch['*']) toFetchRole = toFetchRole.concat(toFetch['*']);
+        
+        if (!toFetchRole) return promise.resolve(); 
+
+        var quantity = toFetchRole.length;
+        var promises = app.utils.promises(quantity);
+
+        _.each(toFetchRole, function(collection, index) {
+          collection.fetch().then(function(response) {
+            promises[index].resolve();
+          }).fail(function(error) {
+            app.controls.handleError(error);
+          });
+        });
+
+        $.when.apply($, promises).then(function() {
+          promise.resolve();
+        });
+
+        return promise;
+      },
+
       // toggle loading screen
       loadLock: function(boolean) {
         if (boolean === true) {
@@ -230,53 +327,29 @@ function(
 
       // append loading screen
       appendLoader: function() {
-        var $loader;
-        $loader = document.createElement('div');
+        var $loader = document.createElement('div');
         $loader.className = 'full-page loading';
         document.body.appendChild($loader);
       },
 
       // remove loading screen
       removeLoader: function() {
-        var $loader;
-        $loader = document.querySelector('.full-page.loading');
+        var $loader = document.querySelector('.full-page.loading');
         $loader.remove();
       },
 
-      // Detect if companies collection needs to be fetched and render
-      smartRender: function(view, _toFetch) {
-        view.companies = false;
+      // lock screen and tell user to refresh
+      requireRefresh: function() {
+        var refreshView = new RefreshView();
+        $('body').append(refreshView.$el);
+      },
 
-        var promise = $.Deferred();
-        var toFetchSuperadmin = [app.collections.companies];
-
-        // add companies collection to superadmin 
-        if (_toFetch && _toFetch.superadmin) _.extend(toFetchSuperadmin, _toFetch.superadmin);
-
-        var toFetch = _toFetch || {};
-        toFetch.superadmin = toFetchSuperadmin;
-
-        var role = app.session.get('user_role');
-        var toFetchRole = toFetch[role];
-        
-        if (!toFetchRole) return promise.resolve();
-
-        var quantity = toFetchRole.length;
-        var promises = app.utils.promises(quantity);
-
-        _.each(toFetchRole, function(collection, index) {
-          collection.fetch().then(function(response) {
-            promises[index].resolve();
-          }).fail(function(error) {
-            app.controls.handleError(error);
-          });
-        });
-
-        $.when.apply($, promises).then(function() {
-          promise.resolve();
-        });
-
-        return promise;
+      // Decide what to do with websockets message data
+      handleMessage: function(_data) {
+        var data = JSON.parse(_data);
+        if (data.event === 'deployment')
+          if (data.refresh === true)
+            this.requireRefresh();
       },
 
       // Decide what to do with an error response from server
@@ -583,8 +656,6 @@ function(
       }
 
       if (!key.match(regex)) return;
-
-      console.log($(this).attr('maxlength'))
 
       if ($(this).attr('maxlength') && $(this).val().length < $(this).attr('maxlength')) return;
 

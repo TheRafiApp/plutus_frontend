@@ -37,8 +37,6 @@ function(app, EventTemplate) {
     expandEvent: function(e) {
       var $toggle = $(e.currentTarget);
 
-      console.log(this.model)
-
       if ($toggle.hasClass('active')) {
         $toggle.removeClass('active');
         this.$el.find('.collapsed').removeClass('expanded');

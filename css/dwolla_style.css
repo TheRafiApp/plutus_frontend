@@ -689,6 +689,10 @@ legend{
   color:#fff;
   background-color:#e91e63;
 }
+p{
+  color:#eee;
+}
+
 .dwolla-iav-button,.dwolla-iav-error,.dwolla-iav-header,.dwolla-iav-label,.dwolla-iav-link,.dwolla-iav-text,.dwolla-iav-text-box{
   font-family:Roboto,Helvetica,Arial,sans-serif;
   font-weight:300;
@@ -696,16 +700,20 @@ legend{
 
 .dwolla-iav-header{
   font-weight:300;
-  margin-bottom:2.5rem;
+  margin-bottom:0;
+  font-size:1em;
+  text-align:left;
+  color:#dadada;
 }
 
-input[type=text].dwolla-iav-text-box{
+input[type=password].dwolla-iav-text-box,input[type=text].dwolla-iav-text-box{
   position:relative;
   border:0;
   padding:8px 12px 8px 0;
   border-bottom:1px solid #fff;
   border-radius:0;
   background-color:transparent;
+  color:#fff;
   -webkit-transition:all .2s;
   transition:all .2s;
   font-family:Roboto,sans-serif;
@@ -724,12 +732,13 @@ input[type=text].dwolla-iav-text-box{
 }
 
 .dwolla-iav-link{
-  color:#54ffab;
+  color:#f7ff00;
   cursor:pointer;
+  text-decoration:underline;
 }
 
 .dwolla-iav-link:hover{
-  color:#54ffab;
+  color:#f7ff00;
 }
 
 .dwolla-iav-button{
@@ -740,6 +749,7 @@ input[type=text].dwolla-iav-text-box{
 
 .dwolla-iav-button:hover{
   background:#0071bc;
+  color:#fff;
   cursor:pointer;
 }
 
@@ -753,6 +763,31 @@ input[type=text].dwolla-iav-text-box{
 
 .dwolla-iav-radio-selected{
   background-color:#0071bc;
+}
+
+.popular-list__item{
+  border-bottom:0;
+}
+
+.popular-list__item>.dwolla-iav-link,.popular-list__item input{
+  padding:15px 15px 5px 13px;
+  text-decoration:underline;
+}
+
+.dwolla-iav-label,.radio-btns label{
+  color:#eee;
+}
+
+.island__section{
+  padding:16px;
+}
+
+.island__section .island__section{
+  padding:0;
+}
+
+.js-list-search__results{
+  margin-top:10px;
 }
 
 .modal .dwolla-iav-link{

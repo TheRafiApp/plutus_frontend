@@ -7,9 +7,15 @@
     "dev": "cat ./js/config/development.js > ./js/env-config.js",
     "staging": "cat ./js/config/staging.js > ./js/env-config.js",
     "production": "cat ./js/config/production.js > ./js/env-config.js",
-    "test": "node ./node_modules/mocha/bin/mocha ./test/tests.js",
-    "test2": "node ./node_modules/mocha/bin/mocha ./test/tests2.js"
+    "b": "gulp js-build",
+    "bs": "gulp js-build --staging",
+    "bp": "gulp js-build --production",
+    "lint": "esvalidate js/*.js; gulp js-xss-check",
+    "test": "node ./node_modules/mocha/bin/mocha ./test/tests.js"
   },
+  "pre-commit": [
+    "lint"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/TheRafiApp/plutus.git"
@@ -23,6 +29,7 @@
   "devDependencies": {
     "chai": "^3.5.0",
     "del": "^2.2.0",
+    "engine.io-client": "^1.8.2",
     "gulp": "^3.9.0",
     "gulp-clip-empty-files": "^0.1.2",
     "gulp-concat": "^2.6.1",
@@ -45,6 +52,7 @@
     "mocha": "^3.2.0",
     "nightmare": "^2.9.0",
     "node-bourbon": "^4.2.8",
+    "pre-commit": "^1.2.2",
     "request": "^2.79.0",
     "stream-to-array": "^2.3.0",
     "yargs": "^6.6.0"

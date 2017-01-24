@@ -1,7 +1,0 @@
-{{# console.log(leases) }}
-<legend>Leases</legend>
-<ul class="choices">
-{{# _.each(leases, function(lease) { }}
-	<li><a class="action-select-lease" href="#" data-id="{{{ lease._id }}}">{{{ lease.address }}}</a></li>
-{{# }) }}
-</ul>

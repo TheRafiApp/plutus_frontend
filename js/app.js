@@ -32,7 +32,7 @@ function(
 
   // App core object
   _.extend(app, {
-    version: '0.1.0',
+    version: '0.1.1',
 
     // Important URLs for App
     url: {
@@ -42,6 +42,8 @@ function(
 
       base_url: app.config.base_url,
       base_path: app.config.base_path,
+
+      sockets_url: app.config.sockets_url,
 
       query_string: function() {
         return window.location.search.slice(1).split('&')[0]; // no params
@@ -570,7 +572,7 @@ function(
         try {
           if (typeof input == 'undefined') throw new TypeError();
           if (isNaN(input)) throw new TypeError();
-          console.log(canBeZero)
+          // console.log(canBeZero)
           if (!canBeZero && !+input) throw new TypeError();
 
           var zeroFloat;
@@ -662,7 +664,7 @@ function(
         }
 
         // check if its an email address
-        if (/^[-a-z0-9~!$%^&*_=+}{\'?]+(\.[-a-z0-9~!$%^&*_=+}{\'?]+)*@([a-z0-9_][-a-z0-9_]*(\.[-a-z0-9_]+)*\.(aero|arpa|biz|com|coop|edu|gov|info|int|mil|museum|name|net|org|pro|travel|mobi|[a-z][a-z])|([0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}))(:[0-9]{1,5})?$/i.test(_string)) {
+        if (/[^@]+@[^@]+/i.test(_string)) {
           if (_response) {
             response['email'] = _string;
             return response;
@@ -684,7 +686,7 @@ function(
         if (parsed < 0) leader = '-';
         parsed = Math.abs(parsed);
         var number_string = app.utils.parseMoney(parsed);
-        console.log(number_string)
+        // console.log(number_string)
         return leader + '$' + number_string.replace(/(\d)(?=(\d{3})+\.)/g, '$1,');
       },
 
@@ -938,7 +940,7 @@ function(
         }
 
         // step 5 - Password - All users
-        if (!user.status.active) {
+        if (!user.status.password) {
           steps.push({
             name: 'password',
             value: user.status.active,

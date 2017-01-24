@@ -154,7 +154,7 @@ function(app, noUiSlider, DateRangeTemplate, FilterTemplate, FiltersTemplate) {
 
         self.$el.find('.filters').append(self.filter_template({
           attr: attr,
-          id: self.field + '--' + app.utils.domFriendlyString(attr),
+          id: app.utils.domFriendlyString(self.field) + '--' + app.utils.domFriendlyString(attr),
           checked: checked,
           disabled: disabled
         }));
@@ -172,6 +172,7 @@ function(app, noUiSlider, DateRangeTemplate, FilterTemplate, FiltersTemplate) {
 
     changeFilter: function(event) {
       var $target = $(event.currentTarget);
+      console.log(event, $target)
       var checked = $target[0].checked;
       var tag = $target.attr('data-value');
 

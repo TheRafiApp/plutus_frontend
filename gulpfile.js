@@ -265,6 +265,7 @@ gulp.task('js-rjs', ['js-config'], function() {
       'moment':                'vendor/moment.min',
       'kalendae':              'vendor/kalendae',
       'chosen':                'vendor/chosen.jquery',
+      'ua-parser':             'vendor/ua-parser.min',
 
       'view/DebugView':        'empty:', // do not include debug in build
       'jasmine':               'empty:', // do not include tests in build
@@ -286,7 +287,7 @@ gulp.task('js-rjs', ['js-config'], function() {
 gulp.task('js-uglify', ['js-rjs'], function() {
   return gulp.src('./js/temp/**/*.js')
     .pipe(sourcemaps.init())
-    .pipe(uglify())
+    .pipe(uglify().on('error', gutil.log))
     .pipe(sourcemaps.write('/'))
     .pipe(gulp.dest('./js/temp'));
 });

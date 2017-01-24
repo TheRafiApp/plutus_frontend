@@ -13,14 +13,19 @@ function(app, WebhookTemplate) {
     className: 'webhook',
 
     events: {
-      'click .action-delete': 'promptDelete'
+      'click .action-delete': 'promptDelete',
+      'click .action-unpause': 'unpause',
+      'click .action-pause': 'promptPause'
     },
 
     template: _.template(WebhookTemplate),
 
-    initialize: function() {
+    initialize: function(options) {
+      if (options) _.extend(this, options);
+
       var self = this;
-      this.on('confirmDelete', this.confirmDelete, this);
+      this.on('confirmDelete', this.delete, this);
+      this.on('confirmPause', this.pause, this);
       this.render();
     },
 
@@ -28,24 +33,24 @@ function(app, WebhookTemplate) {
       var self = this;
       var data = this.model.toJSON();
  
-      this.$el.html(this.template({ webhook: data }))
+      this.$el.html(this.template({ webhook: data }));
 
       return this;
     },
 
     promptDelete: function() {
-      var target = this.model.get('url')
+      var target = this.model.get('url');
       var message = 'Are you sure you want to delete ' + target + '?';
 
       app.controls.modalConfirm(message, 'confirmDelete', this);
     },
 
-    confirmDelete: function() {
+    delete: function() {
       var self = this;
 
       var data = {
         url: self.model.get('url')
-      }
+      };
 
       data = JSON.stringify(data);
 
@@ -57,9 +62,45 @@ function(app, WebhookTemplate) {
         });
         //self.parentView.render();
       }, function() {
-        console.log(arguments)
-        app.alerts.error('Couldn\'t delete the webhook')
-      })
+        console.log(arguments);
+        app.alerts.error('Couldn\'t delete the webhook');
+      });
+    },
+
+    promptPause: function() {
+      var target = this.model.get('url');
+      var message = 'Are you sure you want to pause ' + target + '?';
+
+      app.controls.modalConfirm(message, 'confirmPause', this);
+    },
+
+    pause: function() {
+      var self = this;
+      this.setSubscriptionState(true).then(function() {
+        self.parentView.initialize();
+      }).fail(function() {
+        app.alerts.error('Could not pause webhook');
+      });
+    },
+
+    unpause: function() {
+      var self = this;
+
+      this.setSubscriptionState(false).then(function() {
+       self.parentView.initialize();
+      }).fail(function() {
+        app.alerts.error('Could not unpause webhook');
+      });
+    },
+
+    setSubscriptionState: function(state) {
+      return app.utils.request({
+        path: 'dwolla/subscriptions/' + this.model.id,
+        method: 'PUT',
+        data: {
+          paused: state
+        }
+      });
     }
 
   });

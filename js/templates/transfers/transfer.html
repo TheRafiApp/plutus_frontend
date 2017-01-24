@@ -1,23 +1,40 @@
 <form class="form-model">
 
-  <div class="field-group">
-    <legend>Status</legend>
-    {{{ model.status }}}
-    <!--<input name="status" class="full" type="text" value="" disabled />-->
-   <!--  <span class="help-text"></span> -->
+  <div class="status-list">
+    <table>
+      <tbody>
+        <tr>
+          <td>Amount</td>
+          <td class="strong">{{{ model.amount_pretty }}}</td>
+        </tr>
+        <tr>
+          <td>Status</td>
+          <td><span class="{{{ model.status.state }}}">{{{ model.status.state }}}</span></td>
+        </tr>
+        <tr>
+          <td>Source</td>
+          <td>{{{ model.source_name }}}</td>
+        </tr>
+        <tr>
+          <td>Destination</td>
+          <td>{{{ model.destination.name }}}</td>
+        </tr>
+        {{# if (model.lease) { }}
+        <tr>
+          <td>Address</td>
+          <td>{{{ model.property.address }}}, Unit {{{ model.unit.number }}}</td>
+        </tr>
+        {{# } }}
+        <tr>
+          <td>Dwolla Transaction ID</td>
+          <td>{{{ model.dwolla_resourceId }}}</td>
+        </tr>
+      </tbody>
+    </table>
   </div>
 
-  <div class="field-group">
-    <legend>Data/Time</legend>
-    {{{ moment(model.created).format('MM/DD/YYYY h:mm:ssa') }}}
-    <!--<input name="status" class="full" type="text" value="" disabled />-->
-   <!--  <span class="help-text"></span> -->
-  </div>
+  {{# if (model.cancel_expiration && (moment.utc() < moment.utc(model.cancel_expiration))) { }}
+    <a href="#" class="btn btn-primary action-cancel-transfer">Cancel Transfer</a>
+  {{# } }}
 
-  <legend>Source</legend>
-  <div class="source grid"></div>
-
-  <legend>Destination</legend>
-  <div class="destination grid"></div>
-  
 </form>

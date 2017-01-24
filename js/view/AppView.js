@@ -5,7 +5,6 @@
 define([
   'app',
   'text!templates/app.html'
-  // 'view/NavView'
 ],
 function(app, AppTemplate) {
 
@@ -111,6 +110,8 @@ function(app, AppTemplate) {
           // check if the user is onboarded
           if (!app.session.isOnboarded()) self.renderActivation();
 
+          app.controls.checkMicrodeposits();
+
           // if admin, load companies collection
           if (app.session.isSuperAdmin() && !app.collections.companies) {
             app.utils.loadCollection.get('companies/CompaniesCollection').then(function(CompaniesCollection) {
@@ -166,8 +167,6 @@ function(app, AppTemplate) {
       if (app.views.modelView) delete app.views.modelView;
       if (app.views.currentView) delete app.views.currentView;
 
-      console.log(route)
-      
       app.utils.loadView.get(route + 'View').then(function(View) {
         app.views.currentView = new View({ subPage: _id });
         self.renderSecondary(app.views.currentView.$el);
@@ -177,7 +176,7 @@ function(app, AppTemplate) {
 
         return deferred.resolve();
       }).fail(function(e) {
-        console.warn(e);
+        app.controls.handleError(e);
       });
 
       return deferred.promise();
@@ -197,10 +196,7 @@ function(app, AppTemplate) {
 
       if (!_route) return deferred.reject();
 
-      // console.log(_route, id)
-
       var models = {
-        // 'users': 'user',
         'superadmins': 'user',
         'admins': 'user',
         'managers': 'user',

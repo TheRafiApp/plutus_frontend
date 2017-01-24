@@ -157,7 +157,7 @@ function(app) {
         var total = 0;
         if (transfers) {
           transfers.map(function(transfer) {
-            if (transfer.source == id && transfer.status !== 'failed') total += transfer.amount;
+            if (transfer.source == id && !['failed', 'error', 'cancelled'].contains(transfer.status.state)) total += transfer.amount;
           });
         }
         output[id] = total;

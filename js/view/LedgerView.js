@@ -78,16 +78,20 @@ function(
     },
 
     totals: function(tableView) {
-      console.log(tableView.collection);
 
       var total_amount = tableView.collection.pluck('amount').reduce(function(a,b) {
         return a + b;
       });
-
-      console.log(total_amount)
-
+      
       return {
         transfer: {
+          source_name: '', 
+          destination: {
+            name: ''
+          }, 
+          status: {
+            state: ''
+          },
           amount_pretty: app.utils.prettyMoney(total_amount)
         }
       };

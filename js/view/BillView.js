@@ -78,7 +78,9 @@ function(app, UserCardView, ModalTransferView, BillModel, BillTemplate, HeaderTe
         var amount = 0;
 
         transfers.forEach(function(transfer) {
-          if (transfer.source == tenant_id) amount += transfer.amount;
+          if (transfer.source == tenant_id && !['failed', 'error', 'cancelled'].contains(transfer.status.state)) { 
+            amount += transfer.amount;
+          }
         });
 
         // console.log(tenant_transfers)
@@ -124,7 +126,7 @@ function(app, UserCardView, ModalTransferView, BillModel, BillTemplate, HeaderTe
     addTransfer: function() {
       this.modal = new ModalTransferView({
         action: 'add',
-        type: 'non-electronic',
+        type: 'offline',
         eventName: 'transferAdded',
         context: this,
       });

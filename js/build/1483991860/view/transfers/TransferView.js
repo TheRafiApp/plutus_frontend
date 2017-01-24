@@ -1,2 +1,0 @@
-define(["app","text!templates/repeaters/transfer.html"],function(e,t){return Backbone.View.extend({tagName:"li",className:"account-transfer",events:{"click .action-expand":"toggleExpand"},template:_.template(t),initialize:function(){this.render()},render:function(){var e=this.model.toJSON();return this.$el.html(this.template({transfer:e})),this},toggleExpand:function(){this.$el.find(".toggle").toggleClass("hidden")}})});
-//# sourceMappingURL=TransferView.js.map

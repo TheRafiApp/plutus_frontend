@@ -13,19 +13,20 @@ function(app) {
     API: 'http://10.1.10.38:8888/',
     // API: 'https://api.staging.payment.rafiproperties.com/',
     
-    // Google Places
-    google_places_key: 'AIzaSyDMZ-Plbcs3BMc0QkmX-7kHFeqQypaKEMA',
+    // Sockets Server URL
+    sockets_url: 'ws://localhost:4200',
 
     // Dwolla
     dwolla_env: 'sandbox',
+
+    // Google Places
+    google_places_key: 'AIzaSyDMZ-Plbcs3BMc0QkmX-7kHFeqQypaKEMA',
     
     // Bugherd
     bugherd: false,
-    bugherd_key: 'iu4t9xs1xpvpinhndnrpaa',
 
     // Sentry
     sentry: false,
-    // sentry_dsn: 'https://f99ae8cc4704427cb75dcdadb1951dc4@sentry.io/91967',
     
     // Debug
     debug: true,

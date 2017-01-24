@@ -31,23 +31,26 @@ function(app, FundingSourceTemplate) {
     },
 
     render: function() {
-      var data = this.model.toJSON();
+      var funding_source = this.model.toJSON();
 
       // is this funding source primary?
-      data.primary = this.primary;
+      funding_source.primary = this.primary;
 
-      // append microdeposit data
-      
-      var microdeposits = app.session.user.get('dwolla_account.microdeposits');
+      // append microdeposit data from user
+      var funding_source_cached = app.session.user.get('dwolla_account.funding_sources');
 
-      for (var fs in microdeposits) {
-        if (data.id === fs) {
-          data.microdeposits = microdeposits[fs];
-        }
-      }
+      _.extend(funding_source, funding_source_cached[funding_source.id]);
+
+      console.log(funding_source);
+
+      // for (var fs in microdeposits) {
+      //   if (data.id === fs) {
+      //     data.microdeposits = microdeposits[fs];
+      //   }
+      // }
 
       this.$el.html(this.template({ 
-        funding_source: data 
+        funding_source: funding_source
       }));
 
       var $microdeposits = this.$el.find('.numbers-only');

@@ -28,8 +28,8 @@ function(
     },
 
     title: function() {
-      var label = this.type === 'non-electronic' ? type : '';
-      return this.action + ' ' + label + ' Transfer';
+      var label = this.type === 'offline' ? this.type : '';
+      return this.action + ' ' + label + ' Payment';
     },
     
     template: _.template(ModalTransferTemplate),
@@ -94,13 +94,13 @@ function(
 
       if (this.type === 'electronic') {
         options.destination = this.managers.toJSON();
-      } else if (this.type === 'non-electronic') {
+      } else if (this.type === 'offline') {
         options.source = this.context.tenants;
       }
 
       this.ready(options);
 
-      if (this.type === 'non-electronic') {
+      if (this.type === 'offline') {
         // init datepicker
         this.$el.find('.date-picker').html(new DateView({
           name: 'date',
@@ -114,16 +114,15 @@ function(
     confirm: function() {
       var self = this;
       var formData = this.constructData();
-      if (this.type === 'non-electronic') formData.bill = this.context.model.get('_id');
+      if (this.type === 'offline') formData.bill = this.context.model.get('_id');
 
       if (!app.utils.validate(this, formData)) return false;
 
-      var microdeposits = app.session.user.get('dwolla_account.microdeposits');
-
-      if (microdeposits) {
-        app.alerts.error('Your bank account is unverified, please use microdeposits to verify before proceeding');
-        return;
-      }
+      // var microdeposits = app.session.user.get('dwolla_account.microdeposits');
+      // if (microdeposits && this.type !== 'offline') {
+      //   app.alerts.error('Your bank account is unverified, please use microdeposits to verify before proceeding');
+      //   return;
+      // }
 
       this.$el.find('.modal').addClass('loading');
 

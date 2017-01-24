@@ -62,8 +62,5 @@
 
   ```
   git commit -a -m "message"
-  git push
+  git push staging
   ```
-1. `ssh rafi-staging` or `ssh rafi-production`
-1. `/var/www/app/frontend`
-1. `git pull`

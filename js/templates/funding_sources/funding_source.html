@@ -8,8 +8,6 @@
       <li>Created: {{{ moment(funding_source.created).format('MM/DD/YYYY') }}}</li>
       <li><span class="status status-{{{ funding_source.status }}}">{{{ funding_source.status }}}</span></li>
 
-  {{# console.log(funding_source); }}
-
       {{# if (funding_source.status == 'unverified') { }}
 
         {{# if (funding_source.microdeposits == 'completed') { }}
@@ -40,6 +38,15 @@
           </form>
         </li>
 
+        {{# } else if (funding_source.microdeposits == 'pending') { }}
+
+        <li>
+          <form class="micro-deposits added">
+            <legend>Micro Deposits</legend>
+            <span class="status status-neutral">Micro deposits are pending</span>
+          </form>
+        </li>
+
         {{# } else if (funding_source.microdeposits == 'failed') { }}
 
         <li>
@@ -53,20 +60,23 @@
           </form>
         </li>
 
-        {{# } else if (funding_source.microdeposits == 'pending') { }}
+        {{# } else if (funding_source.microdeposits == 'maxattempts') { }}
 
         <li>
-          <form class="micro-deposits added">
+          <form class="micro-deposits failed">
             <legend>Micro Deposits</legend>
-            <span class="status status-neutral">Micro deposits are pending</span>
+            <span class="status status-error">You have reached the maximum number of attempts for microdeposit verification.
+              <a href="http://payment.rafiproperties.com/help">Visit our help docs</a>to get information on what to do next.</span>
           </form>
         </li>
 
         {{# } }}
-
       {{# } }}
+
     </ul>
+
     {{# if (funding_source.type !== 'balance') { }}
+    
     <div class="actions right">
       {{# if (funding_source.status == 'verified' && !funding_source.primary) { }}
       <a href="#" class="btn action-make-primary">Make Primary</a>
@@ -77,7 +87,6 @@
       {{# } else { }}
       <a href="#" class="btn btn-primary action-delete">Delete</a>
       {{# } }}
-
     </div>
 
     {{# } }}

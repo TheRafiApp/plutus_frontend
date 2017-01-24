@@ -1,0 +1,39 @@
+<li class="auth-event">
+	<a href="#" class="expand no-padding">
+		<span>{{{ moment(model.created).format('MM/DD/YY hh:mma') }}}</span><!--
+ --><span class="type">{{{ model.type }}}</span><!--
+		{{# if (model.device) { }}
+ --><span class="no-padding right"><div class="icon {{{ model.device.type || 'desktop' }}}"></div></span><!--
+		{{# } }} 
+--></a>
+  <div class="collapsed">
+    <div class="pills">
+
+      <div class="pill">
+        <div class="pill-left">IP:</div>
+        <div class="pill-right">{{{ model.ip_address }}}</div>
+      </div>
+	
+			{{# if (model.user_agent) { }}
+      <div class="pill">
+        <div class="pill-left">OS:</div>
+        <div class="pill-right">{{{ model.os.name }}} {{{ model.os.version }}}</div>
+      </div>
+
+      <div class="pill">
+        <div class="pill-left">Browser:</div>
+        <div class="pill-right">{{{ model.browser.name }}} {{{ model.browser.major }}}</div>
+      </div>
+			
+			{{# if (model.device) { }}
+			<div class="pill">
+        <div class="pill-left">Device:</div>
+        <div class="pill-right">{{{ model.device.type || '–' }}}</div>
+      </div>
+      {{# } }}
+
+			{{# } }}
+
+    </div>
+  </div>
+</li>

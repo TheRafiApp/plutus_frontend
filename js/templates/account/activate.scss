@@ -267,7 +267,8 @@
       display: block;
       top: 20px;
       left: 20px;
-      width: 96px;
+      // width: 96px;
+      width: 66px;
     }
 
     .logo-container {
@@ -285,6 +286,7 @@
       top: 20px;
       left: 20px;
       width: 96px;
+      // width: 66px;
     }
     
     .icon-container {
@@ -301,11 +303,27 @@
   }
 }
 
+@media (max-width: $breakpoint-medium) {
+  .activation {
+    .logo {
+      width: 66px !important;
+    }
+
+    .step {
+      padding-top: 0;
+    }
+  }
+}
+
 @media (max-width: $breakpoint-small) {
   
   .activation {
     .container {
       max-width: 100%;
+    }
+
+    .step {
+      padding-top: 0;
     }
   }
 

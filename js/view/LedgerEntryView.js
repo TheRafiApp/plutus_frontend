@@ -16,7 +16,8 @@ function(app, ModelView, UserCardView, TransferModel, TransferTemplate) {
     className: 'user-view',
 
     events: {
-      'click .action-reinvite': 'resendInvitation'
+      'click .action-reinvite': 'resendInvitation',
+      'click .action-cancel-transfer': 'cancelTransfer'
     },
 
     template: _.template(TransferTemplate),
@@ -38,8 +39,8 @@ function(app, ModelView, UserCardView, TransferModel, TransferTemplate) {
         context: this,
 
         options: {
-          edit: true,
-          delete: true
+          edit: false,
+          delete: false
         }
       });
 
@@ -62,6 +63,14 @@ function(app, ModelView, UserCardView, TransferModel, TransferTemplate) {
       $('.tertiary').removeClass('loading');
 
       return this;
+    },
+
+    cancelTransfer: function() {
+      var self = this;
+
+      this.model.cancelTransfer().then(function() {
+        app.router.navigate('ledger', { trigger: true });
+      });
     }
     
   });

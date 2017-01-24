@@ -72,7 +72,6 @@ function(
 
         // IAV successful
         if (response) {
-          console.log(response)
           
           var data = {
             id: response._links['funding-source'].href.split('funding-sources/')[1], // id

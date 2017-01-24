@@ -1,2 +1,0 @@
-define(["app","text!templates/cards/bill_small.html"],function(t,e){return Backbone.View.extend({events:{click:"viewBill"},template:_.template(e),initialize:function(t){_.extend(this,t),this.render()},render:function(){var e=this.model.toJSON();return this.$el.html(this.template({bill:e,prettyMoney:t.utils.prettyMoney})),this},viewBill:function(e){var i=this.model.get("_id"),l=t.router.getPath();t.router.navigate(l+"/"+i,{trigger:!0})}})});
-//# sourceMappingURL=bill_small.js.map

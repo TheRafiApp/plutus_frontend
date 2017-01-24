@@ -35,6 +35,8 @@ function(app, TestModel, DebugMenuTemplate) {
       'click .action-success': 'alertSuccess',
       'click .action-warn': 'alertWarn',
 
+      'click .action-sockets-test': 'socketTest',
+
       'change #toggle-activation': 'toggleActivation'
     },
 
@@ -201,9 +203,11 @@ function(app, TestModel, DebugMenuTemplate) {
       app.alerts.warn('This is a test warning!');
     },
 
+    socketTest: function() {
+      app.socket.send({ test: true });
+    },
+
     showUnitTests: function() {
-      console.log('run unit tests')
-      console.log($('.jasmine_html-reporter'));
       $('.jasmine_html-reporter').addClass('visible');
     },
 

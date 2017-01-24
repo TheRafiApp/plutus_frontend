@@ -1,2 +1,0 @@
-define(["app","model/users/TenantModel","text!templates/cards/user.html"],function(e,t,n){return Backbone.View.extend({className:"tenant grid__col grid__col--1-of-2",events:{},template:_.template(n),initialize:function(e){_.extend(this,e),this.model=new t(this.data),this.render()},render:function(){var e=this.model.toJSON();return this.$el.html(this.template({user:e})),this}})});
-//# sourceMappingURL=tenant.js.map

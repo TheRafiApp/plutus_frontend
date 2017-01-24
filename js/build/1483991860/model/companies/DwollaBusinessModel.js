@@ -1,2 +1,0 @@
-define(["app","model/account/DwollaAccountModel"],function(i,e){return e.extend({url:function(){var e=i.session.get("logged_in"),n=e?"company/dwolla":"admins/activate/dwolla";return i.API()+n},initialize:function(i,e){this.validation=_.extend({},this.validation,this.additionalValidation)},additionalValidation:{businessName:{required:!0},businessType:{required:!0},ein:{required:!0,length:10,msg:"EIN must be 9 digits"}}})});
-//# sourceMappingURL=DwollaBusinessModel.js.map
