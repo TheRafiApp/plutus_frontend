@@ -30,23 +30,37 @@ function(app, AutoCompleteView, PropertyModel, FundingSourcesCollection, StepTem
 
       this.collection = new FundingSourcesCollection();
 
+      Backbone.Validation.bind(this);
+
       this.collection.fetch().then(function() {
         self.render();
-        self.context.unlock();
+        self.parentView.unlock();
       });
 
-      this.context.lock();
+      this.parentView.lock();
       this.render();
+
+      this.on('autocomplete--selection', this.placeChange, this);
 
       return this;
     },
 
-    render: function() {
+    placeChange: function() {
+      // console.log(this.autocomplete.place)
+      this.place_data = this.autocomplete.place;
+    },
 
+    // attachEvents: function() {
+    //   if (this.listening) return;
+    //   this.on('autocomplete--selection'),
+    // },
+
+    render: function() {
+      console.log('render()')
       // this.on('next', this.next, this);
 
       this.$el.html(this.template({
-        property: this.context.property,
+        property: this.parentView.parentView.data.property,
         funding_sources: this.collection.toJSON()
       }));
 
@@ -56,11 +70,16 @@ function(app, AutoCompleteView, PropertyModel, FundingSourcesCollection, StepTem
         overflowEscape: true
       });
 
+      this.updatePayInto();
+
       return this;
     },
 
     handleChange: function(e) {
       var query = $(e.currentTarget).val();
+
+      console.log('handleChange')
+      this.place_data = {}
 
       if (e.which && e.which === 27) e.preventDefault(); // esc dont close modal
 
@@ -69,24 +88,62 @@ function(app, AutoCompleteView, PropertyModel, FundingSourcesCollection, StepTem
     },
 
     updatePayInto: function(e) {
-      var value = $(e.currentTarget).val();
+      var value = this.$el.find('input[name="pay_into_target"]:checked').val();
       var $dropdown = this.$el.find('.pay-into .dropdown');
+      var $select = $dropdown.children('select');
+      var isTrue = value === 'true';
 
-      var action = value === 'true' ? 'show' : 'hide';
+      var action = isTrue ? 'show' : 'hide';
       $dropdown[action]();
+
+      $select.attr('disabled', !isTrue);
     },
 
     toggleModelType: function() {
       this.parentView.toggleModelType();
     },
 
-    validate: function() {
+    constructData: function() {
       var data = this.$el.find('form').serializeObject();
+      
+      if (data['pay_into_target'] === 'false') data.dwolla = { funding_source: null };
+
+      data.address = this.place_data.address;
+      data.city = this.place_data.city;
+      data.state = this.place_data.state;
+      data.zip = this.place_data.zip;
+      data.country = this.place_data.country;
+      data.place_id = this.place_data.place_id;
+
+      delete data['pay_into_target'];
+
+      // console.log(app.schema.process(data, this.model));
+
+      return app.schema.process(data, this.model);
+    },
+
+    validate: function() {
+      var data = this.constructData();
+
+      console.log(data);
+
+      var validate = app.utils.validate(this, data);
+
+      console.log(validate)
+
+      if (!validate) {
+        console.warn('didnt validate')
+        return false;
+      }
+
+      console.log('passed validation')
+
       return data;
     },
 
     next: function() {
       var data = this.validate();
+
       if (!data) return;
 
       this.parentView.setData(data);

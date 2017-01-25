@@ -40,7 +40,7 @@ function(app, ModalView, ModalTemplate) {
 
       this.steps.forEach(function(step) {
         var childView = new step({
-          context: self
+          parentView: self
         });
 
         self.$el.find('.steps').append(childView.$el);
@@ -53,7 +53,8 @@ function(app, ModalView, ModalTemplate) {
 
     handlePrevious: function() {
       // is this necessary?
-      this.child_views[this.currentIndex].trigger('previous');
+      // this.child_views[this.currentIndex].trigger('previous');
+      this.previousStep();
     },
 
     handleNext: function() {
@@ -65,6 +66,8 @@ function(app, ModalView, ModalTemplate) {
     },
 
     nextStep: function() {
+      console.log('nextStep()')
+      console.log(this);
       this.setStep(this.currentIndex + 1);
     },
 
@@ -73,7 +76,7 @@ function(app, ModalView, ModalTemplate) {
       this.currentIndex = stepIndex;
       this.$el.find('.active').removeClass('active');
 
-      this.child_views[this.currentIndex].$el.addClass('active');
+      this.child_views[this.currentIndex].initialize().$el.addClass('active');
       this.renderCount();
       this.updateButtons();
     },

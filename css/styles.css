@@ -6275,6 +6275,40 @@ ul.collapsible li .transfer.processed .transfer-status{
   transition:all .7s;
 }
 
+.color-success{
+  color:#45c97a;
+}
+
+.color-bg-success{
+  background-color:#45c97a;
+}
+
+.color-neutral{
+  color:#0071bc;
+}
+
+.color-bg-neutral{
+  color:#fff;
+  background-color:#0071bc;
+}
+
+.color-warning{
+  color:#f7d114;
+}
+
+.color-bg-warning{
+  background-color:#f7d114;
+}
+
+.color-error{
+  color:#e91e63;
+}
+
+.color-bg-error{
+  color:#fff;
+  background-color:#e91e63;
+}
+
 .autocomplete{
   display:none;
 }
@@ -6286,6 +6320,14 @@ ul.collapsible li .transfer.processed .transfer-status{
 .autocomplete.fixed{
   position:fixed;
   z-index:99999999999;
+}
+
+.autocomplete .choices li a:hover{
+  background:#d5d8de;
+}
+
+.autocomplete .choices li a.active:hover{
+  background:#0071bc;
 }
 
 .color-success{
@@ -6426,51 +6468,6 @@ ul.collapsible li .transfer.processed .transfer-status{
     width:18px;
     height:19px;
   }
-}
-
-.refresh-lock{
-  position:fixed;
-  top:0;
-  right:0;
-  bottom:0;
-  left:0;
-  z-index:9999999999;
-  background-color:#fff;
-}
-
-.refresh-lock .small-panel .btn{
-  width:100%;
-  padding:14px;
-  font-size:1.4em;
-  margin-top:9px;
-}
-
-.transfers .transfer-cards{
-  margin-top:10px;
-}
-
-.transfers .transfer-cards .user-payments:last-child card{
-  margin-bottom:0;
-}
-
-.transfers .transfer-cards card{
-  max-width:400px;
-  box-shadow:none;
-}
-
-.transfers .transfer-cards card h2{
-  margin:0;
-  font-size:1.1em;
-}
-
-.transfers .transfer-cards ul.transfer-data{
-  text-align:right;
-  font-size:1.1em;
-  font-weight:700;
-}
-
-.transfers .transfer-cards ul.transfer-data li{
-  display:block;
 }
 
 .color-success{
@@ -6701,6 +6698,51 @@ input.bill_due_day{
 
 .split .modal card.flex ul li{
   color:#333;
+}
+
+.transfers .transfer-cards{
+  margin-top:10px;
+}
+
+.transfers .transfer-cards .user-payments:last-child card{
+  margin-bottom:0;
+}
+
+.transfers .transfer-cards card{
+  max-width:400px;
+  box-shadow:none;
+}
+
+.transfers .transfer-cards card h2{
+  margin:0;
+  font-size:1.1em;
+}
+
+.transfers .transfer-cards ul.transfer-data{
+  text-align:right;
+  font-size:1.1em;
+  font-weight:700;
+}
+
+.transfers .transfer-cards ul.transfer-data li{
+  display:block;
+}
+
+.refresh-lock{
+  position:fixed;
+  top:0;
+  right:0;
+  bottom:0;
+  left:0;
+  z-index:9999999999;
+  background-color:#fff;
+}
+
+.refresh-lock .small-panel .btn{
+  width:100%;
+  padding:14px;
+  font-size:1.4em;
+  margin-top:9px;
 }
 
 .color-success{

@@ -9,8 +9,8 @@ define([
 ],
 function(
   app, 
-  PropertyNewView, 
-  PropertyExistingView 
+  NewView, 
+  ExistingView 
 ) {
 
   return Backbone.View.extend({
@@ -24,23 +24,27 @@ function(
     initialize: function(_options) {
       if (_options) _.extend(this, _options);
 
-      this.on('next', this.next, this);
+      this.attachEvents();
 
-      this.render();
+      return this.render();
     },
 
-    render: function() {
-      var PropertyView;
-      if (this.modelIsNew === undefined) {
-        this.modelIsNew = false;
+    attachEvents: function() {
+      if (!this.listening) {
+        this.listening = true;
+        this.on('next', this.next, this);
       }
+    },
 
-      PropertyView = this.modelIsNew ? PropertyNewView : PropertyExistingView;
+    render: function() {      
+      if (this.modelIsNew === undefined) this.modelIsNew = false;
 
-      this.currentView = new PropertyView({
-        context: this.context,
+      var ChildView = this.modelIsNew ? NewView : ExistingView;
+
+      this.currentView = new ChildView({
         parentView: this
       });
+
       this.$el.html(this.currentView.$el);
 
       return this;
@@ -51,12 +55,37 @@ function(
       this.render();
     },
 
+    // this is confirmation of next step 
     setData: function(data) {
-      this.context.data.property = data;
+      console.log('------- setData() -------')
+      this.parentView.data.property = data;
+
+      // console.log('property', this.context)
+
+      this.successAnimation();
+    },
+
+    successAnimation: function() {
+      $('.modal').addClass('loading success');
+
+      var self = this;
+
+      app.controls.wait(1200).then(function() {
+        $('.modal').removeClass('loading success');
+        self.parentView.nextStep();
+      });
     },
 
     next: function() {
       this.currentView.next();
+    },
+
+    lock: function() {
+      this.parentView.lock();
+    },
+
+    unlock: function() {
+      this.parentView.unlock();
     }
 
   });

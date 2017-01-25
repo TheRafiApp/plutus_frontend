@@ -30,18 +30,16 @@ function(
 
       this.collection.fetch().then(function() {
         self.render();
-        self.context.unlock();
+        self.parentView.unlock();
       });
 
-      this.context.lock();
+      this.parentView.lock();
       this.render();
 
       return this;
     },
 
     render: function() {
-
-      // this.on('next', this.next, this);
 
       this.$el.html(this.template({
         properties: this.collection.toJSON()
@@ -54,15 +52,16 @@ function(
       this.parentView.toggleModelType();
     },
 
-    validate: function() {
-      var data = this.$el.find('form').serializeObject();
-      if (!data._id) return false;
+    constructData: function() {
+      var data = {
+        _id: this.$el.find('select[name="_id"]').val()
+      };
       return data;
     },
 
     next: function() {
-      var data = this.validate();
-      if (!data) return;
+
+      var data = this.constructData();
 
       this.parentView.setData(data);
     }

@@ -156,7 +156,7 @@ function(app, ResultsTemplate) {
       this.$el.removeClass('visible');
       this.input.val(this.choice.description);
       
-      this.emitChange();
+      // this.emitChange();
     },
 
     selectItem: function(e) {
@@ -179,10 +179,37 @@ function(app, ResultsTemplate) {
     },
 
     updateDetails: function(data) {
+      // console.log(data);
       var fullAddress = data.formatted_address;
       var place_id = data.place_id;
 
-      this.input.val(fullAddress)
+      var address_components = data.address_components;
+      var components = {}; 
+      _.each(address_components, function(v1, k) {
+        _.each(v1.types, function(v2, k2) {
+          components[v2] = v1.long_name;
+        });
+      });
+
+      var place_data = {
+        address: data.formatted_address.split(',')[0],
+        city: components.locality || components.sublocality,
+        state: components.administrative_area_level_1,
+        zip: components.postal_code,
+        country: components.political,
+        place_id: place_id
+      };
+
+      // console.log(place_data)
+
+      this.setPlace(place_data);
+
+      // this.input.val(fullAddress);
+    },
+
+    setPlace: function(place_data) {
+      this.place = place_data;
+      this.emitChange();
     },
 
     resetQuery: function() {
@@ -190,7 +217,7 @@ function(app, ResultsTemplate) {
       delete this.choice;
     },
 
-    emitChange: function() {
+    emitChange: function(place_data) {
       this.context.trigger('autocomplete--selection');
     },
 

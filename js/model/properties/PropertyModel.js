@@ -16,7 +16,14 @@ function(app) {
       return app.API() + 'properties/';
     },
 
+    // schema: {
+    //   address: {
+    //     type: 'address'
+    //   }
+    // },
+
     filters: [
+      'address',
       'full_address',
       'vacancies',
       'pay_into_target'

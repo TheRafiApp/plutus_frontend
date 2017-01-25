@@ -1,3 +1,5 @@
+@import '../../../scss/modules/colors';
+
 .autocomplete {
 	display: none;
 	
@@ -8,5 +10,21 @@
 	&.fixed {
 		position: fixed;
 		z-index: 99999999999;
+	}
+
+	.choices {
+		li {
+			a {
+				&:hover {
+					background: #d5d8de;
+				}
+
+				&.active {
+					&:hover {
+						background: $color-highlight;
+					}
+				}
+			}
+		}
 	}
 }
