@@ -266,6 +266,8 @@ function(
             .addClass('has-' + type)
             .find('.help-text')
             .html(message);
+
+            console.log($el, message)
         return this;
       },
 

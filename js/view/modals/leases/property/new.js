@@ -21,6 +21,8 @@ function(app, AutoCompleteView, PropertyModel, FundingSourcesCollection, StepTem
 
     template: _.template(StepTemplate),
 
+    place_data: {},
+
     initialize: function(_options) {
       if (_options) _.extend(this, _options);
 
@@ -40,25 +42,23 @@ function(app, AutoCompleteView, PropertyModel, FundingSourcesCollection, StepTem
       this.parentView.lock();
       this.render();
 
-      this.on('autocomplete--selection', this.placeChange, this);
+      this.attachEvents();
 
       return this;
     },
 
     placeChange: function() {
-      // console.log(this.autocomplete.place)
       this.place_data = this.autocomplete.place;
     },
 
-    // attachEvents: function() {
-    //   if (this.listening) return;
-    //   this.on('autocomplete--selection'),
-    // },
+    attachEvents: function() {
+      if (!this.listening) {
+        this.listening = true;
+        this.on('autocomplete--selection', this.placeChange, this);
+      }
+    },
 
     render: function() {
-      console.log('render()')
-      // this.on('next', this.next, this);
-
       this.$el.html(this.template({
         property: this.parentView.parentView.data.property,
         funding_sources: this.collection.toJSON()
@@ -77,9 +77,8 @@ function(app, AutoCompleteView, PropertyModel, FundingSourcesCollection, StepTem
 
     handleChange: function(e) {
       var query = $(e.currentTarget).val();
-
-      console.log('handleChange')
-      this.place_data = {}
+      
+      this.place_data = {};
 
       if (e.which && e.which === 27) e.preventDefault(); // esc dont close modal
 
@@ -104,6 +103,7 @@ function(app, AutoCompleteView, PropertyModel, FundingSourcesCollection, StepTem
     },
 
     constructData: function() {
+
       var data = this.$el.find('form').serializeObject();
       
       if (data['pay_into_target'] === 'false') data.dwolla = { funding_source: null };
@@ -117,26 +117,23 @@ function(app, AutoCompleteView, PropertyModel, FundingSourcesCollection, StepTem
 
       delete data['pay_into_target'];
 
-      // console.log(app.schema.process(data, this.model));
-
       return app.schema.process(data, this.model);
     },
 
     validate: function() {
       var data = this.constructData();
 
-      console.log(data);
+      if (_.isEmpty(this.place_data)) {
+        app.controls.fieldError({
+          element: '.address-selector',
+          error: 'Please select a valid adddress'
+        });
 
-      var validate = app.utils.validate(this, data);
-
-      console.log(validate)
-
-      if (!validate) {
-        console.warn('didnt validate')
         return false;
       }
 
-      console.log('passed validation')
+      var validate = app.utils.validate(this, data);
+      if (!validate) return false;
 
       return data;
     },
@@ -148,7 +145,6 @@ function(app, AutoCompleteView, PropertyModel, FundingSourcesCollection, StepTem
 
       this.parentView.setData(data);
     }
-    
     
   });
 });
