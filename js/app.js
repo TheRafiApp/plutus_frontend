@@ -536,9 +536,9 @@ function(
 
         _view.model.set(formData);
 
-        console.log(_view.model)
-
         var invalid = _view.model.validate();
+
+        console.log(invalid);
 
         // scroll to first error
         if (app.utils.scrollToErrors(_view)) invalid = true;

@@ -155,8 +155,6 @@ function(app, ResultsTemplate) {
 
       this.$el.removeClass('visible');
       this.input.val(this.choice.description);
-      
-      // this.emitChange();
     },
 
     selectItem: function(e) {
@@ -179,7 +177,6 @@ function(app, ResultsTemplate) {
     },
 
     updateDetails: function(data) {
-      // console.log(data);
       var fullAddress = data.formatted_address;
       var place_id = data.place_id;
 
@@ -200,11 +197,7 @@ function(app, ResultsTemplate) {
         place_id: place_id
       };
 
-      // console.log(place_data)
-
       this.setPlace(place_data);
-
-      // this.input.val(fullAddress);
     },
 
     setPlace: function(place_data) {

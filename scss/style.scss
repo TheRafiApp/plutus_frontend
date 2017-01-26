@@ -5,138 +5,49 @@
  * 
  */ 
 
-// Bourbon Utils
 @import 'bourbon';
-
-// Reset
 @import 'modules/reset';
-
-// DOM breakpoints
+@import 'modules/toast-grid';
 @import 'modules/breakpoints';
- 
-// Colors
 @import 'modules/colors';
-
-// Fonts
 @import 'modules/fonts';
-
-// Animations
 @import 'modules/animations';
-
-// Loader
 @import 'modules/loader';
-
-// Buttons 
 @import 'modules/buttons';
-
-// Focus
 @import 'modules/focus'; 
-
-// Navigation
 @import 'modules/nav';
-
-// Basics
 @import 'modules/basics';
-
-// States
 @import 'modules/states';
-
-// Status
 @import 'modules/statuses';
-
-// Forms
 @import 'modules/forms';
-
-// Tables
 @import 'modules/tables';
-
-// Panels
 @import 'modules/panels';
-
-// Modals
 @import 'modules/modals';
-
-// Cards
 @import 'modules/cards';
-
-// Avatars
 @import 'modules/avatars';
-
-// Alerts
 @import 'modules/alerts';
-
-// Collapsibles
 @import 'modules/collapsibles';
-
-// Headers
 @import 'modules/headers';
-
-// Tabs
 @import 'modules/tabs';
-
-// Tooltips
 @import 'modules/tooltips';
-
-// Layers 
 @import 'modules/layers';
-
-// View
 @import 'modules/views';
-
-// Actions
 @import 'modules/actions';
-
-// Calendar
 @import 'modules/calendar';
-
-// Graphs
 @import 'modules/graphs';
-
-// Choices
 @import 'modules/choices';
-
-// Icons
 @import 'modules/icons';
-
-// Pills
+@import 'modules/repeaters';
 @import 'modules/pills';
-
-// Tips
 @import 'modules/tips';
 
-// Dark theme
 @import 'modules/themes/dark';
-
-// Tenants
 @import 'modules/roles/tenants';
 
-// Grid
-@import 'modules/toast-grid';
-
-// Tests
 @import 'modules/tests';
-
-// Debug
 @import 'modules/debug';
 
-
-// Tasks
-
-// .tasks {
-//   max-width: 800px;
-  
-//   .task {
-//     padding: 20px 25px;
-//     background-color: $color-grey-20;
-//     border-radius: 3px;
-//     margin-bottom: 20px;
-
-//     p {
-//       max-width: calc(100% - 100px);
-//     }
-//   }  
-// }
-
+// TODO: refactor these
 
 // BEGIN MEDIA QUERIES
 
@@ -622,8 +533,3 @@
     }
   }
 }
-
-// 320px - xsmall - phone portrait
-// @media (max-width: $breakpoint-xsmall) {
-
-// }

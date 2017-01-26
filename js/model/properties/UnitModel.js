@@ -65,9 +65,9 @@ function(app) {
       number: {
         required: true
       },
-      property: {
-        required: true
-      },
+      // property: { // requiring this doesn't allow for creating both together
+      //   required: true
+      // },
       beds: function(input, field, attributes) {
         var check = input % 1;
         if (isNaN(check) || check !== check) return 'Please enter a valid number';

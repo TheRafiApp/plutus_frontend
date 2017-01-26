@@ -1,19 +1,23 @@
 <form class="form-model">
   <div class="field-group">
     <legend>Start Date</legend>
-    <input name="start_date" id="start_date" type="text">
+    
+    <input type="text" name="start_date" class="start-date-input">
+
     <span class="help-text"></span>
   </div>
 
   <div class="field-group">
     <legend>Type</legend>
-      <input type="radio" name="type" id="type--fixed" value="fee" checked><label for="type--fixed">Fixed Term</label>
-      <input type="radio" name="type" id="type--monthly" value="credit"><label for="type--monthly">Month to Month</label>
+      <input type="radio" name="type" id="type--fixed" value="fixed" checked><label for="type--fixed">Fixed Term</label>
+      <input type="radio" name="type" id="type--monthly" value="monthly"><label for="type--monthly">Month to Month</label>
   </div>
 
-  <div class="field-group">
+  <div class="field-group end_date_group">
     <legend>End Date</legend>
-    <input name="end_date" id="end_date" type="text" />
+
+    <input type="text" name="end_date" class="end-date-input">
+
     <span class="help-text"></span>
   </div>
 </form>

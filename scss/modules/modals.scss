@@ -213,6 +213,29 @@
       font-size: 1.3em;
     }
 
+    .steps {
+      .form-model {
+        width: 390px;
+
+        select {
+          width: 100%;
+          margin-top: 5px;
+        }
+
+        .money {
+          width: 100%;
+
+          input {
+            width: 100%;
+          }
+        }
+
+        .chosen-multiple {
+          margin-top: 5px;
+        }
+      }
+    }
+
     .step {
       display: none;
 

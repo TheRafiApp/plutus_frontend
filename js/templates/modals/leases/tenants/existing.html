@@ -1,0 +1,13 @@
+<form>
+  <div class="field-group">
+    <legend>Choose Tenants</legend>
+
+    <select name="_id" class="tenants chosen-multiple" multiple>
+    {{# _.each(tenants, function(tenant) { }}
+      <option value="{{{ tenant._id }}}">{{{ tenant.full_name }}}</option>
+    {{# }) }}
+    </select>
+
+    <div class="help-text"></div>
+  </div>
+</form>

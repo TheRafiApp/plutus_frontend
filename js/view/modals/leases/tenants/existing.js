@@ -1,15 +1,15 @@
 /**
- * modals/leases/property/existing.js
+ * modals/leases/tenants/existing.js
  */
 
 define([
   'app',
-  'collection/properties/PropertiesCollection',
-  'text!templates/modals/leases/property/existing.html'
+  'collection/users/TenantsCollection',
+  'text!templates/modals/leases/tenants/existing.html'
 ],
 function(
   app, 
-  PropertiesCollection, 
+  TenantsCollection, 
   StepTemplate
 ) {
 
@@ -26,7 +26,7 @@ function(
 
       var self = this;
 
-      this.collection = new PropertiesCollection();
+      this.collection = new TenantsCollection();
 
       this.collection.fetch().then(function() {
         self.render();
@@ -40,26 +40,25 @@ function(
     },
 
     render: function() {
-
       this.$el.html(this.template({
-        properties: this.collection.toJSON()
+        tenants: this.collection.toJSON()
       }));
+
+      this.$el.find('.chosen-multiple').chosen();
 
       return this;
     },
 
-    toggleModelType: function() {
-      this.parentView.toggleModelType();
-    },
-
     constructData: function() {
-      var _id = this.$el.find('select[name="_id"]').val();
+      var tenant_ids = this.$el.find('.tenants').val();
+      if (!tenant_ids) return [];
 
-      var model = this.collection.find({
-        _id: _id
+      var all_tenants = this.collection.toJSON();
+      var tenants = all_tenants.filter(function(tenant) {
+        return tenant_ids.contains(tenant._id);
       });
 
-      return model.toJSON();
+      return tenants;
     },
 
     next: function() {

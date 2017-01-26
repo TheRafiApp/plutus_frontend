@@ -210,9 +210,9 @@ function(app) {
     },
 
     validation: {
-      unit: {
-        required: true
-      },
+      // unit: {
+      //   required: true
+      // },
       start_date: {
         required: true
       },

@@ -17,7 +17,15 @@ function(app, ModalView, ModalTemplate) {
       return 'Steps';
     },
 
+    updateTitle: function(_subtitle) {
+      var subtitle = '';
+      if (_subtitle) subtitle = ' - ' + _subtitle;
+
+      this.$el.find('header h2.left').html(this.title() + subtitle);
+    },
+
     events: {
+      'click .overlay': 'easyClose',
       'click .action-previous': 'handlePrevious',
       'click .action-next': 'handleNext'
     },
@@ -52,8 +60,6 @@ function(app, ModalView, ModalTemplate) {
     },
 
     handlePrevious: function() {
-      // is this necessary?
-      // this.child_views[this.currentIndex].trigger('previous');
       this.previousStep();
     },
 
@@ -66,17 +72,18 @@ function(app, ModalView, ModalTemplate) {
     },
 
     nextStep: function() {
-      console.log('nextStep()')
-      console.log(this);
       this.setStep(this.currentIndex + 1);
     },
 
     setStep: function(stepIndex) {
       if (stepIndex < 0 || stepIndex > (this.steps.length - 1)) return;
+
+      app.views.appView.closeCalendarInputs();
+      
       this.currentIndex = stepIndex;
       this.$el.find('.active').removeClass('active');
 
-      this.child_views[this.currentIndex].initialize().$el.addClass('active');
+      this.child_views[this.currentIndex].show();
       this.renderCount();
       this.updateButtons();
     },
@@ -109,7 +116,21 @@ function(app, ModalView, ModalTemplate) {
 
     unlock: function() {
       this.$el.find('.content').removeClass('loading');
-    }
+    },
+
+    easyClose: function() {
+      var changed = false;
+
+      for (var index in this.data) {
+        if (!_.isEmpty(this.data[index])) changed = true;
+      }
+
+      if (!changed) {
+        this.closeModal();
+      } else {
+        app.controls.modalShake(this);
+      }
+    },
 
   });
 });

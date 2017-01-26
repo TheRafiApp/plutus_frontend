@@ -631,6 +631,7 @@ function(
 
     // Hide error messages on change for non text inputs
     .on('change', '.has-error input', function() {
+      console.log('change')
       // make sure input is correct type
       if ($(this).hasClass('chosen')) return; 
       $(this).closest('.field-group').removeClass('has-error');
@@ -645,7 +646,6 @@ function(
 
     // Focus chaining on single char inputs
     .on('keyup', '.focus-chain', function(event) {
-
       var key = String.fromCharCode(event.which);
       var regex;
 

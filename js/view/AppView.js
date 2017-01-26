@@ -349,6 +349,25 @@ function(app, AppTemplate) {
 
       this.autocomplete = view;
       $('body').append(view.$el);
+    },
+
+    calendarInputs: [],
+
+    addCalendarInput: function(view) {
+      this.calendarInputs.push(view);
+      $('body').append(view.$el);
+    }, 
+
+    closeCalendarInputs: function() {
+      var self = this;
+
+      this.calendarInputs.forEach(function(view) {
+        view.close();
+        var index = self.calendarInputs.indexOf(view);
+        delete self.calendarInputs[index];
+      });
+
+      this.calendarInputs = [];
     }
 
   });

@@ -22,7 +22,6 @@ function(
     template: _.template(StepTemplate),
 
     initialize: function(_options) {
-      console.log('init')
       if (_options) _.extend(this, _options);
 
       var self = this;
@@ -59,17 +58,20 @@ function(
       this.parentView.toggleModelType();
     },
 
-    validate: function() {
-      var data = this.$el.find('form').serializeObject();
-      if (!data._id) return false;
-      return data;
+    constructData: function() {
+      var _id = this.$el.find('select[name="_id"]').val();
+
+      var model = this.collection.find({
+        _id: _id
+      });
+
+      return model.toJSON();
     },
 
     next: function() {
-      var data = this.validate();
-      if (!data) return;
 
-      console.log('next()')
+      var data = this.constructData();
+
       this.parentView.setData(data);
     }
     

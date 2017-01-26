@@ -1,15 +1,6 @@
-<form class="form-model">
-  <div class="field-group">
-    <legend>Choose Tenants</legend>
-    <select name="tenants[]" class="chosen-multiple tenants" multiple>
-      {{# _.each(tenants, function(tenant) { }}
-        <option value="{{{ tenant._id }}}">{{{ tenant.full_name }}}</option>
-      {{# }) }}
-    </select>
-    <span class="help-text"></span>
-  </div>
-
+<div class="form-model">
+  <div class="existing-tenants"></div>
   <div class="new-tenants"></div>
 
   <a href="#" class="action-add-tenant">Add a new tenant</a>
-</form>
+</div>

@@ -18,7 +18,8 @@ function(
     className: 'step',
 
     events: {
-      'keyup .address-selector': 'handleChange'
+      'change input': 'changed',
+      'change select': 'changed',
     },
 
     initialize: function(_options) {
@@ -27,6 +28,27 @@ function(
       this.attachEvents();
 
       return this.render();
+    },
+
+    changed: function() {
+      var steps = this.parentView.child_views;
+
+      var thisIndex = steps.indexOf(this);
+
+      steps.forEach(function(step, index) {
+        if (index === (thisIndex + 1)) step.fetched = false;
+      });
+    },
+
+    show: function() {
+      this.$el.addClass('active');
+      this.parentView.data.property = {};
+      this.parentView.updateTitle();
+
+      if (!this.fetched) { 
+        this.initialize(); 
+        this.fetched = true;
+      }
     },
 
     attachEvents: function() {
@@ -52,15 +74,13 @@ function(
 
     toggleModelType: function() {
       this.modelIsNew = !this.modelIsNew;
+      this.changed();
       this.render();
     },
 
     // this is confirmation of next step 
     setData: function(data) {
-      console.log('------- setData() -------')
       this.parentView.data.property = data;
-
-      // console.log('property', this.context)
 
       this.successAnimation();
     },
@@ -72,6 +92,7 @@ function(
 
       app.controls.wait(1200).then(function() {
         $('.modal').removeClass('loading success');
+        self.parentView.updateTitle(self.parentView.data.property.address);
         self.parentView.nextStep();
       });
     },

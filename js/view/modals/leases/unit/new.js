@@ -12,14 +12,13 @@ function(app, UnitModel, StepTemplate) {
   return Backbone.View.extend({
 
     events: {
-      'click .action-toggle': 'toggleModelType'
+      'click .action-toggle': 'toggleModelType',
+      'blur .money input': 'validateAmount'
     },
 
     template: _.template(StepTemplate),
 
     initialize: function(_options) {
-
-      console.log('init()')
       if (_options) _.extend(this, _options);
 
       var self = this;
@@ -34,12 +33,25 @@ function(app, UnitModel, StepTemplate) {
     },
 
     render: function() {
-      console.log('render()')
-
       this.$el.html(this.template({
         unit: this.parentView.parentView.data.unit,
         existingIsDisabled: this.existingIsDisabled
       }));
+
+      var decimals = this.$el.find('input[name="beds"], input[name="baths"]');
+      decimals.mask('zzzz', {
+        translation: {
+          'z': {
+            pattern: /[0-9\.]/
+          }
+        }
+      });
+
+      var number = this.$el.find('input[name="sq_ft"]');
+      number.mask('000000');
+
+      // var $money = this.$el.find('.money input');
+      // app.controls.maskMoney($money, this);
 
       return this;
     },
@@ -51,6 +63,10 @@ function(app, UnitModel, StepTemplate) {
     constructData: function() {
       var data = this.$el.find('form').serializeObject();
 
+      data['rent'] = 1; // were going to collect this data later
+
+      if (this.parentModelId) data['property'] = this.parentModelId;
+
       return app.schema.process(data, this.model);
     },
 
@@ -61,20 +77,17 @@ function(app, UnitModel, StepTemplate) {
 
       var validate = app.utils.validate(this, data);
 
-      console.log(validate)
+      console.log(validate);
 
-      if (!validate) {
-        console.warn('didnt validate')
-        return false;
-      }
-
-      console.log('passed validation')
+      if (!validate) return false;
 
       return data;
     },
 
     next: function() {
       var data = this.validate();
+
+      console.log(data);
 
       if (!data) return;
 
