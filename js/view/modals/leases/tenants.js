@@ -26,12 +26,10 @@ function(
     },
 
     beforeRender: function() {
-      console.log('beforeRender tenants')
       this.parentView.data.tenants = {};
     },
 
     render: function() {
-      console.log('render tenants')
       this.existing_tenants = new ExistingView({
         parentView: this
       });
@@ -57,13 +55,11 @@ function(
     },
 
     setData: function(data) { 
-      console.log('sd tenants')
       this.parentView.data.tenants = data;
       this.success();
     },
 
     constructData: function() {
-      console.log('cD tenants')
       var tenants = this.existing_tenants.constructData();
 
       this.new_models.forEach(function(new_tenant) {

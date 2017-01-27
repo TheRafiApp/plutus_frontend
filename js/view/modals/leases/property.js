@@ -34,7 +34,6 @@ function(
     },
     
     beforeRender: function() {
-      console.log('beforeRender')
       this.parentView.data.property = {};
       this.parentView.updateTitle();
     },

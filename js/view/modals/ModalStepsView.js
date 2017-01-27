@@ -76,7 +76,7 @@ function(app, ModalView, ModalTemplate) {
     },
 
     setStep: function(stepIndex) {
-      console.log('setStep: ', stepIndex)
+      // console.log('setStep: ', stepIndex)
       if (stepIndex < 0 || stepIndex > (this.steps.length - 1)) return;
 
       app.views.appView.closeCalendarInputs();
