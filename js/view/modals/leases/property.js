@@ -4,58 +4,39 @@
 
 define([
   'app',
+  'view/modals/ModalStepView',
   'view/modals/leases/property/new',
   'view/modals/leases/property/existing',
 ],
 function(
   app, 
+  ModalStepView,
   NewView, 
   ExistingView 
 ) {
 
-  return Backbone.View.extend({
-
-    className: 'step',
+  return ModalStepView.extend({
 
     events: {
       'change input': 'changed',
       'change select': 'changed',
     },
 
-    initialize: function(_options) {
-      if (_options) _.extend(this, _options);
-
-      this.attachEvents();
-
-      return this.render();
-    },
+    afterInit: function() {},
 
     changed: function() {
       var steps = this.parentView.child_views;
-
       var thisIndex = steps.indexOf(this);
 
       steps.forEach(function(step, index) {
-        if (index === (thisIndex + 1)) step.fetched = false;
+        if (index === (thisIndex + 1)) step.initialized = false;
       });
     },
-
-    show: function() {
-      this.$el.addClass('active');
+    
+    beforeRender: function() {
+      console.log('beforeRender')
       this.parentView.data.property = {};
       this.parentView.updateTitle();
-
-      if (!this.fetched) { 
-        this.initialize(); 
-        this.fetched = true;
-      }
-    },
-
-    attachEvents: function() {
-      if (!this.listening) {
-        this.listening = true;
-        this.on('next', this.next, this);
-      }
     },
 
     render: function() {      
@@ -78,35 +59,18 @@ function(
       this.render();
     },
 
-    // this is confirmation of next step 
-    setData: function(data) {
-      this.parentView.data.property = data;
-
-      this.successAnimation();
+    beforeNextStep: function() {
+      var property_address = this.parentView.data.property.address;
+      this.parentView.updateTitle(property_address);
     },
 
-    successAnimation: function() {
-      $('.modal').addClass('loading success');
-
-      var self = this;
-
-      app.controls.wait(1200).then(function() {
-        $('.modal').removeClass('loading success');
-        self.parentView.updateTitle(self.parentView.data.property.address);
-        self.parentView.nextStep();
-      });
+    setData: function(data) {
+      this.parentView.data.property = data;
+      this.success();
     },
 
     next: function() {
       this.currentView.next();
-    },
-
-    lock: function() {
-      this.parentView.lock();
-    },
-
-    unlock: function() {
-      this.parentView.unlock();
     }
 
   });

@@ -14,7 +14,7 @@ function(app, ResultsTemplate) {
 
     events: {
       'click a': 'selectItem'
-    },
+    }, 
 
     template: _.template(ResultsTemplate),
     
@@ -22,7 +22,7 @@ function(app, ResultsTemplate) {
       _.extend(this, options);
 
       if (this.overflowEscape) this.$el.addClass('fixed');
-      return this;
+      return this.render();
     },
 
     render: function(data) {
@@ -41,31 +41,47 @@ function(app, ResultsTemplate) {
       return this;
     },
 
+    handleChange: function(e) {
+      var query = $(e.currentTarget).val();
+      
+      this.place_data = {};
+
+      if (e.which && e.which === 27) e.preventDefault(); // esc dont close modal
+
+      this.search(query);
+      this.keyControl(e);
+    },
+
     initEventListeners: function() {
-      var self = this;
+      if (!this.rendered) {
+        var self = this;
 
-      $(window).on('scroll', function() {
-        self.hide();
-      })
-      .on('resize', function() {
-        self.hide();
-      });
-
-      $('.scroll-container').on('scroll', function() {
-        self.hide();
-      });
-
-      this.input.on('blur', function() {
-        setTimeout(function() {
+        $(window).on('scroll', function() {
           self.hide();
-        }, 120);
-      });
+        })
+        .on('resize', function() {
+          self.hide();
+        });
 
+        $('.scroll-container').on('scroll', function() {
+          self.hide();
+        });
+
+        this.input.on('keyup', $.proxy(this.handleChange, this));
+
+        this.input.on('blur', function() {
+          setTimeout(function() {
+            self.hide();
+          }, 180);
+        });
+
+        this.rendered = true;
+      }
       this.delegateEvents();
     },
 
     search: function(query) {
-      if (query === this.currentQuery) return;
+      // if (query === this.currentQuery) return;
       if (query === '') return this.resetQuery();
 
       this.currentQuery = query;
@@ -158,6 +174,8 @@ function(app, ResultsTemplate) {
     },
 
     selectItem: function(e) {
+      console.log(e);
+
       this.$el.find('.active').removeClass('active');
       $(e.currentTarget).parent().addClass('active');
 

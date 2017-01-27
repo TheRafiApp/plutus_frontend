@@ -4,47 +4,25 @@
 
 define([
   'app',
+  'view/modals/ModalStepView',
   'view/modals/leases/unit/new',
   'view/modals/leases/unit/existing',
 ],
 function(
   app, 
+  ModalStepView,
   NewView, 
   ExistingView 
 ) {
 
-  return Backbone.View.extend({
-
-    className: 'step',
+  return ModalStepView.extend({
 
     events: {
       'keyup .address-selector': 'handleChange'
     },
-
-    initialize: function(_options) {
-      if (_options) _.extend(this, _options);
-
+    
+    beforeRender: function() {
       this.parentView.data.unit = {};
-
-      this.attachEvents();
-
-      return this.render();
-    },
-
-    attachEvents: function() {
-      if (!this.listening) {
-        this.listening = true;
-        this.on('next', this.next, this);
-      }
-    },
-
-    show: function() {
-      this.$el.addClass('active');
-
-      if (!this.fetched) { 
-        this.initialize(); 
-        this.fetched = true;
-      }
     },
 
     render: function() {
@@ -79,33 +57,14 @@ function(
       this.render();
     },
 
-    // this is confirmation of next step 
     setData: function(data) {
       this.parentView.data.unit = data;
-      this.successAnimation();
+      this.success();
     },
 
-    successAnimation: function() {
-      $('.modal').addClass('loading success');
-
-      var self = this;
-
-      app.controls.wait(1200).then(function() {
-        $('.modal').removeClass('loading success');
-        self.parentView.nextStep();
-      });
-    },
 
     next: function() {
       this.currentView.next();
-    },
-
-    lock: function() {
-      this.parentView.lock();
-    },
-
-    unlock: function() {
-      this.parentView.unlock();
     }
 
   });

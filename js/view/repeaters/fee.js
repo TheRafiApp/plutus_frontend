@@ -1,13 +1,13 @@
 /**
- * modals/leases/tenants/new.js
+ * repeaters/fee.js
  */
 
 define([
   'app',
-  'model/users/TenantModel',
-  'text!templates/modals/leases/tenants/new.html'
+  'view/components/input-calendar',
+  'text!templates/repeaters/fee.html'
 ],
-function(app, TenantModel, StepTemplate) {
+function(app, DateInput, StepTemplate) {
 
   return Backbone.View.extend({
 
@@ -22,19 +22,30 @@ function(app, TenantModel, StepTemplate) {
 
       var self = this;
 
-      this.model = new TenantModel();
-
-      Backbone.Validation.bind(this);
-
       this.render();
 
       return this;
     },
 
     render: function() {
-      this.$el.html(this.template());
+      this.$el.html(this.template({
+        scheduled: this.scheduled
+      }));
+
+      app.controls.maskMoney(this.$el.find('.money input'), this);
+
+      if (this.scheduled) this.renderCalendar();
 
       return this;
+    },
+
+    renderCalendar: function() {
+      this.date = new DateInput({
+        input: this.$el.find('.due-date-input'),
+        context: this,
+        selected: this.selected,
+        overflowEscape: true
+      });
     },
 
     constructData: function() {
@@ -54,8 +65,13 @@ function(app, TenantModel, StepTemplate) {
 
     closeView: function() {
       this.close();
-      var TenantsArray = this.parentView.new_models;
-      TenantsArray.splice(TenantsArray.indexOf(this), 1);
+      var FeesArray;
+      if (this.scheduled) {
+        FeesArray = this.parentView.recurring;
+      } else {
+        FeesArray = this.parentView.scheduled;
+      }
+      FeesArray.splice(FeesArray.indexOf(this), 1);
     }
     
   });

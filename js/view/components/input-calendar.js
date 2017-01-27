@@ -19,7 +19,7 @@ function(app, kalendae, DateTemplate) {
       _.extend(this, options);
 
       this.visible = false;
-      
+
       this.render();
 
       if (this.overflowEscape) this.$el.addClass('fixed');
@@ -45,8 +45,6 @@ function(app, kalendae, DateTemplate) {
         // Kalendae events
 
         this.date.subscribe('change' , function(date) {
-          console.warn(date);
-
           self.populateDate();
         });
 
@@ -155,15 +153,12 @@ function(app, kalendae, DateTemplate) {
     },
 
     updateCalendar: function(date) {
-      console.log(date)
       this.manualUpdate = true;
       this.date.setSelected(date);
     },
 
     populateDate: function() {
       var dates = this.date.getSelectedRaw();
-      console.log(dates);
-
       if (!dates.length) return;
       
       if (this.manualUpdate) {

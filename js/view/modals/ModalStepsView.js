@@ -21,7 +21,7 @@ function(app, ModalView, ModalTemplate) {
       var subtitle = '';
       if (_subtitle) subtitle = ' - ' + _subtitle;
 
-      this.$el.find('header h2.left').html(this.title() + subtitle);
+      this.$el.find('header h2').html(this.title() + subtitle);
     },
 
     events: {
@@ -76,6 +76,7 @@ function(app, ModalView, ModalTemplate) {
     },
 
     setStep: function(stepIndex) {
+      console.log('setStep: ', stepIndex)
       if (stepIndex < 0 || stepIndex > (this.steps.length - 1)) return;
 
       app.views.appView.closeCalendarInputs();

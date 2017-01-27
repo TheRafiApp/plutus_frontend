@@ -44,9 +44,6 @@ function(
     },
 
     render: function() {
-
-      // this.on('next', this.next, this);
-
       this.$el.html(this.template({
         units: this.collection.toJSON()
       }));
@@ -61,17 +58,12 @@ function(
     constructData: function() {
       var _id = this.$el.find('select[name="_id"]').val();
 
-      var model = this.collection.find({
-        _id: _id
-      });
-
+      var model = this.collection.find({ _id: _id });
       return model.toJSON();
     },
 
     next: function() {
-
       var data = this.constructData();
-
       this.parentView.setData(data);
     }
     

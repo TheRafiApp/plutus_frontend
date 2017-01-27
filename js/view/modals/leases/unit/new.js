@@ -50,9 +50,6 @@ function(app, UnitModel, StepTemplate) {
       var number = this.$el.find('input[name="sq_ft"]');
       number.mask('000000');
 
-      // var $money = this.$el.find('.money input');
-      // app.controls.maskMoney($money, this);
-
       return this;
     },
 
@@ -73,12 +70,7 @@ function(app, UnitModel, StepTemplate) {
     validate: function() {
       var data = this.constructData();
 
-      console.log(data);
-
       var validate = app.utils.validate(this, data);
-
-      console.log(validate);
-
       if (!validate) return false;
 
       return data;
@@ -87,13 +79,10 @@ function(app, UnitModel, StepTemplate) {
     next: function() {
       var data = this.validate();
 
-      console.log(data);
-
       if (!data) return;
 
       this.parentView.setData(data);
     }
-    
     
   });
 });

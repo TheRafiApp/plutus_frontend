@@ -14,7 +14,6 @@ function(app, AutoCompleteView, PropertyModel, FundingSourcesCollection, StepTem
   return Backbone.View.extend({
 
     events: {
-      'keyup .address-selector': 'handleChange',
       'change input[name="pay_into_target"]': 'updatePayInto',
       'click .action-toggle': 'toggleModelType'
     },
@@ -73,17 +72,6 @@ function(app, AutoCompleteView, PropertyModel, FundingSourcesCollection, StepTem
       this.updatePayInto();
 
       return this;
-    },
-
-    handleChange: function(e) {
-      var query = $(e.currentTarget).val();
-      
-      this.place_data = {};
-
-      if (e.which && e.which === 27) e.preventDefault(); // esc dont close modal
-
-      this.autocomplete.search(query);
-      this.autocomplete.keyControl(e);
     },
 
     updatePayInto: function(e) {
