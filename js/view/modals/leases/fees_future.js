@@ -27,20 +27,22 @@ function(
     template: _.template(StepTemplate),
 
     afterInit: function() {
-      this.model = new LeaseModel();
+      // this.model = new LeaseModel();
       this.recurring = [];
       this.scheduled = [];
     },
 
     setData: function(data) {
+      // this is the last step
+      console.log(this.parentView.data)
       // this.parentView.data.lease = data;
       this.success();
     },
 
-    constructData: function() {
-      var data = this.$el.find('form').serializeObject();
-      return data;
-    },
+    // constructData: function() {
+    //   var data = this.$el.find('form').serializeObject();
+    //   return data;
+    // },
 
     validate: function() {
       var data = this.constructData();
