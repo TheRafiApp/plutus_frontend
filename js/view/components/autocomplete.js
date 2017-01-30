@@ -44,7 +44,9 @@ function(app, ResultsTemplate) {
     handleChange: function(e) {
       var query = $(e.currentTarget).val();
       
-      this.place_data = {};
+      this.place = {};
+
+      this.emitChange();
 
       if (e.which && e.which === 27) e.preventDefault(); // esc dont close modal
 

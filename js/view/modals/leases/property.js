@@ -23,6 +23,7 @@ function(
     },
 
     changed: function() {
+      console.log('changed')
       var steps = this.parentView.child_views;
       var thisIndex = steps.indexOf(this);
 

@@ -16,6 +16,15 @@ function(app) {
       return app.API() + 'properties/';
     },
 
+    validateOnServer: function(data) {
+      var self = this;
+      return app.utils.request({
+        method: 'POST',
+        path: self.urlRoot() + 'validate',
+        data: data
+      });
+    },
+
     // schema: {
     //   address: {
     //     type: 'address'

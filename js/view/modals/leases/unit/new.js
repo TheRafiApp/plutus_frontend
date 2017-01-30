@@ -23,7 +23,9 @@ function(app, UnitModel, StepTemplate) {
 
       var self = this;
 
-      this.model = new UnitModel();
+      this.model = new UnitModel(null, {
+        parentModelId: this.parentModelId
+      });
 
       Backbone.Validation.bind(this);
 
@@ -68,20 +70,38 @@ function(app, UnitModel, StepTemplate) {
     },
 
     validate: function() {
+      var self = this;
+
+      var promise = app.utils.promises(1)[0];
+
       var data = this.constructData();
+      if (!data) return promise.reject();
+      
+      if (this.model) {
+        validate = app.utils.validate(this, data);
+        if (validate) promise = this.validateOnServer(data);
+      } else {
+        if (validate) {
+          promise.resolve();
+        } else {
+          promise.reject();
+        }
+      }
 
-      var validate = app.utils.validate(this, data);
-      if (!validate) return false;
+      return promise;
+    },
 
-      return data;
+    validateOnServer: function(data) {
+      return this.model.validateOnServer(data);
     },
 
     next: function() {
-      var data = this.validate();
+      var self = this;
 
-      if (!data) return;
-
-      this.parentView.setData(data);
+      var validate = this.validate().then(function() {
+        var data = self.constructData();
+        self.parentView.setData(data);
+      });
     }
     
   });

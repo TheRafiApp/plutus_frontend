@@ -91,6 +91,14 @@ function(app, AutoCompleteView, PropertyModel, FundingSourcesCollection, StepTem
     },
 
     constructData: function() {
+      if (_.isEmpty(this.place_data)) {
+        app.controls.fieldError({
+          element: '.address-selector',
+          error: 'Please select a valid adddress'
+        });
+
+        return false;
+      }
 
       var data = this.$el.find('form').serializeObject();
       
@@ -109,29 +117,38 @@ function(app, AutoCompleteView, PropertyModel, FundingSourcesCollection, StepTem
     },
 
     validate: function() {
+      var self = this;
+
+      var promise = app.utils.promises(1)[0];
+
       var data = this.constructData();
-
-      if (_.isEmpty(this.place_data)) {
-        app.controls.fieldError({
-          element: '.address-selector',
-          error: 'Please select a valid adddress'
-        });
-
-        return false;
+      if (!data) return promise.reject();
+      
+      if (this.model) {
+        validate = app.utils.validate(this, data);
+        if (validate) promise = this.validateOnServer(data);
+      } else {
+        if (validate) {
+          promise.resolve();
+        } else {
+          promise.reject();
+        }
       }
 
-      var validate = app.utils.validate(this, data);
-      if (!validate) return false;
+      return promise;
+    },
 
-      return data;
+    validateOnServer: function(data) {
+      return this.model.validateOnServer(data);
     },
 
     next: function() {
-      var data = this.validate();
+      var self = this;
 
-      if (!data) return;
-
-      this.parentView.setData(data);
+      var validate = this.validate().then(function() {
+        var data = self.constructData();
+        self.parentView.setData(data);
+      });
     }
     
   });

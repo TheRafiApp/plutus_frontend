@@ -95,21 +95,39 @@ function(
     },
 
     validate: function() {
+      var self = this;
+
+      var promise = app.utils.promises(1);
+
       var data = this.constructData();
+      
+      if (this.model) {
+        validate = app.utils.validate(this, data);
+        console.log('validated:', validate)
+        if (validate) promise = this.validateOnServer();
+      } else {
+        if (validate) {
+          promise.resolve();
+        } else {
+          promise.reject();
+        }
+      }
 
-      var validate = true;
-      if (this.model) validate = app.utils.validate(this, data);
+      return promise;
+    },
 
-      return validate;
+    validateOnServer: function() {
+      console.log('validateOnServer')
+      return this.model.validateOnServer();
     },
 
     next: function() {
-      var validate = this.validate();
+      var self = this;
 
-      if (!validate) return;
-
-      var data = this.constructData();
-      this.setData(data);
+      var validate = this.validate().then(function() {
+        var data = self.constructData();
+        self.setData(data);
+      });
     },
 
     lock: function() {

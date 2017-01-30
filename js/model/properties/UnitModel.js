@@ -16,6 +16,15 @@ function(app) {
       return app.API() + 'properties/' + this.options.parentModelId + '/units';
     },
 
+    validateOnServer: function(data) {
+      var self = this;
+      return app.utils.request({
+        method: 'POST',
+        path: self.urlRoot() + '/validate',
+        data: data
+      });
+    },
+
     schema: {
       rent: {
         type: 'money'
