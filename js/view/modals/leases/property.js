@@ -22,8 +22,6 @@ function(
       'change select': 'changed',
     },
 
-    afterInit: function() {},
-
     changed: function() {
       var steps = this.parentView.child_views;
       var thisIndex = steps.indexOf(this);
