@@ -22,14 +22,24 @@ function(app, DateInput, StepTemplate) {
 
       var self = this;
 
-      this.render();
+      console.log(this.scheduled)
+
+      var array_key = this.scheduled ? 'scheduled' : 'recurring';
+
+      console.log(array_key)
+
+      this.parentArray = this.parentView[array_key];
+
+      this.render();  
 
       return this;
     },
 
     render: function() {
       this.$el.html(this.template({
-        scheduled: this.scheduled
+        scheduled: this.scheduled,
+        type: this.scheduled ? 'scheduled' : 'recurring',
+        id: this.parentArray.length
       }));
 
       app.controls.maskMoney(this.$el.find('.money input'), this);
@@ -51,7 +61,14 @@ function(app, DateInput, StepTemplate) {
     constructData: function() {
       var data = this.$el.find('form').serializeObject();
 
-      return app.schema.process(data, this.model);
+      return app.schema.process(data, null, { 
+        amount: { 
+          type: 'charge' 
+        },
+        date: {
+          type: 'ISO'
+        }
+      });
     },
 
     validate: function() {
@@ -65,13 +82,7 @@ function(app, DateInput, StepTemplate) {
 
     closeView: function() {
       this.close();
-      var FeesArray;
-      if (this.scheduled) {
-        FeesArray = this.parentView.recurring;
-      } else {
-        FeesArray = this.parentView.scheduled;
-      }
-      FeesArray.splice(FeesArray.indexOf(this), 1);
+      this.parentArray.splice(this.parentArray.indexOf(this), 1);
     }
     
   });

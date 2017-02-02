@@ -246,10 +246,10 @@ function(
       // Generate promises
       promises: function(quantity) {
         if (typeof quantity !== 'number') return;
-        var promise_array = [];
-        while (quantity-- > 0) promise_array.push($.Deferred());
-
-        return promise_array;
+        var promises = [];
+        while (quantity-- > 0) promises.push($.Deferred());
+        
+        return promises;
       },
 
       // Device check

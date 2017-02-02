@@ -82,6 +82,14 @@ function(app, kalendae, DateTemplate) {
       this.delegateEvents();
     },
 
+    on: function(eventName, callback, context) {
+      var boundCallback = callback.bind(context);
+
+      this.date.subscribe(eventName, function(date) {
+        boundCallback(date);
+      });
+    },
+
     keyControl: function(e) {
       e.preventDefault();
       e.stopPropagation();
@@ -164,10 +172,11 @@ function(app, kalendae, DateTemplate) {
       if (this.manualUpdate) {
         this.manualUpdate = false;
       } else {
-        var date = dates[0].format('MM/DD/YYYY');
+        var date = dates[0].startOf('day').format('MM/DD/YYYY');
         this.input.val(date).change();
       }
       this.emitChange();
+      this.hide();
       return this;
     },
 

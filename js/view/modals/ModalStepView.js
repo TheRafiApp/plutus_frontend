@@ -97,14 +97,15 @@ function(
     validate: function() {
       var self = this;
 
-      var promise = app.utils.promises(1);
+      var promise = app.utils.promises(1)[0];
 
       var data = this.constructData();
+
+      console.log(data);
       
       if (this.model) {
         validate = app.utils.validate(this, data);
-        console.log('validated:', validate)
-        if (validate) promise = this.validateOnServer();
+        if (validate) promise = this.validateOnServer(data);
       } else {
         if (validate) {
           promise.resolve();
@@ -116,9 +117,8 @@ function(
       return promise;
     },
 
-    validateOnServer: function() {
-      console.log('validateOnServer')
-      return this.model.validateOnServer();
+    validateOnServer: function(data) {
+      return this.model.validateOnServer(data, this.validationType);
     },
 
     next: function() {

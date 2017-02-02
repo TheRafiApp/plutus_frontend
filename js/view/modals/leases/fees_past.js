@@ -24,7 +24,7 @@ function(
     template: _.template(StepTemplate),
 
     afterInit: function() {
-      this.model = new LeaseModel();
+      // this.model = new LeaseModel();
     },
 
     afterRender: function() {
@@ -36,10 +36,10 @@ function(
       this.success();
     },
 
-    validate: function() {
-      var data = this.constructData();
-      return data;
-    },
+    // validate: function() {
+    //   var data = this.constructData();
+    //   return data;
+    // },
 
     toggleFee: function(e) {
       var $checkbox = $(e.currentTarget);

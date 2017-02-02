@@ -27,6 +27,15 @@ function(app) {
       return app.API() + this.options.role + '/';
     },
 
+    validateOnServer: function(data) {
+      var self = this;
+      return app.utils.request({
+        method: 'POST',
+        path: self.urlRoot() + 'validate',
+        data: data
+      });
+    },
+
     defaults: {
       first_name: '',
       last_name: '',

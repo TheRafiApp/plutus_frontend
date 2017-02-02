@@ -570,11 +570,8 @@ function(
   // Raven.js (Sentry) for error logging
   if (app.config.sentry) {
     Raven.config(app.config.sentry_dsn, {
-      // ignoreErrors: [
-      //   'datespan_overlap'
-      // ]
       ignoreUrls: [
-        /10.1.10.38:81/,
+        /10.1.10.38:8888/,
         /payment.rafiproperties.com/
       ]
     }).install();

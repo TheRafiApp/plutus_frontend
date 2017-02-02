@@ -70,11 +70,15 @@ function(
     },
 
     validate: function() {
-      var all_validate = true;
+      var promise = app.utils.promises(1)[0];
+      var promises = app.utils.promises(this.new_models.length);
 
-      this.new_models.forEach(function(new_tenant) {
-        var validate_tenant = new_tenant.validate();
-        if (!validate_tenant) all_validate = false;
+      this.new_models.forEach(function(new_tenant, index, array) {
+        var validate_tenant = new_tenant.next().then(function() {
+          promises[index].resolve();
+        }).fail(function() {
+          promises[index].reject();
+        });
       });
 
       if (this.new_models.length === 0) {
@@ -89,7 +93,13 @@ function(
         }
       }
 
-      return all_validate;
+      $.when.apply($, promises).then(function() {
+        promise.resolve();
+      }).fail(function() {
+        promise.reject();
+      });
+
+      return promise;
     },
 
   });

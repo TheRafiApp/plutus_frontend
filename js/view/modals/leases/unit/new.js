@@ -101,6 +101,16 @@ function(app, UnitModel, StepTemplate) {
       var validate = this.validate().then(function() {
         var data = self.constructData();
         self.parentView.setData(data);
+      }).fail(function(xhr) {
+        var json = xhr.responseJSON;
+        if (json && json.error) {
+          if (json.error === 'pymongo_duplicate_key_error') {
+            app.controls.fieldError({
+              element: 'input[name="number"]',
+              error: 'There is already a unit with that number in this property'
+            });
+          }
+        }
       });
     }
     

@@ -19,6 +19,8 @@ function(
 
   return ModalStepView.extend({
 
+    validationType: 'bill_dates',
+
     template: _.template(StepTemplate),
 
     afterInit: function() {
@@ -45,7 +47,8 @@ function(
     },
 
     setData: function(data) {
-      this.parentView.data.lease = data;
+      console.log(data)
+      _.extend(this.parentView.data.lease, data);
       this.success();
     },
 
@@ -54,6 +57,7 @@ function(
 
       data['tenants'] = this.parentView.data.tenants;
       data['start_date'] = this.parentView.data.lease.start_date;
+      data['end_date'] = this.parentView.data.lease.end_date;
 
       return app.schema.process(data, this.model);
     }

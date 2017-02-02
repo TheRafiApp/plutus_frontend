@@ -28,6 +28,8 @@ function(app, TenantModel, StepTemplate) {
 
       this.render();
 
+      app.utils.prepInputs(this);
+
       return this;
     },
 
@@ -44,12 +46,59 @@ function(app, TenantModel, StepTemplate) {
     },
 
     validate: function() {
+      var self = this;
+
+      var promise = app.utils.promises(1)[0];
+
       var data = this.constructData();
+      
+      if (this.model) {
+        validate = app.utils.validate(this, data);
+        if (validate) promise = this.validateOnServer(data);
+      } else {
+        if (validate) {
+          promise.resolve();
+        } else {
+          promise.reject();
+        }
+      }
 
-      var validate = app.utils.validate(this, data);
-      if (!validate) return false;
+      return promise;
+    },
 
-      return data;
+    validateOnServer: function(data) {
+      return this.model.validateOnServer(data);
+    },
+
+    next: function() {
+      var self = this;
+
+      var promise = app.utils.promises(1)[0];
+
+      var validate = this.validate().then(function() {
+        promise.resolve();
+      }).fail(function(xhr) {
+        var json = xhr.responseJSON;
+        if (json && json.error) {
+          if (json.error === 'pymongo_duplicate_key_error') {
+            if (json.data) {
+              var key;
+              if (json.data.email) {
+                key = 'email';
+              } else if (json.data.phone) {
+                key = 'phone';
+              }
+              app.controls.fieldError({
+                element: self.$el.find('input[name="' + key + '"]'),
+                error: 'There is already a user with that ' + key
+              });
+            }
+          }
+        }
+        promise.reject();
+      });
+
+      return promise;
     },
 
     closeView: function() {
