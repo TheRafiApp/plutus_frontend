@@ -75,7 +75,7 @@ function(
         
         options: {
           search: true,
-          edit: true,
+          // edit: true,
 
           add: ModalBillView,
           addModalOptions: {

@@ -63,7 +63,7 @@ function(app, OnboardingTemplate) {
       
       // check if the user has already done this step
       if (this.step.dwolla_account && this.step.dwolla_account.primary_funding_source) {
-        // return this.renderAllSet();
+        return this.renderAllSet();
       }
 
       // init dwolla.js

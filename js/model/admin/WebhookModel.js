@@ -7,7 +7,7 @@ define([
 ],
 function(app) {
 
-  var WebhookModel = Backbone.Model.extend({
+  var WebhookModel = app.Model.extend({
 
     name: 'funding source',
     displayName: 'url',

@@ -2373,6 +2373,15 @@ legend{
   background-color:#fff;
 }
 
+.table .tbody .row avatar{
+  display:inline-block;
+  width:25px;
+  border-radius:100px;
+  overflow:hidden;
+  position:relative;
+  top:6px;
+}
+
 .table .tbody .row:nth-child(2n){
   background-color:#f2f2f2;
 }
@@ -2569,6 +2578,7 @@ table tbody tr:nth-child(2n){
 
 .scroll-y .table.fixed .tbody .row{
   height:60px;
+  line-height:3.1em;
 }
 
 .scroll-y .table.fixed .tbody .row.totals{
@@ -6535,51 +6545,6 @@ input.bill_due_day{
   color:#333;
 }
 
-.transfers .transfer-cards{
-  margin-top:10px;
-}
-
-.transfers .transfer-cards .user-payments:last-child card{
-  margin-bottom:0;
-}
-
-.transfers .transfer-cards card{
-  max-width:400px;
-  box-shadow:none;
-}
-
-.transfers .transfer-cards card h2{
-  margin:0;
-  font-size:1.1em;
-}
-
-.transfers .transfer-cards ul.transfer-data{
-  text-align:right;
-  font-size:1.1em;
-  font-weight:700;
-}
-
-.transfers .transfer-cards ul.transfer-data li{
-  display:block;
-}
-
-.refresh-lock{
-  position:fixed;
-  top:0;
-  right:0;
-  bottom:0;
-  left:0;
-  z-index:9999999999;
-  background-color:#fff;
-}
-
-.refresh-lock .small-panel .btn{
-  width:100%;
-  padding:14px;
-  font-size:1.4em;
-  margin-top:9px;
-}
-
 .color-success{
   color:#45c97a;
 }
@@ -6666,6 +6631,51 @@ input.bill_due_day{
   content:"";
   display:block;
   clear:both;
+}
+
+.refresh-lock{
+  position:fixed;
+  top:0;
+  right:0;
+  bottom:0;
+  left:0;
+  z-index:9999999999;
+  background-color:#fff;
+}
+
+.refresh-lock .small-panel .btn{
+  width:100%;
+  padding:14px;
+  font-size:1.4em;
+  margin-top:9px;
+}
+
+.transfers .transfer-cards{
+  margin-top:10px;
+}
+
+.transfers .transfer-cards .user-payments:last-child card{
+  margin-bottom:0;
+}
+
+.transfers .transfer-cards card{
+  max-width:400px;
+  box-shadow:none;
+}
+
+.transfers .transfer-cards card h2{
+  margin:0;
+  font-size:1.1em;
+}
+
+.transfers .transfer-cards ul.transfer-data{
+  text-align:right;
+  font-size:1.1em;
+  font-weight:700;
+}
+
+.transfers .transfer-cards ul.transfer-data li{
+  display:block;
 }
 
 .color-success{
