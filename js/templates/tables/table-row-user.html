@@ -1,11 +1,14 @@
 <div class="cell col-left">
-  <input name="full_name" class="full" type="text" value="{{{ user.full_name }}}" disabled="disabled"/>
+	{{{ user.full_name }}}
+  <!-- <input name="full_name" class="full" type="text" value="" disabled="disabled"/> -->
 </div>
-<div class="cell"> 
-  <input name="email" class="full" type="text" value="{{{ user.email }}}" disabled="disabled"/>
+<div class="cell"> 	
+	{{{ user.email }}}
+  <!-- <input name="email" class="full" type="text" value="" disabled="disabled"/> -->
 </div>
 <div class="cell hide-1">
-  <input name="phone" class="medium" type="text" value="{{{ user.phone_pretty }}}" disabled="disabled"/>
+	{{{ user.phone_pretty }}}
+  <!-- <input name="phone" class="medium" type="text" value="" disabled="disabled"/> -->
 </div>
 
 {{# if (role === 'admin') { }}
@@ -19,4 +22,4 @@
 </div>
 
 <!-- <div class="cell hide-1">—</div> -->
-<div class="cell"><a href="#" class="btn btn-circle minus action-remove"></a></div>
+<div class="cell"><!-- <a href="#" class="btn btn-circle minus action-remove"></a> --></div>
