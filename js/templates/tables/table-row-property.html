@@ -1,8 +1,10 @@
 <div class="cell col-left">
-  <input name="address" class="full" type="text" value="{{{ property.address }}}" disabled="disabled"/>
+	{{{ property.address }}}
+  <!-- <input name="address" class="full" type="text" value="" disabled="disabled"/> -->
 </div>
 <div class="cell"> 
-  <input name="name" class="full" type="text" value="{{{ property.name }}}" disabled="disabled"/>
+	{{{ property.name }}}
+  <!-- <input name="name" class="full" type="text" value="" disabled="disabled"/> -->
 </div>
 <div class="cell">
   <span>{{{ property.number_of_units }}}</span>
@@ -16,4 +18,4 @@
 <div class="cell">
   <span>{{{ property.vacancies.vacant_units }}}</span>
 </div>
-<div class="cell"><a href="#" class="btn btn-circle minus action-remove"></a></div>
+<div class="cell"><!-- <a href="#" class="btn btn-circle minus action-remove"></a> --></div>

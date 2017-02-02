@@ -89,7 +89,8 @@ function(app, LoginView, ActivateView) {
       // 'disbursals/:id':             'renderLayer',
 
       'webhooks':                   'renderApp',
-      'webhookEvents':              'renderApp',
+      'webhookevents':              'renderApp',
+      'webhookevents/:id':          'renderLayer',
 
       '400':                        'permissionDenied',
       
@@ -277,8 +278,16 @@ function(app, LoginView, ActivateView) {
         'manager',
       ],
 
+      'webhooks': [
+        'superadmin'
+      ],
+
+      'webhookevents': [
+        'superadmin'
+      ]
+
       // disbursals
-      
+      // 
       // 'disbursals': [
       //   'superadmin',
       //   'admin',

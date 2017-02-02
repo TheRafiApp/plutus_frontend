@@ -8,7 +8,7 @@ define([
 ],
 function(app, WebhookModel) {
 
-  return Backbone.Collection.extend({
+  return app.Collection.extend({
 
     idAttribute: 'id',
 

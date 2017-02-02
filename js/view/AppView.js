@@ -210,7 +210,8 @@ function(app, AppTemplate) {
         'ledger': 'ledgerEntry',
         'rentroll': 'rentrollEntry',
         'mybill': 'mybill',
-        'myleases': 'mylease'
+        'myleases': 'mylease',
+        'webhookevents': 'webhookevent'
       };
 
       var route = app.utils.capitalize(models[_route]);
