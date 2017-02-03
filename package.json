@@ -48,6 +48,7 @@
     "gulp-util": "^3.0.8",
     "gulp-wait": "0.0.2",
     "http-request": "^0.7.0",
+    "jquery.json-viewer": "^1.1.0",
     "merge-stream": "^1.0.1",
     "mocha": "^3.2.0",
     "nightmare": "^2.9.0",

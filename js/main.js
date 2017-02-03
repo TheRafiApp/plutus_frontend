@@ -157,13 +157,14 @@ function(
       },
 
       // Basic confirmation modal
-      modalConfirm: function(_message, _eventName, _context) {
+      modalConfirm: function(_message, _eventName, _context, _options) {
         this.modal = new ModalDialogView({
           model: {
             message: _message
           },
           context: _context,
           eventName: _eventName,
+          options: _options,
           app: app // for some reason the module cant access app normally...
         }).render();
 
