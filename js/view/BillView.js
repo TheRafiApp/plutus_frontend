@@ -111,6 +111,10 @@ function(
 
       var transfers = this.model.get('transfers');
 
+      transfers = transfers.sort(function(a, b) {
+        return moment(a.created) < moment(b.created);
+      });
+
       if (!transfers.length) return;
 
       this.$el.find('.transfer-cards').html('');
