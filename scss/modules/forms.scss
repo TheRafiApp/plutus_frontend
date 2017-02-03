@@ -464,7 +464,8 @@ legend {
 
   &.charges {
     padding: 30px 30px 10px !important;
-    background: $color-grey-80;
+    // background: $color-grey-80;
+    background: #394a67;
     color: #eee;
 
     .description {
@@ -480,7 +481,7 @@ legend {
   }
 
   .charge-group {
-    max-width: 400px; 
+    max-width: 440px; 
 
     legend {
       width: 100%;

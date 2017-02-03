@@ -82,6 +82,10 @@ card {
     }
   }
 
+  .flex-end {
+    justify-content: flex-end;
+  }
+
   .status {
     margin-right: 4px;
   }
@@ -109,7 +113,6 @@ card {
         div {
           margin-right: 10px;
         }
-        
       }
     }
   }

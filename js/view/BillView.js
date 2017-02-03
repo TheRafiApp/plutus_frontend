@@ -74,15 +74,7 @@ function(
         prettyMoney: app.utils.prettyMoney
       }));
 
-      var transfers = this.model.get('transfers');
-
-      _.each(transfers, function(transfer) {
-
-        var transfer_card = new TransferCard({
-          data: transfer
-        });
-        self.$el.find('.transfer-cards').append(transfer_card.$el);
-      });
+      this.renderTransfers();
 
       /*
       this.tenants = this.model.get('tenants');
@@ -112,6 +104,24 @@ function(
       $('.tertiary').removeClass('loading');
       
       return this;
+    },
+
+    renderTransfers: function() {
+      var self = this;
+
+      var transfers = this.model.get('transfers');
+
+      if (!transfers.length) return;
+
+      this.$el.find('.transfer-cards').html('');
+      
+      _.each(transfers, function(transfer) {
+
+        var transfer_card = new TransferCard({
+          data: transfer
+        });
+        self.$el.find('.transfer-cards').append(transfer_card.$el);
+      });
     },
 
     promptDelete: function() {

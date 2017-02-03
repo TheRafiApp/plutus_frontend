@@ -1,33 +1,31 @@
 // Transfers
 
-.transfers {
-  .transfer-cards {
-    margin-top: 10px;
+.transfer-cards {
+  margin-top: 10px;
 
-    .user-payments:last-child {
-      card {
-        margin-bottom: 0;
-      }
+  .user-payments:last-child {
+    card.user {
+      margin-bottom: 0;
     }
+  }
 
-    card {
-      max-width: 400px;
-      box-shadow: none;
+  card.user {
+    max-width: 400px;
+    box-shadow: none;
 
-      h2 {
-        margin: 0;
-        font-size: 1.1em;
-      }
-    }
-
-    ul.transfer-data {
-      text-align: right;
+    h2 {
+      margin: 0;
       font-size: 1.1em;
-      font-weight: bold;
+    }
+  }
 
-      li {
-        display: block;
-      }
+  ul.transfer-data {
+    text-align: right;
+    font-size: 1.1em;
+    font-weight: bold;
+
+    li {
+      display: block;
     }
   }
 }

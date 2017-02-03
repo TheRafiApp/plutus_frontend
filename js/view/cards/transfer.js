@@ -31,7 +31,8 @@ function(app, UserModel, CardTemplate) {
     render: function() {
       this.$el.html(this.template({ 
         user: this.user.toJSON(),
-        transfer: this.data
+        transfer: this.data,
+        prettyMoney: app.utils.prettyMoney
       }));
 
       return this;
