@@ -11,7 +11,7 @@ function(app, UserModel) {
   var WebhookModel = app.Model.extend({
 
     name: 'webhook event',
-    displayName: 'created',
+    displayName: 'topic',
 
     urlRoot: function() {
       return app.API() + 'dwolla/webhooks';
