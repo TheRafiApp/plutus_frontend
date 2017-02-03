@@ -10,7 +10,7 @@ define([
 ],
 function(app, WebhookEventModel, Template, HeaderTemplate) {
 
-  return Backbone.View.extend(_.extend({}, Backbone.Events, {
+  return Backbone.View.extend({
 
     className: 'bill-view scroll-y',
 
@@ -29,8 +29,10 @@ function(app, WebhookEventModel, Template, HeaderTemplate) {
 
       this.model = new WebhookEventModel({ _id: this._id });
 
-      this.model.fetch().then(function() {
-        self.render();
+      require(['jquery.json-viewer'], function(jsonViewer) {
+        self.model.fetch().then(function() {
+          self.render();
+        });
       });
     },
 
@@ -60,6 +62,13 @@ function(app, WebhookEventModel, Template, HeaderTemplate) {
         webhook: data
       }));
 
+      var attemps_data = this.model.get('attempts');
+
+      this.$el.find('.attemps').jsonViewer(attemps_data, { 
+        // collapsed: true, 
+        withQuotes: true 
+      });
+
       $('.row[data-id="' + app.views.currentView.selected + '"]').addClass('selected');
       $('.tertiary').removeClass('loading');
       
@@ -71,16 +80,33 @@ function(app, WebhookEventModel, Template, HeaderTemplate) {
     },
 
     getRetries: function(event) {
-      this.model.getRetries().then(function(response) {
-        console.log(response);
+      // var self = this;
+      var $container = this.$el.find('.retries');
+
+      this.model.getRetries().then(function(retries) {
+
+        if (!retries.length) {
+          $container.html('<li>No retries</li>');
+        } else {
+          $container.html('');
+          retries.forEach(function(retry) {
+            $container.append('<li><pre>' + retry + '</pre></li>');
+          });
+        }
+
       });
     },
 
     retry: function(event) {
+      var self = this;
       this.model.retry().then(function(response) {
-        console.log(response);
+        var message = 'Retrying webhook event successful';
+        app.controls.modalConfirm(message, null, self, { cancel: false });
+      }).fail(function(error) {
+        var message = error.data.message || error.message;
+        app.controls.modalConfirm(message, null, self, { cancel: false });
       });
     }
 
-  }));
+  });
 });

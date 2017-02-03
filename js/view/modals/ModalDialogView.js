@@ -44,6 +44,8 @@ function(
 
       this.options = _.extend(this.defaults, this.options);
 
+      console.log(this.context);
+
       // this modal is now used in activation, before AppView is rendered
       this.app.views.appView && this.app.views.appView.trigger('modalOpened');
       this.app.views.modalView = this;
@@ -71,7 +73,8 @@ function(
     },
 
     confirm: function() {
-      this.context.trigger(this.eventName);
+      console.log(this.context);
+      if (this.eventName) this.context.trigger(this.eventName);
       this.closeModal();
     }
 

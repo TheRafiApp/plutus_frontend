@@ -15,6 +15,7 @@ require.config({
     'jquery.mask':          'vendor/jquery.mask.min', 
     'jquery.auto-complete': 'vendor/jquery.auto-complete.min', 
     'jquery.serialize':     'vendor/jquery.serialize-object',
+    'jquery.json-viewer':   'vendor/jquery.json-viewer',
     'underscore':           'vendor/underscore',
     'backbone':             'vendor/backbone',
     'async':                'vendor/async',
