@@ -31,7 +31,10 @@ function(app, TableRowTemplate) {
       this.$el.attr('data-id', this.model.get('_id'));
       if (this.model.get('type') === 'monthly') this.$el.addClass('success');
 
-      this.$el.html(this.template({ bill: data }));
+      this.$el.html(this.template({ 
+        bill: data,
+        prettyMoney: app.utils.prettyMoney
+      }));
       return this;
     },
 

@@ -4,23 +4,27 @@
 
 define([
   'app',
-  'view/cards/user_payments',
+  'view/cards/transfer',
   'view/modals/ModalTransferView',
   'model/bills/BillModel',
   'text!templates/bills/bill.html',
   'text!templates/headers/header-tertiary-model.html',
 ],
-function(app, UserCardView, ModalTransferView, BillModel, BillTemplate, HeaderTemplate) {
+function(
+  app, 
+  TransferCard, 
+  ModalTransferView, 
+  BillModel, 
+  BillTemplate, 
+  HeaderTemplate
+) {
 
-  return Backbone.View.extend(_.extend({}, Backbone.Events, {
+  return Backbone.View.extend({
 
     className: 'bill-view scroll-y',
 
     events: {
       'click .action-add-transfer': 'addTransfer',
-      // 'click .action-edit': 'toggleEdit',
-      // 'click .action-cancel': 'cancelEdit',
-      // 'click .action-save': 'promptSave',
       'click .action-delete': 'promptDelete',
       'click .action-close': 'hideTertiary'
     },
@@ -70,6 +74,9 @@ function(app, UserCardView, ModalTransferView, BillModel, BillTemplate, HeaderTe
         prettyMoney: app.utils.prettyMoney
       }));
 
+      this.renderTransfers();
+
+      /*
       this.tenants = this.model.get('tenants');
       var transfers = this.model.get('transfers');
 
@@ -83,8 +90,6 @@ function(app, UserCardView, ModalTransferView, BillModel, BillTemplate, HeaderTe
           }
         });
 
-        // console.log(tenant_transfers)
-
         var tenant_card = new UserCardView({
           data: tenant,
           amount: amount
@@ -93,11 +98,30 @@ function(app, UserCardView, ModalTransferView, BillModel, BillTemplate, HeaderTe
         self.$el.find('.transfer-cards').append(tenant_card.$el);
       });
 
-      $('.row[data-id="' + app.views.currentView.selected + '"]').addClass('selected');
+      */
 
+      $('.row[data-id="' + app.views.currentView.selected + '"]').addClass('selected');
       $('.tertiary').removeClass('loading');
       
       return this;
+    },
+
+    renderTransfers: function() {
+      var self = this;
+
+      var transfers = this.model.get('transfers');
+
+      if (!transfers.length) return;
+
+      this.$el.find('.transfer-cards').html('');
+      
+      _.each(transfers, function(transfer) {
+
+        var transfer_card = new TransferCard({
+          data: transfer
+        });
+        self.$el.find('.transfer-cards').append(transfer_card.$el);
+      });
     },
 
     promptDelete: function() {
@@ -109,9 +133,6 @@ function(app, UserCardView, ModalTransferView, BillModel, BillTemplate, HeaderTe
 
     deleteModel: function() {
       this.model.destroy().then(function() {
-        console.log('success')
-
-        
         var route = app.router.getRoute();
         app.router.navigate(route, { trigger: true });
       }).fail(function(error) {
@@ -132,5 +153,5 @@ function(app, UserCardView, ModalTransferView, BillModel, BillTemplate, HeaderTe
       });
     }
 
-  }));
+  });
 });

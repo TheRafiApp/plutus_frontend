@@ -693,11 +693,11 @@ ol.json-array,ul.json-dict{
 }
 
 .json-string{
-  color:#0b7500;
+  color:#329ea9;
 }
 
 .json-literal{
-  color:#1a01cc;
+  color:#9a01cc;
   font-weight:700;
 }
 a.json-toggle{
@@ -717,6 +717,7 @@ a.json-toggle:before{
   display:inline-block;
   width:1em;
   left:-1em;
+  font-size:.2em;
 }
 
 a.json-toggle.collapsed:before{
@@ -1723,12 +1724,13 @@ body.quarternary-hidden .layer.quarternary .actions div{
   pointer-events:none !important;
 }
 
-.status{
+span.status{
   display:inline-block;
   padding:4px 7px;
   margin-right:15px;
   border-radius:4px;
   font-size:.9em;
+  line-height:1.4em;
 }
 
 .status.status-none{
@@ -1736,24 +1738,49 @@ body.quarternary-hidden .layer.quarternary .actions div{
   background-color:#d1d1d1;
 }
 
-.status.status-created,.status.status-due,.status.status-neutral,.status.status-unverified{
+.status.pending,.status.status-created,.status.status-due,.status.status-neutral,.status.status-unverified,.status.submitted{
   color:#fff;
   background-color:#0071bc;
 }
 
-.status.status-paid,.status.status-success,.status.status-verified{
+.status.processed,.status.status-paid,.status.status-success,.status.status-verified,.status.success,.status.true{
   color:#fff;
   background-color:#45c97a;
 }
 
-.status.status-warning{
+.status.status-warning,.status.warning{
   color:#333;
   background-color:#f7d114;
 }
 
-.status.status-error,.status.status-overdue{
+.status.error,.status.failed,.status.false,.status.status-error,.status.status-overdue{
   color:#fff;
   background-color:#e91e63;
+}
+
+.status.cancelled{
+  color:#fff;
+  background-color:#b7b7b7;
+}
+
+.color.pending,.color.status-created,.color.status-due,.color.status-neutral,.color.status-unverified,.color.submitted{
+  color:#0071bc;
+}
+
+.color.processed,.color.status-paid,.color.status-success,.color.status-verified,.color.success,.color.true{
+  color:#45c97a;
+}
+
+.color.status-warning,.color.warning{
+  color:#f7d114;
+}
+
+.color.error,.color.failed,.color.false,.color.status-error,.color.status-overdue{
+  color:#e91e63;
+}
+
+.color.cancelled{
+  color:#b7b7b7;
 }
 
 .status-list{
@@ -1763,25 +1790,6 @@ body.quarternary-hidden .layer.quarternary .actions div{
 .status-list span{
   padding:3px 4px;
   border-radius:3px;
-}
-
-.status-list span.submitted{
-  color:#fff;
-  background:#0071bc;
-}
-
-.status-list span.processed,.status-list span.success,.status-list span.true{
-  color:#fff;
-  background:#45c97a;
-}
-
-.status-list span.cancelled,.status-list span.error,.status-list span.failed,.status-list span.false{
-  color:#fff;
-  background:#e91e63;
-}
-
-.status-list span.pending,.status-list span.warning{
-  background:#f7d114;
 }
 
 input[type=date],input[type=email],input[type=number],input[type=password],input[type=search],input[type=tel],input[type=text]{
@@ -2204,7 +2212,7 @@ legend{
 
 .form-model.charges{
   padding:30px 30px 10px !important;
-  background:#333;
+  background:#394a67;
   color:#eee;
 }
 
@@ -2220,7 +2228,7 @@ legend{
 }
 
 .form-model .charge-group{
-  max-width:400px;
+  max-width:440px;
 }
 
 .form-model .charge-group legend{
@@ -2245,7 +2253,7 @@ legend{
 }
 
 .form-model .charge-group dl dd{
-  font-size:1.1em;
+  font-size:1.2em;
   float:right;
 }
 
@@ -3045,6 +3053,13 @@ card .meta h2{
   margin-top:0;
   margin-bottom:10px;
   line-height:1.1em;
+}
+
+card .flex-end{
+  -webkit-box-pack:end;
+  -webkit-justify-content:flex-end;
+      -ms-flex-pack:end;
+          justify-content:flex-end;
 }
 
 card .status{
@@ -6311,6 +6326,21 @@ ul.collapsible li .transfer.processed .transfer-status{
   transition:all .7s;
 }
 
+card.transfer{
+  max-width:440px;
+  margin-bottom:10px;
+  box-shadow:none;
+  font-size:.85em;
+  background-color:#f2f2f2;
+}
+
+card.transfer .meta.status{
+  padding:24px 0;
+  margin-right:0;
+  font-size:1.1em;
+  width:200px;
+}
+
 .color-success{
   color:#45c97a;
 }
@@ -6698,31 +6728,31 @@ input.bill_due_day{
   margin-top:9px;
 }
 
-.transfers .transfer-cards{
+.transfer-cards{
   margin-top:10px;
 }
 
-.transfers .transfer-cards .user-payments:last-child card{
+.transfer-cards .user-payments:last-child card.user{
   margin-bottom:0;
 }
 
-.transfers .transfer-cards card{
+.transfer-cards card.user{
   max-width:400px;
   box-shadow:none;
 }
 
-.transfers .transfer-cards card h2{
+.transfer-cards card.user h2{
   margin:0;
   font-size:1.1em;
 }
 
-.transfers .transfer-cards ul.transfer-data{
+.transfer-cards ul.transfer-data{
   text-align:right;
   font-size:1.1em;
   font-weight:700;
 }
 
-.transfers .transfer-cards ul.transfer-data li{
+.transfer-cards ul.transfer-data li{
   display:block;
 }
 

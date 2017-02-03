@@ -91,31 +91,7 @@ function(app) {
       return parseFloat(amount);
     }),
 
-    // cancellable_until: Backbone.computed('created', function() {
-    //   var created = this.get('created');
-    //   if (!created) return;
-
-    //   var created_moment = moment.utc().utcOffset('-06:00');
-    //   var time_of_day = moment.utc(created_moment.format('HH:mm'), 'HH:mm');
-
-    //   var cancellable_until;
-
-    //   cancellable_until = moment.utc(created_moment.startOf('day').add('hours', 16));
-
-    //   // after 4pm?
-    //   if (time_of_day > moment.utc('16:00', 'HH:mm').utcOffset('-6:00')) {
-    //     cancellable_until = moment.utc(cancellable_until.add('days', 1)).utcOffset('-6:00');
-    //   }
-
-    //   return cancellable_until;
-    // }),
-
     cancelTransfer: function() {
-      // var cancellable_until = this.get('cancellable_until');
-
-      // if (moment.utc() > moment.utc(cancellable_until)) 
-        // throw new Error('This transfer is outside the cancellation window');
-
       return app.utils.request({
         path: 'dwolla/transfer/' + this.id + '/cancel',
         method: 'POST'
