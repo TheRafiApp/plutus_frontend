@@ -33,7 +33,7 @@ function(app) {
       var unit = this.get('unit');
       if (typeof unit !== 'object') return;
       // var data = this.toJSON();
-      return property.address + ' #' + unit.number + ', ' + property.city + ' ' + property.state;
+      return property.address + ' #' + unit.number /* + ', ' + property.city + ' ' + property.state */;
     }),
 
     date_pretty: Backbone.computed('due_date', function() {
