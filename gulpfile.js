@@ -226,6 +226,7 @@ gulp.task('js-copy', ['js-version'], function() {
       './js/vendor/xlsx.js',
       './js/vendor/jszip.js',
       './js/vendor/d3.js',
+      './js/vendor/jquery.json-viewer.js',
       './js/vendor/nouislider.js'
     ])
     .pipe(gulp.dest('./js/temp/vendor'))
