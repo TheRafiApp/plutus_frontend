@@ -693,11 +693,11 @@ ol.json-array,ul.json-dict{
 }
 
 .json-string{
-  color:#0b7500;
+  color:#329ea9;
 }
 
 .json-literal{
-  color:#1a01cc;
+  color:#9a01cc;
   font-weight:700;
 }
 a.json-toggle{
@@ -717,6 +717,7 @@ a.json-toggle:before{
   display:inline-block;
   width:1em;
   left:-1em;
+  font-size:.2em;
 }
 
 a.json-toggle.collapsed:before{
@@ -2245,7 +2246,7 @@ legend{
 }
 
 .form-model .charge-group dl dd{
-  font-size:1.1em;
+  font-size:1.2em;
   float:right;
 }
 
