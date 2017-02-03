@@ -226,6 +226,7 @@ gulp.task('js-copy', ['js-version'], function() {
       './js/vendor/xlsx.js',
       './js/vendor/jszip.js',
       './js/vendor/d3.js',
+      './js/vendor/jquery.json-viewer.js',
       './js/vendor/nouislider.js'
     ])
     .pipe(gulp.dest('./js/temp/vendor'))
@@ -258,6 +259,7 @@ gulp.task('js-rjs', ['js-config'], function() {
       'jquery.mask':           'vendor/jquery.mask.min', 
       'jquery.auto-complete':  'vendor/jquery.auto-complete.min', 
       'jquery.serialize':      'vendor/jquery.serialize-object',
+      'jquery.json-viewer':    'vendor/jquery.json-viewer',
       'underscore':            'vendor/underscore',
       'backbone':              'vendor/backbone',
       'async':                 'vendor/async',
@@ -265,7 +267,7 @@ gulp.task('js-rjs', ['js-config'], function() {
       'moment':                'vendor/moment.min',
       'kalendae':              'vendor/kalendae',
       'chosen':                'vendor/chosen.jquery',
-      'ua-parser':             'vendor/ua-parser.min',
+      'ua-parser':             'vendor/ua-parser.min', 
 
       'view/DebugView':        'empty:', // do not include debug in build
       'jasmine':               'empty:', // do not include tests in build

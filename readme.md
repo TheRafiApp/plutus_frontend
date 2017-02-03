@@ -4,7 +4,6 @@
 1. [Watch](#watch)
 1. [Build](#build)
 1. [Deploy](#deploy)
- 
 
 <a name="installation"></a>
 ## Installation
@@ -19,7 +18,7 @@
     ```
   npm install
     ```
-
+ 
 
 <a name="watch"></a>
 ## Watch
