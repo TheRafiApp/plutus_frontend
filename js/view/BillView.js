@@ -4,6 +4,7 @@
 
 define([
   'app',
+  'view/cards/user',
   'view/cards/transfer',
   'view/modals/ModalTransferView',
   'model/bills/BillModel',
@@ -12,6 +13,7 @@ define([
 ],
 function(
   app, 
+  UserCard, 
   TransferCard, 
   ModalTransferView, 
   BillModel, 
@@ -74,36 +76,31 @@ function(
         prettyMoney: app.utils.prettyMoney
       }));
 
+      this.renderTenants();
       this.renderTransfers();
-
-      /*
-      this.tenants = this.model.get('tenants');
-      var transfers = this.model.get('transfers');
-
-      _.each(this.tenants, function(tenant) {
-        var tenant_id = tenant._id; 
-        var amount = 0;
-
-        transfers.forEach(function(transfer) {
-          if (transfer.source == tenant_id && !['failed', 'error', 'cancelled'].contains(transfer.status.state)) { 
-            amount += transfer.amount;
-          }
-        });
-
-        var tenant_card = new UserCardView({
-          data: tenant,
-          amount: amount
-        });
-
-        self.$el.find('.transfer-cards').append(tenant_card.$el);
-      });
-
-      */
 
       $('.row[data-id="' + app.views.currentView.selected + '"]').addClass('selected');
       $('.tertiary').removeClass('loading');
       
       return this;
+    },
+
+    renderTenants: function() {
+      var tenants = this.model.get('tenants');
+
+      var self = this;
+
+      tenants.forEach(function(tenant) {
+        var user_card = new UserCard({
+          data: tenant,
+          options: {
+            email: false
+          }
+        });
+
+        self.$el.find('.tenants-cards').append(user_card.$el);
+
+      });
     },
 
     renderTransfers: function() {

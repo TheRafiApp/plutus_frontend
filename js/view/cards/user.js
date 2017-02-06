@@ -17,9 +17,17 @@ function(app, UserModel, CardTemplate) {
 
     template: _.template(CardTemplate),
 
+    defaults: {
+      email: true,
+      phone: true,
+    },
+
     initialize: function(options) {
       _.extend(this, options);
       this.model = new UserModel(this.data);
+
+      this.options = _.extend(this.defaults, this.options);
+
       this.render();
     },
 
@@ -27,7 +35,10 @@ function(app, UserModel, CardTemplate) {
       var data = this.model.toJSON();
       if (this.transfers) console.log(this.transfers);
       
-      this.$el.html(this.template({ user: data }));
+      this.$el.html(this.template({ 
+        user: data,
+        options: this.options
+      }));
       return this;
     }
 
