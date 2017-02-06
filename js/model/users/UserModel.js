@@ -95,9 +95,9 @@ function(app) {
 
     primary_fs_status: Backbone.computed('dwolla_account', function() {
       var account = this.get('dwolla_account');
-      if (!account) return;
+      if (!account) return 'N/A';
 
-      console.log(this.get('full_name'), account)
+      // console.log(this.get('full_name'), account)
       var status = 'inactive';
 
       if (account.primary_funding_source) {
