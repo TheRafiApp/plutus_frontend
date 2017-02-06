@@ -105,7 +105,7 @@ function(app) {
         var primary_fs = account.funding_sources[primary_id];
         status = 'active';
 
-        if (primary_fs && primary_fs.microdeposits) status = 'microdeposits ' + primary_fs.microdeposits.status;
+        if (primary_fs && primary_fs.microdeposits) status = 'microdeposits ' + primary_fs.status;
       }
 
       return status;
