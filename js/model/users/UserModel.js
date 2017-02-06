@@ -93,6 +93,24 @@ function(app) {
       return this.get(account_location);
     }),
 
+    primary_fs_status: Backbone.computed('dwolla_account', function() {
+      var account = this.get('dwolla_account');
+      if (!account) return;
+
+      console.log(this.get('full_name'), account)
+      var status = 'inactive';
+
+      if (account.primary_funding_source) {
+        var primary_id = account.primary_funding_source;
+        var primary_fs = account.funding_sources[primary_id];
+        status = 'active';
+
+        if (primary_fs.microdeposits) status = 'microdeposits ' + primary_fs.microdeposits.status;
+      }
+
+      return status;
+    }),
+
     updatePhone: function() {
       var phone_number = app.utils.uglyPhone(this.get('phone_pretty'));
       this.set('phone', phone_number);

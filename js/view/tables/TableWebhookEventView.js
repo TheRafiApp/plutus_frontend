@@ -35,6 +35,8 @@ function(app, TableRowTemplate) {
     },
 
     viewModel: function() {
+      if (!this.model.get('resourceId')) return;
+
       if (!$('.table').hasClass('editing')) {
         $('.table .row').removeClass('selected');
         this.$el.addClass('selected');

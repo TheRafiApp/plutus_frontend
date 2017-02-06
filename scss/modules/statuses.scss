@@ -2,36 +2,74 @@
 
 // Statuses
 
-.status {
+span.status {
   display: inline-block;
   padding: 4px 7px;
   margin-right: 15px;
   border-radius: 4px;
   font-size: 0.9em;
+  line-height: 1.4em;
+}
 
+.status {
   &.status-none {
     color: $color-text-light;
     background-color: $color-grey-20;
   }
   
-  &.status-neutral, &.status-unverified, &.status-due, &.status-created {
+  &.status-neutral, &.status-unverified, &.status-due, &.status-created,
+  &.submitted, &.pending, {
     color: $color-text-light;
     background-color: $color-status-neutral;
   }
   
-  &.status-success, &.status-verified, &.status-paid {
+  &.status-success, &.status-verified, &.status-paid,
+  &.true, &.processed, &.success {
     color: $color-text-light;
     background-color: $color-status-success;
   }
   
-  &.status-warning {
+  &.status-warning,
+  &.warning {
     color: $color-text-dark;
     background-color: $color-status-warning;
   }
   
-  &.status-error, &.status-overdue {
+  &.status-error, &.status-overdue,
+  &.false, &.failed, &.error {
     color: $color-text-light;
     background-color: $color-status-error;
+  }
+
+  &.cancelled {
+    color: $color-text-light;
+    background-color: #b7b7b7;
+  }
+}
+
+.color {
+  &.status-neutral, &.status-unverified, &.status-due, &.status-created,
+  &.submitted, &.pending {
+    color: $color-status-neutral;
+  }
+  
+  &.status-success, &.status-verified, &.status-paid,
+  &.true, &.processed, &.success {
+    color: $color-status-success;
+  }
+  
+  &.status-warning,
+  &.warning {
+    color: $color-status-warning;
+  }
+  
+  &.status-error, &.status-overdue,
+  &.false, &.failed, &.error {
+    color: $color-status-error;
+  }
+
+  &.cancelled {
+    color: #b7b7b7;
   }
 }
 
@@ -43,21 +81,5 @@
   span {
     padding: 3px 4px;
     border-radius: 3px;
-    
-    &.submitted {
-      color: $color-text-light;
-      background: $color-status-neutral;
-    }
-    &.true, &.processed, &.success {
-      color: $color-text-light;
-      background: $color-status-success;
-    }
-    &.false, &.failed, &.cancelled, &.error {
-      color: $color-text-light;
-      background: $color-status-error; 
-    }
-    &.pending, &.warning {
-      background: $color-status-warning;
-    }
   }
 }

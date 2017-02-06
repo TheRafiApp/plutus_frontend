@@ -54,23 +54,28 @@
       <tbody>
         <tr>
           <td>Account</td>
-          <td><span class="{{{ model.status.active }}}">{{{ model.status.active ? 'active' : 'inactive' }}}</span></td>
+          <td><span class="status {{{ model.status.active }}}">{{{ model.status.active ? 'active' : 'inactive' }}}</span></td>
         </tr>
         <tr>
           <td>Email</td>
-          <td><span class="{{{ model.status.email }}}">{{{ model.status.email ? 'active' : 'inactive' }}}</span></td>
+          <td><span class="status {{{ model.status.email }}}">{{{ model.status.email ? 'active' : 'inactive' }}}</span></td>
         </tr>
         <tr>
           <td>Phone</td>
-          <td><span class="{{{ model.status.phone }}}">{{{ model.status.phone ? 'active' : 'inactive' }}}</span></td>
+          <td><span class="status {{{ model.status.phone }}}">{{{ model.status.phone ? 'active' : 'inactive' }}}</span></td>
         </tr>
         <tr>
           <td>Dwolla Account</td>
-          <td><span class="{{{ !!(model.dwolla_account && model.dwolla_account.customer_id) }}}">{{{ !!(model.dwolla_account && model.dwolla_account.customer_id) ? 'active' : 'inactive' }}}</span></td>
+          <td><span class="status {{{ !!(model.dwolla_account && model.dwolla_account.customer_id) }}}">{{{ !!(model.dwolla_account && model.dwolla_account.customer_id) ? 'active' : 'inactive' }}}</span></td>
         </tr>
         <tr>
           <td>Bank Account</td>
-          <td><span class="{{{ !!(model.dwolla_account && model.dwolla_account.primary_funding_source) }}}">{{{ (model.dwolla_account && model.dwolla_account.primary_funding_source) ? 'active' : 'inactive' }}}</span></td>
+
+          {{#
+          var primary_status = model.primary_fs_status;
+          var color = primary_status.contains('microdeposits') ? 'warning' : 'true';
+          }}
+          <td><span class="status {{{ color }}}">{{{ primary_status }}}</span></td>
         </tr>
       </tbody>
     </table>

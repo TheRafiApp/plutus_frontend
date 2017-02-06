@@ -2,14 +2,14 @@
   {{{ moment(bill.due_date).format('MM/DD/YYYY') }}}
 </div>
 <div class="cell"> 
-  {{{ moment(bill.created).format('MM/DD/YYYY') }}}
-</div>
-<div class="cell"> 
   {{{ bill.type }}}
 </div>
-<div class="cell hide-1">
+<div class="cell">
   {{{ bill.address }}}
 </div>
+<div class="cell hide-1"> 
+  {{{ moment(bill.created).format('MM/DD/YYYY') }}}
+</div>
 
-<div class="cell hide-1">{{{ bill.total || '–' }}}</div>
+<div class="cell text-right">{{{ prettyMoney(bill.total) }}}</div>
 <div class="cell"></div>

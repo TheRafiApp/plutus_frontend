@@ -86,11 +86,12 @@ function(app, WebhookEventModel, Template, HeaderTemplate) {
       this.model.getRetries().then(function(retries) {
 
         if (!retries.length) {
-          $container.html('<li>No retries</li>');
+          $container.html('No retries');
         } else {
           $container.html('');
-          retries.forEach(function(retry) {
-            $container.append('<li><pre>' + retry + '</pre></li>');
+          $container.jsonViewer(retries, { 
+            // collapsed: true, 
+            withQuotes: true 
           });
         }
 

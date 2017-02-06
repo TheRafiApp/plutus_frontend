@@ -26,23 +26,23 @@ function(
     className: 'collection-view',
     template: _.template(TableRowTemplate),
 
-    tips: [
-      { 
-        'header': 'Winning wars',
-        'body': 'Proin quis hendrerit justo, a vehicula nulla. Proin vulputate facilisis turpis ut lobortis. Proin molestie mattis justo eget posuere. Duis sed odio feugiat, interdum diam sed',
-        'link': 'http://google.com'
-      },
-      { 
-        'header': 'Getting ahead',
-        'body': 'Ut tincidunt metus vel libero cursus pellentesque. Sed tincidunt, turpis ac efficitur egestas, tellus nibh iaculis purus, in aliquam elit eros nec elit.',
-        'link': 'http://google.com'
-      },
-      { 
-        'header': 'Slamm-a-jammin',
-        'body': 'Sed tempus, eros et tempus egestas, sem diam iaculis nisl, ac ultricies lacus nunc sit amet nisl. Suspendisse lectus nulla, rhoncus non mauris nec, varius consequat felis.',
-        'link': 'http://google.com'
-      }
-    ],
+    // tips: [
+    //   { 
+    //     'header': 'Winning wars',
+    //     'body': 'Proin quis hendrerit justo, a vehicula nulla. Proin vulputate facilisis turpis ut lobortis. Proin molestie mattis justo eget posuere. Duis sed odio feugiat, interdum diam sed',
+    //     'link': 'http://google.com'
+    //   },
+    //   { 
+    //     'header': 'Getting ahead',
+    //     'body': 'Ut tincidunt metus vel libero cursus pellentesque. Sed tincidunt, turpis ac efficitur egestas, tellus nibh iaculis purus, in aliquam elit eros nec elit.',
+    //     'link': 'http://google.com'
+    //   },
+    //   { 
+    //     'header': 'Slamm-a-jammin',
+    //     'body': 'Sed tempus, eros et tempus egestas, sem diam iaculis nisl, ac ultricies lacus nunc sit amet nisl. Suspendisse lectus nulla, rhoncus non mauris nec, varius consequat felis.',
+    //     'link': 'http://google.com'
+    //   }
+    // ],
 
     initialize: function() {
       this.render();

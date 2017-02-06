@@ -1,0 +1,20 @@
+<card class="transfer flex">
+  <avatar>
+    <svg viewBox="0 0 220 180" style="background: {{{ user.avatar_color }}} linear-gradient(to bottom, rgba(255, 255, 255, 0.5) 0%, rgba(255, 255, 255, 0) 100%);">
+      <text transform="matrix(1 0 0 1 110 127)" text-anchor="middle">{{{ user.initials }}}</text>
+    </svg>
+  </avatar>
+  <div class="meta" style="width:332px">
+    <ul>
+      <li>{{{ user.full_name }}}</li>
+      <li>{{{ moment.utc(transfer.created).format('M/D/YY h:mm:ss a') }}}</li>
+    </ul>
+  </div>
+  <div class="meta flex-end" style="width:200px">
+    <strong class="color {{{ transfer.status.state }}}">{{{ transfer.status.state }}}</strong>
+  </div>
+  <div class="meta text-right status {{{ transfer.status.state }}}">
+    {{{ prettyMoney(transfer.amount) }}}
+  </div>
+  
+</card>
