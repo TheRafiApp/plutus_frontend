@@ -36,18 +36,7 @@
     <legend>Phone</legend>
     <h3>{{{ model.phone_pretty || '(Not Set)' }}}</h3>
   </div>
-<!--   
-  <div class="field-group">
-    <legend>Company ID</legend>
-    <h4>{{{ model.company }}}</h4>
-    <span class="help-text"></span>
-  </div> -->
-<!-- 
-  <div class="field-group">
-    <legend>Role</legend>
-    <h4>{{{ model.role }}}</h4>
-  </div>
-   -->
+
   <h3>Status</h3>
   <div class="status-list">
     <table>
@@ -73,9 +62,15 @@
 
           {{#
           var primary_status = model.primary_fs_status;
-          var color = primary_status.contains('microdeposits') ? 'warning' : 'true';
+          var status_value = 'false';
+
+          if (primary_status.contains('microdeposits')) {
+            status_value = 'warning';
+          } else if (primary_status === 'active') {
+            status_value = 'success';
+          }
           }}
-          <td><span class="status {{{ color }}}">{{{ primary_status }}}</span></td>
+          <td><span class="status {{{ status_value }}}">{{{ primary_status }}}</span></td>
         </tr>
       </tbody>
     </table>
