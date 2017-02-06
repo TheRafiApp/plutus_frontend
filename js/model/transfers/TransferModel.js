@@ -74,6 +74,7 @@ function(app) {
       if (this.isNew()) return '';
       var destination = this.get('destination');
       if (!destination) return;
+      if (typeof destination !== 'object') return;
       return destination.first_name + ' ' +  destination.last_name;
     }),
 
@@ -90,6 +91,17 @@ function(app) {
 
       return parseFloat(amount);
     }),
+
+    // is_from_past_bill: Backbone.computed('bill', 'bill_original', function() {
+    //   var bill = this.get('bill');
+    //   var bill_original = this.get('bill_original');
+
+    //   if (!bill_original) return false;
+    //   if (bill !== bill_original) 
+    //     return true;
+    //   else
+    //     return false;
+    // }),
 
     cancelTransfer: function() {
       return app.utils.request({

@@ -1,3 +1,11 @@
+{{#
+var is_from_past_bill = false;
+var bill = transfer.bill
+var bill_original = transfer.bill_original;
+
+if (bill_original && bill !== bill_original) is_from_past_bill = true;
+}}
+
 <card class="transfer flex">
   <avatar>
     <svg viewBox="0 0 220 180" style="background: {{{ user.avatar_color }}} linear-gradient(to bottom, rgba(255, 255, 255, 0.5) 0%, rgba(255, 255, 255, 0) 100%);">
@@ -10,11 +18,13 @@
       <li>{{{ moment.utc(transfer.created).format('M/D/YY h:mm:ss a') }}}</li>
     </ul>
   </div>
-  <div class="meta flex-end" style="width:200px">
-    <strong class="color {{{ transfer.status.state }}}">{{{ transfer.status.state }}}</strong>
+  <div class="meta" style="width:200px">
+    <ul class="text-right">
+      <li><strong class="color {{{ transfer.status.state }}}">{{{ transfer.status.state }}}</strong></li>
+      {{# if (is_from_past_bill) { }}<li><strong>(from past bill)</strong></li>{{# } }}
+    </ul>
   </div>
   <div class="meta text-right status {{{ transfer.status.state }}}">
     {{{ prettyMoney(transfer.amount) }}}
   </div>
-  
 </card>

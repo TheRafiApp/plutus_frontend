@@ -61,7 +61,7 @@ function(
       var data = this.model.toJSON();
 
       var header_info = {
-        model: this.model.get('type') + ' Bill – ' + this.model.display_name()
+        model: this.model.get('type') + ' Bill – ' + this.model.get('address') + ' – ' + this.model.display_name()
       };
 
       this.$el.html(this.template_container({
