@@ -1,8 +1,7 @@
 <div class="form-model charges">
-
   {{# if (bill.charges_pretty.recurring) { }}
   <div class="charge-group">
-    <legend>Recurring</legend>
+    <legend>Recurring Fees</legend>
     <dl>
       {{# _.each(bill.charges_pretty.recurring, function(charge) { }}
         <dt>
@@ -21,7 +20,7 @@
 
   {{# if (bill.charges_pretty.scheduled) { }}
   <div class="charge-group">
-    <legend>Scheduled</legend>
+    <legend>Scheduled Fees</legend>
     <dl>
       {{# _.each(bill.charges_pretty.scheduled, function(charge) { }}
         <dt>
@@ -38,6 +37,13 @@
   </div>
   {{# } }}
 </div>
+
+<div class="form-model">
+  <legend>Tenants</legend>
+  <div class="tenants-cards grid" style="margin-top: 8px; max-width:560px"></div>
+</div>
+
+<div class="divider"></div>
 
 <div class="form-model transfers">
 

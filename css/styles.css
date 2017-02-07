@@ -1037,6 +1037,10 @@ p{
   font-weight:700;
 }
 
+em{
+  font-style:italic;
+}
+
 ol,ul{
   list-style:none;
 }
@@ -3051,7 +3055,7 @@ card .meta{
 card .meta h2{
   display:inline-block;
   margin-top:0;
-  margin-bottom:10px;
+  margin-bottom:0;
   line-height:1.1em;
 }
 
