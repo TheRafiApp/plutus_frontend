@@ -33,11 +33,14 @@ function(app, UserModel, CardTemplate) {
 
     render: function() {
       var data = this.model.toJSON();
-      if (this.transfers) console.log(this.transfers);
+      // if (this.transfers) console.log(this.transfers);
+      // 
+      console.log(this.rows);
       
       this.$el.html(this.template({ 
         user: data,
-        options: this.options
+        options: this.options,
+        rows: this.rows
       }));
       return this;
     }

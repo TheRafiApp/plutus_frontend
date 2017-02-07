@@ -8,8 +8,19 @@
   <div class="meta">
     <ul>
       <li><h2>{{{ user.full_name }}}</h2></li>
-      {{# if (options.email) { }}<li>{{{ user.email }}}</li>{{# } }}
-      <li>{{{ user.phone_pretty }}}</li>
+
+      {{# if (rows) { }}
+
+        {{# rows.forEach(function(row) { }}
+
+          <li>{{ /* ok */ row }}</li>
+
+        {{# }) }}
+
+      {{# } else { }}
+        {{# if (options.email) { }}<li>{{{ user.email }}}</li>{{# } }}
+        {{# if (options.phone) { }}<li>{{{ user.phone_pretty }}}</li>{{# } }}
+      {{# } }}
     </ul>
   </div>
 </card>
