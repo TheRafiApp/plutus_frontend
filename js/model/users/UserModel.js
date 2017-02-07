@@ -97,15 +97,23 @@ function(app) {
       var account = this.get('dwolla_account');
       if (!account) return 'N/A';
 
-      // console.log(this.get('full_name'), account)
       var status = 'inactive';
 
       if (account.primary_funding_source) {
         var primary_id = account.primary_funding_source;
         var primary_fs = account.funding_sources[primary_id];
-        status = 'active';
 
-        if (primary_fs && primary_fs.microdeposits) status = 'microdeposits ' + primary_fs.status;
+        if (primary_fs) {
+          if (primary_fs.status === 'verified') {
+            status = 'active';
+          } else if (primary_fs.status === 'unverified'){
+            status = 'inactive';
+
+            if (primary_fs.microdeposits) {
+              status = 'microdeposits ' + primary_fs.microdeposits;
+            }
+          }
+        }
       }
 
       return status;
