@@ -90,12 +90,20 @@ function(
 
       var self = this;
 
+      var autopay_data = this.model.get('lease.autopay');
+      var split_data = this.model.get('lease.split');
+
       tenants.forEach(function(tenant) {
+
+        var split = split_data[tenant._id];
+        var autopay = autopay_data[tenant._id];
+
         var user_card = new UserCard({
           data: tenant,
-          options: {
-            email: false
-          }
+          rows: [
+            '<span style="color:#394a67">Split: <strong>' + (split ? app.utils.prettyMoney(split) : 'Not Set') + '</strong></span>',
+            '<span style="color:#394a67">Autopay: <strong>' + (autopay ? 'Enabled' : 'Disabled') + '</strong></span>'
+          ]
         });
 
         self.$el.find('.tenants-cards').append(user_card.$el);

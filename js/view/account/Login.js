@@ -261,6 +261,7 @@ function(app, LoginTemplate) {
 
     // Send form 3
     submitReset: function(e) {
+      console.log(e);
       e.preventDefault();
 
       var self = this;
@@ -268,7 +269,7 @@ function(app, LoginTemplate) {
       var key = this.email ? 'email' : 'phone';
       var code = this.code;
 
-      if (!this.validatePassword()) return;
+      if (!this.validatePassword(e)) return;
 
       var password = this.$el.find('.reset .password').val();
 
@@ -291,7 +292,7 @@ function(app, LoginTemplate) {
       var key = this.email ? 'email' : 'phone';
       var token = this.token;
 
-      if (!this.validatePassword()) return;
+      if (!this.validatePassword(e)) return;
 
       var password = this.$el.find('.reset .password').val();
 
@@ -306,6 +307,8 @@ function(app, LoginTemplate) {
     },
 
     validatePassword: function(e) {
+      console.log(e);
+
       var pw = this.$el.find('.reset .password');
       var pc = this.$el.find('.reset .password-confirm');
 
@@ -348,7 +351,8 @@ function(app, LoginTemplate) {
       if (errors) {
         return false;
       } else {
-        this.confirm(e);
+        return true;
+        // this.submitReset(e);
       }
     },
 

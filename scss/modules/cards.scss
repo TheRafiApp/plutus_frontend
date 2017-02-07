@@ -29,7 +29,7 @@ card {
 
   &.flex {
     display: flex;
-    padding: 0;
+    padding: 0; 
     border-left: 0;
     align-items: center;
     justify-content: center;
@@ -343,6 +343,22 @@ card {
 
   .kalendae {
     margin: 5px 20px 20px;
+  }
+}
+
+.tenants-cards {
+  card {
+    ul {
+      li {
+        font-size: 0.85em;
+        margin: 5px 0;
+
+        h2 {
+          font-size: 1.1em;
+          font-weight: 500;
+        }
+      }
+    }
   }
 }
 

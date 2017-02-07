@@ -3288,6 +3288,16 @@ card.profile.small.overdue .total{
   margin:5px 20px 20px;
 }
 
+.tenants-cards card ul li{
+  font-size:.85em;
+  margin:5px 0;
+}
+
+.tenants-cards card ul li h2{
+  font-size:1.1em;
+  font-weight:500;
+}
+
 div.flex{
   display:-webkit-box;
   display:-webkit-flex;
