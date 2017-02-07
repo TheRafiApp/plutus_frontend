@@ -15,13 +15,13 @@ if (bill_original && bill !== bill_original) is_from_past_bill = true;
   <div class="meta" style="width:332px">
     <ul>
       <li>{{{ user.full_name }}}</li>
-      <li>{{{ moment.utc(transfer.created).format('M/D/YY h:mm:ss a') }}}</li>
+      <li>{{{ moment.utc(transfer.created).format('M/D/YY h:mm:ss a') }}}{{# if (is_from_past_bill) { }}<br><em>(from past bill) {{# } }}</em></li>
     </ul>
   </div>
   <div class="meta" style="width:200px">
     <ul class="text-right">
       <li><strong class="color {{{ transfer.status.state }}}">{{{ transfer.status.state }}}</strong></li>
-      {{# if (is_from_past_bill) { }}<li><strong>(from past bill)</strong></li>{{# } }}
+      <li><strong>{{{ transfer.method }}}</strong></li>
     </ul>
   </div>
   <div class="meta text-right status {{{ transfer.status.state }}}">
