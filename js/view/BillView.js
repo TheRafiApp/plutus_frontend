@@ -90,8 +90,8 @@ function(
 
       var self = this;
 
-      var autopay_data = this.model.get('lease.autopay');
-      var split_data = this.model.get('lease.split');
+      var autopay_data = this.model.get('lease.autopay') || {};
+      var split_data = this.model.get('lease.split') || {};
 
       tenants.forEach(function(tenant) {
 
