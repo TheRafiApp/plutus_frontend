@@ -58,7 +58,7 @@ function(app) {
 
       var country = property.country ? ', ' + property.country : '';
 
-      return property.address + ' #' + this.get('number_pretty') + ', ' + property.city + ', ' + app.utils.stateAbbr(property.state) + ' ' + property.zip + country;
+      return property.address + ', ' + this.get('number_pretty') + ', ' + property.city + ', ' + app.utils.stateAbbr(property.state) + ' ' + property.zip + country;
     }),
 
     validation: {
