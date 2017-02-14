@@ -158,7 +158,8 @@ function(
         action: 'add',
         type: 'offline',
         eventName: 'transferAdded',
-        context: this,
+        sources: this.model.get('tenants'),
+        context: this
       });
     }
 

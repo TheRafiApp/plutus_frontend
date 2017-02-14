@@ -39,28 +39,17 @@ function(
 
       var self = this;
 
-      // var promises = app.utils.promises(2);
-
       if (!this.model) this.model = new TransferModel(null, {
         action: 'add'
       });
 
-      // this.managers = new ManagersCollection();
-      // this.managers.fetch().then(function() {
-      //   promises[0].resolve();
-      // });
-
       this.funding_sources = new FundingSourcesCollection();
-      // this.funding_sources.fetch().then(function() {
-      //   promises[1].resolve();
-      // });
 
-      // $.when.apply($, promises).then(function() {
-      //   self.renderModalView();
-      // });
       this.funding_sources.fetch().then(function() {
         self.renderModalView();
       });
+
+      self.renderModalView();
     },
 
     validateAmount: function(e) {
@@ -85,11 +74,14 @@ function(
         return funding_source.id === primary_id;
       });
 
+      console.log(this.sources)
+
       var options = {
         type: this.type,
         amount: this.amount,
         company: app.session.user.get('company'),
-        primary_fs: primary_fs
+        primary_fs: primary_fs,
+        sources: this.sources
       };
 
       if (this.type === 'electronic') {

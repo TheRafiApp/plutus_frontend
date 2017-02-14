@@ -8,26 +8,13 @@
 
 <div class="date-picker"></div>
 
-{{# if (type === 'electronic') { }}
-<!-- 
-<div class="field-group">
-  <legend>Recipient</legend>
-  <select name="destination">
-    {{# _.each(destination, function(manager) { }}
-      <option value="{{{ manager._id }}}">{{{ manager.full_name }}}</option>
-    {{# }) }}
-  </select>
-  <span class="help-text"></span>
-</div>
- -->
-{{# } else if (type === 'offline') { }}
+{{# if (type === 'offline') { }}
 
 <div class="field-group">
   <legend>Source</legend>
   <div class="dropdown">
     <select name="source">
-    {{# _.each(source, function(tenant) { }}
-      {{# console.log(tenant); }}
+    {{# _.each(sources, function(tenant) { }}
       <option value="{{{ tenant._id }}}">{{{ tenant.first_name + ' ' + tenant.last_name }}}</option>
     {{# }) }}
     </select>
@@ -37,9 +24,10 @@
 
 {{# } }}
 
+{{# if (primary_fs && type !== 'offline') { }}
 
-{{# if (primary_fs) { }}
-
-<p>Funds will be transferred from "{{{ primary_fs.name }}}" to {{{ company.name }}}</p>
+  <span class="status pending">
+  Funds will be transferred from: <br>
+  "{{{ primary_fs.name }}}" to {{{ company.name }}}</span>
   
 {{# } }}

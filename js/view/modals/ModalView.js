@@ -62,7 +62,8 @@ function(app, ModalTemplate) {
     attachEvents: function() {
       var events = _.extend(this.modalEvents, this.events);
       this.delegateEvents(events);
-      this.listening = true;
+
+      // this.listening = true;
     },
 
     // this should be fired at the end of initialize
@@ -88,9 +89,10 @@ function(app, ModalTemplate) {
 
       if (this.tabs) this.renderTabs();
 
-      if (!this.listening) this.attachEvents();
-
       this.render();
+
+      // if (!this.listening) this.attachEvents();
+      this.attachEvents();
 
       return this;
     },
