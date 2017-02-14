@@ -18,6 +18,9 @@ function(app) {
     // Dwolla
     dwolla_env: 'prod',
 
+    // Google Places
+    google_places_key: 'AIzaSyAqKawujiTudve82jU5uFRzDEkqLtxhml4',
+
   	// Sentry
   	sentry: true,
     sentry_dsn: 'https://f2bcc9229ccd43ef848975ba162146e7@sentry.io/106844',

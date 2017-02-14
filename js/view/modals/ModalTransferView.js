@@ -45,11 +45,16 @@ function(
 
       this.funding_sources = new FundingSourcesCollection();
 
+      if (this.type === 'offline')
+        return this.renderModalView();
+
       this.funding_sources.fetch().then(function() {
         self.renderModalView();
+        self.unlock();
       });
 
-      self.renderModalView();
+      this.renderModalView();
+      this.lock();
     },
 
     validateAmount: function(e) {

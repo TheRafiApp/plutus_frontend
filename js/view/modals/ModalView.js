@@ -45,12 +45,16 @@ function(app, ModalTemplate) {
 
     // default keyboard usage
     keyControl: function(e) {
+      var $focused = app.utils.getFocused();
+
       // esc
       if (e.which === 27) {
+        if ($focused.className.contains('no-escape')) return;
+
         this.closeModal();
       // enter
       } else if (e.which === 13) {
-        var $focused = app.utils.getFocused();
+        
         if ($focused.parentNode.className.contains('actions')) return;
         if ($focused.className.contains('no-submit')) return;
 
@@ -174,6 +178,14 @@ function(app, ModalTemplate) {
       }).fail(function(error) {
         self.handleError(error);
       });
+    },
+
+    lock: function() {
+      this.$el.find('.content').addClass('loading');
+    },
+
+    unlock: function() {
+      this.$el.find('.content').removeClass('loading');
     },
 
     // allow for different error handling per modal

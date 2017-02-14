@@ -16,7 +16,23 @@ function(app) {
       return app.API() + 'properties/';
     },
 
+    validateOnServer: function(data) {
+      var self = this;
+      return app.utils.request({
+        method: 'POST',
+        path: self.urlRoot() + 'validate',
+        data: data
+      });
+    },
+
+    // schema: {
+    //   address: {
+    //     type: 'address'
+    //   }
+    // },
+
     filters: [
+      'address',
       'full_address',
       'vacancies',
       'pay_into_target'

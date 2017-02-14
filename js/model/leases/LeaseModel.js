@@ -25,6 +25,17 @@ function(app) {
       return app.API() + 'leases/' + this.options.action;
     },
 
+    validateOnServer: function(data, validationType) {
+      var self = this;
+      var action = validationType ? '/' + validationType : '';
+
+      return app.utils.request({
+        method: 'POST',
+        path: self.urlRoot() + 'validate' + action,
+        data: data
+      });
+    },
+
     schema: {
       rent: {
         type: 'money'
@@ -36,6 +47,9 @@ function(app) {
         type: 'ISO'
       },
       end_date: {
+        type: 'ISO'
+      },
+      first_bill_date: {
         type: 'ISO'
       },
       charges: {
@@ -53,7 +67,6 @@ function(app) {
           }
         }]
       },
-      // for data import only
       first_month: {
         type: 'money'
       },
@@ -69,6 +82,7 @@ function(app) {
     },
 
     filters: [
+      'type',
       'lease',
       'term',
       'address',
@@ -210,11 +224,19 @@ function(app) {
     },
 
     validation: {
-      unit: {
-        required: true
-      },
+      // unit: {
+      //   required: true
+      // },
       start_date: {
         required: true
+      },
+      end_date: function(input, field, attributes) {
+        if (input) {
+          var start_date = moment.utc(attributes.start_date);
+          var end_date = moment.utc(input);
+          if (start_date > end_date) 
+            return 'End date cannot be after start date';
+        }
       },
       tenants: {
         required: true

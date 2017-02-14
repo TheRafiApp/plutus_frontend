@@ -1,0 +1,24 @@
+<div class="modal">
+  <header>
+    <h2 class="left">{{{ title }}}</h2>
+
+    <div class="count right">
+      <span class="current"></span>/<span class="total"></span>
+    </div>
+
+    <div class="clear"></div>
+  </header>
+  <div class="content scroll-container">
+    <div class="steps"></div>
+  </div>
+  <footer>
+    <div class="actions left">
+      {{# if (actions.cancel) { }}  <a href="#" class="btn action-cancel">Cancel</a> {{# } }}
+    </div>
+    <div class="actions right">
+      {{# if (actions.confirm) { }} <a href="#" class="btn btn-primary action-previous">Previous</a> {{# } }}
+      {{# if (actions.confirm) { }} <a href="#" class="btn btn-primary action-next">Next</a> {{# } }}
+    </div>
+  </footer>
+</div>
+<div class="overlay"></div>

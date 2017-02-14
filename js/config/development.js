@@ -10,8 +10,8 @@ function(app) {
     base_path: '/',
 
     // API URL
-    // API: 'http://10.1.10.38:8888/',
-    API: 'https://api.staging.payment.rafiproperties.com/',
+    API: 'http://10.1.10.38:8888/',
+    // API: 'https://api.staging.payment.rafiproperties.com/',
     
     // Sockets Server URL
     sockets_url: 'ws://localhost:4200',

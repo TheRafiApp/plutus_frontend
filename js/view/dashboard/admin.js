@@ -5,9 +5,10 @@
 define([
   'app',
   'view/events/EventsView',
-  'text!templates/dashboard/admin.html'
+  'text!templates/dashboard/admin.html',
+  'view/components/input-calendar',
 ],
-function(app, EventsView, DashTemplate) {
+function(app, EventsView, DashTemplate, DateInput) {
 
   return Backbone.View.extend({
 
@@ -27,6 +28,12 @@ function(app, EventsView, DashTemplate) {
       }));
 
       this.$el.append(new EventsView().$el);
+
+      this.start_date = new DateInput({
+        input: this.$el.find('.start-date-input'),
+        context: this,
+        overflowEscape: true
+      });
       
       return this;
     }

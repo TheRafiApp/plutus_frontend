@@ -1,0 +1,15 @@
+<form class="form-model">
+  <div class="field-group">
+    <legend>Choose a Unit</legend>
+
+    <div class="dropdown">
+      <select name="_id" class="units">
+      {{# _.each(units, function(unit) { }}
+        <option value="{{{ unit._id }}}">{{{ unit.number }}}</option>
+      {{# }) }}
+      </select>
+    </div>
+  </div>
+
+  Or, <a href="#" class="action-toggle">create a new unit</a>
+</form>

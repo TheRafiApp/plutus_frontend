@@ -267,6 +267,8 @@ function(
             .addClass('has-' + type)
             .find('.help-text')
             .html(message);
+
+            console.log($el, message)
         return this;
       },
 
@@ -569,11 +571,8 @@ function(
   // Raven.js (Sentry) for error logging
   if (app.config.sentry) {
     Raven.config(app.config.sentry_dsn, {
-      // ignoreErrors: [
-      //   'datespan_overlap'
-      // ]
       ignoreUrls: [
-        /10.1.10.38:81/,
+        /10.1.10.38:8888/,
         /payment.rafiproperties.com/
       ]
     }).install();
@@ -630,6 +629,7 @@ function(
 
     // Hide error messages on change for non text inputs
     .on('change', '.has-error input', function() {
+      console.log('change')
       // make sure input is correct type
       if ($(this).hasClass('chosen')) return; 
       $(this).closest('.field-group').removeClass('has-error');
@@ -644,7 +644,6 @@ function(
 
     // Focus chaining on single char inputs
     .on('keyup', '.focus-chain', function(event) {
-
       var key = String.fromCharCode(event.which);
       var regex;
 
@@ -673,6 +672,19 @@ function(
       event.preventDefault();
       $(this).closest('.jasmine_html-reporter').removeClass('visible');
     });
+
+
+  // Load Google APIs
+  var googleUrl = [
+    'async!',
+    'https://maps.googleapis.com/maps/api/js?key=',
+    app.config.google_places_key,
+    '&libraries=places',
+    '&callback=initService'
+  ].join('');
+
+  app.utils.load.get(googleUrl);
+
 
   // Override Backbone.ajax to check for expired tokens
   Backbone.ajax = function() {
