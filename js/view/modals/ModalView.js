@@ -34,6 +34,15 @@ function(app, ModalTemplate) {
       error: 'Your changes could not be saved'
     },
 
+    initialize: function(options) {
+      if (_options) _.extend(this, _options);
+
+      this.options = _.extend(this.actions, this.options);
+
+      this.app.views.appView && this.app.views.appView.trigger('modalOpened');
+      this.app.views.modalView = this;
+    },
+
     // default keyboard usage
     keyControl: function(e) {
       // esc
@@ -114,6 +123,9 @@ function(app, ModalTemplate) {
       this.$el.find('.form-model').html(this.template(data));
       $('.modal-container').html(this.$el).addClass('visible');
       app.utils.prepInputs(this);
+
+      if (this.$el.find('.focus').length < 1) 
+        this.$el.find('.actions a:last-child').focus();
     },
 
     // close the modal

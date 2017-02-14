@@ -32,7 +32,7 @@ function(
       }
     },
 
-    defaults: {
+    actions: {
       cancel: true,
       confirm: true,
     },
@@ -42,9 +42,7 @@ function(
     initialize: function(_options) {
       if (_options) _.extend(this, _options);
 
-      this.options = _.extend(this.defaults, this.options);
-
-      console.log(this.context);
+      this.options = _.extend(this.actions, this.options);
 
       // this modal is now used in activation, before AppView is rendered
       this.app.views.appView && this.app.views.appView.trigger('modalOpened');

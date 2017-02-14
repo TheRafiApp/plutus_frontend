@@ -23,6 +23,10 @@ function(
 
     template: _.template(ModalTemplate),
 
+    events: {
+      'click .action-confirm': 'closeModal'
+    },
+
     title: function() {
       return 'Authentication Events';
     },

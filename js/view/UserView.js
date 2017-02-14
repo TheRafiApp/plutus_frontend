@@ -56,6 +56,10 @@ function(app, ModelView, UserModel, ModalAuthEventsView, UserTemplate) {
         _id: this._id,
         collection: this.collection,
         context: this, 
+        actions: {
+          cancel: false,
+          confirm: true
+        }
       });
     },
 
