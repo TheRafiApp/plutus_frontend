@@ -62,6 +62,8 @@
     <dl><dd>{{{ prettyMoney(bill.display_balance) }}}</dd></dl>
   </div>
 
+  {{# if (role !== 'superadmin') { }}
   <a href="#" class="btn action-add-transfer">Add Offline Payment</a>
+  {{# } }}
 
 </div>

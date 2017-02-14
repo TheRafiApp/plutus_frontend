@@ -73,7 +73,8 @@ function(
 
       this.$el.find('.scroll-y').html(this.template({ 
         bill: data,
-        prettyMoney: app.utils.prettyMoney
+        prettyMoney: app.utils.prettyMoney,
+        role: app.session.get('user_role')
       }));
 
       this.renderTenants();
