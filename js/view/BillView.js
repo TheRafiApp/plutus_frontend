@@ -73,7 +73,8 @@ function(
 
       this.$el.find('.scroll-y').html(this.template({ 
         bill: data,
-        prettyMoney: app.utils.prettyMoney
+        prettyMoney: app.utils.prettyMoney,
+        role: app.session.get('user_role')
       }));
 
       this.renderTenants();
@@ -90,8 +91,8 @@ function(
 
       var self = this;
 
-      var autopay_data = this.model.get('lease.autopay');
-      var split_data = this.model.get('lease.split');
+      var autopay_data = this.model.get('lease.autopay') || {};
+      var split_data = this.model.get('lease.split') || {};
 
       tenants.forEach(function(tenant) {
 
@@ -158,7 +159,8 @@ function(
         action: 'add',
         type: 'offline',
         eventName: 'transferAdded',
-        context: this,
+        sources: this.model.get('tenants'),
+        context: this
       });
     }
 

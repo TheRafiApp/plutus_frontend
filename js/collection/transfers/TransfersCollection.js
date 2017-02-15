@@ -14,6 +14,10 @@ function(app, TransferModel) {
 
     model: TransferModel,
 
+    url: function() {
+      return app.API() + this.options.base + 'transfers/';
+    },
+
     initialize: function(models, options) {
       if (!options) options = {};
       if (!this.options) this.options = {};
@@ -25,12 +29,8 @@ function(app, TransferModel) {
       if (!this.options.base) this.options.base = '';
     },
 
-    url: function() {
-      return app.API() + this.options.base + 'transfers/';
-    },
-
     reverse: function() {
-      this.models = this.models.reverse();
+      this.models.reverse();
     }
     
   });

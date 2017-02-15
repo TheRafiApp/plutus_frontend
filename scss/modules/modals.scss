@@ -187,7 +187,7 @@
     .pw-container {
       width: 300px;
       max-width: 100%;
-    }
+    } 
 
     &.contact {
       .verification-code {
@@ -204,6 +204,57 @@
           overflow: visible;
           transition: all 0.7s;
         }
+      }
+    }
+ 
+    // Modals with Steps
+    .count {
+      padding: 30px 20px;
+      font-size: 1.3em;
+    }
+
+    .steps {
+      .form-model {
+        width: 390px;
+
+        select {
+          width: 100%;
+          margin-top: 5px;
+        }
+
+        input {
+          width: 100%;
+        }
+
+        .money {
+          width: 100%;
+
+          input {
+            width: 100%;
+          }
+        }
+
+        .chosen-multiple {
+          margin-top: 5px;
+        }
+      }
+    }
+
+    .step {
+      display: none;
+
+      &.active {
+        display: block;
+      }
+    }
+
+    .loading {
+      &:before {
+        background: rgba(255,255,255, 0.4);
+      }
+      &:after {
+        background: $color-highlight;
+        border-color: $color-highlight;
       }
     }
   }

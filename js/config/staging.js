@@ -17,6 +17,9 @@ function(app) {
 
     // Dwolla
     dwolla_env: 'sandbox',
+
+    // Google Places
+    google_places_key: 'AIzaSyBEhE2OH8nZyS4eBTe9oTJmPXEoWtQAzbg',
     
   	// Bugherd
     bugherd: true,

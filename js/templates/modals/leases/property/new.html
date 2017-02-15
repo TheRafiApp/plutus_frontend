@@ -1,0 +1,30 @@
+<form class="form-model">
+  <div class="field-group">
+    <legend>Address</legend>
+    <input class="address-selector no-submit no-escape full" type="text" name="address" placeholder="Enter a location" autocomplete="off">
+    <span class="help-text"></span>
+  </div>
+
+  <div class="field-group">
+    <legend>Name</legend>
+    <input class="full" type="text" name="name" autocomplete="off">
+    <span class="help-text"></span>
+  </div>
+
+  <div class="field-group pay-into">
+    <legend>Pay-into Account</legend>
+
+    <input type="radio" name="pay_into_target" id="default" value="false" checked><label for="default">Primary Bank Account</label>
+    <input type="radio" name="pay_into_target" id="specific" value="true"><label for="specific">Choose a Bank Account</label>
+
+    <div class="dropdown" style="display:none">
+      <select name="dwolla.funding_source" class="funding_source">
+      {{# _.each(funding_sources, function(funding_source) { }}
+        <option value="{{{ funding_source.id }}}">{{{ funding_source.name }}}</option>
+      {{# }) }}
+      </select>
+    </div>
+  </div>
+
+  Or, <a href="#" class="action-toggle">choose an existing property</a>
+</form>

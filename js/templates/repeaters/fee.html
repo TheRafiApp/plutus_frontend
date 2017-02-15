@@ -1,0 +1,41 @@
+{{#
+var id_addon = '-' + type;
+id_addon += id ? '-' + id : '';
+}}
+<div class="repeater">
+  <a href="#" class="action-close">
+    <svg viewBox="0 0 16 16"><circle fill="#808080" cx="8" cy="8" r="7.8"/><polygon fill="#F2F2F2" points="11.9,5.4 10.9,4.5 8.2,7.2 5.5,4.4 4.5,5.4 7.2,8.1 4.5,10.9 5.5,11.8 8.2,9.1 10.9,11.8 11.9,10.9 9.1,8.1  "/></svg>
+  </a>
+  <form>
+    <div class="field-group">
+      <legend>Amount</legend>
+      <span class="money">
+        <input name="amount" type="text" placeholder="0.00" class="medium mobile-number">
+      </span> 
+      <span class="help-text"></span>
+    </div>
+
+    <div class="field-group pay-into">
+      <legend>Type</legend>
+
+      <input type="radio" name="type" id="fee{{{ id_addon }}}" value="fee" checked><label for="fee{{{ id_addon }}}">Fee</label>
+      <input type="radio" name="type" id="credit{{{ id_addon }}}" value="credit"><label for="credit{{{ id_addon }}}">Credit</label>
+    </div>
+  
+    {{# if (scheduled) { }}
+    
+    <div class="field-group">
+      <legend>Due Date</legend>
+      <input name="date" class="due-date-input" type="text" />
+      <span class="help-text"></span>
+    </div>
+
+    {{# } }}
+
+    <div class="field-group">
+      <legend>Description</legend>
+       <textarea name="description" class="description"></textarea>
+    </div>
+  </form>
+</div>
+  

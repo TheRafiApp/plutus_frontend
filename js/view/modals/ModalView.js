@@ -34,14 +34,27 @@ function(app, ModalTemplate) {
       error: 'Your changes could not be saved'
     },
 
+    initialize: function(options) {
+      if (_options) _.extend(this, _options);
+
+      this.options = _.extend(this.actions, this.options);
+
+      this.app.views.appView && this.app.views.appView.trigger('modalOpened');
+      this.app.views.modalView = this;
+    },
+
     // default keyboard usage
     keyControl: function(e) {
+      var $focused = app.utils.getFocused();
+
       // esc
       if (e.which === 27) {
+        if ($focused.className.contains('no-escape')) return;
+
         this.closeModal();
       // enter
       } else if (e.which === 13) {
-        var $focused = app.utils.getFocused();
+        
         if ($focused.parentNode.className.contains('actions')) return;
         if ($focused.className.contains('no-submit')) return;
 
@@ -53,7 +66,8 @@ function(app, ModalTemplate) {
     attachEvents: function() {
       var events = _.extend(this.modalEvents, this.events);
       this.delegateEvents(events);
-      this.listening = true;
+
+      // this.listening = true;
     },
 
     // this should be fired at the end of initialize
@@ -79,9 +93,9 @@ function(app, ModalTemplate) {
 
       if (this.tabs) this.renderTabs();
 
-      if (!this.listening) this.attachEvents();
-
       this.render();
+      
+      this.attachEvents();
 
       return this;
     },
@@ -114,6 +128,9 @@ function(app, ModalTemplate) {
       this.$el.find('.form-model').html(this.template(data));
       $('.modal-container').html(this.$el).addClass('visible');
       app.utils.prepInputs(this);
+
+      if (this.$el.find('.focus').length < 1) 
+        this.$el.find('.actions a:last-child').focus();
     },
 
     // close the modal
@@ -122,6 +139,14 @@ function(app, ModalTemplate) {
       this.close();
       this.context.trigger('modalClosed');
       if (app.views.appView) app.views.appView.trigger('modalClosed');
+    },
+
+    easyClose: function() {
+      if (!this.changed()) {
+        this.closeModal();
+      } else {
+        app.controls.modalShake(this);
+      }
     },
 
     handleSubmit: function(e) {
@@ -138,7 +163,6 @@ function(app, ModalTemplate) {
 
     // default confirmation
     confirm: function(event) {
-      console.trace(event);
       if (event && $(event.currentTarget).hasClass('disabled')) return;
 
       var self = this;
@@ -147,8 +171,6 @@ function(app, ModalTemplate) {
 
       if (!app.utils.validate(this, formData)) return false;
 
-      console.log(formData);
-      
       app.controls.loadLock(true);
 
       this.model.save(formData).always(function() {
@@ -160,6 +182,14 @@ function(app, ModalTemplate) {
       }).fail(function(error) {
         self.handleError(error);
       });
+    },
+
+    lock: function() {
+      this.$el.find('.content').addClass('loading');
+    },
+
+    unlock: function() {
+      this.$el.find('.content').removeClass('loading');
     },
 
     // allow for different error handling per modal

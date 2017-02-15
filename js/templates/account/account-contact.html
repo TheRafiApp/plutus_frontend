@@ -33,23 +33,22 @@ var phone_btn = phone ? 'Change' : 'Add';
       {{# } }}
     </div>
 
-    <div class="field-group task">
-      <legend>Phone</legend>
-      <h3>
-        <span class="phone-data">{{{ user.phone_pretty || '(Not Set)' }}}</span>
-        
-        {{# if (phone_verified) { }}
-        <span class="status status-success">verified</span>
-        {{# } else if (phone) { }}
-        <span class="status status-none phone">not verified</span>
-        {{# } }}
-      </h3>
-
-      {{# if (!phone_verified && phone) { }}<a href="#" class="btn btn-secondary action-verify-phone">Verify</a>{{# } }}
-      <a href="#" class="btn action-change-phone">{{{ phone_btn }}}</a>
-      {{# if (phone) { }}
-      <!-- <a href="#" class="btn btn-secondary action-remove-phone icon trash"></a> -->
-      {{# } }}
-    </div>
   </div>
 </form>
+
+<!--
+<div class="field-group task">
+  <legend>Phone</legend>
+  <h3>
+    <span class="phone-data">{{{ user.phone_pretty || '(Not Set)' }}}</span>
+    
+    {{# if (phone_verified) { }}
+    <span class="status status-success">verified</span>
+    {{# } else if (phone) { }}
+    <span class="status status-none phone">not verified</span>
+    {{# } }}
+  </h3>
+
+  {{# if (!phone_verified && phone) { }}<a href="#" class="btn btn-secondary action-verify-phone">Verify</a>{{# } }}
+  <a href="#" class="btn action-change-phone">{{{ phone_btn }}}</a>
+</div> -->

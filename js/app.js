@@ -154,6 +154,17 @@ function(
           return data;
         },
 
+        // address: function(data, obj) {
+        //   var address_array = data.split(', ');
+        //   var state_zip = address_array[2].split(' ');
+        //   obj.city = address_array[1];
+        //   obj.state = state_zip[0];
+        //   obj.zip = state_zip[1];
+        //   obj.country = address_array[3];
+
+        //   return address_array[0];
+        // },
+
         phone: function(data) {
           var phone_data = app.utils.uglyPhone(data) || data; // hack to make sure data gets validated
           // if (!phone_data) throw new TypeError('Invalid phone number input');
@@ -235,10 +246,10 @@ function(
       // Generate promises
       promises: function(quantity) {
         if (typeof quantity !== 'number') return;
-        var promise_array = [];
-        while (quantity-- > 0) promise_array.push($.Deferred());
-
-        return promise_array;
+        var promises = [];
+        while (quantity-- > 0) promises.push($.Deferred());
+        
+        return promises;
       },
 
       // Device check
@@ -526,6 +537,8 @@ function(
         _view.model.set(formData);
 
         var invalid = _view.model.validate();
+
+        console.log(invalid);
 
         // scroll to first error
         if (app.utils.scrollToErrors(_view)) invalid = true;

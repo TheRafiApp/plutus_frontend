@@ -1,0 +1,22 @@
+@import 'colors';
+
+.repeater {
+  position: relative;
+  border: 1px solid #ccc;
+  background: #f2f2f2;
+  padding: 12px;
+  border-radius: 3px;
+  margin-bottom: 12px;
+
+  .action-close {
+    position: absolute;
+    right: 12px;
+    display: inline-block;
+    width: 16px;
+    z-index: 9;
+
+    svg {
+      width: 100%;
+    }
+  }
+}

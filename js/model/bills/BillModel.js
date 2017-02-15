@@ -28,12 +28,19 @@ function(app) {
       return app.API() + this.options.base + 'bills/';
     },
 
-    address: Backbone.computed('unit', 'property', function() {
+    address: Backbone.computed('number_pretty', 'property', function() {
       var property = this.get('property');
-      var unit = this.get('unit');
+      var unit = this.get('number_pretty');
       if (typeof unit !== 'object') return;
       // var data = this.toJSON();
-      return property.address + ' #' + unit.number /* + ', ' + property.city + ' ' + property.state */;
+      return property.address + ', ' + unit /* + ', ' + property.city + ' ' + property.state */;
+    }),
+
+    number_pretty: Backbone.computed('unit', function() {
+      var number = this.get('unit.number');
+      if (!number) return;
+      if (/^[\d]/.test(number)) number = '#' + number;
+      return number;
     }),
 
     date_pretty: Backbone.computed('due_date', function() {

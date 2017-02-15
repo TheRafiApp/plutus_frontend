@@ -1,0 +1,31 @@
+<form class="form-model">
+  <div class="field-group">
+    <legend>Unit Number/Name</legend>
+    <input type="text" name="number" autocomplete="off">
+    <span class="help-text"></span>
+  </div>
+
+  <div class="field-group">
+    <legend>Beds</legend>
+    <input type="text" name="beds" autocomplete="off">
+    <span class="help-text"></span>
+  </div>
+
+  <div class="field-group">
+    <legend>Baths</legend>
+    <input type="text" name="baths" autocomplete="off">
+    <span class="help-text"></span>
+  </div>
+
+  <div class="field-group">
+    <legend>Sq Ft</legend>
+    <input type="text" name="sq_ft" autocomplete="off">
+    <span class="help-text"></span>
+  </div>
+
+  {{# if (!existingIsDisabled) { }} 
+    Or, <a href="#" class="action-toggle">choose an existing unit</a>
+  {{# } }}
+  
+</form>
+

@@ -7,7 +7,7 @@
 
 			<div class="field-group">
 			  <legend>Email or Phone</legend>
-			  <input class="username" type="text" value="{{{ user }}}" required />
+			  <input class="username" type="text" value="{{{ user }}}" autocapitalize="off" required />
 			</div>
 
 			<div class="field-group">
@@ -22,7 +22,9 @@
 				<label for="remember-me">Remember me</label>
 			</div>
 
-			<input type="submit" class="btn btn-primary action-login" value="Submit">
+			<div class="actions">
+				<input type="submit" class="btn btn-primary action-login" value="Submit">
+			</div>
 
 			<div class="links">
 				<a href="/forgot">Forgot password?</a>
@@ -33,17 +35,19 @@
 		<form class="content forgot forgot-begin">
 			<div class="field-group">
 			  <legend>Email or Phone</legend>
-			  <input class="username" type="text" value="{{{ user }}}" required />
+			  <input class="username" type="text" value="{{{ user }}}" autocapitalize="off" required />
 			  <div class="help-text"></div>
 			</div>
 
 			<div class="field-group reset-code">
 			  <legend>Reset Code</legend>
-			  <input class="code" type="text" />
+			  <input class="code" type="text" autocapitalize="off" />
 			  <div class="help-text"></div>
 			</div>
 
-			<input type="submit" class="btn btn-primary action-forgot-submit" value="Submit">
+			<div class="actions">
+				<input type="submit" class="btn btn-primary action-forgot-submit" value="Submit">
+			</div>
 
 			<div class="links">
 				<a href="/">Nevermind</a>
@@ -64,7 +68,9 @@
 			  <div class="help-text"></div>
 			</div>
 
-			<input type="submit" class="btn btn-primary action-reset-submit" value="Submit">
+			<div class="actions">
+				<input type="submit" class="btn btn-primary action-reset-submit" value="Submit">
+			</div>
 
 			<div class="links">
 				<a href="/">Nevermind</a>

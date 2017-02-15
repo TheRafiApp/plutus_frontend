@@ -57,9 +57,8 @@
   git merge dev
   ```
 
-1. Commit and push
+1. Push
 
   ```
-  git commit -a -m "message"
   git push staging
   ```

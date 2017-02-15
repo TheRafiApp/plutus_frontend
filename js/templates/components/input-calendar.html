@@ -1,0 +1,17 @@
+{{#
+if (typeof name === 'undefined') name = 'date';
+if (typeof legend === 'undefined') legend = 'Date';
+}}
+
+<div class="field-group">
+  <legend>{{{ legend }}}</legend>
+
+	<div class="date-input-container">
+		<input type="text" name="{{{ name }}}" class="date-input">
+		<a href="#" class="action-toggle-calendar"></a>
+	</div>
+
+	<div class="calendar-container"></div>
+	
+  <span class="help-text"></span>
+</div>
