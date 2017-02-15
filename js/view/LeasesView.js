@@ -54,11 +54,11 @@ function(
         options: {
           search: true,
           edit: false,
-          add: ModalAddView,
-          addModalOptions: {
-            action: 'add',
-            eventName: 'modelAdded',
-          }
+          // add: ModalAddView,
+          // addModalOptions: {
+          //   action: 'add',
+          //   eventName: 'modelAdded',
+          // }
         }
       });
       

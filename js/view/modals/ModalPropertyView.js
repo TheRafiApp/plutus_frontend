@@ -173,7 +173,7 @@ function(
           
         var place = autocomplete.getPlace();
 
-        console.log(place);
+        // console.log(place);
 
         var address_components = place.address_components;
         var components = {}; 

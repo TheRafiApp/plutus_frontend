@@ -29,11 +29,11 @@ function(app, EventsView, DashTemplate, DateInput) {
 
       this.$el.append(new EventsView().$el);
 
-      this.start_date = new DateInput({
-        input: this.$el.find('.start-date-input'),
-        context: this,
-        overflowEscape: true
-      });
+      // this.start_date = new DateInput({
+      //   input: this.$el.find('.start-date-input'),
+      //   context: this,
+      //   overflowEscape: true
+      // });
       
       return this;
     }
