@@ -94,8 +94,7 @@ function(app, ModalTemplate) {
       if (this.tabs) this.renderTabs();
 
       this.render();
-
-      // if (!this.listening) this.attachEvents();
+      
       this.attachEvents();
 
       return this;
@@ -142,6 +141,14 @@ function(app, ModalTemplate) {
       if (app.views.appView) app.views.appView.trigger('modalClosed');
     },
 
+    easyClose: function() {
+      if (!this.changed()) {
+        this.closeModal();
+      } else {
+        app.controls.modalShake(this);
+      }
+    },
+
     handleSubmit: function(e) {
       e.preventDefault();
     },
@@ -156,7 +163,6 @@ function(app, ModalTemplate) {
 
     // default confirmation
     confirm: function(event) {
-      console.trace(event);
       if (event && $(event.currentTarget).hasClass('disabled')) return;
 
       var self = this;
@@ -165,8 +171,6 @@ function(app, ModalTemplate) {
 
       if (!app.utils.validate(this, formData)) return false;
 
-      console.log(formData);
-      
       app.controls.loadLock(true);
 
       this.model.save(formData).always(function() {

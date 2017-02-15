@@ -11,8 +11,6 @@ function(app, ModalView, ModalTemplate) {
 
   return ModalView.extend({
 
-    // child_views: [],
-
     title: function() {
       return 'Steps';
     },
@@ -76,7 +74,6 @@ function(app, ModalView, ModalTemplate) {
     },
 
     setStep: function(stepIndex) {
-      // console.log('setStep: ', stepIndex)
       if (stepIndex < 0 || stepIndex > (this.steps.length - 1)) return;
 
       app.views.appView.closeCalendarInputs();
@@ -95,7 +92,6 @@ function(app, ModalView, ModalTemplate) {
     },
 
     updateButtons: function() {
-
       // First step
       if (this.currentIndex === 0) {
         this.$el.find('.action-previous').addClass('disabled');
@@ -111,27 +107,11 @@ function(app, ModalView, ModalTemplate) {
       }
     },
 
-    // lock: function() {
-    //   this.$el.find('.content').addClass('loading');
-    // },
-
-    // unlock: function() {
-    //   this.$el.find('.content').removeClass('loading');
-    // },
-
-    easyClose: function() {
-      var changed = false;
-
-      for (var index in this.data) {
-        if (!_.isEmpty(this.data[index])) changed = true;
-      }
-
-      if (!changed) {
-        this.closeModal();
-      } else {
-        app.controls.modalShake(this);
-      }
-    },
+    changed: function() {
+      return _.some(this.data, function(obj) {
+        return !_.isEmpty(obj);
+      });
+    }
 
   });
 });
