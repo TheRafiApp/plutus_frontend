@@ -31,7 +31,7 @@ function(app) {
     address: Backbone.computed('number_pretty', 'property', function() {
       var property = this.get('property');
       var unit = this.get('number_pretty');
-      if (typeof unit !== 'object') return;
+      if (typeof property !== 'object') return;
       // var data = this.toJSON();
       return property.address + ', ' + unit /* + ', ' + property.city + ' ' + property.state */;
     }),
