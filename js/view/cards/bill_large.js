@@ -70,7 +70,6 @@ function(app, ModalTransferView, CardTemplate) {
       } else {
         amount = this.model.get('total');
       }
-      
 
       this.modal = new ModalTransferView({
         action: 'submit',

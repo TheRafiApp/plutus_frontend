@@ -106,8 +106,10 @@ function(app) {
       if (!due_date) return;
       if (!lease) return;
 
-      var has_autopay = _.each(lease.autopay, function(tenant_id) {
-        return tenant_id === app.session.user.id;
+      var has_autopay = false;
+
+      _.each(lease.autopay, function(value, key) {
+        if (value && key === app.session.user.id) has_autopay = true;
       });
 
       if (balance === 0) {

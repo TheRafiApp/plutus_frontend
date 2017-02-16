@@ -32,7 +32,7 @@ function(app) {
     // },
 
     filters: [
-      'address',
+      // 'address',
       'full_address',
       'vacancies',
       'pay_into_target'
