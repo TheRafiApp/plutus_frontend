@@ -22,14 +22,16 @@ function(app, BillModel) {
 
       this.options = _.extend(this.options, options); 
 
-      this.on('sync', this.reverse, this);
+      this.on('sync', this.defaultSort, this);
 
       if (!this.options.base) this.options.base = '';
     },
 
-    reverse: function() {
-      this.models = this.models.reverse();
+    defaultSort: function() {
+      this.sortByField('due_date');
+      this.models.reverse();
     }
+    
     
   });
 
