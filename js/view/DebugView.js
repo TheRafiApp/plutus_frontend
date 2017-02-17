@@ -107,12 +107,12 @@ function(app, TestModel, DebugMenuTemplate) {
     // increment thru the list of possible API locations
     toggleAPI: function() {
       var roots = [
-        'https://api.plutus.dev/', // local
-        'https://postman.plutus.dev/', // local postman
+        'http://api.plutus.dev/', // local
+        'http://postman.plutus.dev/', // local postman
         'http://10.1.10.38:8888/', // LAN (chris)
         'https://10.1.10.38:443/', // LAN SSL
         'https://api.staging.payment.rafiproperties.com/', // staging
-        'http://api.payment.rafiproperties.com/', // production
+        'https://api.payment.rafiproperties.com/', // production
         // 'http://209.6.68.251:81/', // remote brighton (chris)
       ];
 

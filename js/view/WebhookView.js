@@ -35,6 +35,8 @@ function(app, WebhookTemplate) {
  
       this.$el.html(this.template({ webhook: data }));
 
+      console.log(this.model)
+
       return this;
     },
 

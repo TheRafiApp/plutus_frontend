@@ -12,6 +12,8 @@ function(app) {
     name: 'funding source',
     displayName: 'url',
 
+    idAttribute: 'id',
+
     urlRoot: function() {
       return app.API() + 'dwolla/subscriptions';
     },
