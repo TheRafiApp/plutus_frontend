@@ -573,6 +573,7 @@ function(
     Raven.config(app.config.sentry_dsn, {
       ignoreUrls: [
         /10.1.10.38:8888/,
+        /staging.payment.rafiproperties.com/,
         /payment.rafiproperties.com/
       ]
     }).install();
