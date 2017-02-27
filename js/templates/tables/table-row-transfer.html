@@ -1,4 +1,7 @@
 
+{{#
+console.log(transfer)
+}}
 <div class="cell col-left">
   {{{ typeof totals !== 'undefined' ? totals : moment(transfer.created).format('MM/DD/YYYY h:mm:ssa') }}}
 </div>
@@ -6,7 +9,7 @@
   {{{ transfer.source_name }}}
 </div>
 <div class="cell hide-1">
-  {{{ transfer.destination.name }}}
+  {{{ transfer.address }}}
 </div>
 <div class="cell status-list">
 	<span class="status {{{ transfer.status.state }}}">{{{ transfer.status.state }}}</span>

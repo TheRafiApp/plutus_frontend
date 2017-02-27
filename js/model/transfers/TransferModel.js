@@ -63,6 +63,21 @@ function(app) {
       'updated'
     ],
 
+    address: Backbone.computed('number_pretty', 'property', function() {
+      var property = this.get('property');
+      var unit = this.get('number_pretty');
+      if (typeof property !== 'object') return;
+      // var data = this.toJSON();
+      return property.address + ', ' + unit /* + ', ' + property.city + ' ' + property.state */;
+    }),
+
+    number_pretty: Backbone.computed('unit', function() {
+      var number = this.get('unit.number');
+      if (!number) return;
+      if (/^[\d]/.test(number)) number = '#' + number;
+      return number;
+    }),
+
     source_name: Backbone.computed('source', function() {
       if (this.isNew()) return '';
       var source = this.get('source');
