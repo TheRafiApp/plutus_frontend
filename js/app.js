@@ -647,7 +647,6 @@ function(
        */
 
       validateContact: function(_string, _response) {
-
         var response;
 
         if (!_string) return false;
@@ -661,7 +660,8 @@ function(
           response = {};
         }
         // check if its a US phone number
-        var phone_check = _string.replace(/[^a-zA-Z0-9]/g, '');
+        var phone_check = _string.replace(/\D/g, '');
+        // console.log(phone_check)
         if (phone_check.length == 10 || phone_check.length == 11) {
 
           if (/[^0-9]/g.test(phone_check)) {
