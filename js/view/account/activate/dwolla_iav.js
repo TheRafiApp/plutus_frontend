@@ -109,7 +109,6 @@ function(app, OnboardingTemplate) {
         status: response._links['verify-micro-deposits'] ? 'unverified' : 'verified'
       };
 
-
       var path;
       var method = 'POST';
       if (app.session.get('logged_in')) {
