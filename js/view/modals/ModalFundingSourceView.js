@@ -72,6 +72,16 @@ function(
 
         // IAV successful
         if (response) {
+          self.processDwollaResponse(response);
+
+        //  IAV failed
+        } else if (error) {
+          app.controls.handleError(error);
+        }
+
+        /*
+        // IAV successful
+        if (response) {
           
           var data = {
             id: response._links['funding-source'].href.split('funding-sources/')[1], // id
@@ -91,8 +101,33 @@ function(
         } else if (error) {
           app.controls.handleError(error);
         }
+        */
       });
+    },
+    processDwollaResponse: function(response) {
+      var self = this;
+      var data = {
+        id: response._links['funding-source'].href.split('funding-sources/')[1], // id
+        status: response._links['verify-micro-deposits'] ? 'unverified' : 'verified'
+      };
 
+      var path = 'account/funding_sources';
+      method = 'PUT';
+
+      app.utils.request({
+        path: path,
+        method: method,
+        data: data
+      }).then(function(data) {
+        
+        if (data.status === 'unverified') {
+          // TODO: tell the user they will have to do microdeposits!!
+        }
+
+        self.closeModal();
+        self.context.trigger(self.eventName);
+        
+      });
     }
   });
 });
