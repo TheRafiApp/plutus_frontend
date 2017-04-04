@@ -76,7 +76,7 @@ function(app, OnboardingTemplate) {
           'https://fonts.googleapis.com/css?family=Roboto',
           app.url.base_url + '/css/dwolla_style.css'
         ],
-        microDeposits: false,
+        microDeposits: true,
         fallbackToMicroDeposits: true
       }, function(error, response) {
 
