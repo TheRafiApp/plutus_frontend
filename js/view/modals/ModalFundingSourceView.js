@@ -66,7 +66,7 @@ function(
           'https://fonts.googleapis.com/css?family=Roboto',
           app.url.base_url + 'css/dwolla_style.css'
         ],
-        microDeposits: false,
+        microDeposits: true,
         fallbackToMicroDeposits: true
       }, function(error, response) {
 
@@ -74,35 +74,10 @@ function(
         if (response) {
           console.log(response)
           self.processDwollaResponse(response);
-
         //  IAV failed
         } else if (error) {
          app.alerts.error('Unable to link your account, please try again later');
         }
-
-        /*
-        // IAV successful
-        if (response) {
-          
-          var data = {
-            id: response._links['funding-source'].href.split('funding-sources/')[1], // id
-            status: response._links['verify-micro-deposits'] ? 'unverified' : 'verified'
-          };
-
-          app.utils.request({
-            path: 'account/funding_sources',
-            method: 'POST',
-            data: data
-          }).then(function() {
-            self.closeModal();
-            self.context.trigger(self.eventName);
-          });
-
-        //  IAV failed
-        } else if (error) {
-          app.controls.handleError(error);
-        }
-        */
       });
     },
     processDwollaResponse: function(response) {

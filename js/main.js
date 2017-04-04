@@ -630,7 +630,6 @@ function(
 
     // Hide error messages on change for non text inputs
     .on('change', '.has-error input', function() {
-      console.log('change')
       // make sure input is correct type
       if ($(this).hasClass('chosen')) return; 
       $(this).closest('.field-group').removeClass('has-error');
