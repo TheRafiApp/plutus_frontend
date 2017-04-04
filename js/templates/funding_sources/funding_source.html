@@ -8,7 +8,7 @@
       <li>Created: {{{ moment(funding_source.created).format('MM/DD/YYYY') }}}</li>
       <li><span class="status status-{{{ funding_source.status }}}">{{{ funding_source.status }}}</span></li>
 
-      {{# if (funding_source.status == 'unverified') { }}
+      {{# if (['unverified', 'added'].contains(funding_source.status)) { }}
 
         {{# if (funding_source.microdeposits == 'completed') { }}
 
