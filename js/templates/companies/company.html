@@ -10,6 +10,10 @@
     <table>
       <tbody>
         <tr>
+          <td class="strong">Dwolla ID</td>
+          <td>{{{ company.dwolla && company.dwolla.customer_id }}}</td>
+        </tr>
+        <tr>
           <td class="strong">Created</td>
           <td>{{{ moment(company.created).format('MM/DD/YYYY') }}}</td>
         </tr>
@@ -24,10 +28,6 @@
         <tr>
           <td class="strong">Tenants</td>
           <td>{{{ company.tenants.length }}}</td>
-        </tr>
-        <tr>
-          <td class="strong">Landlords</td>
-          <td>{{{ company.landlords.length }}}</td>
         </tr>
         <tr>
           <td class="strong">Properties</td>
