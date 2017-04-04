@@ -277,8 +277,9 @@ function(app, UserCardView, TenantModel, LeaseModel, OnboardingTemplate) {
     validateSplit: function(e) {
       var amount = $(e.currentTarget).val();
       var invalid = app.utils.validateMoney(amount);
-      
-      if (invalid) {
+
+      // allow 0 as a valid split
+      if (invalid && amount !== '0') {
         e.stopPropagation();
         app.controls.fieldError({
           element: $(e.currentTarget),
