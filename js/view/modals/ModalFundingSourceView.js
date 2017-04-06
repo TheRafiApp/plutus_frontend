@@ -76,7 +76,8 @@ function(
           self.processDwollaResponse(response);
         //  IAV failed
         } else if (error) {
-         app.alerts.error('Unable to link your account, please try again later');
+          console.warn(error)
+          app.alerts.error('Unable to link your account, please try again later');
         }
       });
     },

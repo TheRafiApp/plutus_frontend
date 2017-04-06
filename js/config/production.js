@@ -28,7 +28,7 @@ function(app) {
     // Debug
     debug: false,
     console: true, 
-    bug_reporting: true
+    xhr_error_reporting: false
   };
 
   return environment_config;

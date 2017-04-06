@@ -570,6 +570,7 @@ function(
 
   // Raven.js (Sentry) for error logging
   if (app.config.sentry) {
+    console.log('sentry', app.config.sentry)
     Raven.config(app.config.sentry_dsn, {
       ignoreUrls: [
         /10.1.10.38:8888/,
@@ -592,7 +593,7 @@ function(
   $(document)
     // Catch server errors and collect feedback
     .ajaxError(function(event, xhr, options) {
-      if (app.config.bug_reporting) {
+      if (app.config.xhr_error_reporting) {
         if (xhr.status === 500) {
           if (xhr.responseJSON && xhr.responseJSON.event_id) {
             Raven.showReportDialog({
