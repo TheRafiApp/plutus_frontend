@@ -78,6 +78,7 @@ function(
         } else if (error) {
           console.warn(error)
           app.alerts.error('Unable to link your account, please try again later');
+          app.controls.reportError(error, false);
         }
       });
     },

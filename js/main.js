@@ -391,6 +391,11 @@ function(
         }
       },
 
+      reportError: function(error, showDialogue) {
+        Raven.captureException(error);
+        if (showDialogue) Raven.showReportDialog();
+      },
+
       // Auto resize textarea
       smartTextarea: function(context) {
         var $textarea = context.$el.find('textarea');
@@ -570,7 +575,6 @@ function(
 
   // Raven.js (Sentry) for error logging
   if (app.config.sentry) {
-    console.log('sentry', app.config.sentry)
     Raven.config(app.config.sentry_dsn, {
       ignoreUrls: [
         /10.1.10.38:8888/,
@@ -579,6 +583,7 @@ function(
       ]
     }).install();
   }
+
 
   // Catch all front end errors and collect feeback
   window.onerror = function(msg, url, lineNo, columnNo, error) {

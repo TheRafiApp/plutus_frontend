@@ -87,6 +87,7 @@ function(app, OnboardingTemplate) {
         //  IAV failed
         } else if (error) {
           app.alerts.error('Unable to link your account, please try again later');
+          app.controls.reportError(error, false);
           // app.controls.handleError(error);
         }
       });
