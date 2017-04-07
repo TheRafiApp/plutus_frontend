@@ -135,6 +135,7 @@ function(
           var data = {
             amount: app.utils.prettyMoney(charge.amount),
             type: type,
+            description: charge.description,
             date: moment.utc(charge.date).format('MM/DD/YYYY')
           };
 
