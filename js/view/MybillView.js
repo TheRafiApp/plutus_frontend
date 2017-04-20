@@ -48,7 +48,7 @@ function(app, UserCardView, ModalTransferView, BillModel, BillTemplate, HeaderTe
 
       var data = this.model.toJSON();
 
-      var path = app.router.getPath().split('/')
+      var path = app.router.getPath().split('/');
       path.pop();
 
       this.$el.html(this.template({ 

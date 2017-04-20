@@ -79,8 +79,6 @@ function(
         return funding_source.id === primary_id;
       });
 
-      console.log(this.sources)
-
       var options = {
         type: this.type,
         amount: this.amount,
@@ -119,8 +117,11 @@ function(
 
       if (fs_status !== 'active' && this.type !== 'offline') {
 
-        if (fs_status.contains('microdeposits'))
-          message = 'Your bank account is unverified, please use microdeposits to verify before proceeding';
+        message = 'Your bank account was not properly verified, please try to add it again';
+
+        if (['microdeposits'].contains(fs_status)) {
+          message = 'Your bank account is unverified, please complete microdeposits to verify before proceeding';
+        }
 
         return app.alerts.error(message);
       }
