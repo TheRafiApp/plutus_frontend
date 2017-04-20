@@ -28,7 +28,7 @@ function(app, UserModel, CardTemplate) {
 
       var amount;
 
-      if (this.amount) {
+      if (typeof this.amount !== 'undefined') {
         amount = app.utils.prettyMoney(this.amount);
         if (this.negative) amount = '-' + amount;
       } else {

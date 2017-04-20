@@ -58,13 +58,13 @@ function(
 
     getSplitData: function(splitInput) {
       var lease = this.model.clone().toJSON();
-      // var my_id = this.user.first_name + ' ' + this.user.last_name[0];
-      var my_id = this.user._id;
-      var split = lease.split;
+      // var my_name = this.user.first_name + ' ' + this.user.last_name[0];
+      var my_name = this.user._id;
+      var split = lease.split || {};
 
       // this endpoint doesn't include split on tenant...
       lease.tenants = lease.tenants.map(function(tenant) {
-        if (split[tenant._id]) tenant.split = split[tenant._id];
+        if (typeof split[tenant._id] !== 'undefined') tenant.split = split[tenant._id];
         return tenant;
       });
 
@@ -83,7 +83,15 @@ function(
       var missing_splits = lease.tenants.length - existing_splits.length;
       // console.log('missing: ' + missing_splits)
       
+      // tally up how much rent is account for
+      var rent_covered = existing_splits.map(function(tenant) {
+        return tenant.split;
+      }).reduce(function(a, b) {
+        return a + b;
+      }, 0);
+
       var suggested_split;
+
       var calculated_suggestion = missing_splits ? ((lease.rent - rent_covered) / missing_splits) : 0;
       // if argument for split was passed, include that for current user 
       if (splitInput) {
@@ -97,25 +105,26 @@ function(
 
       if (!is_user_set) {
         existing_splits.push({
-          name: my_id,
+          name: my_name,
           split: suggested_split
         });
       } else if (splitInput) {
         existing_splits = existing_splits.map(function(split) {
-          if (split.name == my_id) split.split = suggested_split;
+          if (split.name == my_name) split.split = suggested_split;
           return split;
         });
       }
 
       // tally up how much rent is account for
-      var rent_covered = existing_splits.map(function(tenant) {
-        return tenant.split;
-      }).reduce(function(a, b) {
-        return a + b;
-      }, 0);
+      // var rent_covered = existing_splits.map(function(tenant) {
+      //   return tenant.split;
+      // }).reduce(function(a, b) {
+      //   return a + b;
+      // }, 0);
 
       // how much rent is unaccounted for
       var missing_rent = lease.rent - rent_covered;
+      if (missing_rent < 0) missing_rent = 0;
 
       // console.log('already covered: ' + rent_covered, 'rent missing: ' + missing_rent)
 
@@ -129,11 +138,9 @@ function(
       // using the new suggested split, what is left?
       var remaining = lease.rent - new_total;
 
-      // console.log(remaining)
-
       // check if this exceeds rent
       if (remaining < 0) {
-        this.$el.find('.amount').val(missing_rent);
+        this.$el.find('.split-amount').val(missing_rent);
         this.updateChart(missing_rent);
         return false;
       }
@@ -160,7 +167,7 @@ function(
         split_data[e.name] = e.split;
       });
 
-      var my_split = split_data[my_id];
+      var my_split = split_data[my_name];
 
       this.$el.find('.amount').val(app.utils.parseMoney(my_split));
 
@@ -178,6 +185,8 @@ function(
       this.cards = {};
 
       var split_data = this.getSplitData(splitInput);
+
+      // console.log(split_data)
 
       // put self first in array
       tenants = tenants.sort(function(a, b) {
@@ -200,9 +209,12 @@ function(
         return tenant;
       });
 
+      // console.log(tenants)
+
       // var split = this.model.get('split');
 
       _.each(tenants, function(tenant) {
+        // console.log(tenant.split)
         var tenantModel = new TenantModel(tenant);
         self.cards[tenantModel.id] = new UserCardView({ 
           data: tenantModel.toJSON(),
@@ -218,7 +230,6 @@ function(
 
     updateChart: function(splitInput) {
       var split_data = this.getSplitData(splitInput);
-
       var id = this.user._id;
 
       if (!split_data) return;
@@ -234,7 +245,7 @@ function(
       var amount = $(e.currentTarget).val();
       var invalid = app.utils.validateMoney(amount);
       
-      if (invalid) {
+      if (invalid && amount !== '0') {
         e.stopPropagation();
         app.controls.fieldError({
           element: $(e.currentTarget),

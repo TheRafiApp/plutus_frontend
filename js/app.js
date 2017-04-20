@@ -694,13 +694,13 @@ function(
        */
 
       prettyMoney: function(amount) {
-        console.log(amount)
+        // console.log(amount)
         var parsed = parseFloat(amount);
         var leader = '';
         if (parsed < 0) leader = '-';
         parsed = Math.abs(parsed);
         var number_string = app.utils.parseMoney(parsed);
-        console.log(number_string)
+        // console.log(number_string)
         return leader + '$' + number_string.replace(/(\d)(?=(\d{3})+\.)/g, '$1,');
       },
 

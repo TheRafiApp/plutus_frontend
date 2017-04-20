@@ -81,7 +81,7 @@ function(app, UserCardView, TenantModel, LeaseModel, OnboardingTemplate) {
 
       // this endpoint doesn't include split on tenant...
       lease.tenants = lease.tenants.map(function(tenant) {
-        if (split[tenant._id]) tenant.split = split[tenant._id];
+        if (typeof split[tenant._id] !== 'undefined') tenant.split = split[tenant._id];
         return tenant;
       });
 
@@ -203,11 +203,9 @@ function(app, UserCardView, TenantModel, LeaseModel, OnboardingTemplate) {
 
       var split_data = this.getSplitData(splitInput);
 
-      console.log(split_data)
-
       // put self first in array
       tenants = tenants.sort(function(a, b) {
-        if (a.split) {
+        if (typeof a.split !== 'undefined') {
           return -1;
         } else {
           return 1;

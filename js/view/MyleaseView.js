@@ -62,7 +62,7 @@ function(app, TenantModel, MyLeaseModel, UserCardView, ModalSplitView, MyLeaseTe
         }
       });
 
-      console.log(tenants);
+      // console.log(tenants);
 
       var split = this.model.get('split');
 
