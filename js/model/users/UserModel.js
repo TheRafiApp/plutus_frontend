@@ -115,7 +115,7 @@ function(app) {
         if (primary_fs) {
           if (primary_fs.status === 'verified') {
             status = 'active';
-          } else if (primary_fs.status === 'unverified'){
+          } else if (['unverified', 'added'].contains(primary_fs.status)) {
             status = 'inactive';
 
             if (primary_fs.microdeposits) {
