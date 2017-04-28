@@ -66,7 +66,7 @@
           <form class="micro-deposits failed">
             <legend>Micro Deposits</legend>
             <span class="status status-error">You have reached the maximum number of attempts for microdeposit verification.
-              <a href="http://payment.rafiproperties.com/help">Visit our help docs</a>to get information on what to do next.</span>
+              <a href="http://payment.rafiproperties.com/help#maxattempts">Visit our help docs</a>to get information on what to do next.</span>
           </form>
         </li>
 
@@ -83,7 +83,12 @@
       {{# } }}
 
       {{# if (funding_source.primary) { }}
-      <a href="#" class="btn btn-primary btn-disabled">Delete</a>
+
+        {{# if (funding_source.microdeposits && funding_source.microdeposits == 'maxattempts') { }}
+          <a href="#" class="btn btn-primary action-delete">Delete</a>
+        {{# } else { }}
+          <a href="#" class="btn btn-primary btn-disabled">Delete</a>
+        {{# } }}
       {{# } else { }}
       <a href="#" class="btn btn-primary action-delete">Delete</a>
       {{# } }}

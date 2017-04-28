@@ -57,9 +57,10 @@ function(
     },
 
     getSplitData: function(splitInput) {
+      // console.log(splitInput)
       var lease = this.model.clone().toJSON();
-      // var my_name = this.user.first_name + ' ' + this.user.last_name[0];
-      var my_name = this.user._id;
+      // var my_id = this.user.first_name + ' ' + this.user.last_name[0];
+      var my_id = this.user._id;
       var split = lease.split || {};
 
       // this endpoint doesn't include split on tenant...
@@ -70,7 +71,12 @@ function(
 
       // get tenants who have split set up
       var existing_splits = lease.tenants.filter(function(tenant) {
-        return typeof tenant.split !== 'undefined';
+        var output;
+        if (typeof splitInput !== 'undefined') {
+          return typeof tenant.split !== 'undefined' && tenant._id !== my_id;
+        } else {
+          return typeof tenant.split !== 'undefined';
+        }
       }).map(function(tenant) {
         return {
           // name: tenant.first_name + ' ' + tenant.last_name[0],
@@ -103,17 +109,21 @@ function(
       // not sure if i really need to check for this
       var is_user_set = lease.split && lease.split.hasOwnProperty(this.user._id);
 
-      if (!is_user_set) {
+      // if (!is_user_set) {
         existing_splits.push({
-          name: my_name,
+          name: my_id,
           split: suggested_split
         });
-      } else if (splitInput) {
-        existing_splits = existing_splits.map(function(split) {
-          if (split.name == my_name) split.split = suggested_split;
-          return split;
-        });
-      }
+      // }
+
+      // if (typeof splitInput !== 'undefined') {
+      //   existing_splits = existing_splits.map(function(split) {
+      //     if (split.name == my_id) split.split = suggested_split;
+      //     return split;
+      //   });
+      // }
+
+      // console.log({rent_covered})
 
       // tally up how much rent is account for
       // var rent_covered = existing_splits.map(function(tenant) {
@@ -167,7 +177,7 @@ function(
         split_data[e.name] = e.split;
       });
 
-      var my_split = split_data[my_name];
+      var my_split = split_data[my_id];
 
       this.$el.find('.amount').val(app.utils.parseMoney(my_split));
 
@@ -208,8 +218,6 @@ function(
         tenant.split = split_data.data[tenant._id];
         return tenant;
       });
-
-      // console.log(tenants)
 
       // var split = this.model.get('split');
 
