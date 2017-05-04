@@ -51,7 +51,7 @@
         </tr>
         <tr>
           <td>Phone</td>
-          <td><span class="status {{{ model.status.phone }}}">{{{ model.status.phone ? 'active' : 'inactive' }}}</span></td>
+          <td><span class="status {{{ !!model.status.phone }}}">{{{ model.status.phone ? 'active' : 'inactive' }}}</span></td>
         </tr>
         <tr>
           <td>Dwolla Account</td>

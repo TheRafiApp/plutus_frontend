@@ -2802,6 +2802,9 @@ legend{
   background:#f2f2f2;
   z-index:9999;
   box-shadow:0 1px 6px rgba(0,0,0,.35);
+  overflow:auto;
+  max-height:-webkit-calc(100vh - 120px);
+  max-height:calc(100vh - 120px);
 }
 
 .table .thead .cell .filter .filters{
@@ -6521,146 +6524,6 @@ card.transfer .meta.status{
   margin-top:0;
 }
 
-.color-success{
-  color:#45c97a;
-}
-
-.color-bg-success{
-  background-color:#45c97a;
-}
-
-.color-neutral{
-  color:#0071bc;
-}
-
-.color-bg-neutral{
-  color:#fff;
-  background-color:#0071bc;
-}
-
-.color-warning{
-  color:#f7d114;
-}
-
-.color-bg-warning{
-  background-color:#f7d114;
-}
-
-.color-error{
-  color:#e91e63;
-}
-
-.color-bg-error{
-  color:#fff;
-  background-color:#e91e63;
-}
-
-.account-view h2{
-  margin-top:0;
-}
-
-.account-view card.flex{
-  max-width:700px;
-  box-shadow:none;
-}
-
-.account-view .form-model.loading:after{
-  border-color:#0071bc;
-}
-
-.account-data .verification{
-  opacity:0;
-  pointer-events:none;
-  -webkit-transition:opacity .5s;
-  transition:opacity .5s;
-}
-
-.account-data.processed .verification{
-  pointer-events:all;
-  opacity:1;
-}
-
-.account-data dl{
-  overflow:hidden;
-  border-left:3px solid rgba(0,113,188,.4);
-  padding-left:16px;
-}
-
-.account-data dl dt{
-  float:left;
-  width:20%;
-  font-size:1.2em;
-  font-style:italic;
-  opacity:.6;
-}
-
-.account-data dl dd{
-  float:left;
-  width:80%;
-}
-
-.account-data dl dd.unit{
-  width:-webkit-calc(80% - 20px);
-  width:calc(80% - 20px);
-  margin-left:20px;
-}
-
-.account-data dl dd.lease{
-  width:-webkit-calc(80% - 40px);
-  width:calc(80% - 40px);
-  margin-left:40px;
-}
-
-.account-data dl dd.tenant{
-  width:-webkit-calc(80% - 60px);
-  width:calc(80% - 60px);
-  margin-left:60px;
-}
-
-.account-data dl dd table{
-  margin-top:0;
-}
-
-.account-data dl dd table td:first-child{
-  width:16%;
-  font-weight:700;
-  border-right:2px solid #d1d1d1;
-}
-
-.header .action-back{
-  position:absolute;
-  left:2px;
-  top:2px;
-}
-
-.header .action-back svg{
-  width:22px;
-  height:24px;
-  fill:none;
-  stroke:currentColor;
-  stroke-miterlimit:10;
-}
-
-@media (max-width:768px){
-  .header h2{
-    display:inline-block;
-  }
-  .header .action-back{
-    position:relative;
-    top:3px;
-    left:auto;
-    margin-right:10px;
-    padding:6px 8px;
-    background:transparent;
-    border:1px solid #fff;
-    color:#fff !important;
-  }
-  .header .action-back svg{
-    width:18px;
-    height:19px;
-  }
-}
-
 .choices.auth-events li a{
   font-family:courier,monospace;
   color:#444;
@@ -6803,49 +6666,144 @@ input.bill_due_day{
   color:#333;
 }
 
-.refresh-lock{
-  position:fixed;
-  top:0;
-  right:0;
-  bottom:0;
-  left:0;
-  z-index:9999999999;
-  background-color:#fff;
+.color-success{
+  color:#45c97a;
 }
 
-.refresh-lock .small-panel .btn{
-  width:100%;
-  padding:14px;
-  font-size:1.4em;
-  margin-top:9px;
+.color-bg-success{
+  background-color:#45c97a;
 }
 
-.transfer-cards{
-  margin-top:10px;
+.color-neutral{
+  color:#0071bc;
 }
 
-.transfer-cards .user-payments:last-child card.user{
-  margin-bottom:0;
+.color-bg-neutral{
+  color:#fff;
+  background-color:#0071bc;
 }
 
-.transfer-cards card.user{
-  max-width:400px;
+.color-warning{
+  color:#f7d114;
+}
+
+.color-bg-warning{
+  background-color:#f7d114;
+}
+
+.color-error{
+  color:#e91e63;
+}
+
+.color-bg-error{
+  color:#fff;
+  background-color:#e91e63;
+}
+
+.account-view h2{
+  margin-top:0;
+}
+
+.account-view card.flex{
+  max-width:700px;
   box-shadow:none;
 }
 
-.transfer-cards card.user h2{
-  margin:0;
-  font-size:1.1em;
+.account-view .form-model.loading:after{
+  border-color:#0071bc;
 }
 
-.transfer-cards ul.transfer-data{
-  text-align:right;
-  font-size:1.1em;
+.account-data .verification{
+  opacity:0;
+  pointer-events:none;
+  -webkit-transition:opacity .5s;
+  transition:opacity .5s;
+}
+
+.account-data.processed .verification{
+  pointer-events:all;
+  opacity:1;
+}
+
+.account-data dl{
+  overflow:hidden;
+  border-left:3px solid rgba(0,113,188,.4);
+  padding-left:16px;
+}
+
+.account-data dl dt{
+  float:left;
+  width:20%;
+  font-size:1.2em;
+  font-style:italic;
+  opacity:.6;
+}
+
+.account-data dl dd{
+  float:left;
+  width:80%;
+}
+
+.account-data dl dd.unit{
+  width:-webkit-calc(80% - 20px);
+  width:calc(80% - 20px);
+  margin-left:20px;
+}
+
+.account-data dl dd.lease{
+  width:-webkit-calc(80% - 40px);
+  width:calc(80% - 40px);
+  margin-left:40px;
+}
+
+.account-data dl dd.tenant{
+  width:-webkit-calc(80% - 60px);
+  width:calc(80% - 60px);
+  margin-left:60px;
+}
+
+.account-data dl dd table{
+  margin-top:0;
+}
+
+.account-data dl dd table td:first-child{
+  width:16%;
   font-weight:700;
+  border-right:2px solid #d1d1d1;
 }
 
-.transfer-cards ul.transfer-data li{
-  display:block;
+.header .action-back{
+  position:absolute;
+  left:2px;
+  top:2px;
+}
+
+.header .action-back svg{
+  width:22px;
+  height:24px;
+  fill:none;
+  stroke:currentColor;
+  stroke-miterlimit:10;
+}
+
+@media (max-width:768px){
+  .header h2{
+    display:inline-block;
+  }
+  .header .action-back{
+    position:relative;
+    top:3px;
+    left:auto;
+    margin-right:10px;
+    padding:6px 8px;
+    background:transparent;
+    border:1px solid #fff;
+    color:#fff !important;
+  }
+  .header .action-back svg{
+    width:18px;
+    height:19px;
+  }
 }
 
 .color-success{
@@ -6934,6 +6892,51 @@ input.bill_due_day{
   content:"";
   display:block;
   clear:both;
+}
+
+.refresh-lock{
+  position:fixed;
+  top:0;
+  right:0;
+  bottom:0;
+  left:0;
+  z-index:9999999999;
+  background-color:#fff;
+}
+
+.refresh-lock .small-panel .btn{
+  width:100%;
+  padding:14px;
+  font-size:1.4em;
+  margin-top:9px;
+}
+
+.transfer-cards{
+  margin-top:10px;
+}
+
+.transfer-cards .user-payments:last-child card.user{
+  margin-bottom:0;
+}
+
+.transfer-cards card.user{
+  max-width:400px;
+  box-shadow:none;
+}
+
+.transfer-cards card.user h2{
+  margin:0;
+  font-size:1.1em;
+}
+
+.transfer-cards ul.transfer-data{
+  text-align:right;
+  font-size:1.1em;
+  font-weight:700;
+}
+
+.transfer-cards ul.transfer-data li{
+  display:block;
 }
 
 .color-success{
