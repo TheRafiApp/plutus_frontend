@@ -7,6 +7,7 @@ define([
   'kalendae',
   'view/modals/ModalView',
   'model/bills/BillModel',
+  'model/leases/LeaseModel',
   'collection/users/TenantsCollection',
   'collection/leases/LeasesCollection',
   'view/repeaters/charge',
@@ -16,17 +17,18 @@ define([
   'text!templates/modals/modal-bill.html'
 ],
 function(
-  app, 
-  kalendae, 
+  app,
+  kalendae,
   ModalView,
-  BillModel, 
-  TenantsCollection, 
-  LeasesCollection, 
-  ChargeRepeater, 
-  PropertyUnitsView, 
-  TenantsTemplate, 
-  LeasesTemplate, 
-  ModalBillTemplate 
+  BillModel,
+  LeaseModel,
+  TenantsCollection,
+  LeasesCollection,
+  ChargeRepeater,
+  PropertyUnitsView,
+  TenantsTemplate,
+  LeasesTemplate,
+  ModalBillTemplate
 ) {
 
   return ModalView.extend({
@@ -217,7 +219,7 @@ function(
       this.tenant_leases = this.findTenant(tenant_id);
 
       var leases_template = _.template(LeasesTemplate);
-      
+
       this.$el.find('.tenants-select').html('');
 
       this.$el.find('.leases').html(leases_template({
@@ -285,11 +287,17 @@ function(
       // make sure due date is within lease term
       var due_date = moment.utc(formData.due_date);
 
-      if (!this.selected_lease.containsDate(due_date)) {
+      var selected_lease_model = new LeaseModel(this.selected_lease)
+
+      if (!selected_lease_model.containsDate(due_date)) {
         app.controls.fieldError({
           element: '.date-input',
           error: 'Due date is outside term of lease'
         });
+      } else {
+        // modals wont save if errors are present
+        this.$el.find('.field-group').removeClass('has-error');
+        this.$el.find('.help-text').text('');
       }
 
       return app.schema.process(formData, this.model);

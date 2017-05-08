@@ -28,7 +28,7 @@ function(app, ModalView, ModalInviteTemplate) {
       var self = this;
 
       // dynamically choose model
-      this.role = app.utils.capitalize(this.context.modelName);
+      this.role = app.utils.capitalize(this.context.modelName || this.role);
 
       // all roles get invited except superadmins
       var action = this.role === 'superadmin' ? '' : 'invite';

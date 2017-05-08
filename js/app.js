@@ -783,6 +783,7 @@ function(
 
       // Capitalize first letter of a string
       capitalize: function(_string) {
+        console.log(_string)
         return _string.charAt(0).toUpperCase() + _string.slice(1);
       },
 
