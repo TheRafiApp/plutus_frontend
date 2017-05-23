@@ -152,14 +152,14 @@ function(app) {
       return address + ', ' + term;
     }),
 
-    length: Backbone.computed('start_date', 'end_date', function() { 
+    length: Backbone.computed('start_date', 'end_date', function() {
       if (this.isNew()) return '';
       var start = this.get('start_moment');
       var end = this.get('end_moment');
 
       if (!start) return;
 
-      // NOTE: moment assumes inclusive range, we need exclusive, so we need to 
+      // NOTE: moment assumes inclusive range, we need exclusive, so we need to
       // add a day to the end date to calculate length
 
       if (!end) return 'N/A';
@@ -178,7 +178,7 @@ function(app) {
       };
     }),
 
-    first_month: Backbone.computed('charges', function() { 
+    first_month: Backbone.computed('charges', function() {
       var charges = this.get('charges.scheduled');
       if (!charges) return;
 
@@ -189,7 +189,7 @@ function(app) {
       return charges.length === 1 ? charges[0] : false;
     }),
 
-    last_month: Backbone.computed('charges', function() { 
+    last_month: Backbone.computed('charges', function() {
       var charges = this.get('charges.scheduled');
       if (!charges) return;
 
@@ -211,8 +211,20 @@ function(app) {
 
     containsDate: function(date) {
       var date_to_check = moment.utc(date);
+
       var start_moment = this.get('start_moment');
       var end_moment = this.get('end_moment');
+
+      // console.log({
+      //   date_to_check,
+      //   start_moment,
+      //   end_moment
+      // });
+      // console.log({
+      //   date: date_to_check.format('MM/DD/YYYY'),
+      //   start: start_moment.format('MM/DD/YYYY'),
+      //   end: end_moment && end_moment.format('MM/DD/YYYY')
+      // })
 
       if (!end_moment && start_moment < date_to_check) return true;
 
@@ -234,7 +246,7 @@ function(app) {
         if (input) {
           var start_date = moment.utc(attributes.start_date);
           var end_date = moment.utc(input);
-          if (start_date > end_date) 
+          if (start_date > end_date)
             return 'End date cannot be after start date';
         }
       },
@@ -249,6 +261,6 @@ function(app) {
 
   });
 
-  return LeaseModel; 
+  return LeaseModel;
 
 });

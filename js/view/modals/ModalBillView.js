@@ -287,7 +287,10 @@ function(
       // make sure due date is within lease term
       var due_date = moment.utc(formData.due_date);
 
-      var selected_lease_model = new LeaseModel(this.selected_lease)
+      // console.log(this.selected_lease);
+      // var selected_lease_model = new LeaseModel(this.selected_lease)
+
+      var selected_lease_model = this.selected_lease
 
       if (!selected_lease_model.containsDate(due_date)) {
         app.controls.fieldError({

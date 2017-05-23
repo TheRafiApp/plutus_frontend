@@ -1,4 +1,4 @@
-{{# 
+{{#
 
 var bill_label = bill.type === 'monthly' ? 'Rent' : 'One-Time Bill';
 
@@ -6,7 +6,7 @@ var bill_label = bill.type === 'monthly' ? 'Rent' : 'One-Time Bill';
 
 <div class="header fixed">
   <div class="sub-header-main text-center">
-    
+
     <div class="meta">
       <a href="/{{{ back_path }}}" class="btn action-back"><svg viewBox="-140 146 30 40"><polyline points="-116.6,185.6 -136.2,166 -116.6,146.4 "/></svg></a>
       <h2>Bill Details</h2>
@@ -16,7 +16,7 @@ var bill_label = bill.type === 'monthly' ? 'Rent' : 'One-Time Bill';
 </div>
 
 <div class="scroll-y">
-  
+
   <card class="bill profile large {{{ bill.type }}} {{{ bill.status }}} {{{ bill.active ? 'active' : 'inactive' }}}">
     <div class="scroll-y">
       <div class="content">
@@ -27,13 +27,16 @@ var bill_label = bill.type === 'monthly' ? 'Rent' : 'One-Time Bill';
           <div class="text-right" style="flex: 1 1 8%">Bill #{{{ bill.identifier }}}</div>
         </header>
       </div>
-      <div class="pad flex">
+      <div class="pad flex"> 
         <div class="description">CHARGES</div>
       </div>
       <div class="pad">
         {{# _.each(bill.charges.recurring, function(charge) { }}
         <div class="flex">
-          <div class="description" style="flex: 1 1 8%">{{{ charge.type.replace(/\_/g,' ') }}}</div>
+          <div class="description" style="flex: 1 1 8%">
+            <div></div>{{{ charge.type.replace(/\_/g,' ') }}}
+            <div style="font-weight:normal">{{{ charge.description }}}</div>
+          </div>
           <div class="value text-right" style="flex: 1 1 8%">{{{ prettyMoney(charge.amount) }}}</div>
         </div>
         {{# }) }}
@@ -59,9 +62,9 @@ var bill_label = bill.type === 'monthly' ? 'Rent' : 'One-Time Bill';
       </div>
 
       <div class="pad cards transfer-cards"></div>
-        
+
       <div class="divider"></div>
-      
+
       <div class="pad flex">
         <div class="description" style="flex: 1 1 8%">Balance</div>
         <div class="value text-right" style="flex: 1 1 8%">{{{ prettyMoney(bill.display_balance) }}}</div>
