@@ -1,8 +1,8 @@
 var SocketClient = require('./ws-client');
 
-var Socket = new SocketClient('wss://staging.payment.rafiproperties.com:4200');
+var Socket = new SocketClient('wss://app.staging.payment.rafiproperties.com:4200');
 
-Socket.sendAndClose({ 
+Socket.sendAndClose({
   event: 'deployment',
   refresh: true
 });
