@@ -13,7 +13,7 @@ function(app) {
     API: 'https://api.payment.rafiproperties.com/',
 
     // Sockets Server URL
-    sockets_url: 'wss://payment.rafiproperties.com:4200',
+    sockets_url: 'wss://app.payment.rafiproperties.com:4200',
 
     // Dwolla
     dwolla_env: 'prod',
@@ -27,7 +27,7 @@ function(app) {
 
     // Debug
     debug: false,
-    console: true, 
+    console: true,
     xhr_error_reporting: false
   };
 
