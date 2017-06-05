@@ -289,8 +289,7 @@ function(
 
       // console.log(this.selected_lease);
       // var selected_lease_model = new LeaseModel(this.selected_lease)
-
-      console.log(this.selected_lease);
+      // console.log(this.selected_lease);
 
       var selected_lease_model = this.selected_lease.containsDate ? this.selected_lease : new LeaseModel(this.selected_lease)
 

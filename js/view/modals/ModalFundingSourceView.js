@@ -9,7 +9,7 @@ define([
   'https://cdn.dwolla.com/1/dwolla.js',
 ],
 function(
-  app, 
+  app,
   ModalView,
   ModalFundingSourceTemplate
 ) {
@@ -27,7 +27,7 @@ function(
 
     initialize: function(_options) {
       if (_options) _.extend(this, _options);
-      
+
       var self = this;
 
       app.utils.request({
@@ -90,21 +90,21 @@ function(
       };
 
       var path = 'account/funding_sources';
-      method = 'PUT';
+      method = 'POST';
 
       app.utils.request({
         path: path,
         method: method,
         data: data
       }).then(function(data) {
-        
+
         if (data.status === 'unverified') {
           // TODO: tell the user they will have to do microdeposits!!
         }
 
         self.closeModal();
         self.context.trigger(self.eventName);
-        
+
       });
     }
   });

@@ -12,12 +12,12 @@ define([
   'text!templates/modals/modal-lease.html'
 ],
 function(
-  app, 
-  kalendae, 
+  app,
+  kalendae,
   ModalView,
-  LeaseModel, 
-  ChargeRepeater, 
-  TenantsCollection, 
+  LeaseModel,
+  ChargeRepeater,
+  TenantsCollection,
   ModalLeaseTemplate
 ) {
 
@@ -87,7 +87,7 @@ function(
 
       // Bind validation
       // Backbone.Validation.bind(this);
-      
+
       // Set as active modal
       // app.views.modalView = this;
       // app.views.appView.trigger('modalOpened');
@@ -294,7 +294,7 @@ function(
 
       this.$el.find('input').change($.proxy(this.formChanged, this));
       this.$el.find('select').change($.proxy(this.formChanged, this));
-      
+
       // Add charges that exist
 
       if (this.action != 'add') {
@@ -322,9 +322,9 @@ function(
           }
         }
       });
-      
+
       // Show modal
-      
+
       // $('.modal-container').html(this.$el).addClass('visible');
 
       // app.utils.prepInputs(this);
@@ -432,7 +432,7 @@ function(
     toggleFee: function($checkbox, boolean) {
       var $fee_input = $checkbox.siblings('.money').children('input');
       if (boolean) {
-        
+
         if ($checkbox.prop('checked')) {
           var rent = this.$el.find('.rent').val();
           $fee_input.val(rent);
@@ -546,7 +546,7 @@ function(
       var incremented;
 
       if (lease_type == 12) {
-        
+
         incremented = moment.utc(this.start_moment).add('months', lease_type).subtract('days', 1);
         $end_field.prop('disabled', false);
 
@@ -574,7 +574,7 @@ function(
 
         if (!this.hasTouch) {
           if (this.end_date.getSelectedRaw().length > 1) {
-            incremented = this.end_date.getSelectedRaw()[1];  
+            incremented = this.end_date.getSelectedRaw()[1];
           }
         } else {
           incremented = moment.utc(this.end_date.val());
@@ -609,7 +609,7 @@ function(
         start_date = moment.utc(this.start_date.val());
         end_date = moment.utc(this.end_date.val());
       }
-      
+
       if (!this.leases) return;
 
       this.leases.forEach(function(lease) {
@@ -642,10 +642,10 @@ function(
       // inject default charges
       charges = _.extend(charges, formData.charges);
       formData.charges = charges;
-      
+
       // Set unit
       formData.unit = this.unit.id;
-      
+
       // Set first, last month's rent
       var $first = this.$el.find('#first');
       var $last = this.$el.find('#last');
@@ -670,8 +670,9 @@ function(
       // if existing lease and autopay is active
       if (this.action == 'renew') {
         formData.renewed_lease_id = this.model.get('_id');
-        if (this.model.get('autopay')) {
-          formData.autopay = this.model.get('autopay').toFixed(2);
+        var autopay = this.model.get('autopay')
+        if (autopay) {
+          formData.autopay = autopay
         }
       }
 
@@ -747,9 +748,9 @@ function(
         var existing_lease = error.data.existing_lease;
         var start_date = existing_lease.start_date;
         var end_date = existing_lease.end_date;
-        
+
         app.alerts.error(message + ': ' + start_date + ' – ' + end_date);
-      } 
+      }
     },
 
 
