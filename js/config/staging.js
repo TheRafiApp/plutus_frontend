@@ -13,14 +13,14 @@ function(app) {
     API: 'https://api.staging.payment.rafiproperties.com/',
 
     // Sockets Server URL
-    sockets_url: 'wss://staging.payment.rafiproperties.com:4200',
+    sockets_url: 'wss://app.staging.payment.rafiproperties.com:4200',
 
     // Dwolla
     dwolla_env: 'sandbox',
 
     // Google Places
     google_places_key: 'AIzaSyBEhE2OH8nZyS4eBTe9oTJmPXEoWtQAzbg',
-    
+
   	// Bugherd
     bugherd: true,
     bugherd_key: 'iu4t9xs1xpvpinhndnrpaa',
@@ -31,7 +31,7 @@ function(app) {
 
     // Debug
     debug: false,
-    console: true, 
+    console: true,
     xhr_error_reporting: false
   };
 
