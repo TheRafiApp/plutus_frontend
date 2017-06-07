@@ -5851,6 +5851,21 @@ ul.collapsible li .transfer.processed .transfer-status{
   }
 }
 
+card.transfer{
+  max-width:440px;
+  margin-bottom:10px;
+  box-shadow:none;
+  font-size:.85em;
+  background-color:#f2f2f2;
+}
+
+card.transfer .meta.status{
+  padding:24px 0;
+  margin-right:0;
+  font-size:1.1em;
+  width:200px;
+}
+
 .color-success{
   color:#45c97a;
 }
@@ -6435,19 +6450,144 @@ ul.collapsible li .transfer.processed .transfer-status{
   transition:all .7s;
 }
 
-card.transfer{
-  max-width:440px;
-  margin-bottom:10px;
-  box-shadow:none;
-  font-size:.85em;
-  background-color:#f2f2f2;
+.color-success{
+  color:#45c97a;
 }
 
-card.transfer .meta.status{
-  padding:24px 0;
-  margin-right:0;
-  font-size:1.1em;
-  width:200px;
+.color-bg-success{
+  background-color:#45c97a;
+}
+
+.color-neutral{
+  color:#0071bc;
+}
+
+.color-bg-neutral{
+  color:#fff;
+  background-color:#0071bc;
+}
+
+.color-warning{
+  color:#f7d114;
+}
+
+.color-bg-warning{
+  background-color:#f7d114;
+}
+
+.color-error{
+  color:#e91e63;
+}
+
+.color-bg-error{
+  color:#fff;
+  background-color:#e91e63;
+}
+
+.account-view h2{
+  margin-top:0;
+}
+
+.account-view card.flex{
+  max-width:700px;
+  box-shadow:none;
+}
+
+.account-view .form-model.loading:after{
+  border-color:#0071bc;
+}
+
+.account-data .verification{
+  opacity:0;
+  pointer-events:none;
+  -webkit-transition:opacity .5s;
+  transition:opacity .5s;
+}
+
+.account-data.processed .verification{
+  pointer-events:all;
+  opacity:1;
+}
+
+.account-data dl{
+  overflow:hidden;
+  border-left:3px solid rgba(0,113,188,.4);
+  padding-left:16px;
+}
+
+.account-data dl dt{
+  float:left;
+  width:20%;
+  font-size:1.2em;
+  font-style:italic;
+  opacity:.6;
+}
+
+.account-data dl dd{
+  float:left;
+  width:80%;
+}
+
+.account-data dl dd.unit{
+  width:-webkit-calc(80% - 20px);
+  width:calc(80% - 20px);
+  margin-left:20px;
+}
+
+.account-data dl dd.lease{
+  width:-webkit-calc(80% - 40px);
+  width:calc(80% - 40px);
+  margin-left:40px;
+}
+
+.account-data dl dd.tenant{
+  width:-webkit-calc(80% - 60px);
+  width:calc(80% - 60px);
+  margin-left:60px;
+}
+
+.account-data dl dd table{
+  margin-top:0;
+}
+
+.account-data dl dd table td:first-child{
+  width:16%;
+  font-weight:700;
+  border-right:2px solid #d1d1d1;
+}
+
+.header .action-back{
+  position:absolute;
+  left:2px;
+  top:2px;
+}
+
+.header .action-back svg{
+  width:22px;
+  height:24px;
+  fill:none;
+  stroke:currentColor;
+  stroke-miterlimit:10;
+}
+
+@media (max-width:768px){
+  .header h2{
+    display:inline-block;
+  }
+  .header .action-back{
+    position:relative;
+    top:3px;
+    left:auto;
+    margin-right:10px;
+    padding:6px 8px;
+    background:transparent;
+    border:1px solid #fff;
+    color:#fff !important;
+  }
+  .header .action-back svg{
+    width:18px;
+    height:19px;
+  }
 }
 
 .color-success{
@@ -6664,146 +6804,6 @@ input.bill_due_day{
 
 .split .modal card.flex ul li{
   color:#333;
-}
-
-.color-success{
-  color:#45c97a;
-}
-
-.color-bg-success{
-  background-color:#45c97a;
-}
-
-.color-neutral{
-  color:#0071bc;
-}
-
-.color-bg-neutral{
-  color:#fff;
-  background-color:#0071bc;
-}
-
-.color-warning{
-  color:#f7d114;
-}
-
-.color-bg-warning{
-  background-color:#f7d114;
-}
-
-.color-error{
-  color:#e91e63;
-}
-
-.color-bg-error{
-  color:#fff;
-  background-color:#e91e63;
-}
-
-.account-view h2{
-  margin-top:0;
-}
-
-.account-view card.flex{
-  max-width:700px;
-  box-shadow:none;
-}
-
-.account-view .form-model.loading:after{
-  border-color:#0071bc;
-}
-
-.account-data .verification{
-  opacity:0;
-  pointer-events:none;
-  -webkit-transition:opacity .5s;
-  transition:opacity .5s;
-}
-
-.account-data.processed .verification{
-  pointer-events:all;
-  opacity:1;
-}
-
-.account-data dl{
-  overflow:hidden;
-  border-left:3px solid rgba(0,113,188,.4);
-  padding-left:16px;
-}
-
-.account-data dl dt{
-  float:left;
-  width:20%;
-  font-size:1.2em;
-  font-style:italic;
-  opacity:.6;
-}
-
-.account-data dl dd{
-  float:left;
-  width:80%;
-}
-
-.account-data dl dd.unit{
-  width:-webkit-calc(80% - 20px);
-  width:calc(80% - 20px);
-  margin-left:20px;
-}
-
-.account-data dl dd.lease{
-  width:-webkit-calc(80% - 40px);
-  width:calc(80% - 40px);
-  margin-left:40px;
-}
-
-.account-data dl dd.tenant{
-  width:-webkit-calc(80% - 60px);
-  width:calc(80% - 60px);
-  margin-left:60px;
-}
-
-.account-data dl dd table{
-  margin-top:0;
-}
-
-.account-data dl dd table td:first-child{
-  width:16%;
-  font-weight:700;
-  border-right:2px solid #d1d1d1;
-}
-
-.header .action-back{
-  position:absolute;
-  left:2px;
-  top:2px;
-}
-
-.header .action-back svg{
-  width:22px;
-  height:24px;
-  fill:none;
-  stroke:currentColor;
-  stroke-miterlimit:10;
-}
-
-@media (max-width:768px){
-  .header h2{
-    display:inline-block;
-  }
-  .header .action-back{
-    position:relative;
-    top:3px;
-    left:auto;
-    margin-right:10px;
-    padding:6px 8px;
-    background:transparent;
-    border:1px solid #fff;
-    color:#fff !important;
-  }
-  .header .action-back svg{
-    width:18px;
-    height:19px;
-  }
 }
 
 .color-success{

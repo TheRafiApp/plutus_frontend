@@ -504,34 +504,6 @@ legend{
   border-color:#e91e63;
 }
 
-.pw-container{
-  position:relative;
-  display:block;
-}
-
-.pw-container input{
-  padding-right:30px;
-}
-
-.pw-container input+.pw-toggle{
-  display:inline-block;
-  position:absolute;
-  top:10px;
-  right:0;
-  height:18px;
-  width:18px;
-  background:url(/images/eye.svg) no-repeat;
-  opacity:.7;
-}
-
-.pw-container input+.pw-toggle:hover{
-  cursor:pointer;
-}
-
-.pw-container input.password-visible+.pw-toggle{
-  opacity:1;
-}
-
 .divider{
   height:2px;
   width:100%;
@@ -573,7 +545,7 @@ legend{
 
 .form-model.charges{
   padding:30px 30px 10px !important;
-  background:#333;
+  background:#394a67;
   color:#eee;
 }
 
@@ -589,7 +561,7 @@ legend{
 }
 
 .form-model .charge-group{
-  max-width:400px;
+  max-width:440px;
 }
 
 .form-model .charge-group legend{
@@ -614,7 +586,7 @@ legend{
 }
 
 .form-model .charge-group dl dd{
-  font-size:1.1em;
+  font-size:1.2em;
   float:right;
 }
 
@@ -647,6 +619,65 @@ legend{
 
 .grid select{
   width:100%;
+}
+
+.pw-container{
+  position:relative;
+  display:block;
+}
+
+.pw-container input{
+  padding-right:30px;
+}
+
+.pw-container input+.pw-toggle{
+  display:inline-block;
+  position:absolute;
+  top:10px;
+  right:0;
+  height:18px;
+  width:18px;
+  background:url(/images/eye.svg) no-repeat;
+  opacity:.7;
+}
+
+.pw-container input+.pw-toggle:hover{
+  cursor:pointer;
+}
+
+.pw-container input.password-visible+.pw-toggle{
+  opacity:1;
+}
+
+.date-input-container{
+  position:relative;
+  display:block;
+  max-width:100%;
+  width:390px;
+}
+
+.date-input-container input{
+  width:100%;
+  padding-right:30px;
+}
+
+.date-input-container input+.action-toggle-calendar{
+  display:inline-block;
+  position:absolute;
+  top:10px;
+  right:0;
+  height:18px;
+  width:18px;
+  background:url(/images/calendar.svg) no-repeat;
+  opacity:.7;
+}
+
+.date-input-container input+.action-toggle-calendar:hover{
+  cursor:pointer;
+}
+
+.date-input-container input.password-visible+.pw-toggle{
+  opacity:1;
 }
 
 @media (max-width:768px){
@@ -788,6 +819,11 @@ input[type=password].dwolla-iav-text-box,input[type=text].dwolla-iav-text-box{
 
 .js-list-search__results{
   margin-top:10px;
+}
+
+.yodlee-check-image img{
+  width:100%;
+  background:#fff;
 }
 
 .modal .dwolla-iav-link{
