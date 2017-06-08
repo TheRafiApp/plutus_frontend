@@ -3,7 +3,7 @@
     "apps": [],
     "details": [
       {
-        "appID": "<U3L6YDMS88>.com.rafi.payment",
+        "appID": "U3L6YDMS88.com.rafi.payment",
         "paths": [
           "*",
           "/"
