@@ -72,7 +72,7 @@ function(app) {
     ],
 
     address: Backbone.computed('lease', 'number_pretty', 'property', function() {
-			if (!this.lease) return;
+			if (!this.get('lease')) return;
       var property = this.get('property');
       var unit = this.get('number_pretty');
       if (typeof property !== 'object') return;
