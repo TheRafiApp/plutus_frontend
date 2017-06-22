@@ -15,10 +15,10 @@ require([
 ],
 function(
   app,
-  Router, 
+  Router,
   SocketClient,
-  SessionModel, 
-  AlertView, 
+  SessionModel,
+  AlertView,
   RefreshView,
   ModalDialogView,
   ModalConfirmView,
@@ -43,7 +43,7 @@ function(
             clearInterval(self.reconnecting);
             self.reconnecting = 0;
           }
-            
+
           app.controls.handleMessage(data);
         });
 
@@ -97,7 +97,7 @@ function(
         this.display('error', _message);
         return this;
       }
-    }, 
+    },
 
     // Methods for manipulating views
     controls: {
@@ -113,12 +113,12 @@ function(
           app.session.updateSessionUser( response || {} );
           app.session.set('logged_in', true);
 
-          // if user was trying to access a page but had to log in first, 
+          // if user was trying to access a page but had to log in first,
           // show them that content now
           var path = app.session.referer || 'dashboard';
-          
+
           app.router.navigate(path, { trigger: true, replace: true });
-          
+
           if (_response) app.alerts.success('Successfully logged in!');
 
         }).fail(function(error) {
@@ -178,7 +178,7 @@ function(
      * @param  {Backbone.View} _context   [view that created the modal]
      * @param  {string} _method           [method to run upon confirming]
      *
-     * 
+     *
      * @param  {object} _data             [optional: data that is dependent]
      * @return {Backbone.View}            [description]
      */
@@ -198,7 +198,7 @@ function(
        * [Display field error or errors]
        * @param  {[array/object]} fields [either an object with element and error or an object array]
        */
-      
+
       renderPasswordFields: function(view) {
         var $password_fields = view.$el.find('input[type="password"]');
 
@@ -224,11 +224,11 @@ function(
         var funding_sources_with_md = [];
 
         for (var id in funding_sources) {
-          if (funding_sources[id].microdeposits) 
+          if (funding_sources[id].microdeposits)
             funding_sources_with_md.push(id);
         }
 
-        if (funding_sources_with_md.length) 
+        if (funding_sources_with_md.length)
           this.showMicrodepositsReminder(funding_sources_with_md);
       },
 
@@ -244,7 +244,7 @@ function(
         //   }
         // });
       },
-      
+
       // render error messages on a field
       fieldError: function(fields) {
         if (fields.constructor == Array) {
@@ -279,7 +279,7 @@ function(
         var promise = $.Deferred();
         var toFetchSuperadmin = [app.collections.companies];
 
-        // add companies collection to superadmin 
+        // add companies collection to superadmin
         if (_toFetch && _toFetch.superadmin) _.extend(toFetchSuperadmin, _toFetch.superadmin);
 
         var toFetch = _toFetch || {};
@@ -289,8 +289,8 @@ function(
         var toFetchRole = toFetch[role] || [];
 
         if (toFetch['*']) toFetchRole = toFetchRole.concat(toFetch['*']);
-        
-        if (!toFetchRole) return promise.resolve(); 
+
+        if (!toFetchRole) return promise.resolve();
 
         var quantity = toFetchRole.length;
         var promises = app.utils.promises(quantity);
@@ -357,16 +357,16 @@ function(
 
       // Decide what to do with an error response from server
       handleError: function(error, message, context, method) {
-        
+
         // Server returned a 404, display notfound message
         if (error.status == 404) {
           app.alerts.error(message || 'Something went wrong...');
-        
+
         // Dwolla API error
         } else if (['dwolla_api_error', 'dwolla_api_communication_error'].contains(error.responseJSON.error)) {
           app.alerts.error('It looks like our payment processor is experiencing problems');
 
-        // Duplicate key error  
+        // Duplicate key error
         // } else if (error.responseJSON.error == 'pymongo_duplicate_key_error') {
           // do stuff
 
@@ -401,9 +401,9 @@ function(
         var $textarea = context.$el.find('textarea');
 
         if ($textarea.length === 0) return;
-        
+
         $textarea.attr('data-size', $textarea[0].scrollHeight);
-        
+
         $textarea.on('keyup keydown', function() {
           var $this = $(this);
 
@@ -423,7 +423,7 @@ function(
         return $textarea;
       },
 
-      // Shake a modal for negative feedback 
+      // Shake a modal for negative feedback
       modalShake: function(view) {
         // if it's a modal, run shake animation
         var $modal = view.$el.find('.modal');
@@ -550,8 +550,8 @@ function(
 
   if (hasPushstate) {
     Backbone.history.start({
-      pushState: true, 
-      root: app.url.base_path 
+      pushState: true,
+      root: app.url.base_path
     });
   } else {
     Backbone.history.start();
@@ -594,7 +594,7 @@ function(
   };
 
   // Global event delegation
-  
+
   $(document)
     // Catch server errors and collect feedback
     .ajaxError(function(event, xhr, options) {
@@ -637,7 +637,14 @@ function(
     // Hide error messages on change for non text inputs
     .on('change', '.has-error input', function() {
       // make sure input is correct type
-      if ($(this).hasClass('chosen')) return; 
+      if ($(this).hasClass('chosen')) return;
+      $(this).closest('.field-group').removeClass('has-error');
+      $(this).closest('.help-text').text('');
+    })
+
+    // Hide error messages on change for non text inputs
+    .on('change', '.has-error select', function() {
+      // make sure input is correct type
       $(this).closest('.field-group').removeClass('has-error');
       $(this).closest('.help-text').text('');
     })
@@ -715,7 +722,7 @@ function(
           return request.resolve(_data, _message, _response);
         }
       }
-    }).fail(function(error) { 
+    }).fail(function(error) {
       return request.reject(error);
     });
 

@@ -4,11 +4,12 @@
 
 define([
   'app',
+  'view/DwollaView',
   'view/FundingSourceView',
   'collection/account/FundingSourcesCollection',
   'text!templates/funding_sources/funding_sources.html'
 ],
-function(app, FundingSourceView, FundingSourcesCollection, FundingSourcesTemplate) {
+function(app, DwollaView, FundingSourceView, FundingSourcesCollection, FundingSourcesTemplate) {
 
   return Backbone.View.extend({
 
@@ -53,19 +54,25 @@ function(app, FundingSourceView, FundingSourcesCollection, FundingSourcesTemplat
         // console.log(funding_source.id, primary_fs)
         if (funding_source.id == primary_fs) primary = true;
 
-        var fs_view = new FundingSourceView({ 
+        var fs_view = new FundingSourceView({
           model: funding_source,
           parentView: self,
           primary: primary
         });
 
         self.$el.find('.funding-sources').append(fs_view.$el);
-
       });
+
+      if (['admin'].contains(app.session.get('user_role'))) {
+        this.DwollaView = new DwollaView({
+          parentView: this
+        });
+        this.$el.prepend(this.DwollaView.$el)
+      }
 
       this.$el.removeClass('loading');
       return this.$el;
     }
-    
+
   });
 });

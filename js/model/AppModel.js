@@ -46,12 +46,12 @@ function(app) {
       });
     },
 
-    // Override default save to 
+    // Override default save to
     save: function (attributes, options) {
       if (!options) options = {};
 
       // trim empty fields if new
-      if (this.isNew()) this.trim(attributes); 
+      if (this.isNew()) this.trim(attributes);
 
       // set model with data
       this.set(attributes);
@@ -68,7 +68,7 @@ function(app) {
         if (options.patch === true) {
           var changed_attrs = this.changedAttributes();
           if (!changed_attrs) return $.Deferred().reject({ changed: false });
-          data = changed_attrs;  
+          data = changed_attrs;
         }
         options.method = 'PUT';
       }
@@ -79,9 +79,9 @@ function(app) {
 
       return Backbone.Model.prototype.save.call(this, data, options);
     },
-    
+
     /*
-    
+
     // check if model has other models that depend on it
     has_dependents: function() {
       var self = this;
@@ -123,6 +123,6 @@ function(app) {
 
   });
 
-  return BaseModel; 
+  return BaseModel;
 
 });

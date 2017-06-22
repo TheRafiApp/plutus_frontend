@@ -6,15 +6,16 @@ define([
   'app',
   'collection/account/FundingSourcesCollection',
   'view/FundingSourcesView',
-  'view/modals/ModalFundingSourceView',
+  'view/DwollaView',
+  'view/modals/ModalFundingSourceView'
   // 'text!templates/account/account-payment.html',
 ],
 function(
-  app, 
-  FundingSourcesCollection, 
-  FundingSourcesView, 
+  app,
+  FundingSourcesCollection,
+  FundingSourcesView,
+  DwollaView,
   ModalFundingSourceView
-  // AccountPaymentTemplate
 ) {
 
   return Backbone.View.extend({
@@ -27,7 +28,7 @@ function(
 
     initialize: function(options) {
       if (options) _.extend(this, options);
-      
+
       var self = this;
 
       if (this.FundingSourcesView) this.FundingSourcesView.close();
@@ -48,7 +49,7 @@ function(
 
       if (!this.listening) this.attachEvents();
 
-      this.FundingSourcesView = new FundingSourcesView({ 
+      this.FundingSourcesView = new FundingSourcesView({
         parentView: this
       });
 
@@ -66,6 +67,6 @@ function(
         context: this
       });
     }
-    
+
   });
 });

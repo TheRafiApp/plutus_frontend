@@ -1,0 +1,33 @@
+<div class="field-group">
+  <legend>Amount</legend>
+  <span class="money">
+    <input name="amount" type="text" placeholder="0.00" class="medium amount mobile-number" autocomplete="off" value="{{{ amount }}}">
+  </span>
+  <span class="help-text"></span>
+</div>
+
+<div class="field-group">
+  <legend>Source</legend>
+  <div class="dropdown">
+    <select name="source_funding_source">
+    {{# _.each(sources, function(funding_source) { }}
+      <option value="{{{ funding_source.id }}}">{{{ funding_source.name }}}</option>
+    {{# }) }}
+    </select>
+  </div>
+  <span class="help-text"></span>
+</div>
+
+<div class="field-group">
+  <legend>Destination</legend>
+  <div class="dropdown">
+    <select name="destination_funding_source">
+    {{# _.each(sources, function(funding_source) { }}
+      <option value="{{{ funding_source.id }}}">{{{ funding_source.name }}}</option>
+    {{# }) }}
+    </select>
+  </div>
+  <span class="help-text"></span>
+</div>
+
+<div class="message"></div>

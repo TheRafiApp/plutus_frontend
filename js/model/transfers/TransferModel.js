@@ -12,8 +12,16 @@ function(app) {
     name: 'transfer',
     displayName: 'amount_pretty',
 
+		initialize: function(attributes, options) {
+      if (!options) options = {};
+      if (!this.options) this.options = {};
+
+      this.options = _.extend(this.options, options);
+      if (!this.options.action) this.options.action = '';
+		},
+
     urlRoot: function() {
-      return app.API() + 'transfers/';
+      return app.API() + 'transfers/' + this.options.action;
     },
 
     schema: {
@@ -38,7 +46,7 @@ function(app) {
       'dwolla_destination_id',
       'dwolla_id',
       'dwolla_resource_id',
-      'dowlla_source_id'
+      'dwolla_source_id'
     ],
 
     search_filters: [
@@ -63,7 +71,8 @@ function(app) {
       'updated'
     ],
 
-    address: Backbone.computed('number_pretty', 'property', function() {
+    address: Backbone.computed('lease', 'number_pretty', 'property', function() {
+			if (!this.lease) return;
       var property = this.get('property');
       var unit = this.get('number_pretty');
       if (typeof property !== 'object') return;
@@ -112,7 +121,7 @@ function(app) {
     //   var bill_original = this.get('bill_original');
 
     //   if (!bill_original) return false;
-    //   if (bill !== bill_original) 
+    //   if (bill !== bill_original)
     //     return true;
     //   else
     //     return false;
@@ -127,6 +136,6 @@ function(app) {
 
 	});
 
-	return TransferModel; 
+	return TransferModel;
 
 });
