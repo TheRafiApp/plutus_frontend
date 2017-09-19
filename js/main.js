@@ -24,6 +24,14 @@ function(
   ModalConfirmView,
   Raven
 ){
+  try {
+    localStorage.setItem('_test', '123');
+    localStorage.removeItem('_test');
+  } catch(error) {
+    alert('It looks like you are in private browsing mode, which is not supported. Please disable private browsing to continue.');
+    return false;
+  }
+
   // Create client session
   app.session = new SessionModel();
 
