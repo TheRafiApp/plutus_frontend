@@ -25,10 +25,13 @@ function(
   Raven
 ){
   try {
+    console.log('checking for ls support');
     localStorage.setItem('_test', '123');
     localStorage.removeItem('_test');
   } catch(error) {
-    alert('It looks like you are in private browsing mode, which is not supported. Please disable private browsing to continue.'); 
+    console.warn(error)
+    alert('It looks like you are in private browsing mode, which is not supported. Please disable private browsing to continue.');
+    // throw error;
     return false;
   }
 
