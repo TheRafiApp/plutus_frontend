@@ -145,6 +145,10 @@ function(
 
       app.controls.loadLock(true);
 
+      if (contactData.email) {
+        contactData.email = contactData.email.toLowerCase();
+      }
+
       this.model.save(contactData).always(function() {
 
         app.controls.loadLock(false);

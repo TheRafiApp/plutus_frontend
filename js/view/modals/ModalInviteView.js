@@ -55,6 +55,27 @@ function(app, ModalView, ModalInviteTemplate) {
       return this;
     },
 
+    confirm: function(event) {
+      if (event && $(event.currentTarget).hasClass('disabled')) return;
+      var self = this;
+      var formData = this.constructData();
+      if (formData.email) {
+        formData.email = formData.email.toLowerCase();
+      }
+      if (!app.utils.validate(this, formData)) return false;
+
+      app.controls.loadLock(true);
+
+      this.model.save(formData).always(function() {
+        app.controls.loadLock(false);
+      }).then(function() {
+        self.context.trigger(self.eventName);
+        self.closeModal();
+        app.alerts.success(self.messages.success);
+      }).fail(function(error) {
+        self.handleError(error);
+      });
+    },
 
     // TODO: move this 
     handleError: function(e) {
